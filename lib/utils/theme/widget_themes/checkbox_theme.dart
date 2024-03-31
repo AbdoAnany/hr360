@@ -8,7 +8,7 @@ class TCheckboxTheme {
 
   /// Customizable Light Text Theme
   static CheckboxThemeData lightCheckboxTheme = CheckboxThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.xs)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.xs4)),
     checkColor: MaterialStateProperty.resolveWith((states) {
       if (states.contains(MaterialState.selected)) {
         return AppColor.white;
@@ -27,7 +27,7 @@ class TCheckboxTheme {
 
   /// Customizable Dark Text Theme
   static CheckboxThemeData darkCheckboxTheme = CheckboxThemeData(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.xs)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.xs4)),
     checkColor: MaterialStateProperty.resolveWith((states) {
       if (states.contains(MaterialState.selected)) {
         return AppColor.white;

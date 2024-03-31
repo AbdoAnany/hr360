@@ -66,7 +66,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         ),
       ),
       body: Container(
-        margin:  EdgeInsets.symmetric(horizontal:  TSizes.md,),
+        margin:  EdgeInsets.symmetric(horizontal:  TSizes.md16,),
         child: PageView.builder(
             onPageChanged: (index)=> setState(()=> isLastPage = controller.items.length-1 == index),
             itemCount: controller.items.length,

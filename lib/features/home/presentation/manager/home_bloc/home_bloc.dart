@@ -17,7 +17,7 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   static HomeBloc get(context) => BlocProvider.of(context);
-  HomeBloc() : super(const HomeState(newPage: PageType.dashboard)) {
+  HomeBloc() : super(const HomeState(newPage: PageType.Dashboard)) {
     on<HomeEvent>((event, emit) async {
       if (event is ChangePageEvent) {
         print('eeeeeeeeeeeeee  ${event.newPage}');

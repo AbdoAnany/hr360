@@ -19,7 +19,7 @@ class TAppTheme {
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    fontFamily: 'Outfit',
     disabledColor: AppColor.grey,
     brightness: Brightness.light,
     primaryColor: AppColor.primary,
@@ -38,13 +38,13 @@ class TAppTheme {
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
-    fontFamily: 'Poppins',
+    fontFamily: 'Outfit',
     disabledColor: AppColor.grey,
     brightness: Brightness.dark,
     primaryColor: AppColor.primary,
     textTheme: TTextTheme.darkTextTheme,
     chipTheme: TChipTheme.darkChipTheme,
-    scaffoldBackgroundColor: AppColor.black,
+    scaffoldBackgroundColor: AppColor.scaffoldBackgroundColor,
     appBarTheme: TAppBarTheme.darkAppBarTheme,
     iconTheme: TIconTheme.darkIconTheme,
     iconButtonTheme: TIconButtonTheme.darkIconButtonTheme,

@@ -19,7 +19,7 @@ class HomeState {
 }
 
 class HomeInitialState extends HomeState {
-  const HomeInitialState() : super(newPage: PageType.dashboard);
+  const HomeInitialState() : super(newPage: PageType.Dashboard);
 }
 
 class ChangePageState extends HomeState {

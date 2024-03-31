@@ -14,8 +14,8 @@ class TSizes {
 
 
   }
-  static  double uiSW = 400;
-  static  double uiSH = 900;
+  static  double uiSW = 1512;
+  static  double uiSH = 1198;
   static  double screenWidth = MediaQuery.of(Get.context).size.width;
   static  double screenHeight = MediaQuery.of(Get.context).size.height;
   static  double screenAspectRatio = MediaQuery.of(Get.context).size.aspectRatio;
@@ -23,11 +23,11 @@ class TSizes {
 
 
   // Padding and margin sizes
-  static  double xs = 4.0.r;
-  static  double sm = 8.0.r;
-  static  double md = 16.0.r;
-  static  double lg = 24.0.r;
-  static  double xl = 32.0.r;
+  static  double xs4 = 4.0;
+  static  double sm8 = 8.0;
+  static  double md16 = 16.0;
+  static  double lg24 = 24.0;
+  static  double xl32 = 32.0;
 
   // Icon sizes
   static  double iconXs = 12.0.spMin;
@@ -36,18 +36,18 @@ class TSizes {
   static  double iconLg = 32.0.spMin;
 
   // Font sizes
-  static  double fontSizeSm = 14.0.r;
-  static  double fontSizeMd = 16.0.r;
-  static  double fontSizeLg = 18.0.r;
+  static  double fontSizeSm = 14.0;
+  static  double fontSizeMd = 16.0;
+  static  double fontSizeLg = 18.0;
 
   // Button sizes
-  static  double buttonHeight = 52.0.r;
-  static  double buttonRadius = 12.0.r;
-  static  double buttonWidth = 120.0.r;
-  static  double buttonElevation = 4.0.r;
+  static  double buttonHeight = 52.0;
+  static  double buttonRadius = 12.0;
+  static  double buttonWidth = 120.0;
+  static  double buttonElevation = 4.0;
 
   // AppBar height
-  static  double appBarHeight = 56.0.r;
+  static  double appBarHeight = 56.0;
 
   // Image sizes
   static  double imageThumbSize = 80.0.w;

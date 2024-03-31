@@ -16,7 +16,7 @@ class HomeAppbar extends StatelessWidget {
          Text(
           "What are you\ncooking today?",
           style: TextStyle(
-            fontSize: 32.r,
+            fontSize: 32,
             fontWeight: FontWeight.bold,
             height: 1,
           ),
