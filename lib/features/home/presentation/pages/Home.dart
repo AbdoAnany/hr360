@@ -145,7 +145,7 @@ class PageFrame extends StatelessWidget {
         )),
       backgroundColor: AppColor.white,
       body:  Padding(
-        padding:  EdgeInsets.symmetric(horizontal:  24),
+        padding:  EdgeInsets.symmetric(horizontal:  24,vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
