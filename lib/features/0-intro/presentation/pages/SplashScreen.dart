@@ -5,7 +5,7 @@ import '../../../../../utils/animation/Animation.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
-import '../../../home/home.dart';
+import '../../../home/presentation/pages/Home.dart';
 // import '../../../../auth/helper/AppRoutes.dart';
 
 

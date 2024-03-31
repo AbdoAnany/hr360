@@ -10,6 +10,7 @@ import '../../../../../utils/helpers/helper_functions.dart';
 import '../../../../../utils/theme/widget_themes/text_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../home/presentation/pages/Home.dart';
 import '../intro_screen.dart';
 import '../widget/OnBoardingItems.dart';
 
@@ -106,6 +107,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
 
             if(!mounted)return;
+            THelperFunctions.navigateAndReplaceScreen(Home());
          //   THelperFunctions.navigateAndReplaceScreen( LoginPage());
           },
           child:  Text("Get started",style:
