@@ -40,7 +40,7 @@ class _MainBarState extends State<MainBar> {
     return BlocBuilder<HomeBloc, HomeState>(
         builder:  (context, state) {
           return SizedBox(
-          width: MainBarControl.isExpanded ? 248 : 60,
+          width: MainBarControl.isExpanded ? 220.w : 58.w,
           height: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -85,12 +85,12 @@ class _MainBarState extends State<MainBar> {
                   pageType: PageType.Setting,
                   label: 'Setting'),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               _buildNavItem(
                   icon: Iconsax.logout, pageType: PageType.logout, label: 'Logout'),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
             ],
           ),
@@ -110,7 +110,7 @@ class _MainBarState extends State<MainBar> {
         },
         // onHover: ,
         child: Container(
-          width: MainBarControl.isExpanded ? 200 : 58,
+          width: MainBarControl.isExpanded ? 200.w : 58.w,
           // height: MainBarControl.isExpanded ? 60 : 60,
 
       //  margin: EdgeInsets.symmetric(horizontal:  TSizes.lg),
@@ -120,7 +120,7 @@ class _MainBarState extends State<MainBar> {
               : Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(TSizes.sm8),
         ),
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
 
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -136,7 +136,7 @@ class _MainBarState extends State<MainBar> {
               if (MainBarControl.isExpanded) Text(label,
 
                 style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 14.w,
                     fontWeight: FontWeight.w300,
                     color:MainBarControl.currentPage == pageType ? AppColor.white : AppColor.black ),),
             ],
@@ -158,14 +158,14 @@ class MainBarHeader extends StatelessWidget {
         // TODO: Handle navigation to the corresponding page
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24),
+        padding:  EdgeInsets.symmetric(vertical: TSizes.lg24),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(TImages.lightAppLogo, width: 40, height: 40),
+            Image.asset(TImages.lightAppLogo, width: 40.w, height: 40.w),
             if(  MainBarControl.isExpanded)
-              const SizedBox(width: 12,),
+               SizedBox(width: 12.w,),
             if(  MainBarControl.isExpanded)
               Text(
                 'HR.360' ,

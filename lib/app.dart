@@ -33,30 +33,34 @@ class App extends StatelessWidget {
         child: Consumer<ThemeProvider>(builder: (context, them, c) {
           them.getThemeMode();
           TSizes.init(context: context);
+          ScreenUtil.init(context);
           return ScreenUtilInit(
               designSize: Size(
                 TSizes.uiSW,
                 TSizes.uiSH,
               ),
-              minTextAdapt: true,
-              splitScreenMode: true,
-              builder: (ctx, child) {
-
-                ScreenUtil.init(ctx);
-
-                return MaterialApp(
+             minTextAdapt: true,
+             splitScreenMode: true,
+              useInheritedMediaQuery: true,
+              ensureScreenSize: true,
+              child:  MaterialApp(
                   builder: (context,w){
                     TTextTheme.init(context,them);
                     return w!;
                   },
-                    navigatorKey: Get.navigatorKey,
-                    title: TTexts.appName,
-                    themeMode: them.themeMode,
-                    theme: TAppTheme.lightTheme,
-                    darkTheme: TAppTheme.darkTheme,
-                    debugShowCheckedModeBanner: false,
-                    home: const Home());
-              });
+                  navigatorKey: Get.navigatorKey,
+                  title: TTexts.appName,
+                  themeMode: them.themeMode,
+                  theme: TAppTheme.lightTheme,
+                  darkTheme: TAppTheme.darkTheme,
+                  debugShowCheckedModeBanner: false,
+                  home: const Home()  ));
+              // builder: (ctx, child) {
+              //
+              //   ScreenUtil.init(ctx);
+              //
+              //   return child!;
+              // });
         }));
   }
 }

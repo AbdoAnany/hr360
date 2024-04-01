@@ -51,25 +51,23 @@ class Home extends StatelessWidget {
           builder:  (context, state) {
 
 
-            return SafeArea(
-              child: Scaffold(
-          //      appBar: AppBar(title: Text(state.newPage.name),),
+            return Scaffold(
+                      //      appBar: AppBar(title: Text(state.newPage.name),),
 
-                body: SizedBox(
-                  width: TSizes.screenWidth,
-                  height: TSizes.screenHeight,
-                  child: Row(
-                    children: [
-                      const MainBar(),
-                      VerticalDivider(
-                        width: 2,
-                        thickness: 2,
-                        color: Theme.of(context).splashColor,
-                      ),
-                      Expanded(child: PageFrame(pageType: state.newPage,))
+              body: SizedBox(
+                width: TSizes.screenWidth,
+                height: TSizes.screenHeight,
+                child: Row(
+                  children: [
+                    const MainBar(),
+                    VerticalDivider(
+                      width: 2.r,
+                      thickness: 2.r,
+                      color: Theme.of(context).splashColor,
+                    ),
+                    Expanded(child: PageFrame(pageType: state.newPage,))
 
-                    ],
-                  ),
+                  ],
                 ),
               ),
             );
@@ -85,24 +83,24 @@ class PageFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(      appBar: AppBar(
-        toolbarHeight: 88,
+        toolbarHeight: 108 .h,
         title: Padding(
-          padding:  const EdgeInsets.symmetric(vertical: 24,horizontal: 8),
+          padding:   EdgeInsets.symmetric(vertical: 24.h,horizontal: 8.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RichText(
-                text:  const TextSpan(
+                text:   TextSpan(
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 20.0.w,
                     color: Colors.black,
                   ),
                   children: <TextSpan>[
-                    TextSpan(
+                    const TextSpan(
                       text: 'Welcome back, ',
                       style: TextStyle(fontWeight: FontWeight.w300),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: 'Barbara ',
                       style: TextStyle(
                         //  fontStyle: FontStyle.italic,
@@ -111,9 +109,9 @@ class PageFrame extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: '☀️',
+                      text: '☀',
                       style: TextStyle(
-                        fontSize: 24.0,
+                        fontSize: 24.0.w,
 
                         color: Colors.yellow,
                       ),
@@ -125,27 +123,27 @@ class PageFrame extends StatelessWidget {
               Row(children: [
                 InkWell(
                   onTap: (){},
-                  child: Icon(Iconsax.setting, color: AppColor.black,),
+                  child: Icon(Iconsax.setting, color: AppColor.darkGrey,),
                 ),
                 SizedBox(width: TSizes.sm8,),
                 InkWell(
                   onTap: (){},
-                  child: Icon(Icons.mark_email_unread_outlined, color: AppColor.black,),
+                  child: Icon(Icons.mark_email_unread_outlined, color: AppColor.darkGrey,),
                 )
 
                 ,                  SizedBox(width: TSizes.sm8,), InkWell(
                   onTap: (){},
-                  child: Icon(Iconsax.notification, color: AppColor.black,),
+                  child: Icon(Iconsax.notification, color: AppColor.darkGrey,),
                 ),
                 SizedBox(width: TSizes.lg24,),
-                CircleAvatar(radius: 20,)
+                CircleAvatar(radius: 40.r,)
               ],)
             ],
           ),
         )),
       backgroundColor: AppColor.white,
       body:  Padding(
-        padding:  EdgeInsets.symmetric(horizontal:  24,vertical: 24),
+        padding:  EdgeInsets.symmetric(horizontal:  24.w,vertical: 24.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -162,10 +160,10 @@ class PageFrame extends StatelessWidget {
                       Text(MainBarControl.currentPage.name
                         ,       style:
                         TextStyle(
-                          fontSize: 24,
+                          fontSize: 24.w,
                           fontWeight: FontWeight.w600,
                         ),
-                      ),SizedBox(height: 8,),
+                      ),SizedBox(height: 8.h,),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -174,7 +172,7 @@ class PageFrame extends StatelessWidget {
                           Text(MainBarControl.currentPage.name
                             ,       style:
                             TextStyle(color: Color(0xffD9D9D9),
-                              fontSize: 14,
+                              fontSize: 14.w,
                               fontWeight: FontWeight.w300,
 
                             ),
@@ -184,7 +182,7 @@ class PageFrame extends StatelessWidget {
                           ),     Text(MainBarControl.currentPage.name
                             ,       style:
                             TextStyle(color: Color(0xffD9D9D9),
-                              fontSize: 14,
+                              fontSize: 14.w,
                               fontWeight: FontWeight.w300,
                             ),
                           ),  Padding(
@@ -193,7 +191,7 @@ class PageFrame extends StatelessWidget {
                           ),     Text(MainBarControl.currentPage.name
                             ,       style:
                             TextStyle(color: Color(0xffD9D9D9),
-                              fontSize: 14,
+                              fontSize: 14.w,
                               fontWeight: FontWeight.w300,
 
                             ),

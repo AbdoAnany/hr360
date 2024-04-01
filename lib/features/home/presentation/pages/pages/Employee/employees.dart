@@ -4,23 +4,65 @@ import 'package:hr360/utils/constants/colors.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../date/DashBoardCard.dart';
 import '../../../widgets/Mainbar.dart';
+
+List<DashBoardCard> cards = [
+  DashBoardCard(
+    icon:  Iconsax.briefcase,
+    title: "Total Workforce",present: 10,
+    subTitle: "vs last month",
+    count: 150
+  ),  DashBoardCard(
+    icon:  Iconsax.activity,
+    title: "Present Workforce",present: 20,
+    subTitle: "vs last month",
+    count: 125
+  ),
+  DashBoardCard(
+    icon:  Iconsax.information,
+    title: "Absent Workforce",present: -10,
+    subTitle: "vs last month",
+    count: 15
+  ),  DashBoardCard(
+    icon:  Iconsax.clock,
+    title: "Late arrivals",present: 7,
+    subTitle: "vs last month",
+    count: 5
+  ),DashBoardCard(
+    icon:  Iconsax.bus,
+    title: "On leave",present: 10,
+    subTitle: "vs last month",
+    count: 3
+  ),
+];
 
 class Employees extends StatelessWidget {
   const Employees({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 40,),
-        Row(
-          children: [
-            Container(
-              margin: EdgeInsets.all(TSizes.md16),
+    print(1.r);
+    print(1.w);
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(height: 40.h,),
+          Wrap(
+            runSpacing:     TSizes.lg24,
+            spacing:   TSizes.lg24,
+            crossAxisAlignment: WrapCrossAlignment.start,
+
+
+
+            children:
+
+            cards.map((e) =>    Container(
+
               padding: EdgeInsets.all(TSizes.lg24),
-              width: 225,
-              height: 171,
+              width: 224.w,
+              height: 168.w,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -44,29 +86,31 @@ class Employees extends StatelessWidget {
                               color: Colors.grey,
                             )),
                         child: Icon(
-                          Iconsax.briefcase,
+                          e.icon,
                           color: AppColor.primary,
                         ),
                       ),
                       RichText(
-                        text:  const TextSpan(
+                        text:   TextSpan(
                           style: TextStyle(
-                            fontSize: 12.0,
+                            fontSize: 12.0.w,
                             color: Colors.black,
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: '10%',
+                              text: '${e.present?.abs()}%',
                               style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 12.0.w,
                                   fontWeight: FontWeight.w500,
 
-                                  color: AppColor.success),
+                                  color:
+                                  e.present!>0?AppColor.success:
+                                  AppColor.error),
                             ),
                             TextSpan(
-                              text: ' vs last month',
+                              text: '  ${e.subTitle}',
                               style: TextStyle(
-                                fontSize: 12.0,
+                                fontSize: 12.0.w,
                                 //  fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.w300,
                                 // decoration: TextDecoration.underline,
@@ -78,330 +122,29 @@ class Employees extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16,),
-                  Text("Total Workforce" ,  style: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    ),),
+                 SizedBox(height:16.h ,),
+                  Text("${e.title}" ,  style: TextStyle(
+                    fontSize: 12.w,
+                    fontWeight: FontWeight.w300,
+                  ),),   SizedBox(height:4.h ,),
                   Text(
-                    "150",
+                    "${e.count}",
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 32.w,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
-            ),
-            Container(
-              margin: EdgeInsets.all(TSizes.md16),
-              padding: EdgeInsets.all(TSizes.lg24),
-              width: 225,
-              height: 171,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.grey,
-                  )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(TSizes.sm8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.grey,
-                            )),
-                        child: Icon(
-                          Iconsax.briefcase,
-                          color: AppColor.primary,
-                        ),
-                      ),
-                      RichText(
-                        text:  const TextSpan(
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '10%',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w500,
+            ),).toList()
 
-                                  color: AppColor.error),
-                            ),
-                            TextSpan(
-                              text: ' Present Workforce',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                //  fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w300,
-                                // decoration: TextDecoration.underline,
-                              ),
-                            ),
 
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16,),
-                  Text("Total Workforce" ,  style: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    ),),
-                  Text(
-                    "150",
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(TSizes.md16),
-              padding: EdgeInsets.all(TSizes.lg24),
-              width: 225,
-              height: 171,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.grey,
-                  )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(TSizes.sm8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.grey,
-                            )),
-                        child: Icon(
-                          Iconsax.airplane,
-                          color: AppColor.primary,
-                        ),
-                      ),
-                      RichText(
-                        text:  const TextSpan(
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '10%',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w500,
+                ),
 
-                                  color: AppColor.success),
-                            ),
-                            TextSpan(
-                              text: '  vs last month',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                //  fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w300,
-                                // decoration: TextDecoration.underline,
-                              ),
-                            ),
 
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16,),
-                  Text("On leave" ,  style: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    ),),
-                  Text(
-                    "5",
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),       Container(
-              margin: EdgeInsets.all(TSizes.md16),
-              padding: EdgeInsets.all(TSizes.lg24),
-              width: 225,
-              height: 171,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.grey,
-                  )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(TSizes.sm8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.grey,
-                            )),
-                        child: Icon(
-                          Iconsax.airplane,
-                          color: AppColor.primary,
-                        ),
-                      ),
-                      RichText(
-                        text:  const TextSpan(
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '10%',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w500,
 
-                                  color: AppColor.success),
-                            ),
-                            TextSpan(
-                              text: '  vs last month',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                //  fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w300,
-                                // decoration: TextDecoration.underline,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16,),
-                  Text("On leave" ,  style: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    ),),
-                  Text(
-                    "5",
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),       Container(
-              margin: EdgeInsets.all(TSizes.md16),
-              padding: EdgeInsets.all(TSizes.lg24),
-              width: 225,
-              height: 171,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.grey,
-                  )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(TSizes.sm8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.grey,
-                            )),
-                        child: Icon(
-                          Iconsax.airplane,
-                          color: AppColor.primary,
-                        ),
-                      ),
-                      RichText(
-                        text:  const TextSpan(
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '10%',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.w500,
-
-                                  color: AppColor.success),
-                            ),
-                            TextSpan(
-                              text: '  vs last month',
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                //  fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w300,
-                                // decoration: TextDecoration.underline,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16,),
-                  Text("On leave" ,  style: TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    ),),
-                  Text(
-                    "5",
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
+        ],
+      ),
     );
   }
 }

@@ -23,11 +23,11 @@ class TSizes {
 
 
   // Padding and margin sizes
-  static  double xs4 = 4.0;
-  static  double sm8 = 8.0;
-  static  double md16 = 16.0;
-  static  double lg24 = 24.0;
-  static  double xl32 = 32.0;
+  static  double xs4 = 4.0.r;
+  static  double sm8 = 8.0.r;
+  static  double md16 = 16.0.r;
+  static  double lg24 = 24.0.r;
+  static  double xl32 = 32.0.r;
 
   // Icon sizes
   static  double iconXs = 12.0.spMin;
