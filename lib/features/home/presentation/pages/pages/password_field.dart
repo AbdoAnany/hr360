@@ -36,7 +36,7 @@ class _PasswordFieldState extends State<PasswordField> {
             color: Theme.of(context).iconTheme.color,
           ),
           hintText: "Enter your password",
-          hintStyle: Theme.of(context).textTheme.bodyText1,
+          hintStyle: Theme.of(context).textTheme.bodyLarge,
           suffixIcon: IconButton(
             icon: Icon(
               _obscureText ? Icons.visibility_off : Icons.visibility,

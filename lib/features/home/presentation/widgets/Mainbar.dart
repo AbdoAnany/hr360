@@ -19,6 +19,8 @@ enum PageType {
   category,
   Setting,
   profile,
+  signup,
+
   logout
 }
 

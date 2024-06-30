@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';
+import 'package:hr360/features/login/signup.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
@@ -31,8 +32,9 @@ class HomeControl {
       case PageType.Setting:
         return Center(child: Text(PageType.Setting.name));
       case PageType.profile:
-        return Center(child: Text(PageType.profile.name));
-
+        return SignUpApp();
+      case PageType.signup:
+        return SignUpApp();
       default:
         return const Center(child: Text('default'));
     }
@@ -202,13 +204,13 @@ class PageFrame extends StatelessWidget {
                     ],
                   ),
 
-                  Text(DateTime.now().toString()
-                    ,       style:
-                    TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
+                  // Text(DateTime.now().toString()
+                  //   ,       style:
+                  //   TextStyle(
+                  //     fontSize: 20,
+                  //     fontWeight: FontWeight.normal,
+                  //   ),
+                  // ),
 
 
 
