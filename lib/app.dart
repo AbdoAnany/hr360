@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/home/presentation/pages/Home.dart';
+import 'package:hr360/features/login/login.dart';
 import 'package:provider/provider.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:hr360/utils/constants/text_strings.dart';
@@ -54,7 +55,7 @@ class App extends StatelessWidget {
                   theme: TAppTheme.lightTheme,
                   darkTheme: TAppTheme.darkTheme,
                   debugShowCheckedModeBanner: false,
-                  home: const Home()  ));
+                  home:  LoginScreen()  ));
               // builder: (ctx, child) {
               //
               //   ScreenUtil.init(ctx);

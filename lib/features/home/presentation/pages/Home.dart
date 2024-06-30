@@ -32,9 +32,8 @@ class HomeControl {
       case PageType.Setting:
         return Center(child: Text(PageType.Setting.name));
       case PageType.profile:
-        return SignUpApp();
-      case PageType.signup:
-        return SignUpApp();
+        return SignUpScreen();
+    
       default:
         return const Center(child: Text('default'));
     }
