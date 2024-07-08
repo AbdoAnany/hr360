@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Container(
+      body:Center(
       //    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
       // width: MediaQuery.of(context).size.width < 600
       //     ? MediaQuery.of(context).size.width * 0.9
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
                 validator: (value) => value!.isEmpty ? 'Enter password' : null,
               ),
-              SizedBox(  width: 350.w,child: Divider()),
+
            SizedBox(height: 20.0),
               MaterialButton(
                   color: AppColor.primary,

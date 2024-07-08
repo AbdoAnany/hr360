@@ -11,6 +11,7 @@ import 'package:hr360/utils/theme/widget_themes/text_theme.dart';
 
 import 'di.dart';
 import 'features/0-intro/presentation/intro_screen.dart';
+import 'features/login/signup.dart';
 
 
 class Get {
@@ -55,7 +56,7 @@ class App extends StatelessWidget {
                   theme: TAppTheme.lightTheme,
                   darkTheme: TAppTheme.darkTheme,
                   debugShowCheckedModeBanner: false,
-                  home:  LoginScreen()  ));
+                  home:  SignUpScreen()  ));
               // builder: (ctx, child) {
               //
               //   ScreenUtil.init(ctx);

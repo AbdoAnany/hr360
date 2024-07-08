@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(body:  Center(
       //    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
       // width: MediaQuery.of(context).size.width < 600
       //     ? MediaQuery.of(context).size.width * 0.9
@@ -85,7 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       width: 170,
                       icon: Iconsax.user,
                       validator: (value) =>
-                          value!.isEmpty ? 'Enter first name' : null,
+                      value!.isEmpty ? 'Enter first name' : null,
                     ),
                     SizedBox(
                       width: 10.w,
@@ -96,7 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       width: 170,
                       icon: Iconsax.profile_2user,
                       validator: (value) =>
-                          value!.isEmpty ? 'Enter last name' : null,
+                      value!.isEmpty ? 'Enter last name' : null,
                     ),
                   ],
                 ),
@@ -176,7 +176,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-    );
+    ),);
   }
 
   Widget _buildTextField({
