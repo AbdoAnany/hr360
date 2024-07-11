@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/home/presentation/pages/Home.dart';
-import 'package:hr360/features/login/login.dart';
+import 'package:hr360/features/1login/login.dart';
 import 'package:provider/provider.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:hr360/utils/constants/text_strings.dart';
@@ -11,7 +11,7 @@ import 'package:hr360/utils/theme/widget_themes/text_theme.dart';
 
 import 'di.dart';
 import 'features/0-intro/presentation/intro_screen.dart';
-import 'features/login/signup.dart';
+import 'features/1login/signup.dart';
 
 
 class Get {
