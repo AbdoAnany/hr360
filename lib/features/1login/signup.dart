@@ -1,10 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hr360/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../utils/constants/style.dart';
+import '../home/presentation/widgets/Mainbar.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -12,13 +13,13 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  // Use a more descriptive key name
   final _signUpFormKey = GlobalKey<FormState>();
+  final _pageController = PageController();
 
-  // Group controllers for better organization
   final _userCredentialsControllers = {
     'username': TextEditingController(),
     'password': TextEditingController(),
+    'ConfirmPassword': TextEditingController(),
   };
   final _personalInfoControllers = {
     'firstName': TextEditingController(),
@@ -34,12 +35,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _signUp() {
     if (_signUpFormKey.currentState!.validate()) {
-      // Show a more informative SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Signing up...')),
       );
       // Perform actual signup logic here (e.g., API call)
-      // Access form values using _userCredentialsControllers['username']!.text, etc.
     }
   }
 
@@ -47,144 +46,184 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'), // Add an AppBar for better UX
+        title: const Text('Sign Up'),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-
-          child: Form(
-            key: _signUpFormKey,
-            child:  SizedBox(    width: 400,
-              child: Column(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _signUpFormKey,
+          child: Center(
+            child: SizedBox(
+                width: 400,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // Consider adding a logo or welcome message here
+                   // SizedBox(height: 20,),
 
-                    // User Credentials Section
-                    _buildTextField(
-                      controller: _userCredentialsControllers['username']!,
-                      label: 'Username',
-                      icon: Iconsax.security_user,
-                      validator: (value) =>
-                      value!.isEmpty ? 'Please enter a username' : null,
-                    ),
-                    _buildTextField(
-                      controller: _userCredentialsControllers['password']!,
-                      label: 'Password',
-                      icon: Iconsax.lock,
-                      obscureText: true,
-                      validator: (value) =>
-                      value!.isEmpty ? 'Please enter a password' : null,
-                    ),
-                     SizedBox(height: 20.h),
-
-                    // Personal Information Section
-                    Text(
-                      'Personal Information',
-                      style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                          fontSize: 16.0.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    MainBarHeader(),
+                   SizedBox(height: 20,),
+                    SizedBox(
+                      height: 390,
+                      child: PageView(
+                        controller: _pageController,
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          _buildUserCredentialsForm(),
+                          _buildPersonalInfoForm(),
+                        ],
                       ),
                     ),
-                     SizedBox(height: 10.h),
-                    _buildTextField(
-                      controller: _personalInfoControllers['firstName']!,
-                      label: 'First Name',
-                      icon: Iconsax.user,
-                      validator: (value) =>
-                      value!.isEmpty ? 'Please enter your first name' : null,
-                    ),
-                    _buildTextField(
-                      controller: _personalInfoControllers['lastName']!,
-                      label: 'Last Name',
-                      icon: Iconsax.profile_2user,
-                      validator: (value) =>
-                      value!.isEmpty ? 'Please enter your last name' : null,
-                    ),
-                    _buildTextField(
-                      controller: _personalInfoControllers['email']!,
-                      label: 'Email',
-                      icon: Iconsax.sms,
-                      validator: (value) =>
-                      value!.isEmpty ? 'Please enter your email' : null,
-                    ),
-                    _buildTextField(
-                      controller: _personalInfoControllers['phone']!,
-                      label: 'Phone Number',
-                      icon: Iconsax.call,
-                      // Consider adding input formatters for phone numbers
-                    ),
-                    _buildTextField(
-                      controller: _personalInfoControllers['address']!,
-                      label: 'Address',
-                      icon: Iconsax.home,
-                    ),
-                    _buildTextField(
-                      controller: _personalInfoControllers['nationalId']!,
-                      label: 'National ID',
-                      icon: Iconsax.user_tick,
-                    ),
-                 SizedBox(height:20.h),
-                    // Gender and Role Section
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceAround, // Better spacing
-                       children: [
-                         _buildDropdown(
-                           label: 'Gender',
-                           value: _selectedGender,
-                           items: const ['Male', 'Female', 'Other'], // Add 'Other' for inclusivity
-                           onChanged: (value) {
-                             setState(() {
-                               _selectedGender = value;
-                             });
-                           },
-                         ),
-                         _buildDropdown(
-                           label: 'Role',
-                           value: _selectedRole,
-                           items: const [
-                             'Student',
-                             'Teacher',
-                             'Employee',
-                             'Admin',
-                             'Not Active'
-                           ],
-                           onChanged: (value) {
-                             setState(() {
-                               _selectedRole = value;
-                             });
-                           },
-                         ),
-                       ],
-                     ),
-                     SizedBox(height: 30.h),
-
-                    // Sign Up Button
-                    MaterialButton(height: 56.h,
-color:AppColor.primary ,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      onPressed: _signUp, // Call the signup function
-                      child: const Text(
-                        'Sign Up',
-                        style: TextStyle(color: AppColor.white),
-                      ),
-                    ),
-                     SizedBox(height: 20.h),
+                    SizedBox(height: 20,),
+                    _buildNavigationButton('Next', () {
+                      if (_pageController.page == 0) {
+                        // Validate user credentials form
+                        // if (_validateUserCredentials()) {
+                        //
+                        // }
+                        _pageController.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.ease,
+                        );
+                      } else {
+                        _pageController.previousPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.ease,
+                        );
+                      }
+                    }),
                   ],
                 ),
               ),
-            ),
+          ),
+          ),
         ),
-      ),
+
     );
   }
 
-// ... (rest of the _buildTextField and _buildDropdown methods)
+  bool _validateUserCredentials() {
+    return _userCredentialsControllers['username']!.text.isNotEmpty &&
+        _userCredentialsControllers['password']!.text.isNotEmpty &&
+        _userCredentialsControllers['ConfirmPassword']!.text.isNotEmpty;
+  }
+
+  Widget _buildUserCredentialsForm() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildTextField(
+          controller: _userCredentialsControllers['username']!,
+          label: 'Username',
+          icon: Iconsax.security_user,
+          validator: (value) =>
+          value!.isEmpty ? 'Please enter a username' : null,
+        ),
+        _buildTextField(
+          controller: _userCredentialsControllers['password']!,
+          label: 'Password',
+          icon: Iconsax.lock,
+          obscureText: true,
+          validator: (value) =>
+          value!.isEmpty ? 'Please enter a password' : null,
+        ),
+        _buildTextField(
+          controller: _userCredentialsControllers['ConfirmPassword']!,
+          label: 'Confirm Password',
+          icon: Iconsax.lock,
+          obscureText: true,
+          validator: (value) =>
+          value!.isEmpty ? 'Please enter a password' : null,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPersonalInfoForm() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(children: [
+
+          Expanded(
+            child:         _buildTextField(
+              controller: _personalInfoControllers['firstName']!,
+              label: 'First Name',
+              icon: Iconsax.user,
+              validator: (value) =>
+              value!.isEmpty ? 'Please enter your first name' : null,
+            ),
+          ),
+          SizedBox(width: 8,),
+          Expanded(
+            child:         _buildTextField(
+              controller: _personalInfoControllers['lastName']!,
+              label: 'Last Name',
+              icon: Iconsax.profile_2user,
+              validator: (value) =>
+              value!.isEmpty ? 'Please enter your last name' : null,
+            ),
+          ),
+        ],),
+
+
+
+        _buildTextField(
+          controller: _personalInfoControllers['email']!,
+          label: 'Email',
+          icon: Iconsax.sms,
+          validator: (value) =>
+          value!.isEmpty ? 'Please enter your email' : null,
+        ),
+        _buildTextField(
+          controller: _personalInfoControllers['phone']!,
+          label: 'Phone Number',
+          icon: Iconsax.call,
+        ),
+        _buildTextField(
+          controller: _personalInfoControllers['address']!,
+          label: 'Address',
+          icon: Iconsax.home,
+        ),
+        _buildTextField(
+          controller: _personalInfoControllers['nationalId']!,
+          label: 'National ID',
+          icon: Iconsax.user_tick,
+        ),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildDropdown(
+              label: 'Gender',
+              value: _selectedGender,
+              items: const ['Male', 'Female', 'Other'],
+              onChanged: (value) {
+                setState(() {
+                  _selectedGender = value;
+                });
+              },
+            ),
+            _buildDropdown(
+              label: 'Role',
+              value: _selectedRole,
+              items: const [
+                'Student',
+                'Teacher',
+                'Employee',
+                'Admin',
+                'Not Active'
+              ],
+              onChanged: (value) {
+                setState(() {
+                  _selectedRole = value;
+                });
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 
   Widget _buildTextField({
     required TextEditingController controller,
@@ -195,9 +234,6 @@ color:AppColor.primary ,
     String? Function(String?)? validator,
   }) {
     return Container(
-      // width: MediaQuery.of(context).size.width < width!.w
-      //     ? MediaQuery.of(context).size.width * 0.8
-      //     : width.w,
       padding: EdgeInsets.symmetric(vertical: 8.0.w, horizontal: 0),
       child: TextFormField(
         controller: controller,
@@ -205,9 +241,18 @@ color:AppColor.primary ,
         decoration: InputDecoration(
           labelText: label,
           prefixIcon: Icon(icon),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: AppStyle.borderRadius15,
+            borderSide: BorderSide(color: Colors.black.withOpacity(.2)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: AppStyle.borderRadius15,
+            borderSide: BorderSide(color: Colors.black.withOpacity(.2)),
+          ),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.0),
-              borderSide: BorderSide(color: Colors.black.withOpacity(.2))),
+            borderRadius: AppStyle.borderRadius15,
+            borderSide: BorderSide(color: Colors.black.withOpacity(.2)),
+          ),
         ),
         validator: validator,
       ),
@@ -228,10 +273,7 @@ color:AppColor.primary ,
         value: value,
         decoration: InputDecoration(
           labelText: label,
-       //   prefixIcon: Icon(Icons.arrow_drop_down),
-          border: OutlineInputBorder(
-       //     borderRadius: BorderRadius.circular(8.0),
-          ),
+          border: OutlineInputBorder(),
         ),
         items: items.map((String item) {
           return DropdownMenuItem<String>(
@@ -242,6 +284,14 @@ color:AppColor.primary ,
         onChanged: onChanged,
         validator: (value) => value == null ? 'Select $label' : null,
       ),
+    );
+  }
+
+  Widget _buildNavigationButton(String label, VoidCallback onPressed) {
+    return MaterialButton(
+      onPressed: onPressed,color: AppColor.primary,
+       height: 60,minWidth: 400,shape: RoundedRectangleBorder(borderRadius: AppStyle.borderRadius15),
+      child: Text(label,style: TextStyle(color: AppColor.white),),
     );
   }
 }
