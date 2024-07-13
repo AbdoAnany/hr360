@@ -6,7 +6,6 @@ import 'package:hr360/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../date/DashBoardCard.dart';
-import '../../../widgets/Mainbar.dart';
 
 List<DashBoardCard> cards = [
   DashBoardCard(

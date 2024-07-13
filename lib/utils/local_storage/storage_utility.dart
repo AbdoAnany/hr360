@@ -4,6 +4,7 @@ class TLocalStorage {
   static final TLocalStorage _instance = TLocalStorage._internal();
 
   factory TLocalStorage() {
+
     return _instance;
   }
 
@@ -14,6 +15,16 @@ class TLocalStorage {
   // Generic method to save data
   Future<void> saveData<T>(String key, T value) async {
     await _storage.write(key, value);
+  }
+
+  saveDataInMemory<T>(String key, T value) async {
+     _storage.writeInMemory(key, value);
+  }
+  Future getKeys() async {
+ return   await _storage.getKeys();
+  }
+  Future<void> getValues<T>() async {
+    await _storage. getValues();
   }
 
   // Generic method to read data

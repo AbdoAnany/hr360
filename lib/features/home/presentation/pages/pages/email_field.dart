@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/theme/style.dart';
 
 class EmailField extends StatelessWidget {
   const EmailField({
@@ -13,7 +12,7 @@ class EmailField extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Theme.of(context).inputDecorationTheme.fillColor,
-        borderRadius: BorderRadius.circular(TSizes. borderRadiusLg),
+        borderRadius: BorderRadius.circular(TSizes.borderRadiusLg),
       ),
       child: TextFormField(
         decoration: InputDecoration(
@@ -31,7 +30,8 @@ class EmailField extends StatelessWidget {
             return 'Please enter your email address';
           }
           // You can add more sophisticated email validation if needed
-          if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$").hasMatch(value)) {
+          if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+              .hasMatch(value)) {
             return 'Please enter a valid email address';
           }
           return null;

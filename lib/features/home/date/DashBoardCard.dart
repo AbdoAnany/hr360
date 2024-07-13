@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 
 class DashBoardCard {
@@ -10,7 +7,8 @@ class DashBoardCard {
   String? subTitle;
   int? count;
 
-  DashBoardCard({this.icon, this.present, this.subTitle, this.title, this.count});
+  DashBoardCard(
+      {this.icon, this.present, this.subTitle, this.title, this.count});
 
   DashBoardCard.fromJson(Map<String, dynamic> json) {
     icon = json['icon'];

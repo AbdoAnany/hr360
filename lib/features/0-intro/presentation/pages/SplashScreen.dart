@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../di.dart';
 import '../../../../../utils/animation/Animation.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -8,9 +7,9 @@ import '../../../../../utils/helpers/helper_functions.dart';
 import '../../../home/presentation/pages/Home.dart';
 // import '../../../../auth/helper/AppRoutes.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -22,12 +21,8 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     AnimationHelper.fadeInOut(this);
 
-
     Future.delayed(const Duration(seconds: 3),
-            ()=>THelperFunctions.navigateAndReplaceScreen(
-             Home()
-               
-               ));
+        () => THelperFunctions.navigateAndReplaceScreen(Home()));
   }
 
   @override
@@ -46,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
             tag: "AppImg.logoImg",
             child: FadeTransition(
               opacity: AnimationHelper.animationDouble,
-              child:  FlutterLogo(size: TSizes.productImageSize),
+              child: FlutterLogo(size: TSizes.productImageSize),
             ),
           ),
         ),

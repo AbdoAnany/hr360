@@ -11,7 +11,11 @@ import 'package:hr360/utils/theme/widget_themes/text_theme.dart';
 
 import 'di.dart';
 import 'features/0-intro/presentation/intro_screen.dart';
+import 'features/1login/blocs/auth_cubit/auth_cubit.dart';
+import 'features/1login/data/repositries/auth_repo_impl.dart';
+import 'features/1login/domain/repositires/auth_repo.dart';
 import 'features/1login/signup.dart';
+import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
 
 
 class Get {
@@ -29,8 +33,8 @@ class App extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
-         // BlocProvider(create: (context) => LoginCubit( )),
-     //     BlocProvider(create: (context) => HomeBloc()),
+         BlocProvider(create: (context) => AuthCubit( AuthRepoImpl())),
+          BlocProvider(create: (context) => HomeBloc()),
         ],
         child: Consumer<ThemeProvider>(builder: (context, them, c) {
           them.getThemeMode();

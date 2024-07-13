@@ -114,8 +114,8 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
               ],
             ),
           ),
-        SizedBox(height:8.h)
-,          Container(
+          SizedBox(height: 8.h),
+          Container(
             height: 432.h,
             child: ListView.separated(
               itemCount: 12,
@@ -137,9 +137,11 @@ class AttendanceHeaderItem extends StatelessWidget {
   const AttendanceHeaderItem(
       {Key? key, this.title = "", this.icon = Iconsax.activity})
       : super(key: key);
+
 // 'Search by name, role, department...'
   final String title;
   final IconData icon;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -164,7 +166,7 @@ class AttendanceHeaderItem extends StatelessWidget {
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1),
-                fontFamily: 'Outfit',
+                //   fontFamily: 'Outfit',
                 fontSize: 16.w,
                 letterSpacing:
                     0 /*percentages not used in flutter. defaulting to zero*/,
@@ -181,18 +183,22 @@ class AttendanceBodyItem extends StatelessWidget {
   const AttendanceBodyItem(
       {Key? key, this.title = "", this.color = const Color(0xff00000)})
       : super(key: key);
+
 // 'Search by name, role, department...'
   final String title;
   final Color color;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 72.h,
       decoration: BoxDecoration(
-      //  color: Color(0xffF5F5F5),
-     //   borderRadius: BorderRadius.circular(12),
+          //  color: Color(0xffF5F5F5),
+          //   borderRadius: BorderRadius.circular(12),
+          ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 12.w,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12.w,),
       child: Row(
         children: [
           Expanded(
@@ -205,7 +211,10 @@ class AttendanceBodyItem extends StatelessWidget {
               flex: 6,
               child: Row(
                 children: [
-                  Image.asset("assets/weman.png",width: 40.w,),
+                  Image.asset(
+                    "assets/weman.png",
+                    width: 40.w,
+                  ),
                   SizedBox(width: 12.w),
                   Text(
                     "Aisha Doe",

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:hr360/utils/local_storage/storage_utility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:hr360/features/auth/presentation/manager/LoginControl.dart';
 // import 'package:hr360/features/home/presentation/manager/home_bloc/home_bloc.dart';
@@ -25,10 +27,14 @@ final sl = GetIt.instance;
 
 Future<void> initAppModule() async {
   WidgetsFlutterBinding.ensureInitialized();
+bool isInit=  await GetStorage.init( 'MyStorage');
+print(isInit);
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await TDioHelper.init();
+  TLocalStorage localStorage=TLocalStorage();
   final prefs = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => prefs);
+  sl.registerLazySingleton<TLocalStorage>(() =>localStorage);
   sl.registerLazySingleton<TTextTheme>(() => TTextTheme());
  await authSetup();
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));

@@ -1,5 +1,5 @@
 
 class Url{
-  static const String baseUrl = 'https://your-api-base-url.com';
+  static const String baseUrl = 'http://localhost:3000/api/';
 
 }

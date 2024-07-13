@@ -10,10 +10,12 @@ class TDioHelper {
     _dio = Dio(
       BaseOptions(
           baseUrl: Url.baseUrl,
-          receiveDataWhenStatusError: true,
+     receiveDataWhenStatusError: true,
           connectTimeout: const Duration(minutes: 1),
           receiveTimeout: const Duration(minutes: 1)),
+
     );
+
   }
 
   static responseHandler({token, store}) {
@@ -56,7 +58,18 @@ class TDioHelper {
       {String? token, String? store}) async {
     try {
       responseHandler(token: token, store: store);
-      final response = await _dio.post('${Url.baseUrl}/$endpoint', data: data);
+      print("post" + data.toString());
+      print(_dio.options.baseUrl);
+      print(endpoint);
+       var response ;
+      try {
+         response = await _dio.post(endpoint, data: data);
+      } catch (e) {
+        print("EEEEEEEEEE");
+        print(e);
+      }
+      print("response  response  response  response" );
+
       return _handleResponse(response);
     } catch (error) {
       return Left(ServerFailure('Failed to load data: $error'));
@@ -99,12 +112,13 @@ class TDioHelper {
   }
 
   static Either<Failure, T> _handleResponse<T>(Response response) {
+
     if (response.statusCode == 200) {
       final T responseData = response.data;
       return Right(responseData);
     } else {
       final errorMessage =
-          'Error occurred with status code: ${response.statusCode}';
+          '${response.data['message']}';
       return Left(ServerFailure(errorMessage));
     }
   }

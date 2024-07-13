@@ -1,8 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../../di.dart';
 
 class SaveForm extends StatefulWidget {
   const SaveForm({super.key});
@@ -12,25 +8,25 @@ class SaveForm extends StatefulWidget {
 }
 
 class _SaveFormState extends State<SaveForm> {
-   var object;
+  var object;
+
   @override
   void initState() {
 //     object= sl<SharedPreferences>().get('ketStack') as GlobalKey   ;
 //
 // print(object);
 
-GlobalKey(debugLabel: object);
+    GlobalKey(debugLabel: object);
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return object==null?CircularProgressIndicator():
-    ListView(children: [
-
-        Center(child:object.currentWidget)
-    ],)
-
-    ;
+    return object == null
+        ? CircularProgressIndicator()
+        : ListView(
+            children: [Center(child: object.currentWidget)],
+          );
   }
 }

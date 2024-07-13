@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../../../../utils/constants/colors.dart';
 
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({
@@ -13,7 +10,7 @@ class HomeAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-         Text(
+        Text(
           "What are you\ncooking today?",
           style: TextStyle(
             fontSize: 32,
@@ -24,7 +21,6 @@ class HomeAppbar extends StatelessWidget {
         const Spacer(),
         IconButton(
           onPressed: () {},
-
           icon: const Icon(Iconsax.notification),
         ),
       ],

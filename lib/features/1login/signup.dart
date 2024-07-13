@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hr360/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -53,51 +52,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _signUpFormKey,
           child: Center(
             child: SizedBox(
-                width: 400,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                   // SizedBox(height: 20,),
+              width: 400,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  // SizedBox(height: 20,),
 
-                    MainBarHeader(),
-                   SizedBox(height: 20,),
-                    SizedBox(
-                      height: 390,
-                      child: PageView(
-                        controller: _pageController,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: [
-                          _buildUserCredentialsForm(),
-                          _buildPersonalInfoForm(),
-                        ],
-                      ),
+                  MainBarHeader(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 390,
+                    child: PageView(
+                      controller: _pageController,
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        _buildUserCredentialsForm(),
+                        _buildPersonalInfoForm(),
+                      ],
                     ),
-                    SizedBox(height: 20,),
-                    _buildNavigationButton('Next', () {
-                      if (_pageController.page == 0) {
-                        // Validate user credentials form
-                        // if (_validateUserCredentials()) {
-                        //
-                        // }
-                        _pageController.nextPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.ease,
-                        );
-                      } else {
-                        _pageController.previousPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.ease,
-                        );
-                      }
-                    }),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _buildNavigationButton('Next', () {
+                    if (_pageController.page == 0) {
+                      // Validate user credentials form
+                      // if (_validateUserCredentials()) {
+                      //
+                      // }
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.ease,
+                      );
+                    } else {
+                      _pageController.previousPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.ease,
+                      );
+                    }
+                  }),
+                ],
               ),
-          ),
+            ),
           ),
         ),
-
+      ),
     );
   }
 
@@ -116,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           label: 'Username',
           icon: Iconsax.security_user,
           validator: (value) =>
-          value!.isEmpty ? 'Please enter a username' : null,
+              value!.isEmpty ? 'Please enter a username' : null,
         ),
         _buildTextField(
           controller: _userCredentialsControllers['password']!,
@@ -124,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           icon: Iconsax.lock,
           obscureText: true,
           validator: (value) =>
-          value!.isEmpty ? 'Please enter a password' : null,
+              value!.isEmpty ? 'Please enter a password' : null,
         ),
         _buildTextField(
           controller: _userCredentialsControllers['ConfirmPassword']!,
@@ -132,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           icon: Iconsax.lock,
           obscureText: true,
           validator: (value) =>
-          value!.isEmpty ? 'Please enter a password' : null,
+              value!.isEmpty ? 'Please enter a password' : null,
         ),
       ],
     );
@@ -142,37 +144,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(children: [
-
-          Expanded(
-            child:         _buildTextField(
-              controller: _personalInfoControllers['firstName']!,
-              label: 'First Name',
-              icon: Iconsax.user,
-              validator: (value) =>
-              value!.isEmpty ? 'Please enter your first name' : null,
+        Row(
+          children: [
+            Expanded(
+              child: _buildTextField(
+                controller: _personalInfoControllers['firstName']!,
+                label: 'First Name',
+                icon: Iconsax.user,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your first name' : null,
+              ),
             ),
-          ),
-          SizedBox(width: 8,),
-          Expanded(
-            child:         _buildTextField(
-              controller: _personalInfoControllers['lastName']!,
-              label: 'Last Name',
-              icon: Iconsax.profile_2user,
-              validator: (value) =>
-              value!.isEmpty ? 'Please enter your last name' : null,
+            SizedBox(
+              width: 8,
             ),
-          ),
-        ],),
-
-
-
+            Expanded(
+              child: _buildTextField(
+                controller: _personalInfoControllers['lastName']!,
+                label: 'Last Name',
+                icon: Iconsax.profile_2user,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your last name' : null,
+              ),
+            ),
+          ],
+        ),
         _buildTextField(
           controller: _personalInfoControllers['email']!,
           label: 'Email',
           icon: Iconsax.sms,
           validator: (value) =>
-          value!.isEmpty ? 'Please enter your email' : null,
+              value!.isEmpty ? 'Please enter your email' : null,
         ),
         _buildTextField(
           controller: _personalInfoControllers['phone']!,
@@ -289,9 +291,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget _buildNavigationButton(String label, VoidCallback onPressed) {
     return MaterialButton(
-      onPressed: onPressed,color: AppColor.primary,
-       height: 60,minWidth: 400,shape: RoundedRectangleBorder(borderRadius: AppStyle.borderRadius15),
-      child: Text(label,style: TextStyle(color: AppColor.white),),
+      onPressed: onPressed,
+      color: AppColor.primary,
+      height: 60,
+      minWidth: 400,
+      shape: RoundedRectangleBorder(borderRadius: AppStyle.borderRadius15),
+      child: Text(
+        label,
+        style: TextStyle(color: AppColor.white),
+      ),
     );
   }
 }

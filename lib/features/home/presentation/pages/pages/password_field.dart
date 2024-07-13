@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/theme/style.dart';
-
 
 class PasswordField extends StatefulWidget {
   const PasswordField({Key? key}) : super(key: key);
@@ -25,7 +23,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: Theme.of(context).inputDecorationTheme.fillColor,
-        borderRadius: BorderRadius.circular(TSizes. borderRadiusLg),
+        borderRadius: BorderRadius.circular(TSizes.borderRadiusLg),
       ),
       child: TextFormField(
         obscureText: _obscureText, // Toggle the visibility of the password

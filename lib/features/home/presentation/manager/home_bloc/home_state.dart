@@ -1,8 +1,5 @@
 part of 'home_bloc.dart';
 
-
-
-
 @immutable
 class HomeState {
   final PageType newPage;
@@ -12,7 +9,9 @@ class HomeState {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is HomeState && runtimeType == other.runtimeType && newPage == other.newPage;
+      other is HomeState &&
+          runtimeType == other.runtimeType &&
+          newPage == other.newPage;
 
   @override
   int get hashCode => newPage.hashCode;
@@ -27,8 +26,4 @@ class ChangePageState extends HomeState {
 
   @override
   List<Object?> get props => [newPage];
-
-
 }
-
-
