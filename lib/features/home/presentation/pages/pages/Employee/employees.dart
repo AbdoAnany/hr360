@@ -63,7 +63,7 @@ class Employees extends StatelessWidget {
                     (e) => Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: 24.w, vertical: 24.h),
-                      width: 224 ,
+                      width: 224,
                       //   height: 168.h,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -156,3 +156,84 @@ class Employees extends StatelessWidget {
     );
   }
 }
+
+List damyList = [
+  {
+    "id": 1,
+    "user_id": 18,
+    "first_name": "Admin",
+    "last_name": "User",
+    "email": "admin@example.com",
+    "phone": "1234567890",
+    "address": "123 Admin St, Admin City, Admin State",
+    "national_id": "A12345678",
+    "gender": "male",
+    "roles": "admin",
+    "state": "active"
+  },
+  {
+    "id": 9,
+    "user_id": 5,
+    "first_name": "Admin1",
+    "last_name": "User",
+    "email": "admin1@example.com",
+    "phone": "1234567890",
+    "address": "123 Admin St, Admin City, Admin State",
+    "national_id": "A12345678",
+    "gender": "male",
+    "roles": "student",
+    "state": "active"
+  },
+  {
+    "id": 10,
+    "user_id": 9,
+    "first_name": "Admin1",
+    "last_name": "User",
+    "email": "admin1@example.com",
+    "phone": "1234567890",
+    "address": "123 Admin2 St, Admin City, Admin State",
+    "national_id": "A12345678",
+    "gender": "female",
+    "roles": "student",
+    "state": "active"
+  },
+  {
+    'id': 11,
+    "user_id": 13,
+    "first_name": "Sara",
+    "last_name": "User",
+    "email": "Sara@example.com",
+    "phone": "01115485741544",
+    "address": "123 Admin2 St, Admin City, Admin State",
+    "national_id": "A12345678",
+    "gender": "female",
+    "roles": "teacher",
+    "state": "active"
+  },
+  {
+    "id": 12,
+    "user_id": 15,
+    "first_name": "Ahmed",
+    "last_name": 'Kaled',
+    "email": "Ahmed@example.com",
+    "phone": "01115485741544",
+    "address": "123 Ahmed St, Admin City, Admin State",
+    "national_id": "A12345678",
+    "gender": "male",
+    "roles": "student",
+    "state": "active"
+  },
+  {
+    "id": 13,
+    "user_id": 16,
+    "first_name": "Ali",
+    "last_name": "Omar",
+    "email": "Ali@example.com",
+    "phone": "01115485741544",
+    "address": "123 Ali St, Admin City, Admin State",
+    "national_id": "A12345678",
+    "gender": "male",
+    "roles": "student",
+    "state": " not active"
+  }
+];

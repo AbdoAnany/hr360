@@ -5,16 +5,16 @@ class UserModel {
   UserModel({this.data, this.token});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new UserDetails.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserDetails.fromJson(json['data']) : null;
     token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data?.toJson();
     }
-    data['token'] = this.token;
+    data['token'] = token;
     return data;
   }
 }
@@ -35,6 +35,7 @@ class UserDetails {
   String? avatar;
   String? roles;
   String? state;
+  String? birthDate;
 
   UserDetails(
       {required this.id,
@@ -45,6 +46,7 @@ class UserDetails {
       this.phone,
       this.address,
       this.gender,
+      this.birthDate,
       this.nationalId,
       this.avatar,
       this.roles,
@@ -65,6 +67,7 @@ class UserDetails {
     gender = json['gender'];
     roles = json['roles'];
     state = json['state'];
+    birthDate = json['birth_date'];
   }
 
   Map<String, dynamic> toJson() {
@@ -80,6 +83,7 @@ class UserDetails {
     data['gender'] = this.gender;
     data['roles'] = this.roles;
     data['state'] = this.state;
+    data['birth_date'] = this.birthDate;
 
     return data;
   }
