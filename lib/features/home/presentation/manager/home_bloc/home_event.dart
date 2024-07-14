@@ -12,15 +12,36 @@ class ChangePageEvent extends HomeEvent {
   List<Object?> get props => [newPage];
 }
 
-class InitialHome extends HomeEvent {
-  InitialHome();
+class InitialHomeEvent extends HomeEvent {
+  InitialHomeEvent();
 
   @override
   List<Object?> get props => [];
 }
 
-class StartGetDataFromServer extends HomeEvent {
-  StartGetDataFromServer();
+
+
+
+class StartGetDataEvent extends HomeEvent {
+   StartGetDataEvent() ;
+
+  @override
+  List<Object?> get props => [];
+}
+class LoadingDataEvent extends HomeEvent {
+   LoadingDataEvent() ;
+
+  @override
+  List<Object?> get props => [];
+}
+class SuccessfulGetDataEvent extends HomeEvent {
+  SuccessfulGetDataEvent({this.data}) ;
+  dynamic data;
+  @override
+  List<Object?> get props => [data];
+}
+class FailGetDataEvent extends HomeEvent {
+   FailGetDataEvent() ;
 
   @override
   List<Object?> get props => [];

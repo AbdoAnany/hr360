@@ -64,13 +64,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
     print(rememberMe);
     if (rememberMe) {
-      try {
-        var tem= sl<TLocalStorage>().readData<UserModel?>(AppKeys.userDataLogin,);
-        print(tem);
-        HomeControl.userModelLogin=tem;
-      } catch (e) {
-        print(e);
-      }
+      // try {
+      //   var tem= sl<TLocalStorage>().readData<UserModel?>(AppKeys.userDataLogin,);
+      //   print(tem);
+      //   HomeControl.userModelLogin=tem;
+      // } catch (e) {
+      //   print(e);
+      // }
       THelperFunctions.navigateAndReplaceScreen(const Home());
     }
   }

@@ -55,21 +55,24 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     try {
-      var tem = sl<TLocalStorage>().readData<UserModel>(AppKeys.userDataLogin);
-      print(tem?.toJson());
-      HomeControl.userModelLogin = tem;
+      var tem = sl<TLocalStorage>().readData(AppKeys.userDataLogin);
+      print(tem);
+      HomeControl.userModelLogin = UserModel.fromJson(tem);
     } catch (e) {
+      print("sssssssssss");
       print(e);
     }
-
+    HomeCubit.get(context).getDataFromServer();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc(),
-      child: BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+      create: (context) => HomeCubit(),
+      child: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+        print(state);
+        HomeCubit homeCubit = HomeCubit.get(context);
         return Scaffold(
           //      appBar: AppBar(title: Text(state.newPage.name),),
 
@@ -84,10 +87,7 @@ class _HomeState extends State<Home> {
                   thickness: 2.r,
                   color: Theme.of(context).splashColor,
                 ),
-                Expanded(
-                    child: PageFrame(
-                  pageType: state.newPage,
-                ))
+                Expanded(child: PageFrame(pageType: MainBarControl.currentPage))
               ],
             ),
           ),
@@ -106,7 +106,7 @@ class PageFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          toolbarHeight: 108.h,
+       //   toolbarHeight: 60.h,
           title: Padding(
             padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 8.w),
             child: Row(
@@ -125,7 +125,7 @@ class PageFrame extends StatelessWidget {
                       ),
                       TextSpan(
                         text:
-                            '${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}',
+                            '  ${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}  ',
                         style: const TextStyle(
                           //  fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.w600,
@@ -184,7 +184,7 @@ class PageFrame extends StatelessWidget {
           )),
       backgroundColor: AppColor.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

@@ -41,11 +41,12 @@ class TDioHelper {
   }
 
   // Helper method to make a GET request
-  static Future<Either<Failure, Map<String, dynamic>>> get(String endpoint,
+  static Future<Either<Failure, dynamic>> get(String endpoint,
       {String? token, String? store}) async {
     try {
       responseHandler(token: token, store: store);
-      final response = await _dio.get('${Url.baseUrl}/$endpoint');
+      final response = await _dio.get(endpoint);
+      print(response.data);
       return _handleResponse(response);
     } catch (error) {
       return Left(ServerFailure('Failed to load data: $error'));
@@ -53,22 +54,12 @@ class TDioHelper {
   }
 
   // Helper method to make a POST request
-  static Future<Either<Failure, Map<String, dynamic>>> post(
-      String endpoint, dynamic data,
-      {String? token, String? store}) async {
+  static Future<Either<Failure, dynamic>> post(
+      String endpoint,
+      { dynamic data,String? token, String? store}) async {
     try {
       responseHandler(token: token, store: store);
-      print("post" + data.toString());
-      print(_dio.options.baseUrl);
-      print(endpoint);
-       var response ;
-      try {
-         response = await _dio.post(endpoint, data: data);
-      } catch (e) {
-        print("EEEEEEEEEE");
-        print(e);
-      }
-      print("response  response  response  response" );
+      var response= await _dio.post(endpoint, data: data);
 
       return _handleResponse(response);
     } catch (error) {
@@ -77,7 +68,7 @@ class TDioHelper {
   }
 
   // Helper method to make a PUT request
-  static Future<Either<Failure, Map<String, dynamic>>> put(
+  static Future<Either<Failure, dynamic>> put(
       String endpoint, dynamic data,
       {String? token, String? store}) async {
     try {
@@ -112,7 +103,7 @@ class TDioHelper {
   }
 
   static Either<Failure, T> _handleResponse<T>(Response response) {
-
+print(response.statusCode );
     if (response.statusCode == 200) {
       final T responseData = response.data;
       return Right(responseData);

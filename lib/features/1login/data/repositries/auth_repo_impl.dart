@@ -14,7 +14,7 @@ class AuthRepoImpl implements AuthRepo {
       {required String password, required String email}) async {
     var response = await TDioHelper.post(
       'auth/login',
-      {
+     data:  {
         'username': email,
         'password': password,
       },

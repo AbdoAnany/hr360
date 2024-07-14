@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hr360/features/1login/blocs/auth_cubit/auth_cubit.dart';
 import 'package:hr360/utils/constants/colors.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
@@ -35,7 +36,7 @@ class MainBar extends StatefulWidget {
 class _MainBarState extends State<MainBar> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
+    return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
       return SizedBox(
         width: MainBarControl.isExpanded ? 220.w : 58.w,
         height: double.infinity,
@@ -88,6 +89,9 @@ class _MainBarState extends State<MainBar> {
             _buildNavItem(
                 icon: Iconsax.logout,
                 pageType: PageType.logout,
+                onTap:(){
+                  AuthCubit.get(context).logOut();
+                },
                 label: 'Logout'),
             SizedBox(
               height: 20.h,
@@ -101,10 +105,13 @@ class _MainBarState extends State<MainBar> {
   Widget _buildNavItem(
       {required IconData icon,
       required PageType pageType,
-      required String label}) {
+      required String label,
+        void Function()? onTap
+      }) {
     return InkWell(
-        onTap: () {
-          HomeBloc.get(context).changePage(pageType);
+        onTap: onTap??() {
+          print(pageType.name);
+          HomeCubit.get(context).changePage(pageType);
           // TODO: Handle navigation to the corresponding page
         },
         // onHover: ,

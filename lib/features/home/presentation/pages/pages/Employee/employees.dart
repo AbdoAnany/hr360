@@ -48,11 +48,11 @@ class Employees extends StatelessWidget {
     print(1.r);
     print(1.w);
 
-    return SingleChildScrollView(
+    return Expanded(
       child: Column(
         children: [
           SizedBox(
-            height: 40.h,
+            height: 20.h,
           ),
           Wrap(
               runSpacing: TSizes.lg24,
@@ -63,7 +63,7 @@ class Employees extends StatelessWidget {
                     (e) => Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: 24.w, vertical: 24.h),
-                      width: 224.w,
+                      width: 224 ,
                       //   height: 168.h,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -150,7 +150,7 @@ class Employees extends StatelessWidget {
           SizedBox(
             height: 40.h,
           ),
-          AttendanceGridView()
+          Expanded(child: AttendanceGridView())
         ],
       ),
     );

@@ -34,7 +34,7 @@ class App extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
          BlocProvider(create: (context) => AuthCubit( AuthRepoImpl())),
-          BlocProvider(create: (context) => HomeBloc()),
+          BlocProvider(create: (context) => HomeCubit()),
         ],
         child: Consumer<ThemeProvider>(builder: (context, them, c) {
           them.getThemeMode();

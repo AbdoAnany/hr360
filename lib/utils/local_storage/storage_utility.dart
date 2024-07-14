@@ -10,7 +10,7 @@ class TLocalStorage {
 
   TLocalStorage._internal();
 
-  final _storage = GetStorage();
+  final _storage = GetStorage('MyStorage');
 
   // Generic method to save data
   Future<void> saveData<T>(String key, T value) async {
