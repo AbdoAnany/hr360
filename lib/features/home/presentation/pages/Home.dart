@@ -12,6 +12,7 @@ import '../../../../di.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/keys.dart';
 import '../../../../utils/local_storage/storage_utility.dart';
+import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../manager/home_bloc/home_bloc.dart';
 
 class HomeControl {
@@ -36,7 +37,7 @@ class HomeControl {
       case PageType.Setting:
         return Center(child: Text(PageType.Setting.name));
       case PageType.profile:
-        return SignUpScreen();
+        return  ProfileScreen();
 
       default:
         return const Center(child: Text('default'));
@@ -189,79 +190,79 @@ class PageFrame extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        MainBarControl.currentPage.name,
-                        style: TextStyle(
-                          fontSize: 24.w,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8.h,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            MainBarControl.currentPage.name,
-                            style: TextStyle(
-                              color: Color(0xffD9D9D9),
-                              fontSize: 14.w,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              backgroundColor: Color(0xffD9D9D9),
-                              radius: 4,
-                            ),
-                          ),
-                          Text(
-                            MainBarControl.currentPage.name,
-                            style: TextStyle(
-                              color: Color(0xffD9D9D9),
-                              fontSize: 14.w,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              backgroundColor: Color(0xffD9D9D9),
-                              radius: 4,
-                            ),
-                          ),
-                          Text(
-                            MainBarControl.currentPage.name,
-                            style: TextStyle(
-                              color: Color(0xffD9D9D9),
-                              fontSize: 14.w,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-
-                  // Text(DateTime.now().toString()
-                  //   ,       style:
-                  //   TextStyle(
-                  //     fontSize: 20,
-                  //     fontWeight: FontWeight.normal,
-                  //   ),
-                  // ),
-                ]),
+            // Row(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Column(
+            //         crossAxisAlignment: CrossAxisAlignment.start,
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             MainBarControl.currentPage.name,
+            //             style: TextStyle(
+            //               fontSize: 24.w,
+            //               fontWeight: FontWeight.w600,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: 8.h,
+            //           ),
+            //           Row(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             mainAxisAlignment: MainAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 MainBarControl.currentPage.name,
+            //                 style: TextStyle(
+            //                   color: Color(0xffD9D9D9),
+            //                   fontSize: 14.w,
+            //                   fontWeight: FontWeight.w300,
+            //                 ),
+            //               ),
+            //               const Padding(
+            //                 padding: EdgeInsets.all(8.0),
+            //                 child: CircleAvatar(
+            //                   backgroundColor: Color(0xffD9D9D9),
+            //                   radius: 4,
+            //                 ),
+            //               ),
+            //               Text(
+            //                 MainBarControl.currentPage.name,
+            //                 style: TextStyle(
+            //                   color: Color(0xffD9D9D9),
+            //                   fontSize: 14.w,
+            //                   fontWeight: FontWeight.w300,
+            //                 ),
+            //               ),
+            //               const Padding(
+            //                 padding: EdgeInsets.all(8.0),
+            //                 child: CircleAvatar(
+            //                   backgroundColor: Color(0xffD9D9D9),
+            //                   radius: 4,
+            //                 ),
+            //               ),
+            //               Text(
+            //                 MainBarControl.currentPage.name,
+            //                 style: TextStyle(
+            //                   color: Color(0xffD9D9D9),
+            //                   fontSize: 14.w,
+            //                   fontWeight: FontWeight.w300,
+            //                 ),
+            //               ),
+            //             ],
+            //           )
+            //         ],
+            //       ),
+            //
+            //       // Text(DateTime.now().toString()
+            //       //   ,       style:
+            //       //   TextStyle(
+            //       //     fontSize: 20,
+            //       //     fontWeight: FontWeight.normal,
+            //       //   ),
+            //       // ),
+            //     ]),
             Expanded(child: HomeControl.pageUi(pageType))
           ],
         ),
