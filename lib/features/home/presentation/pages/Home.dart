@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/1login/data/user_model.dart';
 import 'package:hr360/features/1login/signup.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
+import 'package:hr360/features/home/presentation/pages/pages/dashbord_page.dart';
 import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
@@ -23,8 +24,8 @@ class HomeControl {
     switch (pageType) {
       case PageType.Dashboard:
 //Welcome back, Barbara ☀️
-        // return  ExampleDragAndDrop();
-        return Employees();
+        return  DashBordPage();
+     //   return Employees();
       case PageType.chat:
         return Center(child: Text(PageType.chat.name));
 
@@ -71,11 +72,15 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeCubit(),
-      child: BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+      child: BlocBuilder<HomeCubit, HomeState>(
+          buildWhen: (s, ss){
+           return ss is ChangePageState ;
+          },
+          builder: (context, state) {
         print(state);
         HomeCubit homeCubit = HomeCubit.get(context);
         return Scaffold(
-          //      appBar: AppBar(title: Text(state.newPage.name),),
+          //  appBar: AppBar(title: Text(state.newPage.name),),
 
           body: SizedBox(
             width: TSizes.screenWidth,
@@ -88,7 +93,7 @@ class _HomeState extends State<Home> {
                   thickness: 2.r,
                   color: Theme.of(context).splashColor,
                 ),
-                Expanded(child: PageFrame(pageType: MainBarControl.currentPage))
+                Expanded(child: PageFrame(pageType: homeCubit.currentPage))
               ],
             ),
           ),
@@ -126,7 +131,7 @@ class PageFrame extends StatelessWidget {
                       ),
                       TextSpan(
                         text:
-                            '  ${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}  ',
+                            '${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}  ',
                         style: const TextStyle(
                           //  fontStyle: FontStyle.italic,
                           fontWeight: FontWeight.w600,

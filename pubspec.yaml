@@ -65,7 +65,9 @@ dependencies:
   logger: ^2.2.0
   get_storage: ^2.1.1
   iconsax: ^0.0.8
+  syncfusion_flutter_datagrid: ^26.1.41
   google_fonts:
+  syncfusion_flutter_core: ^26.1.41
 dev_dependencies:
   flutter_test:
     sdk: flutter

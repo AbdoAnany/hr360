@@ -45,114 +45,111 @@ class Employees extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(1.r);
-    print(1.w);
 
-    return Expanded(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 20.h,
-          ),
-          Wrap(
-              runSpacing: TSizes.lg24,
-              spacing: TSizes.lg24,
-              crossAxisAlignment: WrapCrossAlignment.start,
-              children: cards
-                  .map(
-                    (e) => Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 24.w, vertical: 24.h),
-                      width: 224,
-                      //   height: 168.h,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.grey,
-                          )),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(TSizes.sm8),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    )),
-                                child: Icon(
-                                  e.icon,
-                                  color: AppColor.primary,
-                                ),
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: 12.0.w,
-                                    color: Colors.black,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: '${e.present?.abs()}%',
-                                      style: TextStyle(
-                                          fontSize: 12.0.w,
-                                          fontWeight: FontWeight.w500,
-                                          color: e.present! > 0
-                                              ? AppColor.success
-                                              : AppColor.error),
-                                    ),
-                                    TextSpan(
-                                      text: '  ${e.subTitle}',
-                                      style: TextStyle(
-                                        fontSize: 12.0.w,
-                                        //  fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.w300,
-                                        // decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Text(
-                            "${e.title}",
-                            style: TextStyle(
-                              fontSize: 12.w,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 4.h,
-                          ),
-                          Text(
-                            "${e.count}",
-                            style: TextStyle(
-                              fontSize: 32.w,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                  .toList()),
-          SizedBox(
-            height: 40.h,
-          ),
-          Expanded(child: AttendanceGridView())
-        ],
-      ),
+
+    return Column(
+      children: [
+        // SizedBox(
+        //   height: 20.h,
+        // ),
+        // Wrap(
+        //     runSpacing: TSizes.lg24,
+        //     spacing: TSizes.lg24,
+        //     crossAxisAlignment: WrapCrossAlignment.start,
+        //     children: cards
+        //         .map(
+        //           (e) => Container(
+        //             padding: EdgeInsets.symmetric(
+        //                 horizontal: 24.w, vertical: 24.h),
+        //             width: 224.w,
+        //             //   height: 168.h,
+        //             decoration: BoxDecoration(
+        //                 color: Colors.white,
+        //                 borderRadius: BorderRadius.circular(12),
+        //                 border: Border.all(
+        //                   color: Colors.grey,
+        //                 )),
+        //             child: Column(
+        //               crossAxisAlignment: CrossAxisAlignment.start,
+        //               mainAxisAlignment: MainAxisAlignment.start,
+        //               children: [
+        //                 Row(
+        //                   crossAxisAlignment: CrossAxisAlignment.center,
+        //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                   children: [
+        //                     Container(
+        //                       padding: EdgeInsets.all(TSizes.sm8),
+        //                       decoration: BoxDecoration(
+        //                           color: Colors.white,
+        //                           borderRadius: BorderRadius.circular(12),
+        //                           border: Border.all(
+        //                             color: Colors.grey,
+        //                           )),
+        //                       child: Icon(
+        //                         e.icon,
+        //                         color: AppColor.primary,
+        //                       ),
+        //                     ),
+        //                     RichText(
+        //                       text: TextSpan(
+        //                         style: TextStyle(
+        //                           fontSize: 12.0.sp,
+        //                           color: Colors.black,
+        //                         ),
+        //                         children: <TextSpan>[
+        //                           TextSpan(
+        //                             text: '${e.present?.abs()}%',
+        //                             style: TextStyle(
+        //                                 fontSize: 12.0.sp,
+        //                                 fontWeight: FontWeight.w500,
+        //                                 color: e.present! > 0
+        //                                     ? AppColor.success
+        //                                     : AppColor.error),
+        //                           ),
+        //                           TextSpan(
+        //                             text: '  ${e.subTitle}',
+        //                             style: TextStyle(
+        //                               fontSize: 12.0.sp,
+        //                               //  fontStyle: FontStyle.italic,
+        //                               fontWeight: FontWeight.w300,
+        //                               // decoration: TextDecoration.underline,
+        //                             ),
+        //                           ),
+        //                         ],
+        //                       ),
+        //                     ),
+        //                   ],
+        //                 ),
+        //                 SizedBox(
+        //                   height: 16.h,
+        //                 ),
+        //                 Text(
+        //                   "${e.title}",
+        //                   style: TextStyle(
+        //                     fontSize: 12.sp,
+        //                     fontWeight: FontWeight.w300,
+        //                   ),
+        //                 ),
+        //                 SizedBox(
+        //                   height: 4.h,
+        //                 ),
+        //                 Text(
+        //                   "${e.count}",
+        //                   style: TextStyle(
+        //                     fontSize: 32.sp,
+        //                     fontWeight: FontWeight.w600,
+        //                   ),
+        //                 ),
+        //               ],
+        //             ),
+        //           ),
+        //         )
+        //         .toList()),
+        // SizedBox(
+        //   height: 40.h,
+        // ),
+        Expanded(child: AttendanceGridView())
+      ],
     );
   }
 }

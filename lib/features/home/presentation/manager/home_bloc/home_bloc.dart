@@ -11,48 +11,46 @@ import '../../widgets/Mainbar.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
-class HomeCubit extends Cubit<HomeState> {
-  HomeCubit():super(const HomeInitialState());
 
+class HomeCubit extends Cubit<HomeState> {
+  HomeCubit() : super(const HomeInitialState());
 
 
   static HomeCubit get(context) => BlocProvider.of(context);
   final HomeRepo _homeRepo = HomeRepoImpl();
+  PageType currentPage = PageType.Dashboard;
 
   void changePage(PageType newPage) {
     MainBarControl.currentPage = newPage;
-    emit(ChangePageState(newPage: newPage));
+    currentPage = newPage;
+    emit(const ChangePageState());
+    emit(const StartGetData());
   }
 
   Future getDataFromServer() async {
- var dateList;
- var   val = await   _homeRepo.getAllUserDetails();
-  val.fold((e){
-    dateList= [];
-
- },(data){
-    dateList= data;
-
-
-  });
- return dateList;
+    var dateList;
+    var val = await _homeRepo.getAllUserDetails();
+    val.fold((e) {
+      dateList = [];
+    }, (data) {
+      dateList = data;
+    });
+    return dateList;
   }
+
   Future<Either<Failure, dynamic>> getDataFromServerTEST() async {
-
-   var  val= await   _homeRepo.getAllUserDetails().then((val){
-
-     return val.fold((e){
+    var val = await _homeRepo.getAllUserDetails().then((val) {
+      return val.fold((e) {
         emit(const FailGetData());
 
         Left(e);
-      },(data){
+      }, (data) {
         print(data);
         Right(data);
-        emit( SuccessfulGetData(data:data));
-
+        emit(SuccessfulGetData(data: data));
       });
     });
-   return val;
+    return val;
   }
 }
 // class HomeBloc extends Bloc<HomeEvent, HomeState> {

@@ -97,7 +97,7 @@ class  EmployeeProfilePage  extends StatelessWidget {
                 ),
                   // Figma Flutter Generator Loggedinsince83023sep2022Widget - TEXT
                   SizedBox(height: 8,),
-                  Text('Logged in Since 8:30 | 23 Sep 2022', textAlign: TextAlign.left, style: TextStyle(
+                  const Text('Logged in Since 8:30 | 23 Sep 2022', textAlign: TextAlign.left, style: TextStyle(
                       color: Color.fromRGBO(46, 135, 96, 1),
                       fontFamily: 'Inter',
                       fontSize: 12,
@@ -181,12 +181,12 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
 
       backgroundColor: AppColor.white,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(0.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EmployeeHeader(),
-            SizedBox(height: 16.0),
+
         Container(
           height: 50.0,width: 450,
           child: TabBar(
@@ -500,20 +500,29 @@ class TaskList extends StatelessWidget {
 class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(
-          Icons.assignment,
-          color: Colors.blue,
-        ),
-        title: Text('Add a Quiz for Students of 3CO - JYV on the...'),
-        subtitle: Text('06 Dec 2023 - 12 Dec 2023'),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.person),
-            Text('Devesh Gupta'),
-          ],
+    return  Card(
+        surfaceTintColor: Colors.amber.withOpacity(.1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+        color:  Colors.amber.withOpacity(.1),shadowColor:  Colors.amber.withOpacity(.1),
+        child: Container(
+
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(0),
+              border: Border(left: BorderSide(color: Colors.amber,width: 5))),
+          child:ListTile(
+          leading: Icon(
+            Icons.assignment,
+            color: Colors.blue,
+          ),
+          title: Text('Add a Quiz for Students of 3CO - JYV on the...'),
+          subtitle: Text('06 Dec 2023 - 12 Dec 2023'),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.person),
+              Text('Devesh Gupta'),
+            ],
+          ),
         ),
       ),
     );
