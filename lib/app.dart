@@ -60,7 +60,7 @@ class App extends StatelessWidget {
                   theme: TAppTheme.lightTheme,
                   darkTheme: TAppTheme.darkTheme,
                   debugShowCheckedModeBanner: false,
-                  home:  LoginScreen()  ));
+                  home:  Home()  ));
               // builder: (ctx, child) {
               //
               //   ScreenUtil.init(ctx);

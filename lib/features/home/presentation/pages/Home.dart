@@ -37,7 +37,7 @@ class HomeControl {
       case PageType.Setting:
         return Center(child: Text(PageType.Setting.name));
       case PageType.profile:
-        return  ProfileScreen();
+        return ProfileScreen();
 
       default:
         return const Center(child: Text('default'));
@@ -107,82 +107,82 @@ class PageFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       //   toolbarHeight: 60.h,
+          //   toolbarHeight: 60.h,
           title: Padding(
-            padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 8.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 20.0.w,
-                      color: Colors.black,
+        padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 8.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 20.0.w,
+                  color: Colors.black,
+                ),
+                children: <TextSpan>[
+                  const TextSpan(
+                    text: 'Welcome back, ',
+                    style: TextStyle(fontWeight: FontWeight.w300),
+                  ),
+                  TextSpan(
+                    text:
+                        '  ${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}  ',
+                    style: const TextStyle(
+                      //  fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w600,
+                      // decoration: TextDecoration.underline,
                     ),
-                    children: <TextSpan>[
-                      const TextSpan(
-                        text: 'Welcome back, ',
-                        style: TextStyle(fontWeight: FontWeight.w300),
-                      ),
-                      TextSpan(
-                        text:
-                            '  ${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}  ',
-                        style: const TextStyle(
-                          //  fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w600,
-                          // decoration: TextDecoration.underline,
-                        ),
-                      ),
-                      TextSpan(
-                        text: '☀',
-                        style: TextStyle(
-                          fontSize: 24.0.w,
-                          color: Colors.yellow,
-                        ),
-                      ),
-                    ],
+                  ),
+                  TextSpan(
+                    text: '☀',
+                    style: TextStyle(
+                      fontSize: 24.0.w,
+                      color: Colors.yellow,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Iconsax.setting,
+                    color: AppColor.darkGrey,
                   ),
                 ),
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Iconsax.setting,
-                        color: AppColor.darkGrey,
-                      ),
-                    ),
-                    SizedBox(
-                      width: TSizes.sm8,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Icons.mark_email_unread_outlined,
-                        color: AppColor.darkGrey,
-                      ),
-                    ),
-                    SizedBox(
-                      width: TSizes.sm8,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(
-                        Iconsax.notification,
-                        color: AppColor.darkGrey,
-                      ),
-                    ),
-                    SizedBox(
-                      width: TSizes.lg24,
-                    ),
-                    CircleAvatar(
-                      radius: 40.r,
-                    )
-                  ],
+                SizedBox(
+                  width: TSizes.sm8,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.mark_email_unread_outlined,
+                    color: AppColor.darkGrey,
+                  ),
+                ),
+                SizedBox(
+                  width: TSizes.sm8,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Iconsax.notification,
+                    color: AppColor.darkGrey,
+                  ),
+                ),
+                SizedBox(
+                  width: TSizes.lg24,
+                ),
+                CircleAvatar(
+                  radius: 40.r,
                 )
               ],
-            ),
-          )),
+            )
+          ],
+        ),
+      )),
       backgroundColor: AppColor.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),

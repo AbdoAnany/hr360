@@ -22,6 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
   void changePage(PageType newPage) {
     MainBarControl.currentPage = newPage;
     emit(ChangePageState(newPage: newPage));
+    emit(SuccessfulGetData());
   }
 
   Future getDataFromServer() async {
