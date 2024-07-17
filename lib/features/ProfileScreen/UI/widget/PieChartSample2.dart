@@ -15,42 +15,48 @@ class PieChart2State extends State {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
-      children: <Widget>[
-SizedBox(width: 50,),
-        Expanded(
-          child: PieChart(
-            PieChartData(
-              pieTouchData: PieTouchData(
-                touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                  setState(() {
-                    if (!event.isInterestedForInteractions ||
-                        pieTouchResponse == null ||
-                        pieTouchResponse.touchedSection == null) {
-                      touchedIndex = -1;
-                      return;
-                    }
-                    touchedIndex = pieTouchResponse
-                        .touchedSection!.touchedSectionIndex;
-                  });
-                },
-              ),
-              // borderData: FlBorderData(
-              //   show: false,
-              // ),
-              sectionsSpace: 0,
-              centerSpaceRadius: 120,
-              sections: showingSections(),
+    return   SizedBox(
+      child: Row(
+        children: <Widget>[
+          Expanded(flex:2 ,
+            child: Stack(
+              children: [
+                Center(child: Text("60%",style: TextStyle(fontSize: 42),)),
+                PieChart(
+                  PieChartData(
+                    pieTouchData: PieTouchData(
+
+                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                        setState(() {
+                          if (!event.isInterestedForInteractions ||
+                              pieTouchResponse == null ||
+                              pieTouchResponse.touchedSection == null) {
+                            touchedIndex = -1;
+                            return;
+                          }
+                          touchedIndex = pieTouchResponse
+                              .touchedSection!.touchedSectionIndex;
+                        });
+                      },
+                    ),
+
+                    // borderData: FlBorderData(
+                    //   show: false,
+                    // ),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 70,
+                    sections: showingSections(),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-        const Expanded(
-          child: Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Indicator(
-                color: AppColor.primary,
+                color: AppColor.success,
                 text: 'Present',
                 isSquare: true,
               ),
@@ -67,7 +73,7 @@ SizedBox(width: 50,),
               ),
               Indicator(
                 color: AppColor.error,
-                text: 'Leave',
+                text: 'Absent',
                 isSquare: true,
               ),
               SizedBox(
@@ -76,22 +82,22 @@ SizedBox(width: 50,),
 
             ],
           ),
-        ),
-
-      ],
+SizedBox(width: 30,)
+        ],
+      ),
     );
   }
 
   List<PieChartSectionData> showingSections() {
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 16.0 : 10.0;
-      final radius = isTouched ? 30.0 : 20.0;
+      final fontSize = isTouched ? 0.0 : 0.0;
+      final radius = isTouched ? 15.0 : 10.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
       switch (i) {
         case 0:
           return PieChartSectionData(
-            color: AppColor.primary,
+            color: AppColor.success,
             value: 60,
             title: '60%',
             radius: radius,
@@ -143,7 +149,7 @@ class Indicator extends StatelessWidget {
     required this.color,
     required this.text,
     required this.isSquare,
-    this.size = 16,
+    this.size = 12,
     this.textColor,
   });
   final Color color;
@@ -170,7 +176,7 @@ class Indicator extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: size,
             fontWeight: FontWeight.bold,
             color: textColor,
           ),

@@ -170,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -189,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EmployeeHeader(),
-            SizedBox(height: 16.0),
+
         Container(
           height: 50.0,width: 450,
           child: TabBar(
@@ -306,7 +306,8 @@ class EmployeeHeader extends StatelessWidget {
 
           ],
         ),
-        Spacer(),    Column(
+        Spacer(),
+        Column(
 
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -437,12 +438,7 @@ class EmployeeStats extends StatelessWidget {
           // value: tasks.where((ee)=>ee.status=='Not Started').length.toString(),
           // color: Colors.orange,
         ),
-        StatCard(
-
-          state:  AttendanceState(      status: 'Ongoing',
-            value: tasks.where((ee)=>ee.status=='Ongoing').length.toString(),
-            color: Colors.blue,),
-        ),   StatCard(
+  StatCard(
 
           state:  AttendanceState(      status: 'Ongoing',
             value: tasks.where((ee)=>ee.status=='Ongoing').length.toString(),
@@ -636,6 +632,9 @@ class TaskCard extends StatelessWidget {
 
 
       Card(
+        surfaceTintColor:    states.firstWhere((e)=>e.status==tasks.status).color.withOpacity(.07) ,
+      color:   states.firstWhere((e)=>e.status==tasks.status).color.withOpacity(.07) ,
+      shadowColor:  states.firstWhere((e)=>e.status==tasks.status).color.withOpacity(.07) ,
       child: ListTile(
         leading:  Icon(
           Icons.assignment,
@@ -717,14 +716,14 @@ class EmployeeProfilePage extends StatelessWidget {
   }
 }
 
-
+enum DayState{present,halfDay,absent}
 
 class AttendanceReportPage extends StatelessWidget {
-  final AttendanceSummary summary = AttendanceSummary(
-    presentPercentage: 30,
-    halfDayPercentage: 10,
-    leavesPercentage: 60,
-  );
+  // final AttendanceSummary summary = AttendanceSummary(
+  //   presentPercentage: 30,
+  //   halfDayPercentage: 10,
+  //   leavesPercentage: 60,
+  // );
 
   final List<AttendanceRecord> attendanceRecords = [
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
@@ -734,9 +733,9 @@ class AttendanceReportPage extends StatelessWidget {
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Half Day'),
-    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
-    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
-    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'absent'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'absent'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'absent'),
 
 
   ];
@@ -747,45 +746,44 @@ class AttendanceReportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
+      child:   Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
-            'Attendance Report',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 16.0),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: PieChartSample2(),
-                ),
-                Expanded(
-                  child: Column(children: [
-                    SizedBox(height: 16.0),
-                    Text(
-                      'Attendance Logs',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 16.0),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: attendanceRecords.length,
-                        itemBuilder: (context, index) {
-                          return AttendanceLogItem(record: attendanceRecords[index]);
-                        },
-                      ),
-                    ),
-                  ],),
-                )
-
+          Expanded(flex: 2,
+            child: Column(
+              children: [ Text(
+                'Attendance Report',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+                Expanded(child: PieChartSample2()),
               ],
             ),
           ),
+          SizedBox(width: 80,),
+          Expanded(flex: 3,
+            child: Column(children: [
+              Text(
+                'Attendance Logs',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 16.0),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: attendanceRecords.length,
+                  itemBuilder: (context, index) {
+                    return AttendanceLogItem(record: attendanceRecords[index]);
+                  },
+                ),
+              ),
+            ],),
+          )
 
         ],
-      ),
+      )
+
+
+
     );
   }
 }

@@ -53,9 +53,10 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
 
                     source: employeeDataSource!,checkboxColumnSettings:DataGridCheckboxColumnSettings() ,
                     rowHeight: 70,selectionMode: SelectionMode.multiple,
-                    columnWidthMode: ColumnWidthMode.fitByCellValue,
+                    columnWidthMode: ColumnWidthMode.fill,
                       //showHorizontalScrollbar: true,
                       defaultColumnWidth: 70,
+
 allowPullToRefresh: true,
                     // allowFiltering: true,
                     // allowSorting: true,
@@ -117,7 +118,7 @@ allowPullToRefresh: true,
                               alignment: Alignment.center,
                               child: Text('Roles'))),
                       GridColumn(
-                          columnName: 'State',
+                          columnName: 'State',width: 90,
                           label: Container(
                               color: Color(0xffF5F5F5),
                               padding: EdgeInsets.all(16.0),
@@ -140,7 +141,7 @@ allowPullToRefresh: true,
                       //         alignment: Alignment.center,
                       //         child: Text('Email'))),
                       GridColumn(
-                          columnName: 'Phone',columnWidthMode: ColumnWidthMode.fill,
+                          columnName: 'Phone',width: 200,
                           label: Container(
                               color: Color(0xffF5F5F5),
                               padding: EdgeInsets.all(16.0),
@@ -411,6 +412,7 @@ class EmployeeDataSource extends DataGridSource {
         cells: row.getCells().map<Widget>((dataGridCell) {
       return Container(
         padding: EdgeInsets.all(16.0),
+        decoration:  BoxDecoration(border: Border( bottom: BorderSide(color: Colors.grey.shade200))),
         child: Row(
           children: [
             if (dataGridCell.columnName == "Name")
@@ -421,13 +423,13 @@ class EmployeeDataSource extends DataGridSource {
             dataGridCell.columnName == "State"?
 
               Expanded(child: Container(
-               padding: EdgeInsets.symmetric(horizontal: 4),
+               padding: EdgeInsets.symmetric(horizontal: 0),
                 height: 30,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all( color:  dataGridCell.value=="active"?Colors.green:Colors.red,width: .5),
-                    color: dataGridCell.value=="active"?Colors.green.withOpacity(.2):Colors.red.withOpacity(.2)),
-                  child: Center(child: Text(dataGridCell.value,style: TextStyle(fontSize: 12,color: dataGridCell.value=="active"?Colors.green:Colors.red) ))))
+                    borderRadius: BorderRadius.circular(12),
+                   // border: Border.all( color:  dataGridCell.value=="active"?Color(0xff40997E):Color(0xffF93333),width: .5),
+                    color: dataGridCell.value=="active"?Colors.green.withOpacity(.07):Colors.red.withOpacity(.07)),
+                  child: Center(child: Text(dataGridCell.value,style: TextStyle(fontSize: 12,color: dataGridCell.value=="active"?Color(0xff40997E):Color(0xffF93333)) ))))
             :   dataGridCell.columnName == "Action"?
             Expanded(
                   child: InkWell(
