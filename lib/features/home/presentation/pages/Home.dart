@@ -24,12 +24,12 @@ class HomeControl {
       case PageType.Dashboard:
 //Welcome back, Barbara ☀️
         // return  ExampleDragAndDrop();
-        return Employees();
+        return const Employees();
       case PageType.chat:
         return Center(child: Text(PageType.chat.name));
 
       case PageType.Employees:
-        return Employees();
+        return const Employees();
       case PageType.report:
         return Center(child: Text(PageType.report.name));
       case PageType.category:
@@ -37,7 +37,7 @@ class HomeControl {
       case PageType.Setting:
         return Center(child: Text(PageType.Setting.name));
       case PageType.profile:
-        return ProfileScreen();
+        return const ProfileScreen();
 
       default:
         return const Center(child: Text('default'));

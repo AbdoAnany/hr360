@@ -4,7 +4,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
 import 'package:hr360/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
@@ -155,8 +154,11 @@ import 'package:iconsax/iconsax.dart';
 //   }
 // }
 
+
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -421,63 +423,71 @@ class EmployeeStats extends StatelessWidget {
       children:
 
       [
-        StatCard(
-          title: 'Total Tasks',
+        StatCard(state: AttendanceState( status: 'Total Tasks',
           value: tasks.length.toString(),
-          color: Colors.grey,
+          color: Colors.grey,),
+
         ),
-        // ...tasks.map((e)=>    StatCard(
-        //   title: e.s,
-        //   value: tasks.where((ee)=>ee.title==e.title).length.toString(),
-        //   color: Colors.orange,
-        // )).toList()
+
         StatCard(
-          title: 'Not Started',
-          value: tasks.where((ee)=>ee.status=='Not Started').length.toString(),
-          color: Colors.orange,
-        ),
-        StatCard(
-          title: 'Ongoing',
-          value: tasks.where((ee)=>ee.status=='Ongoing').length.toString(),
-          color: Colors.blue,
+        state:  AttendanceState(      status: 'Not Started',
+            value: tasks.where((ee)=>ee.status=='Not Started').length.toString(),
+            color: Colors.orange,),
+          // title: 'Not Started',
+          // value: tasks.where((ee)=>ee.status=='Not Started').length.toString(),
+          // color: Colors.orange,
         ),
         StatCard(
-          title: 'Completed',
-          value: tasks.where((ee)=>ee.status=='Completed').length.toString(),
-          color: Colors.green,
+
+          state:  AttendanceState(      status: 'Ongoing',
+            value: tasks.where((ee)=>ee.status=='Ongoing').length.toString(),
+            color: Colors.blue,),
+        ),   StatCard(
+
+          state:  AttendanceState(      status: 'Ongoing',
+            value: tasks.where((ee)=>ee.status=='Ongoing').length.toString(),
+            color: Colors.blue,),
         ),
         StatCard(
-          title: 'Overdue',
-          value: tasks.where((ee)=>ee.status=='Overdue').length.toString(),
-          color: Colors.red,
+
+          state:  AttendanceState(      status: 'Completed',
+            value: tasks.where((ee)=>ee.status=='Completed').length.toString(),
+            color: Colors.green,),
         ),
+        StatCard(
+
+          state:  AttendanceState(      status: 'Overdue',
+            value: tasks.where((ee)=>ee.status=='Overdue').length.toString(),
+            color: Colors.red,),
+        ),
+
       ],
     );
   }
 }
 
 class StatCard extends StatelessWidget {
-  final String title;
-  final String value;
-  final Color color;
-
-  StatCard({required this.title, required this.value, required this.color});
+  // final String title;
+  // final String value;
+  // final Color color;
+ final AttendanceState state;
+  StatCard({required this.state,});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 8,vertical: 12),
       decoration: BoxDecoration(
-        color: color.withOpacity(.1),
+        color: state.color.withOpacity(.1),
         borderRadius: BorderRadius.circular(12)
       ),
       padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
       child: Row(
         children: [
-          Text(title+" : "+ value,style: TextStyle(
+          Text("${state.status} : ${state.value}",style: TextStyle(
       fontSize: 16,
         fontWeight: FontWeight.w600,
-        color: color,
+        color: state.color,
       ),),
 
         ],
@@ -498,38 +508,100 @@ class Task {
     required this.status,
   });
 }
+class AttendanceState {
+
+
+  final String status; 
+   String? value;
+  final Color color;
+  AttendanceState({
+
+
+
+    required this.status,
+     this.value,
+    required this.color,
+  });
+}
+
 final List<Task> tasks = [
   Task(
     title: 'Add a Quiz for Students of 3CO - JYV on the...',
     dateRange: '06 Dec 2023 - 12 Dec 2023',
-    assignedTo: 'Devesh Gupta', status: 'Not Started',
+    assignedTo: 'Devesh Gupta',
+    status: 'Not Started',
 
   ),
   Task(
     title: 'Prepare slides for meeting',
     dateRange: '10 Dec 2023 - 15 Dec 2023',
     assignedTo: 'John Doe', status: 'Ongoing',
-  ),   Task(
+  ),
+  Task(
     title: 'Prepare slides for meeting',
     dateRange: '10 Dec 2023 - 15 Dec 2023',
     assignedTo: 'John Doe', status: 'Ongoing',
-  ),   Task(
+  ),
+  Task(
     title: 'Prepare slides for meeting',
     dateRange: '10 Dec 2023 - 15 Dec 2023',
     assignedTo: 'John Doe', status: 'Completed',
-  ),   Task(
+  ),
+  Task(
     title: 'Prepare slides for meeting',
     dateRange: '10 Dec 2023 - 15 Dec 2023',
     assignedTo: 'John Doe', status: 'Ongoing',
-  ),   Task(
+  ),
+  Task(
     title: 'Prepare slides for meeting',
     dateRange: '10 Dec 2023 - 15 Dec 2023',
     assignedTo: 'John Doe', status: 'Ongoing',
-  ),   Task(
+  ),
+  Task(
     title: 'Prepare slides for meeting',
     dateRange: '10 Dec 2023 - 15 Dec 2023',
     assignedTo: 'John Doe', status: 'Overdue',
   ),
+  // Add more tasks as needed
+];
+final List<AttendanceState> states = [
+  // State(
+  //   title: 'Add a Quiz for Students of 3CO - JYV on the...',
+  //   dateRange: '06 Dec 2023 - 12 Dec 2023',
+  //   assignedTo: 'Devesh Gupta', status: 'Not Started',
+  //
+  // ),
+  // State(
+  //   title: 'Prepare slides for meeting',
+  //   dateRange: '10 Dec 2023 - 15 Dec 2023',
+  //   assignedTo: 'John Doe', status: 'Ongoing',
+  // ),   State(
+  //   title: 'Prepare slides for meeting',
+  //   dateRange: '10 Dec 2023 - 15 Dec 2023',
+  //   assignedTo: 'John Doe', status: 'Ongoing',
+  // ),   State(
+  //   title: 'Prepare slides for meeting',
+  //   dateRange: '10 Dec 2023 - 15 Dec 2023',
+  //   assignedTo: 'John Doe', status: 'Completed',
+  // ),   State(
+  //   title: 'Prepare slides for meeting',
+  //   dateRange: '10 Dec 2023 - 15 Dec 2023',
+  //   assignedTo: 'John Doe', status: 'Ongoing',
+  // ),
+  // State(
+  //
+  // title: 'Ongoing', status: '', value: '', color: null,
+  // ),
+  AttendanceState(
+      status:  'Total Tasks',  color: Colors.grey,value: "0"),
+  AttendanceState(
+      status: 'Not Started',  color: Colors.orange,value: "0"),
+  AttendanceState(
+      status: 'Ongoing',  color: Colors.blue,value: "0")
+  ,  AttendanceState(
+      status: 'Completed',  color: Colors.green,value: "0"),
+  AttendanceState(
+      status: 'Overdue',  color: Colors.red,value: "0"),
   // Add more tasks as needed
 ];
 
@@ -544,7 +616,7 @@ class TaskList extends StatelessWidget {
           child: ListView.builder(
             itemCount: tasks.length,
             itemBuilder: (context, index) {
-              return TaskCard(task: tasks[index]);
+              return TaskCard(tasks: tasks[index]);
             },
           ),
         ),
@@ -554,9 +626,9 @@ class TaskList extends StatelessWidget {
 }
 
 class TaskCard extends StatelessWidget {
-  final Task task;
+  final Task tasks;
 
-  TaskCard({super.key, required this.task});
+  TaskCard({super.key, required this.tasks});
 
   @override
   Widget build(BuildContext context) {
@@ -565,17 +637,17 @@ class TaskCard extends StatelessWidget {
 
       Card(
       child: ListTile(
-        leading: const Icon(
+        leading:  Icon(
           Icons.assignment,
-          color: Colors.blue,
+          color:states.firstWhere((e)=>e.status==tasks.status).color ,
         ),
-        title: Text(task.title),
-        subtitle: Text(task.dateRange),
+        title: Text(tasks.title),
+        subtitle: Text(tasks.dateRange),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.person),
-            Text(task.assignedTo),
+            Text(tasks.assignedTo),
           ],
         ),
       ),
@@ -656,13 +728,17 @@ class AttendanceReportPage extends StatelessWidget {
 
   final List<AttendanceRecord> attendanceRecords = [
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
-    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Half Day'),
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
-    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
     AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
-    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Present'),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: 'Leave'),
+
+
   ];
 
   AttendanceReportPage({super.key});

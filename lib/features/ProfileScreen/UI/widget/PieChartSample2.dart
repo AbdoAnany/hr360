@@ -44,30 +44,22 @@ SizedBox(width: 50,),
             ),
           ),
         ),
-        Expanded(
-          child: const Column(
+        const Expanded(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Indicator(
                 color: AppColor.primary,
-                text: 'First',
+                text: 'Present',
                 isSquare: true,
               ),
               SizedBox(
                 height: 4,
               ),
               Indicator(
-                color: AppColor.secondary,
-                text: 'Second',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColor.info,
-                text: 'Third',
+                color: AppColor.warning,
+                text: 'Half Day',
                 isSquare: true,
               ),
               SizedBox(
@@ -75,12 +67,13 @@ SizedBox(width: 50,),
               ),
               Indicator(
                 color: AppColor.error,
-                text: 'Fourth',
+                text: 'Leave',
                 isSquare: true,
               ),
               SizedBox(
-                height: 18,
+                height: 4,
               ),
+
             ],
           ),
         ),
@@ -90,7 +83,7 @@ SizedBox(width: 50,),
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
+    return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 16.0 : 10.0;
       final radius = isTouched ? 30.0 : 20.0;
@@ -99,8 +92,8 @@ SizedBox(width: 50,),
         case 0:
           return PieChartSectionData(
             color: AppColor.primary,
-            value: 40,
-            title: '40%',
+            value: 60,
+            title: '60%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -111,7 +104,7 @@ SizedBox(width: 50,),
           );
         case 1:
           return PieChartSectionData(
-            color: AppColor.secondary,
+            color: AppColor.warning,
             value: 30,
             title: '30%',
             radius: radius,
@@ -124,9 +117,9 @@ SizedBox(width: 50,),
           );
         case 2:
           return PieChartSectionData(
-            color:  AppColor.info,
-            value: 15,
-            title: '15%',
+            color:  AppColor.error,
+            value: 10,
+            title: '10%',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -135,19 +128,7 @@ SizedBox(width: 50,),
               shadows: shadows,
             ),
           );
-        case 3:
-          return PieChartSectionData(
-            color: AppColor.error,
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color:  AppColor.error,
-              shadows: shadows,
-            ),
-          );
+
         default:
           throw Error();
       }
