@@ -67,6 +67,7 @@ dependencies:
   iconsax: ^0.0.8
   syncfusion_flutter_datagrid: ^26.1.41
   google_fonts:
+  fl_chart: ^0.68.0
   syncfusion_flutter_core: ^26.1.41
 dev_dependencies:
   flutter_test:
