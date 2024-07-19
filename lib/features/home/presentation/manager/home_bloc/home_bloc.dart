@@ -19,7 +19,10 @@ class HomeCubit extends Cubit<HomeState> {
   static HomeCubit get(context) => BlocProvider.of(context);
   final HomeRepo _homeRepo = HomeRepoImpl();
   PageType currentPage = PageType.Dashboard;
+  void update() {
 
+    emit( ChangeState());
+  }
   void changePage(PageType newPage) {
     MainBarControl.currentPage = newPage;
     currentPage = newPage;

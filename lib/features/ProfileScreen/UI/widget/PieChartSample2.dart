@@ -2,50 +2,79 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants/colors.dart';
+import '../ProfileScreen.dart';
 
 class PieChartSample2 extends StatefulWidget {
   const PieChartSample2({super.key});
 
   @override
-  State<StatefulWidget> createState() => PieChart2State();
+  State<PieChartSample2> createState() => PieChart2State();
 }
 
-class PieChart2State extends State {
+
+class PieChart2State extends State<PieChartSample2> {
   int touchedIndex = -1;
+  DayState selectDayState=DayState.present;
+
+  // Define your attendance records
+  final List<AttendanceRecord> attendanceRecords = [
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.present),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.present),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.present),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.present),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.present),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.present),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.halfDay),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.absent),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.absent),
+    AttendanceRecord(name: 'Vishaka Shekhawat', time: '12:30', date: '12 May 2023', status: DayState.absent),
+
+    // Add more records as needed
+  ];
+
+  Map<DayState, double> calculateAttendanceStatistics() {
+    int totalRecords = attendanceRecords.length;
+    int presentCount = attendanceRecords.where((record) => record.status == DayState.present).length;
+    int halfDayCount = attendanceRecords.where((record) => record.status == DayState.halfDay).length;
+    int absentCount = attendanceRecords.where((record) => record.status == DayState.absent).length;
+
+    return {
+      DayState.present: (presentCount / totalRecords) * 100,
+      DayState.halfDay: (halfDayCount / totalRecords) * 100,
+      DayState.absent: (absentCount / totalRecords) * 100,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
-    return   SizedBox(
+    Map<DayState, double> attendanceStats = calculateAttendanceStatistics();
+
+    return SizedBox(
       child: Row(
         children: <Widget>[
-          Expanded(flex:2 ,
+          Expanded(
+            flex: 2,
             child: Stack(
               children: [
-                Center(child: Text("60%",style: TextStyle(fontSize: 42),)),
+                Center(child: Text("${attendanceStats[selectDayState]}%", style: TextStyle(fontSize: 42))),
                 PieChart(
                   PieChartData(
                     pieTouchData: PieTouchData(
 
                       touchCallback: (FlTouchEvent event, pieTouchResponse) {
                         setState(() {
-                          if (!event.isInterestedForInteractions ||
-                              pieTouchResponse == null ||
-                              pieTouchResponse.touchedSection == null) {
+                          if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
                             touchedIndex = -1;
                             return;
                           }
-                          touchedIndex = pieTouchResponse
-                              .touchedSection!.touchedSectionIndex;
+                          touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                          selectDayState = touchedIndex==0? DayState.present: touchedIndex==0? DayState.halfDay:DayState.absent;
                         });
                       },
                     ),
-
-                    // borderData: FlBorderData(
-                    //   show: false,
-                    // ),
                     sectionsSpace: 0,
                     centerSpaceRadius: 70,
-                    sections: showingSections(),
+                    sections: showingSections(attendanceStats),
                   ),
                 ),
               ],
@@ -55,40 +84,21 @@ class PieChart2State extends State {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Indicator(
-                color: AppColor.success,
-                text: 'Present',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColor.warning,
-                text: 'Half Day',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              Indicator(
-                color: AppColor.error,
-                text: 'Absent',
-                isSquare: true,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-
+              Indicator(color: AppColor.success, text: 'Present', isSquare: true),
+              SizedBox(height: 4),
+              Indicator(color: AppColor.warning, text: 'Half Day', isSquare: true),
+              SizedBox(height: 4),
+              Indicator(color: AppColor.error, text: 'Absent', isSquare: true),
+              SizedBox(height: 4),
             ],
           ),
-SizedBox(width: 30,)
+          SizedBox(width: 30)
         ],
       ),
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(Map<DayState, double> attendanceStats) {
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 0.0 : 0.0;
@@ -98,50 +108,33 @@ SizedBox(width: 30,)
         case 0:
           return PieChartSectionData(
             color: AppColor.success,
-            value: 60,
-            title: '60%',
+            value: attendanceStats[DayState.present]!,
+            title: '${attendanceStats[DayState.present]!.toStringAsFixed(1)}%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.normal,
-              color: AppColor.white,
-              shadows: shadows,
-            ),
+            titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.normal, color: AppColor.white, shadows: shadows),
           );
         case 1:
           return PieChartSectionData(
             color: AppColor.warning,
-            value: 30,
-            title: '30%',
+            value: attendanceStats[DayState.halfDay]!,
+            title: '${attendanceStats[DayState.halfDay]!.toStringAsFixed(1)}%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.normal,
-              color: AppColor.white,
-              shadows: shadows,
-            ),
+            titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.normal, color: AppColor.white, shadows: shadows),
           );
         case 2:
           return PieChartSectionData(
-            color:  AppColor.error,
-            value: 10,
-            title: '10%',
+            color: AppColor.error,
+            value: attendanceStats[DayState.absent]!,
+            title: '${attendanceStats[DayState.absent]!.toStringAsFixed(1)}%',
             radius: radius,
-            titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.normal,
-              color: AppColor.white,
-              shadows: shadows,
-            ),
+            titleStyle: TextStyle(fontSize: fontSize, fontWeight: FontWeight.normal, color: AppColor.white, shadows: shadows),
           );
-
         default:
           throw Error();
       }
     });
   }
 }
-
 
 class Indicator extends StatelessWidget {
   const Indicator({

@@ -20,7 +20,7 @@ class HomeControl {
   static Map<String, Widget> pages = {};
   static UserModel? userModelLogin;
 
-  static Widget pageUi(PageType pageType) {
+  static Widget pageUi(PageType pageType,{custom}) {
     switch (pageType) {
       case PageType.Dashboard:
 //Welcome back, Barbara ☀️
@@ -40,7 +40,9 @@ class HomeControl {
       case PageType.Setting:
         return Center(child: Text(PageType.Setting.name));
       case PageType.profile:
-        return const ProfileScreen();
+        return  ProfileScreen(userDetails: HomeControl.userModelLogin!.data!,);
+  case PageType.custom:
+        return  custom;
 
       default:
         return const Center(child: Text('default'));

@@ -8,6 +8,13 @@ import 'package:iconsax/iconsax.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+import '../../../../../../app.dart';
+import '../../../../../../utils/formatters/formatter.dart';
+import '../../../../../../utils/helpers/helper_functions.dart';
+import '../../../../../ProfileScreen/UI/ProfileScreen.dart';
+import '../../../widgets/Mainbar.dart';
+import '../../Home.dart';
+
 class AttendanceGridView extends StatefulWidget {
   const AttendanceGridView({Key? key}) : super(key: key);
 
@@ -176,182 +183,7 @@ allowPullToRefresh: true,
                   ),
                 ),
               ),
-//           Column(
-//             children: [
-//               Row(
-//                 children: [
-//                   AttendanceHeaderItem(
-//                     title: 'Search by name, role, department...',
-//                     icon: Iconsax.search_normal,
-//                   ),
-//                   SizedBox(
-//                     width: 16.w,
-//                   ),
-//                   AttendanceHeaderItem(
-//                     title: 'Filter',
-//                     icon: Iconsax.filter_search,
-//                   ),
-//                   Spacer(),
-//                   AttendanceHeaderItem(
-//                     title: 'All Departments',
-//                     icon: Iconsax.arrow_bottom,
-//                   ),
-//                   SizedBox(
-//                     width: 16.w,
-//                   ),
-//                   AttendanceHeaderItem(
-//                     title: '13 Jan, 2024',
-//                     icon: Iconsax.calendar_1,
-//                   ),
-//                   SizedBox(
-//                     width: 16.w,
-//                   ),
-//                   AttendanceHeaderItem(
-//                     title: 'Export CSV',
-//                     icon: Iconsax.export,
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(
-//                 height: 24.h,
-//               ),
-//               Container(
-//                 decoration: BoxDecoration(
-//                   color: Color(0xffF5F5F5),
-//                   borderRadius: BorderRadius.circular(12),
-//                 ),
-//                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 22.h),
-//                 child: Row(
-//                   children: [
-//                     Expanded(
-//                         flex: 2,
-//                         child: Text(
-//                           "ID",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 6,
-//                         child: Text(
-//                           "Name",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 4,
-//                         child: Text(
-//                           "Address",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 4,
-//                         child: Text(
-//                           "Role",textAlign: TextAlign.center,
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 4,
-//                         child: Text(
-//                           "Status",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 4,
-//                         child: Text(
-//                           "Gender",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 4,
-//                         child: Text(
-//                           "Email",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                     Expanded(
-//                         flex: 3,
-//                         child: Text(
-//                           "Phone",
-//                           style: TextStyle(fontSize: 16.w, color: Colors.black),
-//                         )),
-//                   ],
-//                 ),
-//               ),
-//               SizedBox(height: 8.h),
-//
-//               FutureBuilder(
-//
-//                   future: HomeCubit.get(context).getDataFromServer(),
-//                   builder: (c,snapshot){
-// print(snapshot.connectionState);
-// print(snapshot.hasData);
-// print(snapshot.hasError);
-// switch(snapshot.connectionState){
-//
-//   case ConnectionState.none:
-//     return   const Center(
-//       child: Text("Not Date Found",style: TextStyle(color: AppColor.textPrimary),),
-//     );
-//   case ConnectionState.waiting:
-//   return   const Center(
-//     child: CircularProgressIndicator()
-//   );
-//   case ConnectionState.active:
-//   case ConnectionState.done:
-//     print('ssssssssssss   '+snapshot.data.toString());
-// List<UserDetails> userDetailsList= (snapshot.data as List).map<UserDetails>((e)=>UserDetails.fromJson(e)).toList();
-// if(userDetailsList.isEmpty) {
-//   return   const Center(
-//   child: Text("Not Date Found",style: TextStyle(color: AppColor.textPrimary),),
-// );
-// }
-// return    Expanded(
-//   child: ListView.separated(shrinkWrap: true,
-//       itemCount: userDetailsList.length,
-//       itemBuilder: (c, i) {
-//         return AttendanceBodyItem(item: userDetailsList[i],);
-//       },
-//       separatorBuilder: (c, i) => Divider(
-//         color: Colors.black.withOpacity(.2),
-//       ),
-//     ),
-// );
-// }
-//                     //    snapshot.data?.fold((e){
-//                     //
-//                     //   String? message=(e as ServerFailure).message;
-//                     //   return   Center(
-//                     //     child: Text(message??"Error !!!",style: TextStyle(color: AppColor.textPrimary),),
-//                     //   );
-//                     //
-//                     // },(data){
-//                     // List<UserDetails> userDetailsList= (data as List).map<UserDetails>((e)=>UserDetails.fromJson(e)).toList();
-//                     // return    ListView.separated(
-//                     //     itemCount: userDetailsList.length,
-//                     //     itemBuilder: (c, i) {
-//                     //       return AttendanceBodyItem(item: userDetailsList[i],);
-//                     //     },
-//                     //     separatorBuilder: (c, i) => Divider(
-//                     //       color: Colors.black.withOpacity(.2),
-//                     //     ),
-//                     //   );
-//                     //
-//                     // });
-//
-//
-//
-//                   }),
-//               // Container(
-//               //   height: 432.h,
-//               //   child: ListView.separated(
-//               //     itemCount: 12,
-//               //     itemBuilder: (c, i) {
-//               //       return AttendanceBodyItem();
-//               //     },
-//               //     separatorBuilder: (c, i) => Divider(
-//               //       color: Colors.black.withOpacity(.2),
-//               //     ),
-//               //   ),
-//               // )
-//             ],
-//           ),
+
       );
     });
   }
@@ -375,30 +207,13 @@ class EmployeeDataSource extends DataGridSource {
         // DataGridCell<String>(columnName: 'Email', value: e.email),
         DataGridCell<String>(columnName: 'Phone', value: e.phone),
         DataGridCell<String>(
-            columnName: 'Birth_Date', value: e.birthDate ?? "1/1/2000"),
-        DataGridCell<String>(
-            columnName: 'Action', value: "Veiw" ),
+            columnName: 'Birth_Date', value: TFormatter.formatDate(DateTime.parse(e.birthDate??'2010-07-19')), ),
+        DataGridCell<UserDetails>(
+            columnName: 'Action', value:  e ),
       ]);
     });
 
-      //   employees!
-      //   .map<DataGridRow>((e) => DataGridRow(cells: [
-      //         DataGridCell<int>(columnName: 'Num', value: e.id),
-      // DataGridCell<int>(columnName: 'ID', value: e.id),
-      //         DataGridCell<String>(
-      //           columnName: 'Name',
-      //           value: "${e.firsName} ${e.lastName}",
-      //         ),
-      //         DataGridCell<String>(columnName: 'Address', value: e.address),
-      //         DataGridCell<String>(columnName: 'Roles', value: e.roles),
-      //         DataGridCell<String>(columnName: 'State', value: e.state),
-      //         DataGridCell<String>(columnName: 'Gender', value: e.gender),
-      //         DataGridCell<String>(columnName: 'Email', value: e.email),
-      //         DataGridCell<String>(columnName: 'Phone', value: e.phone),
-      //         DataGridCell<String>(
-      //             columnName: 'Birth_Date', value: e.birthDate ?? "1/1/2000"),
-      //       ]))
-      //   .toList();
+
   }
 
   List<DataGridRow> _employees = [];
@@ -433,9 +248,18 @@ class EmployeeDataSource extends DataGridSource {
             :   dataGridCell.columnName == "Action"?
             Expanded(
                   child: InkWell(
-                      onTap: () {  },
+                      onTap: () {
+                        HomeControl.pageUi(PageType.custom,custom: ProfileScreen(userDetails:dataGridCell.value ));
+                        HomeCubit.get(Get.context).update();
+                      //  THelperFunctions.navigateToScreen(ProfileScreen(userDetails:dataGridCell.value ));
+                       // ;
 
-                    child:Icon(Icons.arrow_forward_outlined,color: AppColor.borderPrimary,)  ),
+                      },
+
+                    child:Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.arrow_forward_outlined,color: AppColor.borderPrimary,),
+                    )  ),
                 ):
             Expanded(child: Center(child: Text(dataGridCell.value.toString()))),
           ],

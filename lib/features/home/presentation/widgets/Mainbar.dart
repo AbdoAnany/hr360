@@ -18,7 +18,7 @@ enum PageType {
   Setting,
   profile,
   signup,
-  logout
+  logout, custom
 }
 
 class MainBarControl {

@@ -5,17 +5,19 @@ class HomeState {
 
   const HomeState();
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is HomeState &&
-          runtimeType == other.runtimeType ;
-
+  // @override
+  // bool operator ==(Object other) =>
+  //     identical(this, other) ||
+  //     other is HomeState &&
+  //         runtimeType == other.runtimeType ;
+  //
 
 }
 
 class HomeInitialState extends HomeState {
   const HomeInitialState();
+}
+class ChangeState extends HomeState {
 }
 
 class ChangePageState extends HomeState {
