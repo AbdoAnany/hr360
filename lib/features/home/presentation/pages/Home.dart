@@ -9,6 +9,7 @@ import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';
 import 'package:hr360/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../app.dart';
 import '../../../../di.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/keys.dart';
@@ -84,7 +85,7 @@ class _HomeState extends State<Home> {
         print(state);
         HomeCubit homeCubit = HomeCubit.get(context);
         return Scaffold(
-          //  appBar: AppBar(title: Text(state.newPage.name),),
+        key:Get.scaffoldHomeState ,
 
           body: SizedBox(
             width: TSizes.screenWidth,

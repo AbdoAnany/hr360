@@ -249,9 +249,9 @@ class EmployeeDataSource extends DataGridSource {
             Expanded(
                   child: InkWell(
                       onTap: () {
-                        HomeControl.pageUi(PageType.custom,custom: ProfileScreen(userDetails:dataGridCell.value ));
-                        HomeCubit.get(Get.context).update();
-                      //  THelperFunctions.navigateToScreen(ProfileScreen(userDetails:dataGridCell.value ));
+                        // HomeControl.pageUi(PageType.custom,custom: ProfileScreen(userDetails:dataGridCell.value ));
+                        // HomeCubit.get(Get.context).update();
+                       THelperFunctions.navigateToScreen(ProfileScreen(userDetails:dataGridCell.value ),context: Get.scaffoldHomeState.currentState?.context);
                        // ;
 
                       },

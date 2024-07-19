@@ -23,6 +23,7 @@ class Get {
 
   static BuildContext get context => navigatorKey.currentContext!;
   static NavigatorState get navigator => navigatorKey.currentState!;
+  static GlobalKey<ScaffoldState> get scaffoldHomeState => GlobalKey<ScaffoldState>();
 
 }
 

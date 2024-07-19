@@ -31,34 +31,38 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        EmployeeHeader(),
-        Container(
-          height: 50.0,
-          width: 450,
-          child: TabBar(
-            controller: _tabController,
-            indicatorSize: TabBarIndicatorSize.tab,
-            tabs: const [
-              Tab(text: 'Tasks'),
-              Tab(text: 'Profile'),
-              Tab(text: 'Attendance'),
-            ],
+    return Scaffold(appBar: AppBar(),
+      backgroundColor: AppColor.white,
+      body:
+     Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          EmployeeHeader(),
+          Container(
+            height: 50.0,
+            width: 450,
+            child: TabBar(
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.tab,
+              tabs: const [
+                Tab(text: 'Tasks'),
+                Tab(text: 'Profile'),
+                Tab(text: 'Attendance'),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              TaskList(),
-              EmployeeProfilePage(userDetails:widget. userDetails,),
-              const AttendanceReportPage(),
-            ],
-          ),
-        )
-      ],
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                TaskList(),
+                EmployeeProfilePage(userDetails:widget. userDetails,),
+                const AttendanceReportPage(),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
