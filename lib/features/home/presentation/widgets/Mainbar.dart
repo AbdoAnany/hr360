@@ -18,7 +18,8 @@ enum PageType {
   Setting,
   profile,
   signup,
-  logout, custom
+  logout,
+  custom
 }
 
 class MainBarControl {
@@ -89,7 +90,7 @@ class _MainBarState extends State<MainBar> {
             _buildNavItem(
                 icon: Iconsax.logout,
                 pageType: PageType.logout,
-                onTap:(){
+                onTap: (){
                   AuthCubit.get(context).logOut();
                 },
                 label: 'Logout'),
@@ -104,62 +105,56 @@ class _MainBarState extends State<MainBar> {
 
   Widget _buildNavItem(
       {required IconData icon,
-      required PageType pageType,
-      required String label,
-        void Function()? onTap
-      }) {
+        required PageType pageType,
+        required String label,
+        void Function()? onTap}) {
     return InkWell(
-        onTap: onTap??() {
-          print(pageType.name);
-          HomeCubit.get(context).changePage(pageType);
-          // TODO: Handle navigation to the corresponding page
-        },
-        // onHover: ,
-        child: Container(
-          width: MainBarControl.isExpanded ? 200.w : 58.w,
-          // height: MainBarControl.isExpanded ? 60 : 60,
-
-          //  margin: EdgeInsets.symmetric(horizontal:  TSizes.lg),
-          decoration: BoxDecoration(
-            color: MainBarControl.currentPage == pageType
-                ? Theme.of(context).primaryColor
-                : Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(TSizes.sm8),
-          ),
-          padding: EdgeInsets.all(16.w),
-
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainBarControl.isExpanded
-                ? MainAxisAlignment.start
-                : MainAxisAlignment.center,
-            children: [
-              Icon(icon,
-                  color: MainBarControl.currentPage == pageType
-                      ? AppColor.white
-                      : AppColor.black),
-              if (MainBarControl.isExpanded)
-                SizedBox(
-                  width: TSizes.xs4,
-                ),
-              if (MainBarControl.isExpanded)
-                Text(
-                  label,
-                  style: TextStyle(
-                      fontSize: 14.w,
-                      fontWeight: FontWeight.w300,
-                      color: MainBarControl.currentPage == pageType
-                          ? AppColor.white
-                          : AppColor.black),
-                ),
-            ],
-          ),
-        ));
+      onTap: onTap ?? () {
+        print(pageType.name);
+        HomeCubit.get(context).changePage(pageType);
+      },
+      child: Container(
+        width: MainBarControl.isExpanded ? 200.w : 58.w,
+        decoration: BoxDecoration(
+          color: MainBarControl.currentPage == pageType
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(TSizes.sm8),
+        ),
+        padding: EdgeInsets.all(16.w),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainBarControl.isExpanded
+              ? MainAxisAlignment.start
+              : MainAxisAlignment.center,
+          children: [
+            Icon(icon,
+                color: MainBarControl.currentPage == pageType
+                    ? AppColor.white
+                    : AppColor.black),
+            if (MainBarControl.isExpanded)
+              SizedBox(
+                width: TSizes.xs4,
+              ),
+            if (MainBarControl.isExpanded)
+              Text(
+                label,
+                style: TextStyle(
+                    fontSize: 14.w,
+                    fontWeight: FontWeight.w300,
+                    color: MainBarControl.currentPage == pageType
+                        ? AppColor.white
+                        : AppColor.black),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
 class MainBarHeader extends StatelessWidget {
-  const MainBarHeader({super.key});
+  const MainBarHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

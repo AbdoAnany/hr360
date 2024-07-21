@@ -7,70 +7,40 @@ import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.
 import 'package:hr360/features/home/presentation/pages/pages/dashbord_page.dart';
 import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';
 import 'package:hr360/utils/constants/sizes.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../../app.dart';
 import '../../../../di.dart';
-import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/keys.dart';
 import '../../../../utils/local_storage/storage_utility.dart';
 import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../manager/home_bloc/home_bloc.dart';
 
+
+
 class HomeControl {
-  static Map<String, Widget> pages = {};
   static UserModel? userModelLogin;
-
-  static Widget pageUi(PageType pageType,{custom}) {
-    switch (pageType) {
-      case PageType.Dashboard:
-//Welcome back, Barbara ☀️
-        return  DashBordPage();
-     //   return Employees();
-        // return  ExampleDragAndDrop();
-        return const Employees();
-      case PageType.chat:
-        return Center(child: Text(PageType.chat.name));
-
-      case PageType.Employees:
-        return const Employees();
-      case PageType.report:
-        return Center(child: Text(PageType.report.name));
-      case PageType.category:
-        return Center(child: Text(PageType.category.name));
-      case PageType.Setting:
-        return Center(child: Text(PageType.Setting.name));
-      case PageType.profile:
-        return  ProfileScreen(userDetails: HomeControl.userModelLogin!.data!,);
-  case PageType.custom:
-        return  custom;
-
-      default:
-        return const Center(child: Text('default'));
-    }
-  }
 }
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+
+
   @override
   void initState() {
+    super.initState();
     try {
       var tem = sl<TLocalStorage>().readData(AppKeys.userDataLogin);
-      print(tem);
       HomeControl.userModelLogin = UserModel.fromJson(tem);
     } catch (e) {
-      print("sssssssssss");
-      print(e);
+      print('Error loading user data: $e');
     }
     HomeCubit.get(context).getDataFromServer();
-    super.initState();
   }
 
   @override
@@ -78,205 +48,95 @@ class _HomeState extends State<Home> {
     return BlocProvider(
       create: (context) => HomeCubit(),
       child: BlocBuilder<HomeCubit, HomeState>(
-          buildWhen: (s, ss){
-           return ss is ChangePageState ;
-          },
-          builder: (context, state) {
-        print(state);
-        HomeCubit homeCubit = HomeCubit.get(context);
-        return Scaffold(
-        key:Get.scaffoldHomeState ,
-
-          body: SizedBox(
-            width: TSizes.screenWidth,
-            height: TSizes.screenHeight,
-            child: Row(
-              children: [
-                const MainBar(),
-                VerticalDivider(
-                  width: 2.r,
-                  thickness: 2.r,
-                  color: Theme.of(context).splashColor,
-                ),
-                Expanded(child: PageFrame(pageType: homeCubit.currentPage))
-              ],
-            ),
-          ),
-        );
-      }),
-    );
-  }
-}
-
-class PageFrame extends StatelessWidget {
-  const PageFrame({super.key, required this.pageType});
-
-  final PageType pageType;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          //   toolbarHeight: 60.h,
-          title: Padding(
-        padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 8.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 20.0.w,
-                  color: Colors.black,
-                ),
-                children: <TextSpan>[
-                  const TextSpan(
-                    text: 'Welcome back, ',
-                    style: TextStyle(fontWeight: FontWeight.w300),
+        buildWhen: (previous, current) => current is ChangePageState,
+        builder: (context, state) {
+          final homeCubit = HomeCubit.get(context);
+          return Scaffold(
+            key: Get.scaffoldHomeState,
+            body: SizedBox(
+              width: TSizes.screenWidth,
+              height: TSizes.screenHeight,
+              child: Row(
+                children: [
+                  const MainBar(),
+                  VerticalDivider(
+                    width: 2,
+                    thickness: 2,
+                    color: Theme.of(context).splashColor,
                   ),
-                  TextSpan(
-                    text:
-                        '  ${HomeControl.userModelLogin?.data?.firsName} ${HomeControl.userModelLogin?.data?.lastName}  ',
-                    style: const TextStyle(
-                      //  fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.w600,
-                      // decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  TextSpan(
-                    text: '☀',
-                    style: TextStyle(
-                      fontSize: 24.0.w,
-                      color: Colors.yellow,
+                  Expanded(
+                    child: Navigator(
+                      key: homeCubit.navigatorKey,
+                      onGenerateRoute: (RouteSettings settings) {
+                        WidgetBuilder builder;
+                        switch (settings.name) {
+                          case '/dashboard':
+                            builder = (BuildContext _) => const DashBordPage();
+                            break;
+                          case '/employees':
+                            builder = (BuildContext _) => const Employees();
+                            break;
+                          case '/profile':
+                            builder = (BuildContext _) => ProfileScreen(
+                              userDetails:
+                              HomeControl.userModelLogin!.data!,
+                            );
+                            break;
+                          default:
+                            builder = (BuildContext _) => const Center(
+                                child: Text('Default Page'));
+                        }
+                        return PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) =>
+                              builder(context),
+                          transitionsBuilder: (context, animation,
+                              secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                        );
+                      },
+                      initialRoute: '/dashboard', // Set the initial route
                     ),
                   ),
                 ],
               ),
             ),
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Iconsax.setting,
-                    color: AppColor.darkGrey,
-                  ),
-                ),
-                SizedBox(
-                  width: TSizes.sm8,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.mark_email_unread_outlined,
-                    color: AppColor.darkGrey,
-                  ),
-                ),
-                SizedBox(
-                  width: TSizes.sm8,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Iconsax.notification,
-                    color: AppColor.darkGrey,
-                  ),
-                ),
-                SizedBox(
-                  width: TSizes.lg24,
-                ),
-                CircleAvatar(
-                  radius: 40.r,
-                )
-              ],
-            )
-          ],
-        ),
-      )),
-      backgroundColor: AppColor.white,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 0.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // Row(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Column(
-            //         crossAxisAlignment: CrossAxisAlignment.start,
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           Text(
-            //             MainBarControl.currentPage.name,
-            //             style: TextStyle(
-            //               fontSize: 24.w,
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //           SizedBox(
-            //             height: 8.h,
-            //           ),
-            //           Row(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             mainAxisAlignment: MainAxisAlignment.start,
-            //             children: [
-            //               Text(
-            //                 MainBarControl.currentPage.name,
-            //                 style: TextStyle(
-            //                   color: Color(0xffD9D9D9),
-            //                   fontSize: 14.w,
-            //                   fontWeight: FontWeight.w300,
-            //                 ),
-            //               ),
-            //               const Padding(
-            //                 padding: EdgeInsets.all(8.0),
-            //                 child: CircleAvatar(
-            //                   backgroundColor: Color(0xffD9D9D9),
-            //                   radius: 4,
-            //                 ),
-            //               ),
-            //               Text(
-            //                 MainBarControl.currentPage.name,
-            //                 style: TextStyle(
-            //                   color: Color(0xffD9D9D9),
-            //                   fontSize: 14.w,
-            //                   fontWeight: FontWeight.w300,
-            //                 ),
-            //               ),
-            //               const Padding(
-            //                 padding: EdgeInsets.all(8.0),
-            //                 child: CircleAvatar(
-            //                   backgroundColor: Color(0xffD9D9D9),
-            //                   radius: 4,
-            //                 ),
-            //               ),
-            //               Text(
-            //                 MainBarControl.currentPage.name,
-            //                 style: TextStyle(
-            //                   color: Color(0xffD9D9D9),
-            //                   fontSize: 14.w,
-            //                   fontWeight: FontWeight.w300,
-            //                 ),
-            //               ),
-            //             ],
-            //           )
-            //         ],
-            //       ),
-            //
-            //       // Text(DateTime.now().toString()
-            //       //   ,       style:
-            //       //   TextStyle(
-            //       //     fontSize: 20,
-            //       //     fontWeight: FontWeight.normal,
-            //       //   ),
-            //       // ),
-            //     ]),
-            Expanded(child: HomeControl.pageUi(pageType))
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 }
+// class MainBar extends StatelessWidget {
+//   const MainBar({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         ListTile(
+//           title: const Text('Dashboard'),
+//           onTap: () {
+//             Navigator.of(context).pushNamed('/dashboard');
+//           },
+//         ),
+//         ListTile(
+//           title: const Text('Employees'),
+//           onTap: () {
+//             Navigator.of(context).pushNamed('/employees');
+//           },
+//         ),
+//         ListTile(
+//           title: const Text('Profile'),
+//           onTap: () {
+//             Navigator.of(context).pushNamed('/profile');
+//           },
+//         ),
+//         // Add more navigation items as needed
+//       ],
+//     );
+//   }
+// }

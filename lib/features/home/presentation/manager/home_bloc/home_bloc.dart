@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/1login/data/repositries/auth_repo_impl.dart';
 import 'package:hr360/features/home/date/repositries/repo_impl.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../app.dart';
 import '../../../../../utils/error/failure.dart';
 import '../../../../1login/domain/repositires/auth_repo.dart';
 import '../../../domain/repositires/repo.dart';
@@ -14,6 +16,7 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeInitialState());
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 
   static HomeCubit get(context) => BlocProvider.of(context);
@@ -26,10 +29,30 @@ class HomeCubit extends Cubit<HomeState> {
   void changePage(PageType newPage) {
     MainBarControl.currentPage = newPage;
     currentPage = newPage;
+    _navigateToPage(newPage);
+
     emit(const ChangePageState());
     emit(const StartGetData());
   }
 
+  void _navigateToPage(PageType pageType) {
+    String routeName;
+    switch (pageType) {
+      case PageType.Dashboard:
+        routeName = '/dashboard';
+        break;
+      case PageType.Employees:
+        routeName = '/employees';
+        break;
+      case PageType.profile:
+        routeName = '/profile';
+        break;
+      default:
+        routeName = '/default';
+        break;
+    }
+    navigatorKey.currentState?.pushNamed(routeName);
+  }
   Future getDataFromServer() async {
     var dateList;
     var val = await _homeRepo.getAllUserDetails();
