@@ -16,6 +16,7 @@ import 'features/1login/data/repositries/auth_repo_impl.dart';
 import 'features/1login/domain/repositires/auth_repo.dart';
 import 'features/1login/signup.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
+import 'features/main_screen/DashboardScreen.dart';
 import 'main.dart';
 
 class Get {
