@@ -6,12 +6,12 @@ import 'package:hr360/features/1login/signup.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 import 'package:hr360/features/home/presentation/pages/pages/dashbord_page.dart';
 import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';
-import 'package:hr360/utils/constants/sizes.dart';
+import 'package:hr360/core/utils/constants/sizes.dart';
 
 import '../../../../app.dart';
 import '../../../../di.dart';
-import '../../../../utils/constants/keys.dart';
-import '../../../../utils/local_storage/storage_utility.dart';
+import '../../../../core/utils/constants/keys.dart';
+import '../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../manager/home_bloc/home_bloc.dart';
 

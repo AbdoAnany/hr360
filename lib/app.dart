@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/home/presentation/pages/Home.dart';
 import 'package:hr360/features/1login/login.dart';
 import 'package:provider/provider.dart';
-import 'package:hr360/utils/constants/sizes.dart';
-import 'package:hr360/utils/constants/text_strings.dart';
-import 'package:hr360/utils/theme/theme.dart';
-import 'package:hr360/utils/theme/widget_themes/text_theme.dart';
+import 'package:hr360/core/utils/constants/sizes.dart';
+import 'package:hr360/core/utils/constants/text_strings.dart';
+import 'package:hr360/core/utils/theme/theme.dart';
+import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 
 import 'di.dart';
 import 'features/0-intro/presentation/intro_screen.dart';
@@ -16,15 +16,16 @@ import 'features/1login/data/repositries/auth_repo_impl.dart';
 import 'features/1login/domain/repositires/auth_repo.dart';
 import 'features/1login/signup.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
-
+import 'main.dart';
 
 class Get {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   static BuildContext get context => navigatorKey.currentContext!;
   static NavigatorState get navigator => navigatorKey.currentState!;
-  static GlobalKey<ScaffoldState> get scaffoldHomeState => GlobalKey<ScaffoldState>();
-
+  static GlobalKey<ScaffoldState> get scaffoldHomeState =>
+      GlobalKey<ScaffoldState>();
 }
 
 class App extends StatelessWidget {
@@ -34,7 +35,7 @@ class App extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
-         BlocProvider(create: (context) => AuthCubit( AuthRepoImpl())),
+          BlocProvider(create: (context) => AuthCubit(AuthRepoImpl())),
           BlocProvider(create: (context) => HomeCubit()),
         ],
         child: Consumer<ThemeProvider>(builder: (context, them, c) {
@@ -46,13 +47,13 @@ class App extends StatelessWidget {
                 TSizes.uiSW,
                 TSizes.uiSH,
               ),
-             minTextAdapt: true,
-             splitScreenMode: true,
+              minTextAdapt: true,
+              splitScreenMode: true,
               useInheritedMediaQuery: true,
               ensureScreenSize: true,
-              child:  MaterialApp(
-                  builder: (context,w){
-                    TTextTheme.init(context,them);
+              child: MaterialApp(
+                  builder: (context, w) {
+                    TTextTheme.init(context, them);
                     return w!;
                   },
                   navigatorKey: Get.navigatorKey,
@@ -61,13 +62,17 @@ class App extends StatelessWidget {
                   theme: TAppTheme.lightTheme,
                   darkTheme: TAppTheme.darkTheme,
                   debugShowCheckedModeBanner: false,
-                  home:  Home()  ));
-              // builder: (ctx, child) {
-              //
-              //   ScreenUtil.init(ctx);
-              //
-              //   return child!;
-              // });
+                  home:DashboardScreen(),
+
+                //  const Home()
+              )
+          );
+          // builder: (ctx, child) {
+          //
+          //   ScreenUtil.init(ctx);
+          //
+          //   return child!;
+          // });
         }));
   }
 }

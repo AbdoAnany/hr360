@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hr360/utils/constants/colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../utils/constants/style.dart';
+import '../../core/utils/constants/style.dart';
 import '../home/presentation/widgets/Mainbar.dart';
 
 class SignUpScreen extends StatefulWidget {

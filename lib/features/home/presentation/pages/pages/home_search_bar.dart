@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../utils/constants/sizes.dart';
+import '../../../../../core/utils/constants/sizes.dart';
 
 class HomeSearchBar extends StatelessWidget {
   const HomeSearchBar({

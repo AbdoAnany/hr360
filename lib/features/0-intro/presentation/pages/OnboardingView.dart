@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hr360/utils/constants/colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../../di.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/helpers/helper_functions.dart';
-import '../../../../../utils/theme/widget_themes/text_theme.dart';
+import '../../../../../core/utils/constants/sizes.dart';
+import '../../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../../core/utils/theme/widget_themes/text_theme.dart';
 import '../../../home/presentation/pages/Home.dart';
 import '../intro_screen.dart';
 import '../widget/OnBoardingItems.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hr360/utils/constants/colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 
 class InfoCard extends StatelessWidget {
   final String? title;

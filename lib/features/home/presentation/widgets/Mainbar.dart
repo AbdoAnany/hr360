@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/1login/blocs/auth_cubit/auth_cubit.dart';
-import 'package:hr360/utils/constants/colors.dart';
-import 'package:hr360/utils/constants/sizes.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
+import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../utils/constants/image_strings.dart';
+import '../../../../core/utils/constants/image_strings.dart';
 import '../manager/home_bloc/home_bloc.dart';
 
 enum PageType {
@@ -45,7 +45,7 @@ class _MainBarState extends State<MainBar> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MainBarHeader(),
+            const MainBarHeader(),
             SizedBox(
               height: TSizes.sm8,
             ),
@@ -114,6 +114,7 @@ class _MainBarState extends State<MainBar> {
         HomeCubit.get(context).changePage(pageType);
       },
       child: Container(
+
         width: MainBarControl.isExpanded ? 200.w : 58.w,
         decoration: BoxDecoration(
           color: MainBarControl.currentPage == pageType
@@ -121,7 +122,7 @@ class _MainBarState extends State<MainBar> {
               : Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(TSizes.sm8),
         ),
-        padding: EdgeInsets.all(16.w),
+        padding: EdgeInsets.symmetric(vertical: 16.h,horizontal: 16.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainBarControl.isExpanded
@@ -140,7 +141,7 @@ class _MainBarState extends State<MainBar> {
               Text(
                 label,
                 style: TextStyle(
-                    fontSize: 14.w,
+                    fontSize: 14,
                     fontWeight: FontWeight.w300,
                     color: MainBarControl.currentPage == pageType
                         ? AppColor.white

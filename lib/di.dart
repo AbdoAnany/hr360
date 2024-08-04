@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hr360/utils/local_storage/storage_utility.dart';
+import 'package:hr360/core/utils/local_storage/storage_utility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:hr360/features/auth/presentation/manager/LoginControl.dart';
 // import 'package:hr360/features/home/presentation/manager/home_bloc/home_bloc.dart';
-import 'package:hr360/utils/http/dio_client.dart';
-import 'package:hr360/utils/theme/theme.dart';
-import 'package:hr360/utils/theme/widget_themes/text_theme.dart';
+import 'package:hr360/core/utils/http/dio_client.dart';
+import 'package:hr360/core/utils/theme/theme.dart';
+import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 
 import 'app.dart';
 // import 'features/auth/data/remote/data_sources/users_remote_data_source.dart';

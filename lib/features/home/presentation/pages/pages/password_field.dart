@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/sizes.dart';
+import '../../../../../core/utils/constants/sizes.dart';
+
 
 class PasswordField extends StatefulWidget {
   const PasswordField({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/animation/Animation.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../../../core/utils/animation/Animation.dart';
+import '../../../../../core/utils/constants/colors.dart';
+import '../../../../../core/utils/constants/sizes.dart';
+import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../home/presentation/pages/Home.dart';
 // import '../../../../auth/helper/AppRoutes.dart';
 

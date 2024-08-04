@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../utils/theme/theme.dart';
+import '../../../../core/utils/theme/theme.dart';
 
 class MySwitchTheme extends StatelessWidget {
   const MySwitchTheme({super.key});

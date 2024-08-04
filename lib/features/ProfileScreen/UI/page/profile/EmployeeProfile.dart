@@ -5,21 +5,22 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/formatters/formatter.dart';
+import '../../../../../core/utils/formatters/formatter.dart';
 import '../../../../1login/data/user_model.dart';
 import '../../../../home/presentation/pages/Home.dart';
 import '../../ProfileScreen.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
-  late  final   Employee employee ;UserDetails userDetails;
-   EmployeeProfilePage({super.key,required this.userDetails}){
+  late  final   Employee employee ;
+  UserDetails? userDetails;
+   EmployeeProfilePage({super.key, this.userDetails}){
      employee = Employee(
-       name:   "${userDetails.firsName}  ${userDetails.lastName}",
+       name:   "${userDetails?.firsName}  ${userDetails?.lastName}",
        dateOfJoining:  TFormatter.formatDate(DateTime.now()),
        dateOfBirth: TFormatter.formatDate(DateTime.parse( HomeControl.userModelLogin!.data!.birthDate!)),
-       contactNumber: TFormatter.formatPhoneNumber(userDetails.phone),
-       emergencyContactNumber:  TFormatter.formatPhoneNumber(userDetails.phone),
-       email: '${userDetails.email}',
+       contactNumber: TFormatter.formatPhoneNumber(userDetails?.phone),
+       emergencyContactNumber:  TFormatter.formatPhoneNumber(userDetails?.phone),
+       email: '${userDetails?.email}',
        // highestQualification: 'BBA',
        // institutionName: 'NarsejimoHanrao Phule University, Pune',
        // yearOfQualification: '2017',
@@ -27,9 +28,9 @@ class EmployeeProfilePage extends StatelessWidget {
          name: 'Manohar Lal Shekhawat',
          profession: 'Businessmen',
          organizationName: 'Swami Traders Private Limited',
-         contactNumber: '+91 99999 99999',
-         whatsappNumber: '+91 99999 99999',
-         email: 'swamitraders1@gmail.com',
+         contactNumber: TFormatter.formatPhoneNumber(userDetails?.phone),
+         whatsappNumber: TFormatter.formatPhoneNumber(userDetails?.phone),
+         email: '${userDetails?.email}',
          dateOfBirth: '30 Apr 1975',
        ),
        motherDetails: FamilyDetails(

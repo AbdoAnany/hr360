@@ -6,9 +6,10 @@ import 'package:hr360/features/home/date/repositries/repo_impl.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../app.dart';
-import '../../../../../utils/error/failure.dart';
+import '../../../../../core/utils/error/failure.dart';
 import '../../../../1login/domain/repositires/auth_repo.dart';
 import '../../../domain/repositires/repo.dart';
+import '../../pages/pages/Employee/employees.dart';
 import '../../widgets/Mainbar.dart';
 
 part 'home_event.dart';
@@ -57,7 +58,7 @@ class HomeCubit extends Cubit<HomeState> {
     var dateList;
     var val = await _homeRepo.getAllUserDetails();
     val.fold((e) {
-      dateList = [];
+      dateList =     damyList;
     }, (data) {
       dateList = data;
     });

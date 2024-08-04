@@ -6,8 +6,8 @@ import 'package:hr360/features/home/presentation/pages/pages/home_search_bar.dar
 import 'package:hr360/features/home/presentation/pages/pages/lsit_widget.dart';
 import 'package:hr360/features/home/presentation/pages/pages/password_field.dart';
 
-import '../../../../../utils/theme/widget_themes/switch_theme.dart';
-import '../../../../../utils/theme/widget_themes/text_theme.dart';
+import '../../../../../core/utils/theme/widget_themes/switch_theme.dart';
+import '../../../../../core/utils/theme/widget_themes/text_theme.dart';
 import '../../widgets/InfoCard.dart';
 
 class DashBordPage extends StatelessWidget {

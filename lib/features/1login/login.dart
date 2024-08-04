@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/1login/blocs/auth_cubit/auth_cubit.dart';
 import 'package:hr360/features/1login/signup.dart';
 import 'package:hr360/features/home/presentation/pages/Home.dart';
-import 'package:hr360/utils/constants/colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../di.dart';
-import '../../utils/constants/keys.dart';
-import '../../utils/constants/style.dart';
-import '../../utils/helpers/helper_functions.dart';
-import '../../utils/local_storage/storage_utility.dart';
+import '../../core/utils/constants/keys.dart';
+import '../../core/utils/constants/style.dart';
+import '../../core/utils/helpers/helper_functions.dart';
+import '../../core/utils/local_storage/storage_utility.dart';
 import 'data/user_model.dart';
 
 class LoginScreen extends StatefulWidget {

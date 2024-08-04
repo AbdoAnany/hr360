@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/attendance_grid_view.dart';
-import 'package:hr360/utils/constants/colors.dart';
-import 'package:hr360/utils/constants/sizes.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
+import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../date/DashBoardCard.dart';

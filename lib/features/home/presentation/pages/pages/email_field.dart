@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/sizes.dart';
+import '../../../../../core/utils/constants/sizes.dart';
 
 class EmailField extends StatelessWidget {
   const EmailField({

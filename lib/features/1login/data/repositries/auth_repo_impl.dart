@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../utils/error/failure.dart';
-import '../../../../utils/http/dio_client.dart';
-import '../../../../utils/network.dart';
+import '../../../../core/utils/error/failure.dart';
+import '../../../../core/utils/http/dio_client.dart';
+import '../../../../core/utils/network.dart';
 import '../../domain/repositires/auth_repo.dart';
 import '../user_model.dart';
 
