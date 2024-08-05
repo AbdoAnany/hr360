@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  hr360:
+    image: hr360
+    build:
+      context: .
+      dockerfile: ./Dockerfile
