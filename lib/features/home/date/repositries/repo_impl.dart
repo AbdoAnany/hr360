@@ -7,7 +7,7 @@ import '../../../../core/utils/network.dart';
 import '../../domain/repositires/repo.dart';
 import '../../presentation/pages/pages/Employee/employees.dart';
 
-class HomeRepoImpl implements HomeRepo {
+class HomeRepoImpl   {
 
   @override
   Future<Either<Failure, dynamic>> getAllUserDetails() async {

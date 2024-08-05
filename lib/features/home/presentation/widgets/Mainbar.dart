@@ -10,12 +10,12 @@ import '../../../../core/utils/constants/image_strings.dart';
 import '../manager/home_bloc/home_bloc.dart';
 
 enum PageType {
-  Dashboard,
+  dashboard,
   chat,
-  Employees,
+  employees,
   report,
   category,
-  Setting,
+  setting,
   profile,
   signup,
   logout,
@@ -24,7 +24,7 @@ enum PageType {
 
 class MainBarControl {
   static bool isExpanded = true;
-  static PageType currentPage = PageType.Dashboard;
+  static PageType currentPage = PageType.dashboard;
 }
 
 class MainBar extends StatefulWidget {
@@ -55,11 +55,11 @@ class _MainBarState extends State<MainBar> {
               children: [
                 _buildNavItem(
                     icon: Iconsax.home,
-                    pageType: PageType.Dashboard,
+                    pageType: PageType.dashboard,
                     label: 'Dashboard'),
                 _buildNavItem(
                     icon: Iconsax.profile_2user,
-                    pageType: PageType.Employees,
+                    pageType: PageType.employees,
                     label: 'Employees'),
                 _buildNavItem(
                     icon: Iconsax.message,
@@ -82,7 +82,7 @@ class _MainBarState extends State<MainBar> {
                 label: 'Profile'),
             _buildNavItem(
                 icon: Iconsax.setting_2,
-                pageType: PageType.Setting,
+                pageType: PageType.setting,
                 label: 'Setting'),
             SizedBox(
               height: 20.h,
@@ -110,7 +110,7 @@ class _MainBarState extends State<MainBar> {
         void Function()? onTap}) {
     return InkWell(
       onTap: onTap ?? () {
-        print(pageType.name);
+        print('onTap '+pageType.name);
         HomeCubit.get(context).changePage(pageType);
       },
       child: Container(

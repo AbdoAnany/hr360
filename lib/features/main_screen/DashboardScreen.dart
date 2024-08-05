@@ -8,6 +8,7 @@ import 'package:hr360/features/main_screen/page/DashboardPage.dart';
 import 'package:hr360/features/main_screen/page/LeadsPage.dart';
 import 'package:hr360/features/main_screen/page/StudentsPage.dart';
 import 'package:hr360/features/main_screen/page/SupportPage.dart';
+import 'package:hr360/features/main_screen/page/TeamPage.dart';
 import 'package:hr360/features/main_screen/page/VisitorsPage.dart';
 import 'package:hr360/features/main_screen/widget/header.dart';
 import 'package:hr360/features/main_screen/widget/sidebar.dart';

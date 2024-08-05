@@ -17,48 +17,64 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(const HomeInitialState());
-  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+ static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 
   static HomeCubit get(context) => BlocProvider.of(context);
-  final HomeRepo _homeRepo = HomeRepoImpl();
-  PageType currentPage = PageType.Dashboard;
+  final HomeRepoImpl _homeRepo = HomeRepoImpl();
+  PageType currentPage = PageType.dashboard;
   void update() {
 
     emit( ChangeState());
   }
-  void changePage(PageType newPage) {
+  void changePage(PageType newPage,{arguments}) {
+
     MainBarControl.currentPage = newPage;
     currentPage = newPage;
-    _navigateToPage(newPage);
+
+    _navigateToPage(newPage,arguments: arguments);
 
     emit(const ChangePageState());
     emit(const StartGetData());
   }
 
-  void _navigateToPage(PageType pageType) {
+  void _navigateToPage(PageType pageType,{arguments}) {
     String routeName;
     switch (pageType) {
-      case PageType.Dashboard:
+      case PageType.dashboard:
         routeName = '/dashboard';
         break;
-      case PageType.Employees:
+      case PageType.employees:
         routeName = '/employees';
+        break;
+        case PageType.chat:
+        routeName = '/chat';
+        break;
+        case PageType.category:
+        routeName = '/category';
+        break;
+        case PageType.report:
+        routeName = '/report';
         break;
       case PageType.profile:
         routeName = '/profile';
+        break;
+      case PageType.setting:
+        routeName = '/setting';
         break;
       default:
         routeName = '/default';
         break;
     }
-    navigatorKey.currentState?.pushNamed(routeName);
+    print(routeName);
+    print(arguments);
+    navigatorKey.currentState?.pushNamed(routeName,arguments:arguments);
   }
   Future getDataFromServer() async {
     var dateList;
     var val = await _homeRepo.getAllUserDetails();
     val.fold((e) {
-      dateList =     damyList;
+      dateList = [];
     }, (data) {
       dateList = data;
     });

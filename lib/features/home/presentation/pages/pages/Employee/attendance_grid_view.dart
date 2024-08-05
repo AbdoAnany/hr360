@@ -252,7 +252,8 @@ class EmployeeDataSource extends DataGridSource {
                       onTap: () {
                         // HomeControl.pageUi(PageType.custom,custom: ProfileScreen(userDetails:dataGridCell.value ));
                         // HomeCubit.get(Get.context).update();
-                       THelperFunctions.navigateToScreen(ProfileScreen(userDetails:dataGridCell.value ),context: Get.scaffoldHomeState.currentState?.context);
+                        HomeCubit.get(Get.context).changePage(PageType.profile,arguments: dataGridCell.value);
+
                        // ;
 
                       },

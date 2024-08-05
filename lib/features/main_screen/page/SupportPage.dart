@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hr360/features/main_screen/page/ticket/TicketsSection.dart';
+import 'package:hr360/features/ticket/TicketsSection.dart';
 
 class SupportPage extends StatelessWidget {
  @override
