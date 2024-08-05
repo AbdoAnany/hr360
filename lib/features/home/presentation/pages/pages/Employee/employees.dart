@@ -47,7 +47,7 @@ class Employees extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return    const Expanded(child: AttendanceGridView());
+    return    const AttendanceGridView();
   }
 }
 

@@ -21,6 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
   }
 
   @override
@@ -31,7 +32,11 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(),
+    return
+
+
+
+      Scaffold(appBar: AppBar(),
       backgroundColor: AppColor.white,
       body:
      Column(
