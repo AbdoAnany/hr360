@@ -4,7 +4,7 @@ import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../1login/data/user_model.dart';
+import '../../1_login/data/user_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   UserDetails? userDetails;

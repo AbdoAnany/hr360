@@ -6,16 +6,17 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hr360/app.dart';
 import 'package:hr360/features/home/presentation/pages/Home.dart';
 
-import '../../../../di.dart';
-import '../../../../core/utils/constants.dart';
-import '../../../../core/utils/constants/keys.dart';
-import '../../../../core/utils/error/failure.dart';
-import '../../../../core/utils/helpers/helper_functions.dart';
-import '../../../../core/utils/local_storage/storage_utility.dart';
-import '../../data/settings_model.dart';
-import '../../data/user_model.dart';
-import '../../domain/repositires/auth_repo.dart';
-import '../../login.dart';
+import '../../../../../core/utils/constants.dart';
+import '../../../../../core/utils/constants/keys.dart';
+import '../../../../../core/utils/error/failure.dart';
+import '../../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../../core/utils/local_storage/storage_utility.dart';
+import '../../../../../di.dart';
+import '../../../data/settings_model.dart';
+import '../../../data/user_model.dart';
+import '../../../domain/repositires/auth_repo.dart';
+import '../../page/login.dart';
+
 
 part 'auth_state.dart';
 

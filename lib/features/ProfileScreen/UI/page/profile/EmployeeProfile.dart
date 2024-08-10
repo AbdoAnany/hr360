@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/formatters/formatter.dart';
-import '../../../../1login/data/user_model.dart';
+import '../../../../1_login/data/user_model.dart';
 import '../../../../home/presentation/pages/Home.dart';
 import '../../ProfileScreen.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hr360/features/1login/data/user_model.dart';
+import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:hr360/features/home/presentation/manager/home_bloc/home_bloc.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';

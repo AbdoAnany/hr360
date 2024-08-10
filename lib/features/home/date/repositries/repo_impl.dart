@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:hr360/features/1login/data/user_model.dart';
+import 'package:hr360/features/1_login/data/user_model.dart';
 
 import '../../../../core/utils/error/failure.dart';
 import '../../../../core/utils/http/dio_client.dart';
