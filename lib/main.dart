@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import '../app.dart';
-import 'core/utils/constants/colors.dart';
-import 'di.dart';
 import 'package:http/http.dart' as http;
+
+import '../app.dart';
+import 'di.dart';
 
 
 //

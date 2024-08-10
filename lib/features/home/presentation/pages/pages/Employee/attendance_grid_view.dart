@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/features/1login/data/user_model.dart';
 import 'package:hr360/features/home/presentation/manager/home_bloc/home_bloc.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../../../../../../app.dart';
 import '../../../../../../core/utils/formatters/formatter.dart';
-import '../../../../../../core/utils/helpers/helper_functions.dart';
-
-import '../../../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../../../widgets/Mainbar.dart';
-import '../../Home.dart';
 
 class AttendanceGridView extends StatefulWidget {
   const AttendanceGridView({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 // lib/presentation/screens/courses_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../core/utils/constants/style.dart';
 import '../../../../di.dart';
 import '../state_management/course_provider.dart';

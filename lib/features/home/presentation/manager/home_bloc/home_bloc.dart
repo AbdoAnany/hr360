@@ -1,15 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hr360/features/1login/data/repositries/auth_repo_impl.dart';
 import 'package:hr360/features/home/date/repositries/repo_impl.dart';
-import 'package:meta/meta.dart';
 
-import '../../../../../app.dart';
 import '../../../../../core/utils/error/failure.dart';
-import '../../../../1login/domain/repositires/auth_repo.dart';
-import '../../../domain/repositires/repo.dart';
-import '../../pages/pages/Employee/employees.dart';
 import '../../widgets/Mainbar.dart';
 
 part 'home_event.dart';

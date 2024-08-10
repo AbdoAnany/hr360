@@ -4,10 +4,10 @@ import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../../di.dart';
 import '../../../../../core/utils/constants/sizes.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/theme/widget_themes/text_theme.dart';
+import '../../../../../di.dart';
 import '../../../home/presentation/pages/Home.dart';
 import '../intro_screen.dart';
 import '../widget/OnBoardingItems.dart';

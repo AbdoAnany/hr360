@@ -6,15 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hr360/core/utils/local_storage/storage_utility.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:hr360/features/auth/presentation/manager/LoginControl.dart';
 // import 'package:hr360/features/home/presentation/manager/home_bloc/home_bloc.dart';
 import 'package:hr360/core/utils/http/dio_client.dart';
-import 'package:hr360/core/utils/theme/theme.dart';
+import 'package:hr360/core/utils/local_storage/storage_utility.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'app.dart';
 import 'features/3_academics/data/repositories/course_repository_impl.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/state_management/course_provider.dart';

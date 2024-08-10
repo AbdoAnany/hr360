@@ -1,6 +1,4 @@
-import 'package:dartz/dartz.dart';
 
-import '../../../../core/utils/error/failure.dart';
 
 // abstract class HomeRepo {
 //   Future<Either<Failure, dynamic>> getAllUserDetails();

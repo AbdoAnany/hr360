@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:hr360/features/1login/data/user_model.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 import 'package:hr360/features/home/presentation/pages/pages/dashbord_page.dart';
 import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';
-import 'package:hr360/core/utils/constants/sizes.dart';
 
-import '../../../../app.dart';
-import '../../../../di.dart';
 import '../../../../core/utils/constants/keys.dart';
 import '../../../../core/utils/local_storage/storage_utility.dart';
+import '../../../../di.dart';
 import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../manager/home_bloc/home_bloc.dart';
 

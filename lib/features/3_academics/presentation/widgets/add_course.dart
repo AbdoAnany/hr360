@@ -1,7 +1,7 @@
 // lib/presentation/screens/add_course_screen.dart
 import 'package:flutter/material.dart';
 import 'package:hr360/features/3_academics/domain/domain/entities/course.dart';
-import 'package:provider/provider.dart';
+
 import '../../../../di.dart';
 import '../state_management/course_provider.dart';
 

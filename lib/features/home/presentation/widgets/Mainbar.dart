@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hr360/features/1login/blocs/auth_cubit/auth_cubit.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/core/utils/constants/sizes.dart';
+import 'package:hr360/features/1login/blocs/auth_cubit/auth_cubit.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/utils/constants/image_strings.dart';

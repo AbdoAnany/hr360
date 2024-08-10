@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hr360/features/home/presentation/pages/Home.dart';
-import 'package:hr360/features/1login/login.dart';
-import 'package:provider/provider.dart';
 import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:hr360/core/utils/constants/text_strings.dart';
 import 'package:hr360/core/utils/theme/theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
+import 'package:provider/provider.dart';
 
 import 'di.dart';
-import 'features/0-intro/presentation/intro_screen.dart';
 import 'features/1login/blocs/auth_cubit/auth_cubit.dart';
 import 'features/1login/data/repositries/auth_repo_impl.dart';
-import 'features/1login/domain/repositires/auth_repo.dart';
-import 'features/1login/signup.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/state_management/course_provider.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
 import 'features/main_screen/DashboardScreen.dart';
-import 'main.dart';
 
 class Get {
   static final GlobalKey<NavigatorState> navigatorKey =

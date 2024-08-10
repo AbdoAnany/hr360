@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hr360/core/utils/theme/widget_themes/appbar_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/bottom_sheet_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/checkbox_theme.dart';
@@ -10,6 +9,7 @@ import 'package:hr360/core/utils/theme/widget_themes/icon_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/outlined_button_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../di.dart';
 import '../constants/colors.dart';

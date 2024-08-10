@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:get/get.dart' as G;
 
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' as G;
 
 class Network {
   final _baseUrl = 'https://offers.elnoorphp.com/api/';

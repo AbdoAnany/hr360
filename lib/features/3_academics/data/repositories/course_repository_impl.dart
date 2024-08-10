@@ -1,5 +1,6 @@
 // lib/data/repositories/course_repository_impl.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/domain/entities/course.dart';
 import '../../domain/repositories/course_repository.dart';
 

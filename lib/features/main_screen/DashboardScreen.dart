@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hr360/features/main_screen/page/AcademicsPage.dart';
 import 'package:hr360/features/main_screen/page/AccountsPage.dart';
 import 'package:hr360/features/main_screen/page/AnalyticsPage.dart';
 import 'package:hr360/features/main_screen/page/AttendancePage.dart';
@@ -13,7 +12,6 @@ import 'package:hr360/features/main_screen/page/VisitorsPage.dart';
 import 'package:hr360/features/main_screen/widget/header.dart';
 import 'package:hr360/features/main_screen/widget/sidebar.dart';
 
-import '../../main.dart';
 import '../3_academics/presentation/pages/academics_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
