@@ -31,6 +31,16 @@ class HomeCubit extends Cubit<HomeState> {
     emit(const ChangePageState());
     emit(const StartGetData());
   }
+  // void changePage(PageType newPage,{arguments}) {
+  //
+  //   MainBarControl.currentPage = newPage;
+  //   currentPage = newPage;
+  //
+  //   _navigateToPage(newPage,arguments: arguments);
+  //
+  //   emit(const ChangePageState());
+  //   emit(const StartGetData());
+  // }
 
   void _navigateToPage(PageType pageType,{arguments}) {
     String routeName;

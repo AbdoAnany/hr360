@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/formatters/formatter.dart';
-import '../../../../1login/data/user_model.dart';
+import '../../../../1_login/data/user_model.dart';
 import '../../../../home/presentation/pages/Home.dart';
 import '../../ProfileScreen.dart';
 
@@ -14,10 +14,21 @@ class EmployeeProfilePage extends StatelessWidget {
   late  final   Employee employee ;
   UserDetails? userDetails;
    EmployeeProfilePage({super.key, this.userDetails}){
+
+
+     try {
+       print(userDetails!.birthDate!);
+
+       // print(DateTime.parse( HomeControl.userModelLogin!.data!.birthDate!));
+     } catch (e) {
+       print(e);
+     }
+
+
      employee = Employee(
        name:   "${userDetails?.firsName}  ${userDetails?.lastName}",
-       dateOfJoining:  TFormatter.formatDate(DateTime.now()),
-       dateOfBirth: TFormatter.formatDate(DateTime.parse( HomeControl.userModelLogin!.data!.birthDate!)),
+        dateOfJoining:  TFormatter.formatDate(DateTime.now()),
+       dateOfBirth: TFormatter.formatDate(DateTime.parse( userDetails!.birthDate!)),
        contactNumber: TFormatter.formatPhoneNumber(userDetails?.phone),
        emergencyContactNumber:  TFormatter.formatPhoneNumber(userDetails?.phone),
        email: '${userDetails?.email}',
@@ -68,8 +79,7 @@ class EmployeeProfilePage extends StatelessWidget {
           // DetailItem(label: 'Year of Qualification', value: employee.yearOfQualification),
           Divider(),
           SectionTitle(title: 'Family Details'),
-          FamilySection(title: "Father's Name", details: employee.fatherDetails),
-          FamilySection(title: "Mother's Name", details: employee.motherDetails),
+
         ],
       ),
     );

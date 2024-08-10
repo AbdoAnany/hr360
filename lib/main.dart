@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,7 +9,7 @@ import 'di.dart';
 //
 Future<void> main() async {
  await initAppModule();
-  makeRequest();
+ // await makeRequest();
   runApp(const App());
 }
 
@@ -42,13 +43,17 @@ Future<void> main() async {
 
 
 
-void makeRequest() async {
- var url = Uri.parse('https://your-ngrok-url.ngrok.io/your-endpoint');
- var response = await http.get(
-  url,
+Future<void> makeRequest() async {
+ var url = Uri.parse('https://1e9e-156-205-51-196.ngrok-free.app/api/users/all-personal-info');
+ var response = await Dio().get(
+  'https://1e9e-156-205-51-196.ngrok-free.app/api/users/all-personal-info',options: Options(
   headers: {
    'ngrok-skip-browser-warning': 'true',
   },
+ )
+
+  ,
+
  );
 
  print('Response status: ${response.statusCode}');

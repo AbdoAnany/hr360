@@ -24,7 +24,9 @@ class TDioHelper {
       if (store != null) {
         _dio.options.headers = {
           'Authorization': tokenByBarren,
-          'SP_Name': store
+          'SP_Name': store,
+
+
         };
       } else {
         _dio.options.headers = {
@@ -37,7 +39,16 @@ class TDioHelper {
           'SP_Name': store,
         };
       }
+      else{
+        _dio.options.headers = {
+          'ngrok-skip-browser-warning': 'true'
+
+        };
+      }
     }
+
+    print("headers: "+   _dio.options.headers.toString() );
+
   }
 
   // Helper method to make a GET request
@@ -49,6 +60,7 @@ class TDioHelper {
       print(response.data);
       return _handleResponse(response);
     } catch (error) {
+
       return Left(ServerFailure('Failed to load data: $error'));
     }
   }
@@ -60,7 +72,8 @@ class TDioHelper {
     try {
       responseHandler(token: token, store: store);
       var response= await _dio.post(endpoint, data: data);
-
+print(" ========= response");
+print(response);
       return _handleResponse(response);
     } catch (error) {
       return Left(ServerFailure('Failed to load data: $error'));

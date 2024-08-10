@@ -68,7 +68,7 @@ class UserDetails {
     gender = json['gender'];
     roles = json['roles'];
     state = json['state'];
-    birthDate = json['birth_date'];
+    birthDate = json['birth_date'].toString().replaceAll('Z', "");
   }
 
   Map<String, dynamic> toJson() {
@@ -84,7 +84,7 @@ class UserDetails {
     data['gender'] = this.gender;
     data['roles'] = this.roles;
     data['state'] = this.state;
-    data['birth_date'] = this.birthDate;
+    data['birth_date'] = birthDate.toString().replaceAll('Z', "");
 
     return data;
   }

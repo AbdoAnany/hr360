@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/core/utils/constants/sizes.dart';
-import 'package:hr360/features/1login/data/user_model.dart';
+import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 import 'package:hr360/features/home/presentation/pages/pages/dashbord_page.dart';
 import 'package:hr360/features/home/presentation/widgets/Mainbar.dart';

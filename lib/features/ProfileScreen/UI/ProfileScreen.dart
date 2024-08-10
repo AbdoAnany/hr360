@@ -4,7 +4,7 @@ import 'package:hr360/features/ProfileScreen/UI/page/profile/EmployeeProfile.dar
 import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../1login/data/user_model.dart';
+import '../../1_login/data/user_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   UserDetails? userDetails;
@@ -21,6 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
   }
 
   @override
@@ -31,7 +32,11 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(),
+    return
+
+
+
+      Scaffold(appBar: AppBar(),
       backgroundColor: AppColor.white,
       body:
      Column(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hr360/features/0-intro/presentation/pages/OnboardingView.dart';
-import 'package:hr360/features/0-intro/presentation/pages/SplashScreen.dart';
+import 'package:hr360/features/0_intro/presentation/pages/OnboardingView.dart';
+import 'package:hr360/features/0_intro/presentation/pages/SplashScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../di.dart';
