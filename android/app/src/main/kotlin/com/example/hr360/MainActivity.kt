@@ -1,4 +1,4 @@
-package com.example.hr360
+package com.anany.hr360
 
 import io.flutter.embedding.android.FlutterActivity
 

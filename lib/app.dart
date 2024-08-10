@@ -15,6 +15,8 @@ import 'features/1login/blocs/auth_cubit/auth_cubit.dart';
 import 'features/1login/data/repositries/auth_repo_impl.dart';
 import 'features/1login/domain/repositires/auth_repo.dart';
 import 'features/1login/signup.dart';
+import 'features/3_academics/domain/usecases/get_courses.dart';
+import 'features/3_academics/presentation/state_management/course_provider.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
 import 'features/main_screen/DashboardScreen.dart';
 import 'main.dart';
@@ -38,6 +40,9 @@ class App extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
           BlocProvider(create: (context) => AuthCubit(AuthRepoImpl())),
           BlocProvider(create: (context) => HomeCubit()),
+          ChangeNotifierProvider(
+            create: (_) => CourseProvider(sl<GetCourses>()),
+          ),
         ],
         child: Consumer<ThemeProvider>(builder: (context, them, c) {
           them.getThemeMode();

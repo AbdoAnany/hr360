@@ -69,6 +69,8 @@ dependencies:
   google_fonts:
   fl_chart: ^0.68.0
   syncfusion_flutter_core: ^26.1.41
+  cloud_firestore: ^5.2.1
+  firebase_core:
 dev_dependencies:
   flutter_test:
     sdk: flutter

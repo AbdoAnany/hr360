@@ -14,6 +14,7 @@ import 'package:hr360/features/main_screen/widget/header.dart';
 import 'package:hr360/features/main_screen/widget/sidebar.dart';
 
 import '../../main.dart';
+import '../3_academics/presentation/pages/academics_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -54,7 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           physics: NeverScrollableScrollPhysics(), // Disable swipe navigation
           children: [
            DashboardPage(),
-           AcademicsPage(),
+           const AcademicsScreen(),
            AccountsPage(),
            SupportPage(),
            StudentsPage(),

@@ -1,5 +1,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
@@ -13,6 +15,10 @@ import 'package:hr360/core/utils/theme/theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 
 import 'app.dart';
+import 'features/3_academics/data/repositories/course_repository_impl.dart';
+import 'features/3_academics/domain/usecases/get_courses.dart';
+import 'features/3_academics/presentation/state_management/course_provider.dart';
+import 'firebase_options.dart';
 // import 'features/auth/data/remote/data_sources/users_remote_data_source.dart';
 // import 'features/auth/data/repositories/repo_impl.dart';
 // import 'features/auth/domain/use_cases/login_use_case.dart';
@@ -27,6 +33,9 @@ final sl = GetIt.instance;
 
 Future<void> initAppModule() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 bool isInit=  await GetStorage.init( 'MyStorage');
 print(isInit);
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -37,6 +46,13 @@ print(isInit);
   sl.registerLazySingleton<TLocalStorage>(() =>localStorage);
   sl.registerLazySingleton<TTextTheme>(() => TTextTheme());
  await authSetup();
+  final firestore = FirebaseFirestore.instance;
+  final courseRepository = CourseRepositoryImpl(firestore);
+  final getCourses = GetCourses(courseRepository);
+
+  sl.registerLazySingleton<GetCourses>(() => getCourses);
+  sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
+
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));
 
 }
