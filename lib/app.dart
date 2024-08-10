@@ -35,9 +35,9 @@ class App extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
           BlocProvider(create: (context) => AuthCubit(AuthRepoImpl())),
           BlocProvider(create: (context) => HomeCubit()),
-          ChangeNotifierProvider(
-            create: (_) => CourseProvider(sl<GetCourses>()),
-          ),
+          // ChangeNotifierProvider(
+          //   create: (_) => CourseProvider(sl<GetCourses>()),
+          // ),
         ],
         child: Consumer<ThemeProvider>(builder: (context, them, c) {
           them.getThemeMode();

@@ -1,9 +1,11 @@
-// lib/presentation/screens/academics_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/style.dart';
 
 import '../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../di.dart';
+import '../manager/course_bloc.dart';
 import 'courses_screen.dart';
 
 class AcademicsScreen extends StatelessWidget {
@@ -12,8 +14,8 @@ class AcademicsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: Container(     width: 300,
+      body: Container(
+        width: 300.w,
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -22,22 +24,28 @@ class AcademicsScreen extends StatelessWidget {
               title: 'Courses',
               color: Colors.red,
               icon: Icons.school,
-              onTap: () =>THelperFunctions.navigateToScreen(
-                  const CoursesScreen()
+              totalCount: 25, // Example dynamic total
+              onTap: () => THelperFunctions.navigateToScreen(
+                BlocProvider(
+                  create: (context) => sl<CourseBloc>(),
+                  child: const CoursesScreen(),
+                ),
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             AcademicsItem(
               title: 'Batches',
               color: Colors.green,
               icon: Icons.category,
+              totalCount: 25, // Example dynamic total
               onTap: () {},
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             AcademicsItem(
               title: 'Subjects',
               color: Colors.pink,
               icon: Icons.book,
+              totalCount: 25, // Example dynamic total
               onTap: () {},
             ),
           ],
@@ -51,12 +59,15 @@ class AcademicsItem extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color color;
+  final int totalCount;
   final VoidCallback onTap;
 
-  const AcademicsItem({super.key,
+  const AcademicsItem({
+    super.key,
     required this.title,
     required this.icon,
     required this.color,
+    required this.totalCount,
     required this.onTap,
   });
 
@@ -65,7 +76,6 @@ class AcademicsItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-
         padding: EdgeInsets.all(16.0),
         decoration: AppStyle.coursesDecoration,
         child: Column(
@@ -75,23 +85,31 @@ class AcademicsItem extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: color.withOpacity(.07),
-                  child:       
-                  Icon(icon, size: 25,color: color,),
-                    
-                  
+                  child: Icon(
+                    icon,
+                    size: 25.w,
+                    color: color,
+                  ),
                 ),
                 SizedBox(width: 16.w),
-                Text(title, style: TextStyle(fontSize: 20)),
-                Spacer(),
-                Icon(Icons.arrow_forward_ios,color:  Colors.grey.shade300,)
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 20.sp),
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.grey.shade300,
+                ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal:8,vertical: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12.0),
               child: Divider(
-              color: Colors.grey.shade300,),
+                color: Colors.grey.shade300,
+              ),
             ),
-            Text('Total ${title}: 25')
+            Text('Total $title: $totalCount')
           ],
         ),
       ),

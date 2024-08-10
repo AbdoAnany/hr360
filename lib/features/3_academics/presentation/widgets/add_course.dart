@@ -1,9 +1,9 @@
-// lib/presentation/screens/add_course_screen.dart
 import 'package:flutter/material.dart';
-import 'package:hr360/features/3_academics/domain/domain/entities/course.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hr360/features/3_academics/domain/entities/course.dart';
 import '../../../../di.dart';
-import '../state_management/course_provider.dart';
+import '../manager/course_bloc.dart';
+import '../manager/course_event.dart';
 
 class AddCourseScreen extends StatefulWidget {
   @override
@@ -69,13 +69,13 @@ class _AddCourseScreenState extends State<AddCourseScreen> {
                   if (_formKey.currentState?.validate() ?? false) {
                     _formKey.currentState?.save();
 
-                    // Add the course to the provider and Firebase
-                   sl<CourseProvider>().addCourse(Course(
+                    // Dispatch the add course event to the BLoC
+                    context.read<CourseBloc>().add(AddCourseEvent(Course(
                       id: DateTime.now().toString(), // or use a UUID
                       name: _name,
                       totalSubjects: _totalSubjects,
                       isOnline: _isOnline,
-                    ));
+                    )));
 
                     Navigator.pop(context);
                   }

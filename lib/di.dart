@@ -15,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/3_academics/data/repositories/course_repository_impl.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
+import 'features/3_academics/presentation/manager/course_bloc.dart';
 import 'features/3_academics/presentation/state_management/course_provider.dart';
 import 'firebase_options.dart';
 // import 'features/auth/data/remote/data_sources/users_remote_data_source.dart';
@@ -49,7 +50,8 @@ print(isInit);
   final getCourses = GetCourses(courseRepository);
 
   sl.registerLazySingleton<GetCourses>(() => getCourses);
-  sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
+  sl.registerLazySingleton<CourseBloc>(() => CourseBloc( sl()));
+  // sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
 
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));
 

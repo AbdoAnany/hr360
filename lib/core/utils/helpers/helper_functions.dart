@@ -64,7 +64,7 @@ class THelperFunctions {
     );
   }
 
-  static void navigateToScreen( Widget screen,{BuildContext? context}) {
+  static void navigateToScreen(  screen,{BuildContext? context}) {
     Navigator.push(
       context??   Get.context,
       MaterialPageRoute(builder: (_) => screen,),

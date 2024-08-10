@@ -1,5 +1,5 @@
 // lib/domain/usecases/get_courses.dart
-import '../domain/entities/course.dart';
+import '../entities/course.dart';
 import '../repositories/course_repository.dart';
 
 class GetCourses {
