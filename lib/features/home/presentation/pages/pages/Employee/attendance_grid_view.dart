@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../../../../../../app.dart';
 import '../../../../../../core/utils/formatters/formatter.dart';
+import '../../../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../../../widgets/Mainbar.dart';
 
 class AttendanceGridView extends StatefulWidget {

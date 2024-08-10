@@ -9,7 +9,6 @@ import '../../../../../core/utils/constants/keys.dart';
 import '../../../../../core/utils/error/failure.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/local_storage/storage_utility.dart';
-import '../../../../di.dart';
 import '../../../../../di.dart';
 import '../../../data/settings_model.dart';
 import '../../../data/user_model.dart';

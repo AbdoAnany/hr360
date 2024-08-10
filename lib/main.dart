@@ -9,7 +9,7 @@ import 'di.dart';
 //
 Future<void> main() async {
  await initAppModule();
- // await makeRequest();
+
   runApp(const App());
 }
 
@@ -42,24 +42,6 @@ Future<void> main() async {
 
 
 
-
-Future<void> makeRequest() async {
- var url = Uri.parse('https://1e9e-156-205-51-196.ngrok-free.app/api/users/all-personal-info');
- var response = await Dio().get(
-  'https://1e9e-156-205-51-196.ngrok-free.app/api/users/all-personal-info',options: Options(
-  headers: {
-   'ngrok-skip-browser-warning': 'true',
-  },
- )
-
-  ,
-
- );
-
- print('Response status: ${response.statusCode}');
- print('body: ${response.body}');
-
- }
 
 
 

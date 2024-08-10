@@ -6,11 +6,13 @@ import 'package:hr360/features/1_login/presentation/page/signup.dart';
 import 'package:hr360/features/home/presentation/pages/Home.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../core/utils/constants/keys.dart';
-import '../../core/utils/constants/style.dart';
-import '../../core/utils/helpers/helper_functions.dart';
-import '../../core/utils/local_storage/storage_utility.dart';
-import '../../di.dart';
+import '../../../../core/utils/constants/keys.dart';
+import '../../../../core/utils/constants/style.dart';
+import '../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../core/utils/local_storage/storage_utility.dart';
+import '../../../../di.dart';
+
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

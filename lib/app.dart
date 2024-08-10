@@ -8,8 +8,9 @@ import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 import 'package:provider/provider.dart';
 
 import 'di.dart';
-import 'features/1login/blocs/auth_cubit/auth_cubit.dart';
-import 'features/1login/data/repositries/auth_repo_impl.dart';
+import 'features/1_login/data/repositries/auth_repo_impl.dart';
+import 'features/1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
+
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/state_management/course_provider.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
