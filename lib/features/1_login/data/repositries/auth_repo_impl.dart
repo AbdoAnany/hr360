@@ -10,7 +10,7 @@ class AuthRepoImpl implements AuthRepo {
   final Network network = Network();
 
   @override
-  Future<Either<Failure, UserModel>> loginWithEmailANdPassword(
+  Future<Either<Failure, UserLoginModel>> loginWithEmailANdPassword(
       {required String password, required String email}) async {
     var response = await TDioHelper.post(
       'auth/login',
@@ -21,6 +21,6 @@ class AuthRepoImpl implements AuthRepo {
     );
 
     return response.fold((serverFailure) => Left(serverFailure),
-        (data) => Right(UserModel.fromJson(data)));
+        (data) => Right(UserLoginModel.fromJson(data)));
   }
 }

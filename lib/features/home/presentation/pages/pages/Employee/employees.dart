@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/attendance_grid_view.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../../../di.dart';
+import '../../../../../4_user/presentation/manager/bloc/user_bloc.dart';
 import '../../../../date/DashBoardCard.dart';
 
 List<DashBoardCard> cards = [
@@ -48,6 +51,17 @@ class Employees extends StatelessWidget {
 
 
     return    const AttendanceGridView();
+  }
+}
+class EmployeesScreen extends StatelessWidget {
+  const EmployeesScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      //   appBar: AppBar(title: Text("User Management")),
+      body: AttendanceGridView(),
+    );
   }
 }
 

@@ -7,7 +7,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../1_login/data/user_model.dart';
 
 class ProfileScreen extends StatefulWidget {
-  UserDetails? userDetails;
+  UserModel? userDetails;
   ProfileScreen({super.key, this.userDetails});
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -32,42 +32,34 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return
-
-
-
-      Scaffold(appBar: AppBar(),
-      backgroundColor: AppColor.white,
-      body:
-     Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          EmployeeHeader(),
-          Container(
-            height: 50.0,
-            width: 450,
-            child: TabBar(
-              controller: _tabController,
-              indicatorSize: TabBarIndicatorSize.tab,
-              tabs: const [
-                Tab(text: 'Tasks'),
-                Tab(text: 'Profile'),
-                Tab(text: 'Attendance'),
-              ],
-            ),
+    return    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        EmployeeHeader(),
+        Container(
+          height: 50.0,
+          width: 450,
+          child: TabBar(
+            controller: _tabController,
+            indicatorSize: TabBarIndicatorSize.tab,
+            tabs: const [
+              Tab(text: 'Tasks'),
+              Tab(text: 'Profile'),
+              Tab(text: 'Attendance'),
+            ],
           ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                TaskList(),
-                EmployeeProfilePage(userDetails:widget. userDetails,),
-                const AttendanceReportPage(),
-              ],
-            ),
-          )
-        ],
-      ),
+        ),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              TaskList(),
+              EmployeeProfilePage(userDetails:widget. userDetails,),
+              const AttendanceReportPage(),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
@@ -77,271 +69,261 @@ class EmployeeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const CircleAvatar(
-          radius: 40,
-          backgroundImage: AssetImage("assets/image-2.png"),
-        ),
-        const SizedBox(width: 16.0),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Vishaka Shekhawat',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              children: [
-                Text(
-                  'Content Curator',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Color.fromRGBO(138, 138, 138, 1),
-                      fontFamily: 'Inter',
-                      fontSize: 14,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Container(
-                  width: 74,
-                  height: 22,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(5),
-                      topRight: Radius.circular(5),
-                      bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(5),
-                    ),
-                    color: Color.fromRGBO(226, 255, 242, 1),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Figma Flutter Generator Ellipse14Widget - ELLIPSE
-                      Container(
-                          width: 10,
-                          height: 10,
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(46, 135, 96, 1),
-                            borderRadius:
-                                BorderRadius.all(Radius.elliptical(10, 10)),
-                          )), // Figma Flutter Generator OnlineWidget - TEXT
-                      Text(
-                        'Online',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color.fromRGBO(46, 135, 96, 1),
-                            fontFamily: 'Inter',
-                            fontSize: 12,
-                            letterSpacing:
-                                0 /*percentages not used in flutter. defaulting to zero*/,
-                            fontWeight: FontWeight.normal,
-                            height: 1),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const Row(
-              children: [
-                Icon(Icons.access_time),
-                SizedBox(width: 4.0),
-                Text(
-                  'Logged in Since 8:30 | 23 Sep 2022',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Color.fromRGBO(46, 135, 96, 1),
-                      fontFamily: 'Inter',
-                      fontSize: 12,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const Spacer(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                    width: 24,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                    ),
-                    child: Icon(Iconsax.clock)),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  'Joined 23-09-2022',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Color.fromRGBO(138, 138, 138, 1),
-                      fontFamily: 'Inter',
-                      fontSize: 14,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Color(0xffFFF1F1),
-                  child: Icon(
-                    Iconsax.task,
-                    color: Color(0xffCC1313),
-                    size: 16,
-                  ),
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  'Assigned',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontFamily: 'Inter',
-                      fontSize: 16,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  '966',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Color(0xffCC1313),
-                      fontFamily: 'Inter',
-                      fontSize: 16,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Color(0xffF1FFF1),
-                  child: Icon(
-                    Iconsax.task,
-                    color: Color(0xff2E8760),
-                    size: 16,
-                  ),
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  'Completed',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontFamily: 'Inter',
-                      fontSize: 16,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                ),
-                SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  '852',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      color: Color(0xff2E8760),
-                      fontFamily: 'Inter',
-                      fontSize: 16,
-                      letterSpacing:
-                          0 /*percentages not used in flutter. defaulting to zero*/,
-                      fontWeight: FontWeight.normal,
-                      height: 1),
-                ),
-              ],
-            )
-          ],
-        ),
-        const Spacer(),
-        Column(
-          children: [
-            // ElevatedButton(
-            //   onPressed: () {},
-            //   child: Text('Remove'),
-            //   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            // ),
-            // ElevatedButton(
-            //   onPressed: () {},
-            //   child: Text('+Assign Task'),
-            // ),
-            SizedBox(height: 16.0),
-            Container(
-              height: 147,
-              width: 270,
-              padding: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(242, 237, 253, 1),
-                border: Border.all(
-                  color: Color.fromRGBO(242, 237, 253, 1),
-                ),
-                borderRadius: BorderRadius.circular(8.0),
+    return Container(
+      color: AppColor.white,
+      padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 8),
+      child: Row(
+        children: [
+          const CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage("assets/image-2.png"),
+          ),
+          const SizedBox(width: 16.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Vishaka Shekhawat',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+              Row(
                 children: [
                   Text(
-                    'Efficiency Score',
+                    'Content Curator',
+                    textAlign: TextAlign.left,
                     style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff3C3C3C)),
+                        color: Color.fromRGBO(138, 138, 138, 1),
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
                   ),
-                  //   SizedBox(height: 4,),
-                  Text(
-                    '85%',
-                    style: TextStyle(fontSize: 48, color: AppColor.primary),
+                  SizedBox(
+                    width: 8,
                   ),
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        '85/100',
-                        style: TextStyle(fontSize: 20, color: AppColor.black),
-                      )),
+                  Container(
+                    width: 74,
+                    height: 22,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5),
+                        bottomLeft: Radius.circular(5),
+                        bottomRight: Radius.circular(5),
+                      ),
+                      color: Color.fromRGBO(226, 255, 242, 1),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Figma Flutter Generator Ellipse14Widget - ELLIPSE
+                        Container(
+                            width: 10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(46, 135, 96, 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.elliptical(10, 10)),
+                            )), // Figma Flutter Generator OnlineWidget - TEXT
+                        Text(
+                          'Online',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: Color.fromRGBO(46, 135, 96, 1),
+                              fontFamily: 'Inter',
+                              fontSize: 12,
+                              letterSpacing:
+                                  0 /*percentages not used in flutter. defaulting to zero*/,
+                              fontWeight: FontWeight.normal,
+                              height: 1),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ],
-        ),
-      ],
+              const Row(
+                children: [
+                  Icon(Icons.access_time),
+                  SizedBox(width: 4.0),
+                  Text(
+                    'Logged in Since 8:30 | 23 Sep 2022',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Color.fromRGBO(46, 135, 96, 1),
+                        fontFamily: 'Inter',
+                        fontSize: 10,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      child: Icon(Iconsax.clock)),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    'Joined 23-09-2022',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Color.fromRGBO(138, 138, 138, 1),
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 14,
+                    backgroundColor: Color(0xffFFF1F1),
+                    child: Icon(
+                      Iconsax.task,
+                      color: Color(0xffCC1313),
+                      size: 12,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    'Assigned',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    '966',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Color(0xffCC1313),
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
+                  ),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  CircleAvatar(
+                    radius: 14,
+                    backgroundColor: Color(0xffF1FFF1),
+                    child: Icon(
+                      Iconsax.task,
+                      color: Color(0xff2E8760),
+                      size: 12,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    'Completed',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
+                  ),
+                  SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    '852',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        color: Color(0xff2E8760),
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.normal,
+                        height: 1),
+                  ),
+                ],
+              )
+            ],
+          ),
+          const Spacer(),
+          // Container(
+          //   height: 147,
+          //   width: 270,
+          //   padding: EdgeInsets.all(8.0),
+          //   decoration: BoxDecoration(
+          //     color: Color.fromRGBO(242, 237, 253, 1),
+          //     border: Border.all(
+          //       color: Color.fromRGBO(242, 237, 253, 1),
+          //     ),
+          //     borderRadius: BorderRadius.circular(8.0),
+          //   ),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Text(
+          //         'Efficiency Score',
+          //         style: TextStyle(
+          //             fontSize: 20,
+          //             fontWeight: FontWeight.bold,
+          //             color: Color(0xff3C3C3C)),
+          //       ),
+          //       //   SizedBox(height: 4,),
+          //       Text(
+          //         '85%',
+          //         style: TextStyle(fontSize: 48, color: AppColor.primary),
+          //       ),
+          //       Align(
+          //           alignment: Alignment.centerRight,
+          //           child: Text(
+          //             '85/100',
+          //             style: TextStyle(fontSize: 20, color: AppColor.black),
+          //           )),
+          //     ],
+          //   ),
+          // ),
+        ],
+      ),
     );
   }
 }

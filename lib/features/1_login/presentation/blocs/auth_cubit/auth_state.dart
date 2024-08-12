@@ -25,7 +25,7 @@ class SettingsFailure extends AuthState {
 }
 
 class AuthSuccess extends AuthState {
-  final UserModel user;
+  final UserLoginModel user;
 
   AuthSuccess({required this.user});
 
@@ -43,7 +43,7 @@ class AuthFailure extends AuthState {
 }
 
 class AuthSuccessWithSocial extends AuthState {
-  final UserModel user;
+  final UserLoginModel user;
 
   AuthSuccessWithSocial({required this.user});
 

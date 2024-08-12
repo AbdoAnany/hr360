@@ -15,7 +15,7 @@ class AcademicsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: 300.w,
+        width: 300,
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -26,10 +26,7 @@ class AcademicsScreen extends StatelessWidget {
               icon: Icons.school,
               totalCount: 25, // Example dynamic total
               onTap: () => THelperFunctions.navigateToScreen(
-                BlocProvider(
-                  create: (context) => sl<CourseBloc>(),
-                  child: const CoursesScreen(),
-                ),
+                const CoursesScreen(),
               ),
             ),
             SizedBox(height: 16.h),
@@ -87,14 +84,14 @@ class AcademicsItem extends StatelessWidget {
                   backgroundColor: color.withOpacity(.07),
                   child: Icon(
                     icon,
-                    size: 25.w,
+                    size: 25,
                     color: color,
                   ),
                 ),
-                SizedBox(width: 16.w),
+                SizedBox(width: 16),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 20.sp),
+                  style: TextStyle(fontSize: 20),
                 ),
                 const Spacer(),
                 Icon(
@@ -104,9 +101,10 @@ class AcademicsItem extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8,
+                  vertical: 12.0),
               child: Divider(
-                color: Colors.grey.shade300,
+                color: Colors.grey.shade500,
               ),
             ),
             Text('Total $title: $totalCount')

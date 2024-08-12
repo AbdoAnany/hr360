@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/constants/style.dart';
 import '../../../../di.dart';
@@ -48,8 +49,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
           if (state is CourseLoaded) {
             return GridView.builder(
               padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6,
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: (1.sw/200).toInt(),
                 childAspectRatio: 3 / 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
