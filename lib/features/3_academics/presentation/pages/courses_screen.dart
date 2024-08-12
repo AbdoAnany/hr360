@@ -8,15 +8,25 @@ import '../manager/course_bloc.dart';
 import '../manager/course_event.dart';
 import '../manager/course_state.dart';
 import '../widgets/add_course.dart';
-
-class CoursesScreen extends StatefulWidget {
+class CoursesScreen extends StatelessWidget {
   const CoursesScreen({super.key});
 
   @override
-  State<CoursesScreen> createState() => _CoursesScreenState();
+  Widget build(BuildContext context) {
+    return   BlocProvider(
+        create: (context) => sl<CourseBloc>(),
+    child: const CoursesView());
+  }
 }
 
-class _CoursesScreenState extends State<CoursesScreen> {
+class CoursesView extends StatefulWidget {
+  const CoursesView({super.key});
+
+  @override
+  State<CoursesView> createState() => _CoursesScreenState();
+}
+
+class _CoursesScreenState extends State<CoursesView> {
   @override
   void initState() {
     super.initState();

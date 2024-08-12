@@ -26,7 +26,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
   @override
   void initState() {
     super.initState();
-    sl<UserBloc>().add(const GetAllUsers(  ));
+    context.read<UserBloc>().add(const GetAllUsers(  ));
 
     // HomeCubit.get(context).getDataFromServer().then((_) {
     //   final users = context.read<HomeCubit>().state.users;
@@ -54,7 +54,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
             gridLineColor: Colors.transparent,
           ),
           child: Container(
-            margin: EdgeInsets.symmetric(vertical: 12),
+            margin: EdgeInsets.symmetric(vertical: 12,horizontal: 8),
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8)),

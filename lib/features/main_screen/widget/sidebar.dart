@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Sidebar extends StatelessWidget {
@@ -11,7 +12,8 @@ class Sidebar extends StatelessWidget {
  Widget build(BuildContext context) {
   return Container(
    width: 200,
-   color: Color(0xFFEEF2F5),
+  // color: Color(0xFFEEF2F5),
+   color: AppColor.white,
    child: Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [

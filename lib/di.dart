@@ -52,9 +52,12 @@ print(isInit);
   final getCourses = GetCourses(courseRepository);
 
   sl.registerLazySingleton<GetCourses>(() => getCourses);
-  sl.registerLazySingleton<CourseBloc>(() => CourseBloc( sl()));
   sl.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));
-  sl.registerLazySingleton<UserBloc>(() => UserBloc( sl()));
+
+
+  sl.registerFactory<CourseBloc>(() => CourseBloc( sl()));
+
+  sl.registerFactory<UserBloc>(() => UserBloc( sl()));
   // sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
 
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));

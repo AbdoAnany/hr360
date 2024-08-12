@@ -19,9 +19,9 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-         //   appBar: AppBar(title: Text("User Management")),
-      body: UserView(),
+    return BlocProvider(
+      create: (context) => sl<UserBloc>(),
+      child: UserView(),
     );
   }
 }
@@ -40,8 +40,16 @@ class _UserViewState extends State<UserView> {
   //   sl<UserBloc>().add(CreateUser(
   //   UserModel.fromJson(  damyList.first)
   //   ));
-    sl<UserBloc>().add(GetUser(  damyList[1]['user_id']));
+
+    context.read<UserBloc>().add(GetUser(damyList[0]['user_id']));
     super.initState();
+  }
+  @override
+  void dispose() {
+    if (! sl<UserBloc>().isClosed) {
+      sl<UserBloc>().close();
+    }
+    super.dispose();
   }
   @override
   Widget build(BuildContext context) {

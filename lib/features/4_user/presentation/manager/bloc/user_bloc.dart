@@ -9,15 +9,14 @@ import 'package:hr360/features/4_user/presentation/manager/bloc/user_state.dart'
 import '../../../../1_login/data/user_model.dart';
 import '../../../data/repositories/FirebaseUserRepository.dart';
 import '../../../domain/repositories/UserRepository.dart';
-
 class UserBloc extends Bloc<UserEvent, UserState> {
   final FirebaseUserRepository userRepository;
-  // UserBloc(this.userRepository) : super(UserInitial());
-
-  static UserBloc get(BuildContext context) => BlocProvider.of(context);
+  bool _isClosed = false; // Flag to track if Bloc is closed
 
   UserBloc(this.userRepository) : super(UserInitial()) {
+    // Handle CreateUser event
     on<CreateUser>((event, emit) async {
+      if (_isClosed) return; // Avoid emitting if Bloc is closed
       try {
         emit(UserLoading());
         await userRepository.createUser(event.user);
@@ -26,7 +25,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserError(e.toString()));
       }
     });
+
+    // Handle GetAllUsers event
     on<GetAllUsers>((event, emit) async {
+      if (_isClosed) return;
       try {
         emit(UserLoading());
         List<UserModel> users = await userRepository.getAllUsers();
@@ -35,13 +37,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserError(e.toString()));
       }
     });
+
+    // Handle GetUser event
     on<GetUser>((event, emit) async {
+      if (_isClosed) return;
       try {
-        print(event.userId);
         emit(UserLoading());
         UserModel? user = await userRepository.getUser(event.userId);
         if (user != null) {
-          print(user.firsName);
           emit(UserLoaded(user));
         } else {
           emit(const UserError("User not found"));
@@ -51,7 +54,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+    // Handle UpdateUser event
     on<UpdateUser>((event, emit) async {
+      if (_isClosed) return;
       try {
         emit(UserLoading());
         await userRepository.updateUser(event.user);
@@ -61,7 +66,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+    // Handle DeleteUser event
     on<DeleteUser>((event, emit) async {
+      if (_isClosed) return;
       try {
         emit(UserLoading());
         await userRepository.deleteUser(event.userId);
@@ -71,7 +78,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+    // Handle AssignRole event
     on<AssignRole>((event, emit) async {
+      if (_isClosed) return;
       try {
         emit(UserLoading());
         await userRepository.assignRole(event.userId, event.role);
@@ -86,7 +95,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+    // Handle RemoveRole event
     on<RemoveRole>((event, emit) async {
+      if (_isClosed) return;
       try {
         emit(UserLoading());
         await userRepository.removeRole(event.userId, event.role);
@@ -101,4 +112,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
   }
+
+  @override
+  Future<void> close() async {
+    _isClosed = true; // Mark Bloc as closed
+    return super.close();
+  }
 }
+

@@ -58,10 +58,9 @@ class EmployeesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      //   appBar: AppBar(title: Text("User Management")),
-      body: AttendanceGridView(),
-    );
+    return    BlocProvider(
+        create: (context) => sl<UserBloc>(),
+        child: const   AttendanceGridView());
   }
 }
 

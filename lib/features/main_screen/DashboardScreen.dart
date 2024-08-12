@@ -59,26 +59,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         const NeverScrollableScrollPhysics(), // Disable swipe navigation
                     children: [
                       DashboardPage(),
-                     BlocProvider(
-                         create: (context) => sl<CourseBloc>(),
-                         child: const Scaffold(
-                             body: AcademicsScreen())),
+                    AcademicsScreen(),
                       AccountsPage(),
                       SupportPage(),
-                     BlocProvider(
-                         create: (context) => sl<UserBloc>(),
-                         child: const Scaffold(
-                          //   appBar: AppBar(title: Text("User Management")),
-                             body: EmployeesScreen())),
+                     const EmployeesScreen(),
 
                       AttendancePage(),
 
                       const AnalyticsPage(),
-                     BlocProvider(
-                         create: (context) => sl<UserBloc>(),
-                         child: const Scaffold(
-                          //   appBar: AppBar(title: Text("User Management")),
-                             body: UserPage())),
+                      const UserPage(),
                       const CalendarPage(),
                       LeadsPage(),
                       VisitorsPage(),

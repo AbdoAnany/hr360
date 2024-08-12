@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/features/ProfileScreen/UI/page/profile/EmployeeProfile.dart';
 import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
@@ -32,34 +33,40 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        EmployeeHeader(),
-        Container(
-          height: 50.0,
-          width: 450,
-          child: TabBar(
-            controller: _tabController,
-            indicatorSize: TabBarIndicatorSize.tab,
-            tabs: const [
-              Tab(text: 'Tasks'),
-              Tab(text: 'Profile'),
-              Tab(text: 'Attendance'),
-            ],
+    return    Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          EmployeeHeader(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            height: 50.0,
+            width: 450,
+            child: TabBar(
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.tab,
+              tabs: const [
+                Tab(text: 'Tasks'),
+                Tab(text: 'Profile'),
+                Tab(text: 'Attendance'),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              TaskList(),
-              EmployeeProfilePage(userDetails:widget. userDetails,),
-              const AttendanceReportPage(),
-            ],
-          ),
-        )
-      ],
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  TaskList(),
+                  EmployeeProfilePage(userDetails:widget. userDetails,),
+                   AttendanceReportPage(),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -617,55 +624,68 @@ class AttendanceReportPage extends StatelessWidget {
   //   leavesPercentage: 60,
   // );
 
-  const AttendanceReportPage({super.key});
+   AttendanceReportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    print(1.sw);
     return Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Row(
+        child: 1.sw<1000?
+        Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: widgetList
+        ):
+
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Expanded(
-              flex: 2,
-              child: Column(
-                children: [
-                  Text(
-                    'Attendance Report',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(child: PieChartSample2()),
-                ],
-              ),
-            ),
-            const SizedBox(
-              width: 80,
-            ),
-            Expanded(
-              flex: 3,
-              child: Column(
-                children: [
-                  const Text(
-                    'Attendance Logs',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 16.0),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: attendanceRecords.length,
-                      itemBuilder: (context, index) {
-                        return AttendanceLogItem(
-                            record: attendanceRecords[index]);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ));
+          children: widgetList
+        )
+
+    );
   }
+
+  List<Widget> widgetList=[
+    const Expanded(
+      flex: 2,
+      child: Column(
+        children: [
+          Text(
+            'Attendance Report',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Expanded(child: PieChartSample2()),
+        ],
+      ),
+    ),
+    const SizedBox(
+      width: 80,
+    ),
+    Expanded(
+      flex: 3,
+      child: Column(
+        children: [
+          const Text(
+            'Attendance Logs',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16.0),
+          Expanded(
+            child: ListView.builder(
+              itemCount: attendanceRecords.length,
+              itemBuilder: (context, index) {
+                return AttendanceLogItem(
+                    record: attendanceRecords[index]);
+              },
+            ),
+          ),
+        ],
+      ),
+    )
+  ];
 }
 
 class AttendanceLogItem extends StatelessWidget {
