@@ -15,7 +15,7 @@ class AcademicsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: 300.w,
+        width: 300,
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,11 +87,11 @@ class AcademicsItem extends StatelessWidget {
                   backgroundColor: color.withOpacity(.07),
                   child: Icon(
                     icon,
-                    size: 25.w,
+                    size: 25,
                     color: color,
                   ),
                 ),
-                SizedBox(width: 16.w),
+                SizedBox(width: 16),
                 Text(
                   title,
                   style: TextStyle(fontSize: 20.sp),

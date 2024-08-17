@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/constants/style.dart';
 import '../../../../di.dart';
@@ -34,7 +35,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
             MaterialPageRoute(builder: (context) => AddCourseScreen()),
           ).then((_) {
             // Reload courses when returning from the AddCourseScreen
-            context.read<CourseBloc>().add(LoadCoursesEvent());
+            sl<CourseBloc>().add(LoadCoursesEvent());
           });
         },
         child: Icon(Icons.add),
@@ -48,8 +49,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
           if (state is CourseLoaded) {
             return GridView.builder(
               padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6,
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: (1.sw/250).toInt(),
                 childAspectRatio: 3 / 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
