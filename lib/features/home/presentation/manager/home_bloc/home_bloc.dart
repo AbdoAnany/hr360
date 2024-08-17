@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/home/date/repositries/repo_impl.dart';
+import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 
 import '../../../../../core/utils/error/failure.dart';
 import '../../widgets/Mainbar.dart';
@@ -31,16 +32,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(const ChangePageState());
     emit(const StartGetData());
   }
-  // void changePage(PageType newPage,{arguments}) {
-  //
-  //   MainBarControl.currentPage = newPage;
-  //   currentPage = newPage;
-  //
-  //   _navigateToPage(newPage,arguments: arguments);
-  //
-  //   emit(const ChangePageState());
-  //   emit(const StartGetData());
-  // }
+
 
   void _navigateToPage(PageType pageType,{arguments}) {
     String routeName;
@@ -78,7 +70,7 @@ class HomeCubit extends Cubit<HomeState> {
     var dateList;
     var val = await _homeRepo.getAllUserDetails();
     val.fold((e) {
-      dateList = [];
+      dateList = damyList;
     }, (data) {
       dateList = data;
     });

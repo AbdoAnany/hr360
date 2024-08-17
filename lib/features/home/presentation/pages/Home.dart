@@ -13,7 +13,7 @@ import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../manager/home_bloc/home_bloc.dart';
 
 class HomeControl {
-  static UserModel? userModelLogin;
+  static UserLoginModel? userModelLogin;
 }
 
 class Home extends StatefulWidget {
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
     super.initState();
     try {
       var tem = sl<TLocalStorage>().readData(AppKeys.userDataLogin);
-      HomeControl.userModelLogin = UserModel.fromJson(tem);
+      HomeControl.userModelLogin = UserLoginModel.fromJson(tem);
     } catch (e) {
       print('Error loading user data: $e');
     }
@@ -85,7 +85,7 @@ class _HomeState extends State<Home> {
                           case '/profile':
                             print("data ${data}");
                             builder = (BuildContext _) => ProfileScreen(
-                                  userDetails: data as UserDetails,
+                                  userDetails: data as UserModel,
                                 );
                             break;
                           default:

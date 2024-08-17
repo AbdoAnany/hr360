@@ -4,7 +4,7 @@ class Header extends StatelessWidget {
  @override
  Widget build(BuildContext context) {
   return Container(
-   padding: EdgeInsets.symmetric(horizontal: 20),
+   padding: EdgeInsets.symmetric(horizontal: 20,vertical: 12),
    color: Colors.white,
    child: Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,9 +44,9 @@ class Header extends StatelessWidget {
         ),
        ),
        SizedBox(width: 20),
-       Icon(Icons.notifications, color: Colors.black),
+       Icon(Icons.notifications_active_outlined, color: Colors.black),
        SizedBox(width: 20),
-       Icon(Icons.chat, color: Colors.black),
+       Icon(Icons.chat_bubble_outline_outlined, color: Colors.black),
        SizedBox(width: 20),
        CircleAvatar(
        radius: 20,

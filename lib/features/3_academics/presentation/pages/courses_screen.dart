@@ -8,15 +8,25 @@ import '../manager/course_bloc.dart';
 import '../manager/course_event.dart';
 import '../manager/course_state.dart';
 import '../widgets/add_course.dart';
-
-class CoursesScreen extends StatefulWidget {
+class CoursesScreen extends StatelessWidget {
   const CoursesScreen({super.key});
 
   @override
-  State<CoursesScreen> createState() => _CoursesScreenState();
+  Widget build(BuildContext context) {
+    return   BlocProvider(
+        create: (context) => sl<CourseBloc>(),
+    child: const CoursesView());
+  }
 }
 
-class _CoursesScreenState extends State<CoursesScreen> {
+class CoursesView extends StatefulWidget {
+  const CoursesView({super.key});
+
+  @override
+  State<CoursesView> createState() => _CoursesScreenState();
+}
+
+class _CoursesScreenState extends State<CoursesView> {
   @override
   void initState() {
     super.initState();
@@ -35,7 +45,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
             MaterialPageRoute(builder: (context) => AddCourseScreen()),
           ).then((_) {
             // Reload courses when returning from the AddCourseScreen
-            sl<CourseBloc>().add(LoadCoursesEvent());
+            context.read<CourseBloc>().add(LoadCoursesEvent());
           });
         },
         child: Icon(Icons.add),
@@ -50,7 +60,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
             return GridView.builder(
               padding: const EdgeInsets.all(16),
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: (1.sw/250).toInt(),
+                crossAxisCount: (1.sw/200).toInt(),
                 childAspectRatio: 3 / 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,

@@ -17,6 +17,8 @@ import 'features/3_academics/data/repositories/course_repository_impl.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/manager/course_bloc.dart';
 import 'features/3_academics/presentation/state_management/course_provider.dart';
+import 'features/4_user/data/repositories/FirebaseUserRepository.dart';
+import 'features/4_user/presentation/manager/bloc/user_bloc.dart';
 import 'firebase_options.dart';
 // import 'features/auth/data/remote/data_sources/users_remote_data_source.dart';
 // import 'features/auth/data/repositories/repo_impl.dart';
@@ -50,7 +52,12 @@ print(isInit);
   final getCourses = GetCourses(courseRepository);
 
   sl.registerLazySingleton<GetCourses>(() => getCourses);
-  sl.registerLazySingleton<CourseBloc>(() => CourseBloc( sl()));
+  sl.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));
+
+
+  sl.registerFactory<CourseBloc>(() => CourseBloc( sl()));
+
+  sl.registerFactory<UserBloc>(() => UserBloc( sl()));
   // sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
 
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));

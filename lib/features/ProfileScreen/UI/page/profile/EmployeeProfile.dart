@@ -12,7 +12,7 @@ import '../../ProfileScreen.dart';
 
 class EmployeeProfilePage extends StatelessWidget {
   late  final   Employee employee ;
-  UserDetails? userDetails;
+  UserModel? userDetails;
    EmployeeProfilePage({super.key, this.userDetails}){
 
 
@@ -28,7 +28,7 @@ class EmployeeProfilePage extends StatelessWidget {
      employee = Employee(
        name:   "${userDetails?.firsName}  ${userDetails?.lastName}",
         dateOfJoining:  TFormatter.formatDate(DateTime.now()),
-       dateOfBirth: TFormatter.formatDate(DateTime.parse( userDetails!.birthDate!)),
+  //     dateOfBirth: TFormatter.formatDate(DateTime.parse( userDetails!.birthDate!)),
        contactNumber: TFormatter.formatPhoneNumber(userDetails?.phone),
        emergencyContactNumber:  TFormatter.formatPhoneNumber(userDetails?.phone),
        email: '${userDetails?.email}',

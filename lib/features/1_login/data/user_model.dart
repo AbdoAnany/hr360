@@ -1,11 +1,11 @@
-class UserModel {
-  UserDetails? data;
+class UserLoginModel {
+  UserModel? data;
   String? token;
 
-  UserModel({this.data, this.token});
+  UserLoginModel({this.data, this.token});
 
-  UserModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? UserDetails.fromJson(json['data']) : null;
+  UserLoginModel.fromJson(Map<String, dynamic> json) {
+    data = json['data'] != null ? UserModel.fromJson(json['data']) : null;
     token = json['token'];
   }
 
@@ -22,7 +22,7 @@ class UserModel {
 //[{"id":1,"user_iduser_id":18,"first_name":"Admin","last_name":"User","email":"admin@example.com",
 // "phone":"1234567890","address":"123 Admin St, Admin City, Admin State",
 // "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
-class UserDetails {
+class UserModel {
   late int id;
   late int userId;
   String? firsName;
@@ -37,7 +37,7 @@ class UserDetails {
   String? state;
   String? birthDate;
 
-  UserDetails(
+  UserModel(
       {required this.id,
       required this.userId,
       this.firsName = '',
@@ -55,7 +55,7 @@ class UserDetails {
 //[{"id":1,"user_id":18,"first_name":"Admin","last_name":"User","email":"admin@example.com",
 // "phone":"1234567890","address":"123 Admin St, Admin City, Admin State",
 // "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
-  UserDetails.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
 
     id = json['id'];
     userId = json['user_id'];
