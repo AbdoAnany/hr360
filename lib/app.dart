@@ -63,7 +63,7 @@ class App extends StatelessWidget {
                     TTextTheme.init(context, them);
                     return w!;
                   },
-                  navigatorKey: Get.navigatorKey,
+                //  navigatorKey: Get.navigatorKey,
                   title: TTexts.appName,
                   themeMode: them.themeMode,
                   theme: TAppTheme.lightTheme,
@@ -74,12 +74,7 @@ class App extends StatelessWidget {
                 //  const Home()
               )
           );
-          // builder: (ctx, child) {
-          //
-          //   ScreenUtil.init(ctx);
-          //
-          //   return child!;
-          // });
+
         }));
   }
 }
