@@ -60,8 +60,8 @@ class _CoursesScreenState extends State<CoursesView> {
             return GridView.builder(
               padding: const EdgeInsets.all(16),
               gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: (1.sw/200).toInt(),
-                childAspectRatio: 3 / 2,
+                crossAxisCount: (MediaQuery.of(context).size.width/200).toInt(),
+             //   childAspectRatio: 3 / 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),

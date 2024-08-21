@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../../../../../app.dart';
@@ -37,128 +38,129 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-      body:BlocBuilder<UserBloc, UserState>(
+    return Container(  color: AppColor.white,
+      child: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
             if (state is UserLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is UsersLoaded) {
-          employeeDataSource =
-              EmployeeDataSource(employees: state.users); // update data source
-        }
-        return employeeDataSource == null
-            ? Center(child: const CircularProgressIndicator())
-            : SfDataGridTheme(
-          data: const SfDataGridThemeData(
-            gridLineColor: Colors.transparent,
-          ),
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 12,horizontal: 8),
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8)),
-            child: SfDataGrid(
-              source: employeeDataSource!,
-              checkboxColumnSettings: DataGridCheckboxColumnSettings(),
-              rowHeight: 70,
-              selectionMode: SelectionMode.multiple,
-              columnWidthMode: ColumnWidthMode.fitByCellValue,
-              defaultColumnWidth: 120,
-              allowPullToRefresh: true,
-              columns: <GridColumn>[
-                GridColumn(
-                    columnName: 'Num',
-                    columnWidthMode: ColumnWidthMode.fitByCellValue,
-                    minimumWidth: 75,
-                    label: Container(
-                        decoration: BoxDecoration(
+              employeeDataSource =
+                  EmployeeDataSource(employees: state.users); // update data source
+            }
+            return employeeDataSource == null
+                ? Center(child: const CircularProgressIndicator())
+                : SfDataGridTheme(
+              data: const SfDataGridThemeData(
+                gridLineColor: Colors.transparent,
+              ),
+              child: Container(
+
+                margin: EdgeInsets.symmetric(vertical: 12,horizontal: 8),
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8)),
+                child: SfDataGrid(
+                  source: employeeDataSource!,
+                  checkboxColumnSettings: DataGridCheckboxColumnSettings(),
+                  rowHeight: 70,
+
+                  selectionMode: SelectionMode.multiple,
+                  columnWidthMode: ColumnWidthMode.fitByCellValue,
+                  defaultColumnWidth: 120,
+                  allowPullToRefresh: true,
+                  columns: <GridColumn>[
+                    GridColumn(
+                        columnName: 'Num',
+                        columnWidthMode: ColumnWidthMode.fitByCellValue,
+                        minimumWidth: 75,
+                        label: Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xffF5F5F5),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                )),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text('#'))),
+                    GridColumn(
+                        columnName: 'ID',
+                        columnWidthMode: ColumnWidthMode.fitByCellValue,
+                        label: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xffF5F5F5),
+                            ),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text('ID'))),
+                    GridColumn(
+                        columnName: 'Name',
+                        width: 200,
+                        columnWidthMode: ColumnWidthMode.fill,
+                        label: Container(
                             color: Color(0xffF5F5F5),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(12),
-                              bottomLeft: Radius.circular(12),
-                            )),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: const Text('#'))),
-                GridColumn(
-                    columnName: 'ID',
-                    columnWidthMode: ColumnWidthMode.fitByCellValue,
-                    label: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffF5F5F5),
-                        ),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: const Text('ID'))),
-                GridColumn(
-                    columnName: 'Name',
-                    width: 200,
-                    columnWidthMode: ColumnWidthMode.fill,
-                    label: Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text('Name'))),
-                GridColumn(
-                    columnName: 'Roles',
-                    label: Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text('Roles'))),
-                GridColumn(
-                    columnName: 'State',
-                    width: 90,
-                    label: Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text('State'))),
-                GridColumn(
-                    columnName: 'Gender',
-                    width: 100,
-                    label: Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text('Gender'))),
-                GridColumn(
-                    columnName: 'Phone',
-                    width: 200,
-                    label: Container(
-                        color: Color(0xffF5F5F5),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text('Phone'))),
-                GridColumn(
-                    columnName: 'Birth_Date',
-                    width: 120,
-                    label: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffF5F5F5),
-                        ),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: Text('Birth Date'))),
-                GridColumn(
-                    columnName: 'Action',
-                    columnWidthMode: ColumnWidthMode.fill,
-                    label: Container(
-                        decoration: BoxDecoration(
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: Text('Name'))),
+                    GridColumn(
+                        columnName: 'Roles',
+                        label: Container(
                             color: Color(0xffF5F5F5),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(12),
-                              bottomRight: Radius.circular(12),
-                            )),
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: const Text('Details'))),
-              ],
-            ),
-          ),
-        );
-      }),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: Text('Roles'))),
+                    GridColumn(
+                        columnName: 'State',
+                        width: 90,
+                        label: Container(
+                            color: Color(0xffF5F5F5),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: Text('State'))),
+                    GridColumn(
+                        columnName: 'Gender',
+                        width: 100,
+                        label: Container(
+                            color: Color(0xffF5F5F5),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: Text('Gender'))),
+                    GridColumn(
+                        columnName: 'Phone',
+                        width: 200,
+                        label: Container(
+                            color: Color(0xffF5F5F5),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: Text('Phone'))),
+                    GridColumn(
+                        columnName: 'Birth_Date',
+                        width: 120,
+                        label: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xffF5F5F5),
+                            ),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: Text('Birth Date'))),
+                    GridColumn(
+                        columnName: 'Action',
+                        columnWidthMode: ColumnWidthMode.fill,
+                        label: Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xffF5F5F5),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(12),
+                                  bottomRight: Radius.circular(12),
+                                )),
+                            padding: EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text('Details'))),
+                  ],
+                ),
+              ),
+            );
+          }),
     );
   }
 }
