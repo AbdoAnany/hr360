@@ -21,6 +21,7 @@ import '../../core/utils/constants/text_strings.dart';
 import '../../core/utils/theme/theme.dart';
 import '../../core/utils/theme/widget_themes/text_theme.dart';
 import '../../di.dart';
+import '../2_dash_border/presentation/pages/dashboard_page.dart';
 import '../3_academics/presentation/manager/course_bloc.dart';
 import '../3_academics/presentation/pages/academics_screen.dart';
 import '../4_user/presentation/manager/bloc/user_bloc.dart';
