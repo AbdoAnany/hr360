@@ -27,4 +27,10 @@ static  TextStyle font14Gray400=const TextStyle(
  ),
  borderRadius: BorderRadius.circular(12)
  );
+  static BoxDecoration    decorationPage= const BoxDecoration(
+color:    AppColor.scaffoldBackgroundColor,
+borderRadius: BorderRadius.only(topLeft: Radius.circular(25)));
+
+
+
 }

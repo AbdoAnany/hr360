@@ -96,8 +96,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/
-
-
+     - assets/images/illustration/
+     - assets/images/
+     - assets/icons/
+     - assets/logo/
   fonts:
     - family: Outfit
       fonts:

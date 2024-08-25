@@ -6,7 +6,6 @@ import 'package:hr360/features/main_screen/page/AccountsPage.dart';
 import 'package:hr360/features/main_screen/page/AnalyticsPage.dart';
 import 'package:hr360/features/main_screen/page/AttendancePage.dart';
 import 'package:hr360/features/main_screen/page/CalendarPage.dart';
-import 'package:hr360/features/main_screen/page/DashboardPage.dart';
 import 'package:hr360/features/main_screen/page/LeadsPage.dart';
 import 'package:hr360/features/main_screen/page/StudentsPage.dart';
 import 'package:hr360/features/main_screen/page/SupportPage.dart';
@@ -21,6 +20,7 @@ import '../../core/utils/constants/text_strings.dart';
 import '../../core/utils/theme/theme.dart';
 import '../../core/utils/theme/widget_themes/text_theme.dart';
 import '../../di.dart';
+import '../2_dash_border/presentation/pages/dashboard_page.dart';
 import '../3_academics/presentation/manager/course_bloc.dart';
 import '../3_academics/presentation/pages/academics_screen.dart';
 import '../4_user/presentation/manager/bloc/user_bloc.dart';
@@ -88,19 +88,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           home:          Scaffold(
                             backgroundColor: AppColor.white,
                             body:      Container(
-                              decoration: 
-                              BoxDecoration(
+                              decoration: const BoxDecoration(
                                color:    AppColor.scaffoldBackgroundColor,
-                                borderRadius: 
-                                  BorderRadius.only(topLeft: Radius.circular(25))
-                              ),
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(25))),
                               child: PageView(
                                 controller: _pageController,
                                 physics:
                                 const NeverScrollableScrollPhysics(), // Disable swipe navigation
                                 children: [
-                                  DashboardPage(),
-                                  AcademicsScreen(),
+                                  const DashboardPage(),
+                                  const AcademicsScreen(),
                                   AccountsPage(),
                                   SupportPage(),
                                   const EmployeesScreen(),
@@ -110,8 +107,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   const AnalyticsPage(),
                                   const UserPage(),
                                   const CalendarPage(),
-                                  LeadsPage(),
-                                  VisitorsPage(),
+                                  const LeadsPage(),
+                                  const VisitorsPage(),
                                 ],
                               ),
                             ),
