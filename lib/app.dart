@@ -20,13 +20,10 @@ import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
 import 'features/main_screen/DashboardScreen.dart';
 
 class Get {
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static BuildContext get context => navigatorKey.currentContext!;
   static NavigatorState get navigator => navigatorKey.currentState!;
-  static GlobalKey<ScaffoldState> get scaffoldHomeState =>
-      GlobalKey<ScaffoldState>();
 }
 
 class App extends StatelessWidget {
@@ -35,8 +32,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) =>
-              ThemeProvider()),
+          ChangeNotifierProvider(create: (context) => ThemeProvider()),
           BlocProvider(create: (context) => sl<AuthCubit>()),
           BlocProvider(create: (context) => sl<HomeCubit>()),
           // BlocProvider(create: (context) => sl<CourseBloc>()),
@@ -63,7 +59,6 @@ class App extends StatelessWidget {
                     TTextTheme.init(context, them);
                     return w!;
                   },
-                //  navigatorKey: Get.navigatorKey,
                   title: TTexts.appName,
                   themeMode: them.themeMode,
                   theme: TAppTheme.lightTheme,
@@ -71,7 +66,6 @@ class App extends StatelessWidget {
                   debugShowCheckedModeBanner: false,
                   home:const DashboardScreen(),
 
-                //  const Home()
               )
           );
 

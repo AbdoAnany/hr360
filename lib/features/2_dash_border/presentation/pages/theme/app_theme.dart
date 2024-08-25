@@ -57,7 +57,7 @@ class AppTheme {
       ),
       inputDecorationTheme: AppTextFormFieldTheme.lightInputDecorationTheme,
       expansionTileTheme:
-          const ExpansionTileThemeData(shape: const RoundedRectangleBorder()),
+      const ExpansionTileThemeData(shape: const RoundedRectangleBorder()),
       badgeTheme:
           BadgeThemeData(backgroundColor: AppColors.error, smallSize: 8),
     );

@@ -13,41 +13,42 @@ class AcademicsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: 300,
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            AcademicsItem(
-              title: 'Courses',
-              color: Colors.red,
-              icon: Icons.school,
-              totalCount: 25, // Example dynamic total
-              onTap: () => THelperFunctions.navigateToScreen(
-                const CoursesScreen(),
+    return Row(
+      children: [
+        Container(
+          width: 300,
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              AcademicsItem(
+                title: 'Courses',
+                color: Colors.red,
+                icon: Icons.school,
+                totalCount: 25, // Example dynamic total
+                onTap: () => THelperFunctions.navigateToScreen(
+                  const CoursesScreen(),
+                ),
               ),
-            ),
-            SizedBox(height: 16.h),
-            AcademicsItem(
-              title: 'Batches',
-              color: Colors.green,
-              icon: Icons.category,
-              totalCount: 25, // Example dynamic total
-              onTap: () {},
-            ),
-            SizedBox(height: 16.h),
-            AcademicsItem(
-              title: 'Subjects',
-              color: Colors.pink,
-              icon: Icons.book,
-              totalCount: 25, // Example dynamic total
-              onTap: () {},
-            ),
-          ],
+              SizedBox(height: 16.h),
+              AcademicsItem(
+                title: 'Batches',
+                color: Colors.green,
+                icon: Icons.category,
+                totalCount: 25, // Example dynamic total
+                onTap: () {},
+              ),
+              SizedBox(height: 16.h),
+              AcademicsItem(
+                title: 'Subjects',
+                color: Colors.pink,
+                icon: Icons.book,
+                totalCount: 25, // Example dynamic total
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

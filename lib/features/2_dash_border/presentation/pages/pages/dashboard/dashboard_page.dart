@@ -18,14 +18,11 @@ class DashboardPage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (!Responsive.isMobile(context)) gapH24,
-        Text(
-          "Dashboard",
-          style: Theme.of(context)
-              .textTheme
-              .headlineLarge!
-              .copyWith(fontWeight: FontWeight.w600),
-        ),
+        // if (!Responsive.isMobile(context)) gapH24,
+        // Text(
+        //   "Dashboard",
+        //   style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.w600),
+        // ),
         gapH20,
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,

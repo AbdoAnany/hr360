@@ -1,3 +1,5 @@
+import 'package:hr360/core/utils/constants/style.dart';
+
 import '../responsive.dart';
 import '../shared/constants/defaults.dart';
 import '../shared/widgets/sidemenu/sidebar.dart';
@@ -18,37 +20,35 @@ class EntryPoint extends StatelessWidget {
       key: _drawerKey,
       drawer: Responsive.isMobile(context) ? const Sidebar() : null,
       body:
-      Row(
-        children: [
-        //  if (Responsive.isDesktop(context)) const Sidebar(),
-          if (Responsive.isTablet(context)) const TabSidebar(),
-          Expanded(
-            child:
-
-
-            Column(
-              children: [
-             //   Header(drawerKey: _drawerKey),
-                Expanded(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 1360),
-                    child: ListView(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric( horizontal: 1
-                          //   horizontal: AppDefaults.padding *
-                          //       (Responsive.isMobile(context) ? 1 : 1.5),
+      Container(
+        decoration: AppStyle.decorationPage,
+        child: Row(
+          children: [
+          //  if (Responsive.isDesktop(context)) const Sidebar(),
+            if (Responsive.isTablet(context)) const TabSidebar(),
+            Expanded(
+              child: Column(
+                children: [
+                //  Header(drawerKey: _drawerKey),
+                  Expanded(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1360),
+                      child: ListView(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppDefaults.padding * (Responsive.isMobile(context) ? 1 : 1.5),),
+                            child: DashboardPage(),
                           ),
-                          child: DashboardPage(),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     )
     ;
