@@ -5,19 +5,10 @@ import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:hr360/core/utils/constants/text_strings.dart';
 import 'package:hr360/core/utils/theme/theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
-import 'package:hr360/features/3_academics/domain/entities/course.dart';
 import 'package:provider/provider.dart';
 
 import 'di.dart';
-import 'features/1_login/data/repositries/auth_repo_impl.dart';
-import 'features/1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 
-import 'features/3_academics/domain/usecases/get_courses.dart';
-import 'features/3_academics/presentation/manager/course_bloc.dart';
-import 'features/3_academics/presentation/state_management/course_provider.dart';
-import 'features/4_user/presentation/manager/bloc/user_bloc.dart';
-import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
-import 'features/main_screen/DashboardScreen.dart';
 
 class Get {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -33,8 +24,7 @@ class App extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (context) => ThemeProvider()),
-          BlocProvider(create: (context) => sl<AuthCubit>()),
-          BlocProvider(create: (context) => sl<HomeCubit>()),
+
           // BlocProvider(create: (context) => sl<CourseBloc>()),
           // BlocProvider(create: (context) =>sl<UserBloc>()),
           // ChangeNotifierProvider(
@@ -64,7 +54,7 @@ class App extends StatelessWidget {
                   theme: TAppTheme.lightTheme,
                   darkTheme: TAppTheme.darkTheme,
                   debugShowCheckedModeBanner: false,
-                  home:const DashboardScreen(),
+            //      home:const DashboardScreen(),
 
               )
           );
