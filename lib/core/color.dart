@@ -30,7 +30,7 @@ class AppStyle{
   static  TextStyle titleStyle = TextStyle(
     fontSize: 18,
     color:AppColors. whiteColor,
-      fontFamily: "inter",
+      // fontFamily: "inter",
 
       fontWeight: FontWeight.normal
   );

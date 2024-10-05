@@ -61,6 +61,7 @@ class ResponsiveNavBar extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
+          print(constraints.maxWidth);
           if (constraints.maxWidth > 1100) {
             return const Column(
               children: [
@@ -71,7 +72,7 @@ class ResponsiveNavBar extends StatelessWidget {
           } else if (constraints.maxWidth > 600) {
             return const Column(
               children: [
-                TabletNavBar(horizontal: 16,),
+                TabletNavBar(horizontal: 40,),
                 BodyView(horizontal: 40,)
               ],
             );
@@ -79,7 +80,7 @@ class ResponsiveNavBar extends StatelessWidget {
           } else {
             return const Column(
               children: [
-                MobileNavBar(horizontal: 60,),
+                MobileNavBar(horizontal: 16,),
                 BodyView(horizontal: 16,)
               ],
             );

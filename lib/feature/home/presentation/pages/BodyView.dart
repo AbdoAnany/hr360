@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/core/const.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/color.dart';
 import '../../../../main.dart';
+import '../../data/repositories/ItemRepository.dart';
 import '../manager/ItemBloc.dart';
 import '../manager/ItemState.dart';
 import '../widgets/ItemCard.dart';
@@ -54,17 +56,27 @@ class BodyView extends StatelessWidget {
               builder: (context, state) {
                 if (state is ItemLoading) {
                   return Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: horizontal, vertical: 12),
-                    child: Wrap(
-                      spacing: 16,
-                      runSpacing: 16,
-                      children: List.generate(6, (_) => const ItemShimmer()),
+                    padding: EdgeInsets.symmetric(horizontal: horizontalPadding(context), vertical: 24),
+                    child:
+                    Skeletonizer(
+                      enabled: state is ItemLoading,child:
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        runAlignment: WrapAlignment.start,
+                        alignment: WrapAlignment.start ,
+                        spacing: MediaQuery.of(context).size.width > 1100 ? 24 : 16, // Adjust based on screen
+                        runSpacing: MediaQuery.of(context).size.width > 1100 ? 24 : 16,
+                        children: listItemCards.map((item) => ItemCard(item:  item)).toList(),
+                      ),
                     ),
                   );
                 } else if (state is ItemLoaded) {
                   return Padding(
-                    padding:  EdgeInsets.symmetric(horizontal:horizontal, vertical: 12),
+                    padding: EdgeInsets.symmetric(horizontal: horizontalPadding(context), vertical: 24),
                     child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      runAlignment: WrapAlignment.start,
+                      alignment: WrapAlignment.start ,
                       spacing: 16,
                       runSpacing: 16,
                       children: state.items.map((item) => ItemCard(item: item)).toList(),
@@ -81,5 +93,15 @@ class BodyView extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+double horizontalPadding(BuildContext context) {
+  final width = MediaQuery.of(context).size.width;
+  if (width > 1100) {
+    return 50.0; // Web large screen
+  } else if (width > 600) {
+    return 30.0; // Tablet screen
+  } else {
+    return 16.0; // Mobile screen
   }
 }

@@ -1,4 +1,6 @@
-class ItemModel {
+import '../../domain/entities/item.dart';
+
+class ItemModel extends Item {
   final String name;
   final String dateTime;
   final String state;
@@ -13,7 +15,7 @@ class ItemModel {
     required this.state,
     required this.taskNote,
     required this.avatarUrls,
-  });
+  }) : super(name: name, dateTime: dateTime, state: state, image: image, taskNote: taskNote, avatarUrls: avatarUrls);
 
   // From Firebase document snapshot
   factory ItemModel.fromFirebase(Map<String, dynamic> json) {

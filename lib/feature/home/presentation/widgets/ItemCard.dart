@@ -16,7 +16,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final width=MediaQuery.of(context).size.width;
     return Container(
-      width:  width>1100?243:width>600?243:double.infinity,
+      width:  width>1400 ?width/5.7 :width>1100 ?width/4.7: width>900?width/3.5:width>600?width/2.3:double.infinity,
       height:  width>1100?322:width>600?322:314,
 
       decoration: BoxDecoration(
@@ -39,27 +39,42 @@ class ItemCard extends StatelessWidget {
               // Background image
               ClipRRect(
                 borderRadius: const BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15)),
-                child: Image.asset(
-                  item.image,
-                  width: double.infinity,
-                  height: 180,
+                child: Image.network(
+               item.image   ,   height: 182, width: double.infinity,
                   fit: BoxFit.cover,
-                ),
+                  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                      ),
+                    );
+                  },
+                  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                    return SizedBox(height:188,child: Center(child: const Icon(Icons.image_outlined,color: AppColors.whiteColor,))); // Show an error icon or message
+                  },
+                )
+
               ),
               // Gradient overlay
               Positioned(
-                top: 0,
+                bottom: 0,
                 left: 0,
                 right: 0,
                 child: Container(
-                  height: 180, // same height as the image
+                  height: 188, // same height as the image
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(topRight: Radius.circular(15),topLeft: Radius.circular(15)),
                     gradient: LinearGradient(
                       colors: [
 
                         Colors.transparent,
-                        AppColors.secondaryBgColor
+                        AppColors.secondaryBgColor.withOpacity(.6),
+                        AppColors.secondaryBgColor,
                       //  Colors.black.withOpacity(0.6), // Change this color for different effects
                       ],
                       begin: Alignment.topCenter,
