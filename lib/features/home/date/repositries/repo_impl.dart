@@ -10,7 +10,6 @@ class HomeRepoImpl {
 
     return response.fold((serverFailure) {
       print("(serverFailure as ServerFailure).message");
-      print((serverFailure as ServerFailure).message);
       return Left(serverFailure);
     }, (data) {
       return Right(data);

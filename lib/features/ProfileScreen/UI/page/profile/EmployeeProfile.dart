@@ -17,7 +17,6 @@ class EmployeeProfilePage extends StatelessWidget {
 
 
      try {
-       print(userDetails!.birthDate!);
 
        // print(DateTime.parse( HomeControl.userModelLogin!.data!.birthDate!));
      } catch (e) {

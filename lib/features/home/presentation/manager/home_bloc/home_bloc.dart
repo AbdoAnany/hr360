@@ -83,7 +83,6 @@ class HomeCubit extends Cubit<HomeState> {
 
         Left(e);
       }, (data) {
-        print(data);
         Right(data);
         emit(SuccessfulGetData(data: data));
       });

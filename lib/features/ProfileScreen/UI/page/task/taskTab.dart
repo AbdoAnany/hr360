@@ -46,7 +46,7 @@ class _TaskListState extends State<TaskList> {
         // bloc: getIt<TaskCubit>(),
         builder: (context, state) => Column(
               children: [
-                const EmployeeStats(),
+                 EmployeeStats(),
                 Expanded(
                     child: state is TaskLoaded || state is TaskLoading
                         ? ListView.builder(

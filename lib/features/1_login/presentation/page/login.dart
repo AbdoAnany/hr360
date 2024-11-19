@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _loadRememberMe() async {
     var kkk = await getIt<TLocalStorage>().getKeys();
-    print(kkk);
+
     try {
       rememberMe = getIt<TLocalStorage>().readData(
         AppKeys.rememberMe,

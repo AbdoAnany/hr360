@@ -57,7 +57,6 @@ class TDioHelper {
     try {
       responseHandler(token: token, store: store);
       final response = await _dio.get(endpoint);
-      print(response.data);
       return _handleResponse(response);
     } catch (error) {
 

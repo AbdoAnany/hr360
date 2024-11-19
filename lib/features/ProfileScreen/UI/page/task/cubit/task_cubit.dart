@@ -89,8 +89,19 @@ class TaskCubit extends Cubit<TaskState> {
       emit(TaskError('Failed to get tasks: $e'));
     }
   }
-  updateTaskFilter(List<TaskModel> tasks) {
-    tasksFilter = tasks;
+  updateTaskFilter(states) {
+    List<TaskModel> taskList =[];
+
+    taskList= tasks
+        .where((e) => e.status == states)
+        .toList();
+    print('status: ${states}');
+
+    if(states=='Total Tasks') {
+      taskList=tasks;
+    }
+    tasksFilter = taskList;
+    emit(TaskLoading());
     emit(TaskLoaded(tasksFilter));
   }
 

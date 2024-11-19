@@ -330,19 +330,10 @@ class EmployeeHeader extends StatelessWidget {
 }
 
 class EmployeeStats extends StatelessWidget {
-  const EmployeeStats({super.key});
+   EmployeeStats({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TaskCubit, TaskState>(
-  builder: (context, state) {
-
-    // List<TaskModel> _taskTemp = getIt<TaskCubit>().tasks;
-
-
-    // if(state is TaskLoaded){
-    //   _taskTemp = state.tasks;
-    // }
     return Row(
       children: [
         StatCard(
@@ -399,15 +390,11 @@ class EmployeeStats extends StatelessWidget {
         ),
       ],
     );
-  },
-);
   }
 }
 
 class StatCard extends StatelessWidget {
-  // final String? title;
-  // final String? value;
-  // final Color color;
+
   final AttendanceState? state;
   const StatCard({
     super.key,
@@ -418,25 +405,19 @@ class StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-       // print('status: ${state?.status}');
-        List<TaskModel> taskList =[];
-        if(state?.status=='Total Tasks') {
-          taskList=getIt<TaskCubit>().tasks;}else{
-          taskList= getIt<TaskCubit>()
-            .tasks
-            .where((e) => e.status == state?.status)
-            .toList();
-        }
-        getIt<TaskCubit>().updateTaskFilter(taskList  );
+
+
+
+        getIt<TaskCubit>().updateTaskFilter(state?.status);
 
       },
       child: Container(
         margin: const EdgeInsets.only(right: 8, bottom: 12, top: 12),
         decoration:
-            //state?.status!="Total Tasks"?null:
-            BoxDecoration(
-                color: state?.color?.withOpacity(.07),
-                borderRadius: BorderRadius.circular(8)),
+        //state?.status!="Total Tasks"?null:
+        BoxDecoration(
+            color: state?.color?.withOpacity(.07),
+            borderRadius: BorderRadius.circular(8)),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
           children: [
@@ -532,7 +513,7 @@ class AttendanceReportPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(1.sw);
+
     return Padding(
         padding: const EdgeInsets.all(16.0),
         child: 1.sw < 1000
