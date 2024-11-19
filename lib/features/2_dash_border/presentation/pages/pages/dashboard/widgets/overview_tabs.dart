@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
 import '../../../shared/widgets/tabs/tab_with_growth.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'customers_overview.dart';
 import 'revenue_line_chart.dart';
 
@@ -39,7 +40,7 @@ class _OverviewTabsState extends State<OverviewTabs>
       children: [
         Container(
           decoration: const BoxDecoration(
-            color: AppColors.bgLight,
+            color: AppColor.bgLight,
             borderRadius:
                 BorderRadius.all(Radius.circular(AppDefaults.borderRadius)),
           ),
@@ -52,7 +53,7 @@ class _OverviewTabsState extends State<OverviewTabs>
               borderRadius: BorderRadius.all(
                 Radius.circular(AppDefaults.borderRadius),
               ),
-              color: AppColors.bgSecondayLight,
+              color: AppColor.bgSecondayLight,
             ),
             tabs: const [
               TabWithGrowth(
@@ -63,7 +64,7 @@ class _OverviewTabsState extends State<OverviewTabs>
               TabWithGrowth(
                 title: "Revenue",
                 iconSrc: "assets/icons/activity_light.svg",
-                iconBgColor: AppColors.secondaryLavender,
+                iconBgColor: AppColor.secondaryLavender,
                 amount: "\$128K",
                 growthPercentage: "2.7%",
                 isPositiveGrowth: false,

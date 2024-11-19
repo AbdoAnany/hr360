@@ -1,6 +1,7 @@
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -32,7 +33,7 @@ class TabWithIcon extends StatelessWidget {
             height: 24,
             width: 24,
             colorFilter: ColorFilter.mode(
-              isSelected ? AppColors.iconBlack : AppColors.textLight,
+              isSelected ? AppColor.iconBlack : AppColor.textLight,
               BlendMode.srcIn,
             ),
           ),
@@ -40,7 +41,7 @@ class TabWithIcon extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: isSelected ? AppColors.iconBlack : null,
+                color: isSelected ? AppColor.iconBlack : null,
                 fontWeight: FontWeight.w600),
           ),
         ],

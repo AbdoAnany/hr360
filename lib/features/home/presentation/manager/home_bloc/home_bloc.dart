@@ -5,7 +5,6 @@ import 'package:hr360/features/home/date/repositries/repo_impl.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 
 import '../../../../../core/utils/error/failure.dart';
-import '../../widgets/Mainbar.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -17,55 +16,55 @@ class HomeCubit extends Cubit<HomeState> {
 
   static HomeCubit get(context) => BlocProvider.of(context);
   final HomeRepoImpl _homeRepo = HomeRepoImpl();
-  PageType currentPage = PageType.dashboard;
+  // PageType currentPage = PageType.dashboard;
   void update() {
 
     emit( ChangeState());
   }
-  void changePage(PageType newPage,{arguments}) {
+  void changePage(var newPage,{arguments}) {
 
-    MainBarControl.currentPage = newPage;
-    currentPage = newPage;
+    // MainBarControl.currentPage = newPage;
+    // currentPage = newPage;
 
-    _navigateToPage(newPage,arguments: arguments);
+    // _navigateToPage(newPage,arguments: arguments);
 
-    emit(const ChangePageState());
+    // emit(const ChangePageState());
     emit(const StartGetData());
   }
 
 
-  void _navigateToPage(PageType pageType,{arguments}) {
-    String routeName;
-    switch (pageType) {
-      case PageType.dashboard:
-        routeName = '/dashboard';
-        break;
-      case PageType.employees:
-        routeName = '/employees';
-        break;
-        case PageType.chat:
-        routeName = '/chat';
-        break;
-        case PageType.category:
-        routeName = '/category';
-        break;
-        case PageType.report:
-        routeName = '/report';
-        break;
-      case PageType.profile:
-        routeName = '/profile';
-        break;
-      case PageType.setting:
-        routeName = '/setting';
-        break;
-      default:
-        routeName = '/default';
-        break;
-    }
-    print(routeName);
-    print(arguments);
-    navigatorKey.currentState?.pushNamed(routeName,arguments:arguments);
-  }
+  // void _navigateToPage(PageType pageType,{arguments}) {
+  //   String routeName;
+  //   switch (pageType) {
+  //     case PageType.dashboard:
+  //       routeName = '/dashboard';
+  //       break;
+  //     case PageType.employees:
+  //       routeName = '/employees';
+  //       break;
+  //       case PageType.chat:
+  //       routeName = '/chat';
+  //       break;
+  //       case PageType.category:
+  //       routeName = '/category';
+  //       break;
+  //       case PageType.report:
+  //       routeName = '/report';
+  //       break;
+  //     case PageType.profile:
+  //       routeName = '/profile';
+  //       break;
+  //     case PageType.setting:
+  //       routeName = '/setting';
+  //       break;
+  //     default:
+  //       routeName = '/default';
+  //       break;
+  //   }
+  //   print(routeName);
+  //   print(arguments);
+  //   navigatorKey.currentState?.pushNamed(routeName,arguments:arguments);
+  // }
   Future getDataFromServer() async {
     var dateList;
     var val = await _homeRepo.getAllUserDetails();

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/features/1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 import 'package:hr360/features/1_login/presentation/page/signup.dart';
-import 'package:hr360/features/home/presentation/pages/Home.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/utils/constants/keys.dart';
@@ -11,6 +10,7 @@ import '../../../../core/utils/constants/style.dart';
 import '../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../di.dart';
+import '../../../main_screen/main_screen.dart';
 
 
 
@@ -53,10 +53,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _loadRememberMe() async {
-    var kkk = await sl<TLocalStorage>().getKeys();
+    var kkk = await getIt<TLocalStorage>().getKeys();
     print(kkk);
     try {
-      rememberMe = sl<TLocalStorage>().readData(
+      rememberMe = getIt<TLocalStorage>().readData(
         AppKeys.rememberMe,
       );
     } catch (e) {
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // } catch (e) {
       //   print(e);
       // }
-      THelperFunctions.navigateAndReplaceScreen(const Home());
+      THelperFunctions.navigateAndReplaceScreen(const MainScreen());
     }
   }
 
@@ -82,11 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _setRememberMe(bool? value) async {
-    await sl<TLocalStorage>().saveData<bool?>(AppKeys.rememberMe, value).then((e) {
+    await getIt<TLocalStorage>().saveData<bool?>(AppKeys.rememberMe, value).then((e) {
       rememberMe = value ?? false;
       setState(() {});
     });
-    var kkk = await sl<TLocalStorage>().getKeys();
+    var kkk = await getIt<TLocalStorage>().getKeys();
     print(kkk);
   }
 

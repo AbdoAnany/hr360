@@ -1,5 +1,6 @@
 
 import 'package:hr360/features/2_dash_border/core_import.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 
 
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class Comments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius: BorderRadius.all(
           Radius.circular(AppDefaults.borderRadius),
         ),
@@ -27,7 +28,7 @@ class Comments extends StatelessWidget {
             ),
             child: SectionTitle(
               title: "Comments",
-              color: AppColors.secondaryPaleYellow,
+              color: AppColor.secondaryPaleYellow,
             ),
           ),
           gapH16,

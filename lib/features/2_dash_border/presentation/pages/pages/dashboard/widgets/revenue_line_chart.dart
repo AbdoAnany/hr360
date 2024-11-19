@@ -1,7 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 
 class RevenueLineChart extends StatelessWidget {
   const RevenueLineChart({
@@ -31,7 +32,7 @@ class RevenueLineChart extends StatelessWidget {
   LineTouchData get lineTouchData1 => LineTouchData(
         handleBuiltInTouches: true,
         touchTooltipData: LineTouchTooltipData(
-          getTooltipColor: (touchedSpot) => AppColors.titleLight,
+          getTooltipColor: (touchedSpot) => AppColor.titleLight,
         ),
       );
 
@@ -147,7 +148,7 @@ class RevenueLineChart extends StatelessWidget {
   FlBorderData get borderData => FlBorderData(
         show: true,
         border: const Border(
-          bottom: BorderSide(color: AppColors.highlightLight, width: 1),
+          bottom: BorderSide(color: AppColor.highlightLight, width: 1),
           left: BorderSide.none,
           right: BorderSide.none,
           top: BorderSide.none,
@@ -156,7 +157,7 @@ class RevenueLineChart extends StatelessWidget {
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
         isCurved: true,
-        color: AppColors.primary,
+        color: AppColor.primary,
         barWidth: 4,
         isStrokeCapRound: true,
         dotData: const FlDotData(show: false),

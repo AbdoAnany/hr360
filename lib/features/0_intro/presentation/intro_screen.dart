@@ -20,7 +20,7 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   void initState() {
     onBoardingShow =
-        sl<SharedPreferences>().getBool(IntroScreen.onBoarding) ?? true;
+        getIt<SharedPreferences>().getBool(IntroScreen.onBoarding) ?? true;
     super.initState();
   }
 

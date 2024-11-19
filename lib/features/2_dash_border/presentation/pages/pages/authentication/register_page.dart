@@ -1,7 +1,7 @@
 import '../../responsive.dart';
 import '../../shared/constants/config.dart';
 import '../../shared/constants/defaults.dart';
-import '../../theme/app_colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +23,7 @@ class RegisterPage extends StatelessWidget {
               Expanded(
                 flex: Responsive.isTablet(context) ? 2 : 1,
                 child: Container(
-                  color: AppColors.bgLight,
+                  color: AppColor.bgLight,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -75,12 +75,12 @@ class RegisterPage extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
-                                  ?.copyWith(color: AppColors.textGrey),
+                                  ?.copyWith(color: AppColor.textGrey),
                             ),
                             TextButton(
                               style: TextButton.styleFrom(
                                 textStyle: const TextStyle(
-                                  color: AppColors.titleLight,
+                                  color: AppColor.titleLight,
                                 ),
                               ),
                               onPressed: () => context.go('/sign-in'),

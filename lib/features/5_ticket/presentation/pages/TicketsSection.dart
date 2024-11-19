@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'TicketCard.dart';
-import 'model/TicketCardModel.dart';
+import '../../../ticket/TicketCard.dart';
+import '../../../ticket/model/TicketCardModel.dart';
 
 List<TicketCardModel> generateTicketList({Statuses}) {
 List<String> statuses = ['Unassigned', 'Assigned to Me', 'Solved'];
@@ -55,81 +55,74 @@ List<TicketCardModel> ticketList = List.generate(30, (index) {
 }
 
 class TicketsSection extends StatelessWidget {
+  const TicketsSection({super.key});
+
  @override
  Widget build(BuildContext context) {
-  return Padding(
-   padding: const EdgeInsets.all(16.0),
-   child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-     Text(
-      'Tickets',
-      style: TextStyle(
-       fontSize: 22,
-       fontWeight: FontWeight.bold,
-      ),
-     ),
-     SizedBox(height: 20),
-     Expanded(child: _tabSection(context)),
-
-    ],
-   ),
+  return const Padding(
+   padding: EdgeInsets.all(16.0),
+   child:TicketBody()
   );
  }
 
- Widget _tabSection(BuildContext context) {
-  return DefaultTabController(
-   length: 3,
-   child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-     SizedBox(     height: 50.0,
-      width: 450,
-      child: TabBar(
-       // labelColor: Colors.blue,
-       // unselectedLabelColor: Colors.grey,
-       // indicatorColor: Colors.blue,
-       indicatorSize: TabBarIndicatorSize.tab,
-       indicatorWeight: 3,
-       tabs: [
-        Tab(text: "Unassigned"),
-        Tab(text: "Assigned to Me"),
-        Tab(text: "Solved"),
-       ],
-      ),
-     ),        SizedBox(height: 20),
 
-     Expanded(
-      child: SizedBox(width: 1000,
-       child: TabBarView(
-        children: <Widget>[
-         ListView.builder(
-          itemCount: generateTicketList( Statuses: 'Unassigned').length,
-          itemBuilder: (context, index) {
-           final ticket = generateTicketList(Statuses: 'Unassigned')[index];
-           return TicketCard(ticketCardModel: ticket,);
-          },
-         ),
-         ListView.builder(
-          itemCount: generateTicketList( Statuses: 'Assigned to Me').length,
-          itemBuilder: (context, index) {
-           final ticket = generateTicketList(Statuses: 'Assigned to Me')[index];
-           return TicketCard(ticketCardModel: ticket,);
-          },
-         ),
-         ListView.builder(
-          itemCount: generateTicketList( Statuses: 'Solved').length,
-          itemBuilder: (context, index) {
-           final ticket = generateTicketList(Statuses: 'Solved')[index];
-           return TicketCard(ticketCardModel: ticket,);
-          },
-         ),
-        ],
-       ),
-      ),
-     ),
-    ],
-   ),
-  );
- }
 }
+
+class TicketBody extends StatelessWidget {
+  const TicketBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(     height: 50.0,
+            width: 450,
+            child: TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorWeight: 3,
+              tabs: [
+                Tab(text: "Unassigned"),
+                Tab(text: "Assigned to Me"),
+                Tab(text: "Solved"),
+              ],
+            ),
+          ),       SizedBox(height: 20),
+
+          Expanded(
+            child: SizedBox(width: 1000,
+              child: TabBarView(
+                children: <Widget>[
+                  ListView.builder(
+                    itemCount: generateTicketList( Statuses: 'Unassigned').length,
+                    itemBuilder: (context, index) {
+                      final ticket = generateTicketList(Statuses: 'Unassigned')[index];
+                      return TicketCard(ticketCardModel: ticket,);
+                    },
+                  ),
+                  ListView.builder(
+                    itemCount: generateTicketList( Statuses: 'Assigned to Me').length,
+                    itemBuilder: (context, index) {
+                      final ticket = generateTicketList(Statuses: 'Assigned to Me')[index];
+                      return TicketCard(ticketCardModel: ticket,);
+                    },
+                  ),
+                  ListView.builder(
+                    itemCount: generateTicketList( Statuses: 'Solved').length,
+                    itemBuilder: (context, index) {
+                      final ticket = generateTicketList(Statuses: 'Solved')[index];
+                      return TicketCard(ticketCardModel: ticket,);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

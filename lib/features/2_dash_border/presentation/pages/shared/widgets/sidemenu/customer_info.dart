@@ -1,7 +1,8 @@
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
 import '../../../shared/widgets/avatar/customer_rounded_avatar.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 
 class CustomerInfo extends StatelessWidget {
@@ -19,7 +20,7 @@ class CustomerInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDefaults.padding * 0.75),
       decoration: BoxDecoration(
-        color: AppColors.bgLight,
+        color: AppColor.bgLight,
         borderRadius: BorderRadius.circular(
           AppDefaults.borderRadius * 1.5,
         ),
@@ -61,7 +62,7 @@ class CustomerInfo extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: AppColors.textLight,
+              color: AppColor.textLight,
             ),
           ),
         ],

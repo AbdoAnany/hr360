@@ -2,7 +2,8 @@ import '../../../shared/constants/defaults.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 
 class MenuTile extends StatelessWidget {
   const MenuTile({
@@ -14,7 +15,7 @@ class MenuTile extends StatelessWidget {
     this.isActive = false,
     this.isSubmenu = false,
     this.count,
-    this.countBg = AppColors.secondaryMintGreen,
+    this.countBg = AppColor.secondaryMintGreen,
   });
 
   final String title;
@@ -32,12 +33,12 @@ class MenuTile extends StatelessWidget {
           right: isSubmenu ? AppDefaults.padding : 0),
       child: Container(
         decoration: BoxDecoration(
-          color: isActive ? AppColors.highlightLight : null,
+          color: isActive ? AppColor.highlightLight : null,
           borderRadius: BorderRadius.circular(AppDefaults.borderRadius),
           boxShadow: [
             if (isActive)
               BoxShadow(
-                color: AppColors.textGrey.withOpacity(0.3),
+                color: AppColor.textGrey.withOpacity(0.3),
                 spreadRadius: 0.5,
                 blurRadius: 1,
                 offset: const Offset(0, 1),
@@ -67,7 +68,7 @@ class MenuTile extends StatelessWidget {
             title,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: isActive ? AppColors.titleLight : AppColors.textLight,
+              color: isActive ? AppColor.titleLight : AppColor.textLight,
             ),
           ),
           trailing: count != null

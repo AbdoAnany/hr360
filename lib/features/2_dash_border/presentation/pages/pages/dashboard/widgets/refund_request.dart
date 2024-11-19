@@ -16,7 +16,7 @@ class RefundRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius: BorderRadius.all(
           Radius.circular(AppDefaults.borderRadius),
         ),
@@ -31,7 +31,7 @@ class RefundRequest extends StatelessWidget {
             ),
             child: SectionTitle(
               title: "Refund requests",
-              color: AppColors.secondaryPeach,
+              color: AppColor.secondaryPeach,
             ),
           ),
           gapH24,
@@ -44,13 +44,13 @@ class RefundRequest extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 24,
-                  backgroundColor: AppColors.secondaryMistyrose,
+                  backgroundColor: AppColor.secondaryMistyrose,
                   child: SvgPicture.asset(
                     'assets/icons/basket_light.svg',
                     height: 24,
                     width: 24,
                     colorFilter: const ColorFilter.mode(
-                      AppColors.error,
+                      AppColor.error,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -62,7 +62,7 @@ class RefundRequest extends StatelessWidget {
                       text: "You have ",
                       style: const TextStyle(
                         fontSize: 15,
-                        color: AppColors.textGrey,
+                        color: AppColor.textGrey,
                         fontWeight: FontWeight.w500,
                       ),
                       children: [
@@ -78,7 +78,7 @@ class RefundRequest extends StatelessWidget {
                           text: " to action. This includes ",
                           style: TextStyle(
                             fontSize: 15,
-                            color: AppColors.textGrey,
+                            color: AppColor.textGrey,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -94,7 +94,7 @@ class RefundRequest extends StatelessWidget {
                           text: " 👀",
                           style: TextStyle(
                             fontSize: 15,
-                            color: AppColors.textGrey,
+                            color: AppColor.textGrey,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

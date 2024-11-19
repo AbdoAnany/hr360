@@ -1,7 +1,8 @@
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -79,7 +80,7 @@ class _CommentItemState extends State<CommentItem> {
                                     text: "${widget.name} ",
                                     style: TextStyle(
                                       color: isProfileHovered
-                                          ? AppColors.primary
+                                          ? AppColor.primary
                                           : Theme.of(context)
                                               .textTheme
                                               .titleLarge!
@@ -92,8 +93,8 @@ class _CommentItemState extends State<CommentItem> {
                                         style: TextStyle(
                                           fontSize: 15,
                                           color: isProfileHovered
-                                              ? AppColors.primary
-                                              : AppColors.textGrey,
+                                              ? AppColor.primary
+                                              : AppColor.textGrey,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -114,7 +115,7 @@ class _CommentItemState extends State<CommentItem> {
                                     text: "On ",
                                     style: const TextStyle(
                                       fontSize: 15,
-                                      color: AppColors.textGrey,
+                                      color: AppColor.textGrey,
                                       fontWeight: FontWeight.w500,
                                     ),
                                     children: [
@@ -122,7 +123,7 @@ class _CommentItemState extends State<CommentItem> {
                                         text: widget.product,
                                         style: TextStyle(
                                           color: isProductHovered
-                                              ? AppColors.primary
+                                              ? AppColor.primary
                                               : Theme.of(context)
                                                   .textTheme
                                                   .titleLarge!
@@ -141,7 +142,7 @@ class _CommentItemState extends State<CommentItem> {
                         Text(
                           widget.time,
                           style: const TextStyle(
-                            color: AppColors.textGrey,
+                            color: AppColor.textGrey,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -168,7 +169,7 @@ class _CommentItemState extends State<CommentItem> {
                             height: 20,
                             width: 20,
                             colorFilter: const ColorFilter.mode(
-                              AppColors.textGrey,
+                              AppColor.textGrey,
                               BlendMode.srcIn,
                             ),
                           ),
@@ -182,7 +183,7 @@ class _CommentItemState extends State<CommentItem> {
                             height: 20,
                             width: 20,
                             colorFilter: const ColorFilter.mode(
-                              AppColors.textGrey,
+                              AppColor.textGrey,
                               BlendMode.srcIn,
                             ),
                           ),
@@ -196,7 +197,7 @@ class _CommentItemState extends State<CommentItem> {
                             height: 20,
                             width: 20,
                             colorFilter: const ColorFilter.mode(
-                              AppColors.textGrey,
+                              AppColor.textGrey,
                               BlendMode.srcIn,
                             ),
                           ),

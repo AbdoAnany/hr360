@@ -1,6 +1,7 @@
 import '../../../shared/constants/extensions.dart';
 import '../../../shared/constants/ghaps.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -66,7 +67,7 @@ class SignupForm extends StatelessWidget {
                     width: 17,
                     height: 11,
                     fit: BoxFit.none,
-                    colorFilter: AppColors.success.toColorFilter,
+                    colorFilter: AppColor.success.toColorFilter,
                   ),
                   hintText: 'Your email',
                 ),

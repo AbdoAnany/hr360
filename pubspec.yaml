@@ -71,6 +71,7 @@ dependencies:
   syncfusion_flutter_core: ^26.1.41
   cloud_firestore: ^5.2.1
   firebase_core:
+  animations: ^2.0.11
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -15,7 +15,7 @@ class TipsItem extends StatelessWidget {
     required this.time,
     required this.iconSrc,
     this.tagStatus = 'New',
-    this.tagColor = AppColors.secondaryLavender,
+    this.tagColor = AppColor.secondaryLavender,
   });
 
   final double height, width;
@@ -42,7 +42,7 @@ class TipsItem extends StatelessWidget {
               height: 24,
               width: 24,
               colorFilter: const ColorFilter.mode(
-                AppColors.titleLight,
+                AppColor.titleLight,
                 BlendMode.srcIn,
               ),
             ),
@@ -82,7 +82,7 @@ class TipsItem extends StatelessWidget {
                         AppDefaults.borderRadius * 0.5,
                       ),
                       border: Border.all(
-                        color: AppColors.highlightLight,
+                        color: AppColor.highlightLight,
                       ),
                     ),
                     child: Row(

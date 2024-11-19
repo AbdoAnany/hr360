@@ -1,15 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:hr360/core/utils/constants/style.dart';
 
 import '../responsive.dart';
 import '../shared/constants/defaults.dart';
-import '../shared/widgets/sidemenu/sidebar.dart';
 import '../shared/widgets/sidemenu/tab_sidebar.dart';
-import 'package:flutter/material.dart';
-
-import '../shared/widgets/header.dart';
 import 'dashboard/dashboard_page.dart';
 
-final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+// final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
 class EntryPoint extends StatelessWidget {
   const EntryPoint({super.key});
@@ -17,8 +14,8 @@ class EntryPoint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _drawerKey,
-      drawer: Responsive.isMobile(context) ? const Sidebar() : null,
+      // key: _drawerKey,
+      // drawer: Responsive.isMobile(context) ?  Sidebar() : null,
       body:
       Container(
         decoration: AppStyle.decorationPage,

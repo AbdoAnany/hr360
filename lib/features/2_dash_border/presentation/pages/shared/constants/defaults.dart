@@ -1,5 +1,6 @@
-import '../../theme/app_colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 
 class AppDefaults {
   static const double padding = 16.0;
@@ -11,5 +12,5 @@ class AppDefaults {
       ),
       borderSide: BorderSide.none);
   static OutlineInputBorder focusedOutlineInputBorder = outlineInputBorder
-      .copyWith(borderSide: BorderSide(width: 2, color: AppColors.primary));
+      .copyWith(borderSide: BorderSide(width: 2, color: AppColor.primary));
 }

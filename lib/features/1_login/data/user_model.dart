@@ -23,8 +23,8 @@ class UserLoginModel {
 // "phone":"1234567890","address":"123 Admin St, Admin City, Admin State",
 // "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
 class UserModel {
-  late int id;
-  late int userId;
+  late int? id;
+  late int? userId;
   String? firsName;
   String? lastName;
   String? email;
@@ -38,8 +38,8 @@ class UserModel {
   String? birthDate;
 
   UserModel(
-      {required this.id,
-      required this.userId,
+      { this.id,
+       this.userId,
       this.firsName = '',
       this.lastName = '',
       this.email,

@@ -72,8 +72,8 @@ class TSizes {
   static  double productItemHeight = 160.0.h;
 
   // Input field
-  static  double inputFieldRadius = 12.0.sp;
-  static  double spaceBtwInputFields = 16.0.w;
+  static  double inputFieldRadius = 8.0;
+  static  double spaceBtwInputFields = 8.0.w;
 
   // Card sizes
   static  double cardRadiusLg = 16.0.w;

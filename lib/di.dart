@@ -16,7 +16,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'features/3_academics/data/repositories/course_repository_impl.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/manager/course_bloc.dart';
-import 'features/3_academics/presentation/state_management/course_provider.dart';
 import 'features/4_user/data/repositories/FirebaseUserRepository.dart';
 import 'features/4_user/presentation/manager/bloc/user_bloc.dart';
 import 'firebase_options.dart';
@@ -30,7 +29,7 @@ import 'firebase_options.dart';
 // import 'features/auth/presentation/manager/register_bloc/register_bloc.dart';
 // import 'firebase_options.dart';
 
-final sl = GetIt.instance;
+final getIt = GetIt.instance;
 
 Future<void> initAppModule() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,21 +42,21 @@ print(isInit);
   await TDioHelper.init();
   TLocalStorage localStorage=TLocalStorage();
   final prefs = await SharedPreferences.getInstance();
-  sl.registerLazySingleton<SharedPreferences>(() => prefs);
-  sl.registerLazySingleton<TLocalStorage>(() =>localStorage);
-  sl.registerLazySingleton<TTextTheme>(() => TTextTheme());
+  getIt.registerLazySingleton<SharedPreferences>(() => prefs);
+  getIt.registerLazySingleton<TLocalStorage>(() =>localStorage);
+  getIt.registerLazySingleton<TTextTheme>(() => TTextTheme());
  await authSetup();
   final firestore = FirebaseFirestore.instance;
   final courseRepository = CourseRepositoryImpl(firestore);
   final getCourses = GetCourses(courseRepository);
 
-  sl.registerLazySingleton<GetCourses>(() => getCourses);
-  sl.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));
+  getIt.registerLazySingleton<GetCourses>(() => getCourses);
+  getIt.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));
 
 
-  sl.registerFactory<CourseBloc>(() => CourseBloc( sl()));
+  getIt.registerFactory<CourseBloc>(() => CourseBloc( getIt()));
 
-  sl.registerFactory<UserBloc>(() => UserBloc( sl()));
+  getIt.registerFactory<UserBloc>(() => UserBloc( getIt()));
   // sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
 
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));

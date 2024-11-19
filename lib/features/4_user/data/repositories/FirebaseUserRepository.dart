@@ -9,6 +9,7 @@ class FirebaseUserRepository implements UserRepository {
 
   @override
   Future<void> createUser(UserModel user) async {
+
     await usersRef.doc(user.userId.toString()).set(user.toJson());
   }
 
@@ -40,7 +41,6 @@ class FirebaseUserRepository implements UserRepository {
         .toList();
   }
 
-  @override
   Future<void> assignRole(int userId, String role) async {
     DocumentSnapshot doc = await usersRef.doc(userId.toString()).get();
     if (doc.exists) {
@@ -62,5 +62,15 @@ class FirebaseUserRepository implements UserRepository {
         await usersRef.doc(userId.toString()).update({'roles': roles});
       }
     }
+  }
+
+  @override
+  Future<void> addUser(UserModel user) async {
+  final res=  await usersRef.doc(user.email.toString()).set(user.toJson());
+ print("addUser res >>   }");
+    // print(snapshot.docs);
+    //  snapshot.docs
+    //     .map((doc) => UserModel.fromJson(doc.data() as Map<String, dynamic>))
+    //     .toList();
   }
 }

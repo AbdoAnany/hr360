@@ -25,6 +25,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserError(e.toString()));
       }
     });
+    on<AddUser>((event, emit) async {
+      if (_isClosed) return; // Avoid emitting if Bloc is closed
+      try {
+        emit(UserLoading());
+        await userRepository.addUser(event.user);
+        emit(UserLoaded(event.user));
+      } catch (e) {
+        emit(UserError(e.toString()));
+      }
+    });
 
     // Handle GetAllUsers event
     on<GetAllUsers>((event, emit) async {

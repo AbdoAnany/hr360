@@ -2,7 +2,7 @@ import '../../shared/constants/config.dart';
 import '../../shared/constants/defaults.dart';
 import '../../shared/constants/extensions.dart';
 import '../../shared/constants/ghaps.dart';
-import '../../theme/app_colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -80,7 +80,7 @@ class SignInPage extends StatelessWidget {
                           width: 17,
                           height: 11,
                           fit: BoxFit.none,
-                          colorFilter: AppColors.success.toColorFilter,
+                          colorFilter: AppColor.success.toColorFilter,
                         ),
                         hintText: 'Your email',
                       ),
@@ -128,12 +128,12 @@ class SignInPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(color: AppColors.textGrey),
+                              ?.copyWith(color: AppColor.textGrey),
                         ),
                         TextButton(
                           style: TextButton.styleFrom(
                             textStyle: const TextStyle(
-                              color: AppColors.titleLight,
+                              color: AppColor.titleLight,
                             ),
                           ),
                           onPressed: () => context.go('/register'),

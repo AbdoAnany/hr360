@@ -8,7 +8,7 @@ import '../../../../../core/utils/constants/sizes.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/theme/widget_themes/text_theme.dart';
 import '../../../../../di.dart';
-import '../../../home/presentation/pages/Home.dart';
+import '../../../main_screen/main_screen.dart';
 import '../intro_screen.dart';
 import '../widget/OnBoardingItems.dart';
 
@@ -104,10 +104,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       height: TSizes.buttonHeight,
       child: TextButton(
           onPressed: () async {
-            sl<SharedPreferences>().setBool(IntroScreen.onBoarding, false);
+            getIt<SharedPreferences>().setBool(IntroScreen.onBoarding, false);
 
             if (!mounted) return;
-            THelperFunctions.navigateAndReplaceScreen(Home());
+            THelperFunctions.navigateAndReplaceScreen(const MainScreen());
             //   THelperFunctions.navigateAndReplaceScreen( LoginPage());
           },
           child:

@@ -4,7 +4,7 @@ import '../../../../../core/utils/animation/Animation.dart';
 import '../../../../../core/utils/constants/colors.dart';
 import '../../../../../core/utils/constants/sizes.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
-import '../../../home/presentation/pages/Home.dart';
+import '../../../main_screen/main_screen.dart';
 // import '../../../../auth/helper/AppRoutes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen>
     AnimationHelper.fadeInOut(this);
 
     Future.delayed(const Duration(seconds: 3),
-        () => THelperFunctions.navigateAndReplaceScreen(Home()));
+        () => THelperFunctions.navigateAndReplaceScreen(const MainScreen()));
   }
 
   @override
