@@ -18,6 +18,9 @@ import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/manager/course_bloc.dart';
 import 'features/4_user/data/repositories/FirebaseUserRepository.dart';
 import 'features/4_user/presentation/manager/bloc/user_bloc.dart';
+import 'features/ProfileScreen/UI/page/task/cubit/task_cubit.dart';
+import 'features/ProfileScreen/data/repositories/FirebaseTaskRepository.dart';
+import 'features/ProfileScreen/data/service/FirebaseTaskService.dart';
 import 'firebase_options.dart';
 // import 'features/auth/data/remote/data_sources/users_remote_data_source.dart';
 // import 'features/auth/data/repositories/repo_impl.dart';
@@ -58,13 +61,19 @@ print(isInit);
 
   getIt.registerFactory<UserBloc>(() => UserBloc( getIt()));
   // sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
-
+  taskSetUP();
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));
 
 }
 systemChrome() => SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.grey));
 
+
+taskSetUP(){
+  getIt.registerLazySingleton<FirebaseTaskService>(() => FirebaseTaskService());
+  getIt.registerLazySingleton<FirebaseTaskRepository>(() => FirebaseTaskRepository(getIt()));
+  getIt.registerFactory<TaskCubit>(() => TaskCubit(getIt()));
+}
 
 authSetup(){
   // sl.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);

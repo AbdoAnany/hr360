@@ -66,11 +66,26 @@ class FirebaseUserRepository implements UserRepository {
 
   @override
   Future<void> addUser(UserModel user) async {
-  final res=  await usersRef.doc(user.email.toString()).set(user.toJson());
- print("addUser res >>   }");
-    // print(snapshot.docs);
-    //  snapshot.docs
-    //     .map((doc) => UserModel.fromJson(doc.data() as Map<String, dynamic>))
-    //     .toList();
+    try {
+      // Reference to the user's document
+      final userRef = usersRef.doc(user.email);
+
+      // Check if the user document exists
+      final docSnapshot = await userRef.get();
+
+      if (docSnapshot.exists) {
+        // Update existing user document
+        await userRef.update(user.toJson());
+        print("User updated successfully: ${user.email}");
+      } else {
+        // Add a new user document
+        await userRef.set(user.toJson());
+        print("User added successfully: ${user.email}");
+      }
+    } catch (e) {
+      print("Error adding/updating user: $e");
+      // Optionally, handle the error (e.g., log or rethrow)
+    }
   }
+
 }

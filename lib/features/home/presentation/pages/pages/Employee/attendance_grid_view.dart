@@ -44,10 +44,23 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
       decoration: BoxDecoration(
           color: AppColor.white, borderRadius: BorderRadius.circular(12)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           MaterialButton(
+            padding: EdgeInsets.all(16),
             onPressed: () => showAddUserDialog(context),
-            child: const Text('Download'),
+            // child: const Text('Add USer'),
+            child: Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                const Icon(Icons.add),
+                SizedBox(width: 8,),
+                Text('Add USer'),
+              ],),
+            ),
           ),
           BlocBuilder<UserBloc, UserState>(builder: (context, state) {
             if (state is UserLoading) {
@@ -171,307 +184,6 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
           }),
         ],
       ),
-    );
-  }
-  void showAddUserDialog1(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final TextEditingController firstNameController = TextEditingController();
-    final TextEditingController lastNameController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
-    final TextEditingController addressController = TextEditingController();
-    final TextEditingController nationalIdController = TextEditingController();
-    final TextEditingController birthDateController = TextEditingController();
-    List<String> itemListState = ['active', 'inactive'];
-    List<String> itemListRole = [
-      'student',
-      'teacher',
-      'admin',
-      'parent',
-      'employee'
-    ];
-    List<String> itemListGender = ['male', 'female'];
-
-    // final TextEditingController rolesController = TextEditingController();
-
-    InputDecoration inputDecoration({String? labelText}) => InputDecoration(
-      hintText: labelText ?? '',
-      fillColor: AppColor.white,
-      labelStyle: TextStyle(color: AppColor.darkerGrey, fontSize: 14),
-      hintStyle: TextStyle(color: AppColor.darkGrey, fontSize: 14),
-      filled: true,
-      border: OutlineInputBorder(
-          borderSide: BorderSide(
-              color: AppColor.borderPrimary.withOpacity(.2), width: .5)),
-      enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-              color: AppColor.borderPrimary.withOpacity(.2), width: .5)),
-      focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColor.borderPrimary, width: .5)),
-      contentPadding:
-      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    );
-    String gender = 'male'; // Default value
-    String state = 'active'; // Default value
-    String role = 'student'; // Default value
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColor.blueWhite,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          content: SizedBox(
-            width: 600,
-            height: 450,
-            child: Form(
-              key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 32,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Row(
-                      children: [
-                        // First Name Field
-                        Expanded(
-                          child: TextFormField(
-                            controller: firstNameController,
-                            textInputAction: TextInputAction.next,
-                            decoration: inputDecoration(labelText: 'first name'),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'please enter first name';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Expanded(
-                          child: TextFormField(
-                            controller: lastNameController,
-                            textInputAction: TextInputAction.next,
-                            decoration: inputDecoration(labelText: 'last name'),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'please enter last name';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  // Last Name Field
-
-                  // Email Field
-                  TextFormField(
-                    controller: emailController,
-                    textInputAction: TextInputAction.next,
-                    decoration: inputDecoration(labelText: 'email'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'please enter email';
-                      }
-                      return null;
-                    },
-                  ),
-                  // Phone Field
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TextFormField(
-                      controller: phoneController,
-                      textInputAction: TextInputAction.next,
-                      decoration: inputDecoration(labelText: 'phone'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'please enter phone';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  // Address Field
-                  TextFormField(
-                    controller: addressController,
-                    textInputAction: TextInputAction.next,
-                    decoration: inputDecoration(labelText: 'address'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'please enter address';
-                      }
-                      return null;
-                    },
-                  ),
-                  // National ID Field
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TextFormField(
-                      controller: nationalIdController,
-                      textInputAction: TextInputAction.next,
-                      decoration: inputDecoration(labelText: 'national id'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'please enter national id';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  TextFormField(
-                    controller: birthDateController,
-                    textInputAction: TextInputAction.next,
-                    readOnly:
-                    true, // Makes the field non-editable, so the date can only be picked
-                    decoration: inputDecoration(labelText: 'birth date'),
-                    onTap: () async {
-                      // Shows a date picker when the field is tapped
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1900), // Earliest date user can pick
-                        lastDate: DateTime.now(), // Latest date user can pick
-                      );
-
-                      if (pickedDate != null) {
-                        // Formats the picked date to a string and sets it to the controller
-                        birthDateController.text =
-                            DateFormat('yyyy-MM-dd').format(pickedDate);
-                      }
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter birth date';
-                      }
-                      return null;
-                    },
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: SizedBox(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: DropdownButtonFormField<String>(
-                                value: role,
-                                items: itemListRole.map((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(
-                                          color: AppColor
-                                              .darkerGrey), // Ensuring text color contrast
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  role = newValue!;
-                                },
-                                decoration: inputDecoration(labelText: 'Role'),
-                              ),
-                            ),
-
-                            // Gender Dropdown
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: DropdownButtonFormField<String>(
-                                  value: gender,
-                                  items: itemListGender.map((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(
-                                        value,
-                                        style: TextStyle(
-                                            color: AppColor
-                                                .darkerGrey), // Ensuring text color contrast
-                                      ),
-                                    );
-                                  }).toList(),
-                                  onChanged: (newValue) {
-                                    gender = newValue!;
-                                  },
-                                  decoration:
-                                  inputDecoration(labelText: 'Gender'),
-                                ),
-                              ),
-                            ),
-                            // State Dropdown
-
-                            Expanded(
-                              child: DropdownButtonFormField<String>(
-                                value: state,
-                                style: TextStyle(color: AppColor.darkerGrey),
-                                items: itemListState.map((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(
-                                          color: AppColor
-                                              .darkerGrey), // Ensuring text color contrast
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  state = newValue!;
-                                },
-                                decoration: inputDecoration(labelText: 'State'),
-                              ),
-                            )
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            MaterialButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            MaterialButton(
-              minWidth: 200,
-              child: const Text('Add User'),
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  // Triggering the   UserBloc to add the user
-                  context.read<UserBloc>().add(
-                    AddUser(
-                      UserModel(
-                        firsName: firstNameController.text,
-                        lastName: lastNameController.text,
-                        email: emailController.text,
-                        phone: phoneController.text,
-                        address: addressController.text,
-                        nationalId: nationalIdController.text,
-                        gender: gender,
-                        birthDate: birthDateController.text,
-                        roles: role,
-                        state: state,
-                      ),
-                    ),
-                  );
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
-          ],
-        );
-      },
     );
   }
   void showAddUserDialog(BuildContext context) {
@@ -762,7 +474,7 @@ class EmployeeDataSource extends DataGridSource {
       UserModel e = employees[i];
       return DataGridRow(cells: [
         DataGridCell<int>(columnName: 'Num', value: i + 1),
-        DataGridCell<int>(columnName: 'ID', value: e.userId??0),
+        DataGridCell<String>(columnName: 'ID', value: e.userId??"-"),
         DataGridCell<String>(
           columnName: 'Name',
           value: "${e.firsName} ${e.lastName}",

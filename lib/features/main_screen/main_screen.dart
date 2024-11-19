@@ -110,7 +110,6 @@ class _MainScreenState extends State<MainScreen> {
                     child: Consumer<ThemeProvider>(
                       builder: (context, themeProvider, _) {
 
-                        print('Initialize theme and screen utilities');
                         // // Initialize theme and screen utilities
                         themeProvider.getThemeMode();
                         TSizes.init(context: context);
