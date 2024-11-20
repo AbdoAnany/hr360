@@ -1,5 +1,6 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
+import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +14,16 @@ import 'package:hr360/core/utils/local_storage/storage_utility.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'core/utils/AppBlocObserver.dart';
 import 'features/3_academics/data/repositories/course_repository_impl.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/manager/course_bloc.dart';
 import 'features/4_user/data/repositories/FirebaseUserRepository.dart';
 import 'features/4_user/presentation/manager/bloc/user_bloc.dart';
-import 'features/ProfileScreen/UI/page/task/cubit/task_cubit.dart';
-import 'features/ProfileScreen/data/repositories/FirebaseTaskRepository.dart';
-import 'features/ProfileScreen/data/service/FirebaseTaskService.dart';
+import 'features/6_task/data/service/FirebaseTaskService.dart';
+import 'features/6_task/presentation/manager/task_cubit.dart';
+import 'features/6_task/data/repositories/FirebaseTaskRepository.dart';
+import 'features/ProfileScreen/UI/manger/profile_cubit.dart';
 import 'firebase_options.dart';
 // import 'features/auth/data/remote/data_sources/users_remote_data_source.dart';
 // import 'features/auth/data/repositories/repo_impl.dart';
@@ -39,7 +42,9 @@ Future<void> initAppModule() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-bool isInit=  await GetStorage.init( 'MyStorage');
+  Bloc.observer = AppBlocObserver();
+
+  bool isInit=  await GetStorage.init( 'MyStorage');
 print(isInit);
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await TDioHelper.init();
@@ -48,30 +53,34 @@ print(isInit);
   getIt.registerLazySingleton<SharedPreferences>(() => prefs);
   getIt.registerLazySingleton<TLocalStorage>(() =>localStorage);
   getIt.registerLazySingleton<TTextTheme>(() => TTextTheme());
- await authSetup();
-  final firestore = FirebaseFirestore.instance;
-  final courseRepository = CourseRepositoryImpl(firestore);
-  final getCourses = GetCourses(courseRepository);
+  await authSetup();
 
-  getIt.registerLazySingleton<GetCourses>(() => getCourses);
   getIt.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));
-
-
-  getIt.registerFactory<CourseBloc>(() => CourseBloc( getIt()));
-
   getIt.registerFactory<UserBloc>(() => UserBloc( getIt()));
-  // sl.registerLazySingleton<CourseProvider>(() => CourseProvider( sl()));
+
+  courseSetup();
+  profileSetup();
   taskSetUP();
   //sl.registerLazySingleton<ThemeProvider>(() =>   Provider.of<ThemeProvider>(Get.context, listen: false));
 
 }
 systemChrome() => SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.grey));
+courseSetup(){
+  final firestore = FirebaseFirestore.instance;
+  final courseRepository = CourseRepositoryImpl(firestore);
+  final getCourses = GetCourses(courseRepository);
+  getIt.registerLazySingleton<GetCourses>(() => getCourses);
+  getIt.registerFactory<CourseBloc>(() => CourseBloc( getIt()));
 
+}
+profileSetup(){
+  ProfileCubit().getUserProfileDate();
 
+}
 taskSetUP(){
-  getIt.registerLazySingleton<FirebaseTaskService>(() => FirebaseTaskService());
-  getIt.registerLazySingleton<FirebaseTaskRepository>(() => FirebaseTaskRepository(getIt()));
+  getIt.registerFactory<FirebaseTaskService>(() => FirebaseTaskService());
+  getIt.registerFactory<FirebaseTaskRepository>(() => FirebaseTaskRepository(getIt()));
   getIt.registerFactory<TaskCubit>(() => TaskCubit(getIt()));
 }
 

@@ -32,9 +32,9 @@ class TTextTheme {
           : textStyleHandlerLight(style);
 
   static TextStyle? textStyleHandlerLight(TextStyle? style) =>
-      style?.copyWith(fontSize: style.fontSize, color: AppColor.dark);
+      style?.copyWith(fontSize: style.fontSize, color: AppColor.darkGray);
   static TextStyle? textStyleHandlerDark(TextStyle? style) =>
-      style?.copyWith(fontSize: style.fontSize, color: AppColor.light);
+      style?.copyWith(fontSize: style.fontSize, color: AppColor.lightBlue);
 
   static init(BuildContext context, ThemeProvider theme) {
     final textTheme = Theme.of(context).textTheme;

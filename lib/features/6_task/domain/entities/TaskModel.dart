@@ -1,6 +1,7 @@
 class TaskModel {
   String? taskID;
   String? title;
+  String? description;
   String? from;
   String? to;
   String? assignedTo;
@@ -10,6 +11,7 @@ class TaskModel {
 
   TaskModel(
       {this.title,
+        this.description,
         this.from,
         this.taskID,
         this.to,
@@ -21,6 +23,7 @@ class TaskModel {
   TaskModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     taskID = json['taskID'];
+    description = json['description']??'';
     from = json['from'];
     to = json['to'];
     assignedTo = json['assignedTo'];
@@ -34,6 +37,7 @@ class TaskModel {
     data['title'] = this.title;
     data['from'] = this.from;
     data['taskID'] = this.taskID;
+    data['description'] = this.description;
     data['to'] = this.to;
     data['assignedTo'] = this.assignedTo;
     data['status'] = this.status;

@@ -14,7 +14,7 @@ class FirebaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<UserModel?> getUser(String? userId) async {
+  Future<UserModel?> getUser(int userId) async {
     DocumentSnapshot doc = await usersRef.doc(userId.toString()).get();
     if (doc.exists) {
       return UserModel.fromJson(doc.data() as Map<String, dynamic>);
@@ -28,7 +28,7 @@ class FirebaseUserRepository implements UserRepository {
   }
 
   @override
-  Future<void> deleteUser(String userId) async {
+  Future<void> deleteUser(int userId) async {
     await usersRef.doc(userId.toString()).delete();
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hr360/core/utils/constants/style.dart';
 
+import '../../../../../core/utils/constants/colors.dart';
 import '../responsive.dart';
 import '../shared/constants/defaults.dart';
 import '../shared/widgets/sidemenu/tab_sidebar.dart';

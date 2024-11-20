@@ -45,3 +45,11 @@ AppBarTheme appBarTheme = AppBarTheme(
     iconTheme: IconThemeData(color: kPrimaryColor),
     elevation: 0.0,
     titleTextStyle: TextStyle(color:  kPrimaryColor));
+
+
+
+extension StringUp on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
+}

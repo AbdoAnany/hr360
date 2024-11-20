@@ -1,17 +1,24 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-
-import '../../../../data/repositories/FirebaseTaskRepository.dart';
-import '../../../ProfileScreen.dart';
-import '../model/TaskModel.dart';
+import 'package:hr360/features/ProfileScreen/UI/manger/profile_cubit.dart';
+import '../../domain/entities/TaskModel.dart';
+import '../../data/repositories/FirebaseTaskRepository.dart';
+import '../../../ProfileScreen/UI/ProfileScreen.dart';
 
 part 'task_state.dart';
 
 class TaskCubit extends Cubit<TaskState> {
-  TaskCubit(this.taskService) : super(TaskInitial());
-  FirebaseTaskRepository taskService ;
+   TaskCubit(this.taskService) : super(TaskInitial());
+  final FirebaseTaskRepository taskService;
+
+  // Private constructor
+  // TaskCubit._(this.taskService) : super(TaskInitial());
+  // // Singleton instance
+  // static TaskCubit? _instance;
+  // // Factory constructor for singleton
+  // factory TaskCubit(FirebaseTaskRepository taskService) =>
+  //     _instance ??= TaskCubit._(taskService);
 
   static TaskCubit get(context) => BlocProvider.of(context);
   updateState(TaskState taskState) => emit(taskState);
@@ -19,7 +26,7 @@ class TaskCubit extends Cubit<TaskState> {
   List<TaskModel> tasksFilter = [];
   List<TaskModel> tasks = [];
   final List<AttendanceState> states = [
-    AttendanceState(status: 'Total Tasks', color: Colors.grey, value: "0"),
+
     AttendanceState(status: 'Not Started', color: Colors.orange, value: "0"),
     AttendanceState(status: 'Ongoing', color: Colors.blue, value: "0"),
     AttendanceState(status: 'Completed', color: Colors.green, value: "0"),
@@ -27,11 +34,12 @@ class TaskCubit extends Cubit<TaskState> {
     // Add more tasks as needed
   ];
 
-
   getAllTasks() async {
     emit(TaskLoading());
     try {
-      tasks =  await taskService.getAllTasks();
+      tasks = await taskService.getAllTasks();
+
+      // tasks.sort((task1, task2) => DateTime.parse(task2.to!).compareTo(DateTime.parse(task1.to!)));
       emit(TaskLoaded(tasks));
     } catch (e) {
       emit(TaskError('Failed to load tasks: $e'));
@@ -43,6 +51,8 @@ class TaskCubit extends Cubit<TaskState> {
     try {
       await taskService.addTask(task);
       emit(TaskSuccess('Added task successfully'));
+      await getAllTasksByUserId( ProfileCubit().userProfile?.userId);
+
     } catch (e) {
       emit(TaskError('Failed to add task: $e'));
     }
@@ -51,7 +61,7 @@ class TaskCubit extends Cubit<TaskState> {
   deleteTask({required int taskId, required String userID}) async {
     emit(TaskLoading());
     try {
-      await taskService.deleteTask(userID,taskId);
+      await taskService.deleteTask(userID, taskId);
       emit(TaskSuccess('Deleted task successfully'));
     } catch (e) {
       emit(TaskError('Failed to delete task: $e'));
@@ -61,8 +71,12 @@ class TaskCubit extends Cubit<TaskState> {
   updateTask(TaskModel task) async {
     emit(TaskLoading());
     try {
-      await taskService.updateTask(task.refID!,task);
+      await taskService.updateTask(task.refID!, task);
       emit(TaskSuccess('Updated task successfully'));
+
+
+     await getAllTasksByUserId( ProfileCubit().userProfile?.userId);
+
     } catch (e) {
       emit(TaskError('Failed to update task: $e'));
     }
@@ -82,30 +96,38 @@ class TaskCubit extends Cubit<TaskState> {
     print('getAllTasksByUserId userId: $userId');
     emit(TaskLoading());
     try {
-      tasks =  await taskService.getAllTasksByUserId(userId);
-      await Future.delayed(const Duration(seconds: 5));
+      tasks.clear();
+      tasks = await taskService.getAllTasksByUserId(userId);
+      // await Future.delayed(const Duration(seconds: 5));
       emit(TaskLoaded(tasks));
     } catch (e) {
+      tasks.clear();
       emit(TaskError('Failed to get tasks: $e'));
     }
   }
-  updateTaskFilter(states) {
-    List<TaskModel> taskList =[];
 
-    taskList= tasks
-        .where((e) => e.status == states)
-        .toList();
+  updateTaskFilter(states) {
+    emit(TaskLoading());
+    List<TaskModel> taskList = [];
+
+    taskList = tasks.where((e) => e.status == states).toList();
     print('status: ${states}');
 
-    if(states=='Total Tasks') {
-      taskList=tasks;
+    if (states == 'Total Tasks') {
+      taskList = tasks;
     }
+
     tasksFilter = taskList;
-    emit(TaskLoading());
+    print('tasksFilter: ${tasks}');
+    print('tasksFilter: ${tasksFilter.length}');
+
     emit(TaskLoaded(tasksFilter));
   }
 
-
-
+  @override
+  Future<void> close() {
+    print("TaskCubit is being closed");
+    return super.close();
+  }
 
 }

@@ -67,6 +67,7 @@ class UserModel {
     nationalId = json['national_id'];
     gender = json['gender'];
     roles = json['roles'];
+    avatar = json['avatar']??'';
     state = json['state'];
     birthDate = json['birth_date'].toString().replaceAll('Z', "");
   }
@@ -83,6 +84,7 @@ class UserModel {
     data['gender'] = this.gender;
     data['roles'] = this.roles;
     data['state'] = this.state;
+    data['avatar'] = this.avatar;
     data['birth_date'] = birthDate.toString().replaceAll('Z', "");
 
     return data;

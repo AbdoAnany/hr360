@@ -204,16 +204,16 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
       hintText: labelText ?? '',
       fillColor: AppColor.white,
       labelStyle: TextStyle(color: AppColor.darkerGrey, fontSize: 14),
-      hintStyle: TextStyle(color: AppColor.darkGrey, fontSize: 14),
+      hintStyle: TextStyle(color: AppColor.darkGray, fontSize: 14),
       filled: true,
       border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColor.borderPrimary.withOpacity(.2), width: .5)
+          borderSide: BorderSide(color: AppColor.placeholder.withOpacity(.2), width: .5)
       ),
       enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColor.borderPrimary.withOpacity(.2), width: .5)
+          borderSide: BorderSide(color: AppColor.placeholder.withOpacity(.2), width: .5)
       ),
       focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: AppColor.borderPrimary, width: .5)
+          borderSide: BorderSide(color: AppColor.placeholder, width: .5)
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
     );
@@ -229,7 +229,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
             String role = 'student';
 
             return AlertDialog(
-              backgroundColor: AppColor.blueWhite,
+              backgroundColor: AppColor.lightBackground,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               content: SizedBox(
                 width: 600,
@@ -390,7 +390,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                                       items: itemListGender.map((String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
-                                          child: Text(value, style: TextStyle(color: AppColor.darkerGrey)),
+                                          child: Text(value, style: const TextStyle(color: AppColor.darkerGrey)),
                                         );
                                       }).toList(),
                                       onChanged: (newValue) {

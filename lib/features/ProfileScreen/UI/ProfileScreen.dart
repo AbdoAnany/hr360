@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/di.dart';
 import 'package:hr360/features/ProfileScreen/UI/page/profile/EmployeeProfile.dart';
-import 'package:hr360/features/ProfileScreen/UI/page/task/cubit/task_cubit.dart';
-import 'package:hr360/features/ProfileScreen/UI/page/task/model/TaskModel.dart';
-import 'package:hr360/features/ProfileScreen/UI/page/task/taskTab.dart';
+import 'package:hr360/features/6_task/presentation/manager/task_cubit.dart';
+import 'package:hr360/features/6_task/domain/entities/TaskModel.dart';
+import 'package:hr360/features/6_task/presentation/pages/taskTab.dart';
 import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../1_login/data/user_model.dart';
-import '../data/repositories/FirebaseTaskRepository.dart';
+import '../../6_task/data/repositories/FirebaseTaskRepository.dart';
 
 class ProfileScreen extends StatefulWidget {
   UserModel? userDetails;
@@ -95,7 +95,7 @@ class EmployeeHeader extends StatelessWidget {
           Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(width: 1, color: AppColor.highlightLight),
+                border: Border.all(width: 1, color: AppColor.lightBackground),
               ),
               child: IconButton(
                   onPressed: () => Navigator.pop(context),
@@ -329,123 +329,48 @@ class EmployeeHeader extends StatelessWidget {
   }
 }
 
-class EmployeeStats extends StatelessWidget {
-   EmployeeStats({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        StatCard(
-          state: AttendanceState(
-            status: 'Total Tasks',
-            value: getIt<TaskCubit>().tasks.length.toString(),
-            color: Colors.grey,
-          ),
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Not Started',
-            value: getIt<TaskCubit>()
-                .tasks
-                .where((ee) => ee.status == 'Not Started')
-                .length
-                .toString(),
-            color: Colors.orange,
-          ),
-
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Ongoing',
-            value: getIt<TaskCubit>()
-                .tasks
-                .where((ee) => ee.status == 'Ongoing')
-                .length
-                .toString(),
-            color: Colors.blue,
-          ),
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Completed',
-            value: getIt<TaskCubit>()
-                .tasks
-                .where((ee) => ee.status == 'Completed')
-                .length
-                .toString(),
-            color: Colors.green,
-          ),
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Overdue',
-            value: getIt<TaskCubit>()
-                .tasks
-                .where((ee) => ee.status == 'Overdue')
-                .length
-                .toString(),
-            color: Colors.red,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class StatCard extends StatelessWidget {
-
-  final AttendanceState? state;
-  const StatCard({
-    super.key,
-    this.state,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
 
 
-
-        getIt<TaskCubit>().updateTaskFilter(state?.status);
-
-      },
-      child: Container(
-        margin: const EdgeInsets.only(right: 8, bottom: 12, top: 12),
-        decoration:
-        //state?.status!="Total Tasks"?null:
-        BoxDecoration(
-            color: state?.color?.withOpacity(.07),
-            borderRadius: BorderRadius.circular(8)),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Row(
-          children: [
-            Text(
-              "${state?.status} : ${state?.value}",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: state?.color,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class AttendanceState {
   final String? status;
   String? value;
   final Color? color;
+
   AttendanceState({
     this.status,
     this.value,
     this.color,
   });
+
+  // Equality operator
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is AttendanceState &&
+        other.status == status &&
+        other.value == value &&
+        other.color == color;
+  }
+
+  @override
+  int get hashCode => status.hashCode ^ value.hashCode ^ color.hashCode;
+
+  // copyWith method
+  AttendanceState copyWith({
+    String? status,
+    String? value,
+    Color? color,
+  }) {
+    return AttendanceState(
+      status: status ?? this.status,
+      value: value ?? this.value,
+      color: color ?? this.color,
+    );
+  }
 }
+
 
 enum DayState { present, halfDay, absent }
 

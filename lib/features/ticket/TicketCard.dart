@@ -39,7 +39,7 @@ class TicketCard extends StatelessWidget {
          child: Row(
           children: [
            CircleAvatar(
-            radius: 20,backgroundColor: AppColor.borderPrimary,
+            radius: 20,backgroundColor: AppColor.darkGray,
             // backgroundImage: NetworkImage(
             //  'https://via.placeholder.com/50',
             // ),

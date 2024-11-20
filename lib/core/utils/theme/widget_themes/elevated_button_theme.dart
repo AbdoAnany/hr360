@@ -12,10 +12,10 @@ class TElevatedButtonTheme {
   static final lightElevatedButtonTheme  = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      foregroundColor: AppColor.light,
+      foregroundColor: AppColor.bgLight,
       backgroundColor: AppColor.primary,
       disabledForegroundColor: AppColor.darkGrey,
-      disabledBackgroundColor: AppColor.buttonDisabled,
+      disabledBackgroundColor: AppColor.grey,
       side: const BorderSide(color: AppColor.primary),
       padding:  EdgeInsets.symmetric(vertical: TSizes.buttonHeight),
       textStyle:  TextStyle(fontSize: TSizes.fontSizeMd, color: AppColor.textWhite, fontWeight: FontWeight.w600),
@@ -27,7 +27,7 @@ class TElevatedButtonTheme {
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       elevation: 0,
-      foregroundColor: AppColor.light,
+      foregroundColor: AppColor.bgLight,
       backgroundColor: AppColor.primary,
       disabledForegroundColor: AppColor.darkGrey,
       disabledBackgroundColor: AppColor.darkerGrey,

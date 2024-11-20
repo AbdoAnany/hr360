@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hr360/features/ProfileScreen/UI/ProfileScreen.dart';
 
 import '../../../1_login/data/user_model.dart';
-import '../../UI/page/task/model/TaskModel.dart';
-import '../../UI/page/task/taskTab.dart';
-import '../../domain/repositories/TaskRepository.dart';
+import '../../../6_task/domain/entities/TaskModel.dart';
+import '../../../6_task/presentation/pages/taskTab.dart';
+import '../../../6_task/domain/repositories/TaskRepository.dart';
 // import '../../domain/repositories/TaskRepository.dart';
 class FirebaseTaskService {
   final CollectionReference usersRef =

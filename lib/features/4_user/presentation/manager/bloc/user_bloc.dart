@@ -53,7 +53,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       if (_isClosed) return;
       try {
         emit(UserLoading());
-        UserModel? user = await userRepository.getUser(event.userId);
+        UserModel? user = await userRepository.getUser(event.userId.toString());
         if (user != null) {
           emit(UserLoaded(user));
         } else {
@@ -81,7 +81,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       if (_isClosed) return;
       try {
         emit(UserLoading());
-        await userRepository.deleteUser(event.userId);
+        await userRepository.deleteUser(event.userId.toString());
         emit(UserInitial());
       } catch (e) {
         emit(UserError(e.toString()));
@@ -94,7 +94,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       try {
         emit(UserLoading());
         await userRepository.assignRole(event.userId, event.role);
-        UserModel? user = await userRepository.getUser(event.userId);
+        UserModel? user = await userRepository.getUser(event.userId.toString());
         if (user != null) {
           emit(UserLoaded(user));
         } else {
@@ -111,7 +111,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       try {
         emit(UserLoading());
         await userRepository.removeRole(event.userId, event.role);
-        UserModel? user = await userRepository.getUser(event.userId);
+        UserModel? user = await userRepository.getUser(event.userId.toString());
         if (user != null) {
           emit(UserLoaded(user));
         } else {

@@ -89,7 +89,10 @@ class THelperFunctions {
       ),
     );
 
-  }  static void navigateAndReplaceScreen( Widget screen) {
+  }
+
+
+  static void navigateAndReplaceScreen( Widget screen) {
     Navigator.pushReplacement(
       Get.context,
       MaterialPageRoute(builder: (_) => screen),

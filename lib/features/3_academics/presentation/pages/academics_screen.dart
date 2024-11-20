@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/style.dart';
 
+import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/helpers/helper_functions.dart';
 import 'courses_screen.dart';
 

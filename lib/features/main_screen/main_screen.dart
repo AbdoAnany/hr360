@@ -20,7 +20,6 @@ import '../../core/utils/constants/style.dart';
 import '../../core/utils/helpers/helper_functions.dart';
 import '../../core/utils/theme/theme.dart';
 import '../../di.dart';
-import '../2_dash_border/presentation/pages/dashboard_page.dart';
 import '../2_dash_border/presentation/pages/pages/entry_point.dart';
 import '../3_academics/presentation/manager/course_bloc.dart';
 import '../3_academics/presentation/pages/academics_screen.dart';
@@ -28,11 +27,9 @@ import '../4_user/presentation/manager/bloc/user_bloc.dart';
 import '../4_user/presentation/pages/UserPage.dart';
 import '../home/presentation/pages/pages/Employee/employees.dart';
 
-// final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
-
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -40,50 +37,17 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   AppRoutes _currentRoute = AppRoutes.dashboard;
 
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
   void _onItemTapped(AppRoutes route) {
     setState(() {
       _currentRoute = route;
     });
-    navigatorKey.currentState?.pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) {
-          return route.page;
-        },
-
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return SharedAxisTransition(
-            animation: animation,
-            secondaryAnimation: secondaryAnimation,
-            transitionType: SharedAxisTransitionType.horizontal, // Choose horizontal, vertical, or scaled
-            child: child,
-          );
-        },
-        reverseTransitionDuration:  const Duration(milliseconds: 400),
-        transitionDuration: const Duration(milliseconds: 400), // Animation duration
-      ),
-    );
-    // Use custom animated navigation
-    // _navigatorKey.currentState?.pushReplacement(
-    //   PageRouteBuilder(
-    //     pageBuilder: (context, animation, secondaryAnimation) {
-    //       return route.page; // Provide the target page here
-    //     },
-    //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-    //       const begin = Offset(1.0, 0.0); // Start animation from the right
-    //       const end = Offset.zero;        // End animation at the current position
-    //       const curve = Curves.easeInOut; // Animation curve
-    //
-    //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-    //       var offsetAnimation = animation.drive(tween);
-    //
-    //       return SlideTransition(
-    //         position: offsetAnimation,
-    //         child: child,
-    //       );
-    //     },
-    //     transitionDuration: const Duration(milliseconds: 300), // Animation duration
-    //   ),
-    // );
+    THelperFunctions.navigateToScreen(route.page);
   }
 
   @override
@@ -102,15 +66,14 @@ class _MainScreenState extends State<MainScreen> {
           Expanded(
             child: Column(
               children: [
-                Header(),
+                Header( currentRoute: _currentRoute),
                 Expanded(
                   child: Container(
-                   padding: const EdgeInsets.only(top: 8.0,left: 8),
-                    decoration: AppStyle.decorationPage,clipBehavior: Clip.hardEdge,
+                    padding: const EdgeInsets.only(top: 8.0, left: 8),
+                    decoration: AppStyle.decorationPage,
+                    clipBehavior: Clip.hardEdge,
                     child: Consumer<ThemeProvider>(
                       builder: (context, themeProvider, _) {
-
-                        // // Initialize theme and screen utilities
                         themeProvider.getThemeMode();
                         TSizes.init(context: context);
                         return Navigator(
@@ -130,8 +93,6 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-
-
 
 // Update your route configuration to handle the nested navigation
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
