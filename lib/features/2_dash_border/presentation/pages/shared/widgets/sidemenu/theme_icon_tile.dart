@@ -1,5 +1,6 @@
 import '../../../shared/constants/defaults.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,7 +24,7 @@ class _ThemeIconTileState extends State<ThemeIconTile> {
       height: 48,
       decoration: BoxDecoration(
         color:
-            _isHover ? Colors.white : AppColors.highlightLight.withOpacity(0.5),
+            _isHover ? Colors.white : AppColor.highlightLight.withOpacity(0.5),
         shape: BoxShape.circle,
       ),
       padding: const EdgeInsets.all(AppDefaults.padding * 0.25),
@@ -54,7 +55,7 @@ class _ThemeIconTileState extends State<ThemeIconTile> {
               height: 24,
               width: 24,
               colorFilter: const ColorFilter.mode(
-                AppColors.iconBlack,
+                AppColor.iconBlack,
                 BlendMode.srcIn,
               ),
             ),

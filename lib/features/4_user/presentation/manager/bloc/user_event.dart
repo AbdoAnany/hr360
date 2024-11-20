@@ -1,4 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../1_login/data/user_model.dart';
@@ -12,6 +11,13 @@ class CreateUser extends UserEvent {
   final UserModel user;
 
   const CreateUser(this.user);
+
+  @override
+  List<Object?> get props => [user];
+}class AddUser extends UserEvent {
+  final UserModel user;
+
+  const AddUser(this.user);
 
   @override
   List<Object?> get props => [user];
@@ -69,6 +75,13 @@ class RemoveRole extends UserEvent {
 class GetAllUsers extends UserEvent {
   const GetAllUsers();
 
+  @override
+  List<Object?> get props => [];
+}class AddUserEvent extends UserEvent {
+  const AddUserEvent({
+    this.user,
+  });
+final UserModel? user;
   @override
   List<Object?> get props => [];
 }

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
+import 'package:hr360/di.dart';
 import 'package:hr360/features/ProfileScreen/UI/page/profile/EmployeeProfile.dart';
+import 'package:hr360/features/6_task/presentation/manager/task_cubit.dart';
+import 'package:hr360/features/6_task/domain/entities/TaskModel.dart';
+import 'package:hr360/features/6_task/presentation/pages/taskTab.dart';
 import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../1_login/data/user_model.dart';
+import '../../6_task/data/repositories/FirebaseTaskRepository.dart';
 
 class ProfileScreen extends StatefulWidget {
   UserModel? userDetails;
@@ -22,7 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-
   }
 
   @override
@@ -33,11 +38,12 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return    Scaffold(
+    return Scaffold(
+      // appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          EmployeeHeader(),
+          EmployeeHeader(userDetails: widget.userDetails),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8),
             height: 50.0,
@@ -58,9 +64,13 @@ class _ProfileScreenState extends State<ProfileScreen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  TaskList(),
-                  EmployeeProfilePage(userDetails:widget. userDetails,),
-                   AttendanceReportPage(),
+                  TaskTab(
+                    userDetails: widget.userDetails,
+                  ),
+                  EmployeeProfilePage(
+                    userDetails: widget.userDetails,
+                  ),
+                  AttendanceReportPage(),
                 ],
               ),
             ),
@@ -72,33 +82,44 @@ class _ProfileScreenState extends State<ProfileScreen>
 }
 
 class EmployeeHeader extends StatelessWidget {
-  const EmployeeHeader({super.key});
+  EmployeeHeader({super.key, this.userDetails});
+  UserModel? userDetails;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColor.white,
-      padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 8),
+      // color: AppColor.white,
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
       child: Row(
         children: [
-          const CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage("assets/image-2.png"),
+          Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(width: 1, color: AppColor.lightBackground),
+              ),
+              child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Iconsax.arrow_left_2))),
+          const SizedBox(
+            width: 8,
           ),
+          const CircleAvatar(
+              radius: 30, backgroundImage: AssetImage("assets/image-2.png")),
           const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Vishaka Shekhawat',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              Text(
+                "${userDetails?.firsName} ${userDetails?.lastName}",
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               Row(
                 children: [
                   Text(
-                    'Content Curator',
+                    userDetails?.roles ?? "",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Color.fromRGBO(138, 138, 138, 1),
                         fontFamily: 'Inter',
                         fontSize: 12,
@@ -107,7 +128,7 @@ class EmployeeHeader extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                         height: 1),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Container(
@@ -120,7 +141,10 @@ class EmployeeHeader extends StatelessWidget {
                         bottomLeft: Radius.circular(5),
                         bottomRight: Radius.circular(5),
                       ),
-                      color: Color.fromRGBO(226, 255, 242, 1),
+                      color: (userDetails?.state?.toLowerCase() == "active"
+                              ? AppColor.success
+                              : AppColor.error)
+                          .withOpacity(0.1),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -131,15 +155,21 @@ class EmployeeHeader extends StatelessWidget {
                             width: 10,
                             height: 10,
                             decoration: BoxDecoration(
-                              color: Color.fromRGBO(46, 135, 96, 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.elliptical(10, 10)),
+                              color:
+                                  userDetails?.state?.toLowerCase() == "active"
+                                      ? AppColor.success
+                                      : AppColor.error,
+                              borderRadius: const BorderRadius.all(
+                                  Radius.elliptical(10, 10)),
                             )), // Figma Flutter Generator OnlineWidget - TEXT
                         Text(
-                          'Online',
+                          '${userDetails?.state}',
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                              color: Color.fromRGBO(46, 135, 96, 1),
+                              color:
+                                  userDetails?.state?.toLowerCase() == "active"
+                                      ? AppColor.success
+                                      : AppColor.error,
                               fontFamily: 'Inter',
                               fontSize: 12,
                               letterSpacing:
@@ -181,14 +211,14 @@ class EmployeeHeader extends StatelessWidget {
                   Container(
                       width: 20,
                       height: 20,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Color.fromRGBO(255, 255, 255, 1),
                       ),
-                      child: Icon(Iconsax.clock)),
-                  SizedBox(
+                      child: const Icon(Iconsax.clock)),
+                  const SizedBox(
                     width: 8,
                   ),
-                  Text(
+                  const Text(
                     'Joined 23-09-2022',
                     textAlign: TextAlign.left,
                     style: TextStyle(
@@ -205,7 +235,7 @@ class EmployeeHeader extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Row(
+              const Row(
                 children: [
                   CircleAvatar(
                     radius: 14,
@@ -293,274 +323,54 @@ class EmployeeHeader extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          // Container(
-          //   height: 147,
-          //   width: 270,
-          //   padding: EdgeInsets.all(8.0),
-          //   decoration: BoxDecoration(
-          //     color: Color.fromRGBO(242, 237, 253, 1),
-          //     border: Border.all(
-          //       color: Color.fromRGBO(242, 237, 253, 1),
-          //     ),
-          //     borderRadius: BorderRadius.circular(8.0),
-          //   ),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       Text(
-          //         'Efficiency Score',
-          //         style: TextStyle(
-          //             fontSize: 20,
-          //             fontWeight: FontWeight.bold,
-          //             color: Color(0xff3C3C3C)),
-          //       ),
-          //       //   SizedBox(height: 4,),
-          //       Text(
-          //         '85%',
-          //         style: TextStyle(fontSize: 48, color: AppColor.primary),
-          //       ),
-          //       Align(
-          //           alignment: Alignment.centerRight,
-          //           child: Text(
-          //             '85/100',
-          //             style: TextStyle(fontSize: 20, color: AppColor.black),
-          //           )),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );
   }
 }
 
-class EmployeeStats extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        StatCard(
-          state: AttendanceState(
-            status: 'Total Tasks',
-            value: tasks.length.toString(),
-            color: Colors.grey,
-          ),
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Not Started',
-            value: tasks
-                .where((ee) => ee.status == 'Not Started')
-                .length
-                .toString(),
-            color: Colors.orange,
-          ),
-          // title: 'Not Started',
-          // value: tasks.where((ee)=>ee.status=='Not Started').length.toString(),
-          // color: Colors.orange,
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Ongoing',
-            value:
-                tasks.where((ee) => ee.status == 'Ongoing').length.toString(),
-            color: Colors.blue,
-          ),
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Completed',
-            value:
-                tasks.where((ee) => ee.status == 'Completed').length.toString(),
-            color: Colors.green,
-          ),
-        ),
-        StatCard(
-          state: AttendanceState(
-            status: 'Overdue',
-            value:
-                tasks.where((ee) => ee.status == 'Overdue').length.toString(),
-            color: Colors.red,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
-class StatCard extends StatelessWidget {
-  // final String? title;
-  // final String? value;
-  // final Color color;
-  final AttendanceState? state;
-  const StatCard({
-    super.key,
-    this.state,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 8,bottom: 12, top: 12),
-      decoration:
-          //state?.status!="Total Tasks"?null:
-          BoxDecoration(
-              color: state?.color?.withOpacity(.07),
-              borderRadius: BorderRadius.circular(8)),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      child: Row(
-        children: [
-          Text(
-            "${state?.status} : ${state?.value}",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: state?.color,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Task {
-  final String? title;
-  final String? dateRange;
-  final String? assignedTo;
-  final String? status; // Add a status field to indicate task status
-
-  Task({
-    this.title,
-    this.dateRange,
-    this.assignedTo,
-    this.status,
-  });
-}
 
 class AttendanceState {
   final String? status;
   String? value;
   final Color? color;
+
   AttendanceState({
     this.status,
     this.value,
     this.color,
   });
-}
 
-final List<Task> tasks = [
-  Task(
-    title: 'Add a Quiz for Students of 3CO - JYV on the...',
-    dateRange: '06 Dec 2023 - 12 Dec 2023',
-    assignedTo: 'Devesh Gupta',
-    status: 'Not Started',
-  ),
-  Task(
-    title: 'Prepare slides for meeting',
-    dateRange: '10 Dec 2023 - 15 Dec 2023',
-    assignedTo: 'John Doe',
-    status: 'Ongoing',
-  ),
-  Task(
-    title: 'Prepare slides for meeting',
-    dateRange: '10 Dec 2023 - 15 Dec 2023',
-    assignedTo: 'John Doe',
-    status: 'Ongoing',
-  ),
-  Task(
-    title: 'Prepare slides for meeting',
-    dateRange: '10 Dec 2023 - 15 Dec 2023',
-    assignedTo: 'John Doe',
-    status: 'Completed',
-  ),
-  Task(
-    title: 'Prepare slides for meeting',
-    dateRange: '10 Dec 2023 - 15 Dec 2023',
-    assignedTo: 'John Doe',
-    status: 'Ongoing',
-  ),
-  Task(
-    title: 'Prepare slides for meeting',
-    dateRange: '10 Dec 2023 - 15 Dec 2023',
-    assignedTo: 'John Doe',
-    status: 'Ongoing',
-  ),
-  Task(
-    title: 'Prepare slides for meeting',
-    dateRange: '10 Dec 2023 - 15 Dec 2023',
-    assignedTo: 'John Doe',
-    status: 'Overdue',
-  ),
-  // Add more tasks as needed
-];
-final List<AttendanceState> states = [
-  AttendanceState(status: 'Total Tasks', color: Colors.grey, value: "0"),
-  AttendanceState(status: 'Not Started', color: Colors.orange, value: "0"),
-  AttendanceState(status: 'Ongoing', color: Colors.blue, value: "0"),
-  AttendanceState(status: 'Completed', color: Colors.green, value: "0"),
-  AttendanceState(status: 'Overdue', color: Colors.red, value: "0"),
-  // Add more tasks as needed
-];
-
-class TaskList extends StatelessWidget {
+  // Equality operator
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        EmployeeStats(),
-        Expanded(
-          child: ListView.builder(
-            itemCount: tasks.length,
-            itemBuilder: (context, index) {
-              return TaskCard(tasks: tasks[index]);
-            },
-          ),
-        ),
-      ],
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is AttendanceState &&
+        other.status == status &&
+        other.value == value &&
+        other.color == color;
+  }
+
+  @override
+  int get hashCode => status.hashCode ^ value.hashCode ^ color.hashCode;
+
+  // copyWith method
+  AttendanceState copyWith({
+    String? status,
+    String? value,
+    Color? color,
+  }) {
+    return AttendanceState(
+      status: status ?? this.status,
+      value: value ?? this.value,
+      color: color ?? this.color,
     );
   }
 }
 
-class TaskCard extends StatelessWidget {
-  final Task? tasks;
-
-  const TaskCard({super.key, this.tasks});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      surfaceTintColor: states
-          .firstWhere((e) => e.status == tasks?.status)
-          .color
-          ?.withOpacity(.07),
-      color: states
-          .firstWhere((e) => e.status == tasks?.status)
-          .color
-          ?.withOpacity(.07),
-      shadowColor: states
-          .firstWhere((e) => e.status == tasks?.status)
-          .color
-          ?.withOpacity(.07),
-      child: ListTile(
-        leading: Icon(
-          Iconsax.activity5,
-          color: states.firstWhere((e) => e.status == tasks?.status).color,
-        ),
-        title: Text(tasks?.title ?? ""),
-        subtitle: Text(tasks?.dateRange ?? ""),
-        trailing: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.person),
-            Text(tasks?.assignedTo ?? ""),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 enum DayState { present, halfDay, absent }
 
@@ -624,31 +434,25 @@ class AttendanceReportPage extends StatelessWidget {
   //   leavesPercentage: 60,
   // );
 
-   AttendanceReportPage({super.key});
+  AttendanceReportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
 
-    print(1.sw);
     return Padding(
         padding: const EdgeInsets.all(16.0),
-        child: 1.sw<1000?
-        Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: widgetList
-        ):
-
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: widgetList
-        )
-
-    );
+        child: 1.sw < 1000
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: widgetList)
+            : Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: widgetList));
   }
 
-  List<Widget> widgetList=[
+  List<Widget> widgetList = [
     const Expanded(
       flex: 2,
       child: Column(
@@ -677,8 +481,7 @@ class AttendanceReportPage extends StatelessWidget {
             child: ListView.builder(
               itemCount: attendanceRecords.length,
               itemBuilder: (context, index) {
-                return AttendanceLogItem(
-                    record: attendanceRecords[index]);
+                return AttendanceLogItem(record: attendanceRecords[index]);
               },
             ),
           ),

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/attendance_grid_view.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
-import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../../../di.dart';
@@ -59,7 +56,7 @@ class EmployeesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return    BlocProvider(
-        create: (context) => sl<UserBloc>(),
+        create: (context) => getIt<UserBloc>(),
         child: const   AttendanceGridView());
   }
 }

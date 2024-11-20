@@ -1,6 +1,7 @@
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/extensions.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -28,7 +29,7 @@ class BenefitText extends StatelessWidget {
               icon,
               height: 24,
               width: 24,
-              colorFilter: AppColors.success.toColorFilter,
+              colorFilter: AppColor.success.toColorFilter,
             ),
       title: Text(
         title,

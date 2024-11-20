@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
 import '../../../shared/widgets/section_title.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'overview_tabs.dart';
 
 class Overview extends StatelessWidget {
@@ -14,7 +15,7 @@ class Overview extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDefaults.padding),
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius:
             BorderRadius.all(Radius.circular(AppDefaults.borderRadius)),
       ),
@@ -28,7 +29,7 @@ class Overview extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(
                       Radius.circular(AppDefaults.borderRadius)),
-                  border: Border.all(width: 2, color: AppColors.highlightLight),
+                  border: Border.all(width: 2, color: AppColor.highlightLight),
                 ),
                 child: DropdownButton(
                   padding: const EdgeInsets.symmetric(

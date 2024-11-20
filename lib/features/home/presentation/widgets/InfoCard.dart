@@ -80,7 +80,7 @@ class InfoCard extends StatelessWidget {
                                   fontSize: 40,
                                   color: isActive
                                       ? AppColor.primary
-                                      : AppColor.dark))
+                                      : AppColor.darkGray))
                         ])),
                   ),
                 ),

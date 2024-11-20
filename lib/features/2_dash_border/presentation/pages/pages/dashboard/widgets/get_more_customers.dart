@@ -11,7 +11,7 @@ class GetMoreCustomers extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDefaults.padding * 1.25),
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius: BorderRadius.all(
           Radius.circular(AppDefaults.borderRadius),
         ),
@@ -20,7 +20,7 @@ class GetMoreCustomers extends StatelessWidget {
         children: [
           const SectionTitle(
             title: "Get more customers!",
-            color: AppColors.secondaryBabyBlue,
+            color: AppColor.secondaryBabyBlue,
           ),
           gapH20,
           const Text(
@@ -40,7 +40,7 @@ class GetMoreCustomers extends StatelessWidget {
                         height: 24,
                         width: 24,
                         colorFilter: const ColorFilter.mode(
-                          AppColors.textLight,
+                          AppColor.textLight,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -69,7 +69,7 @@ class GetMoreCustomers extends StatelessWidget {
                         height: 24,
                         width: 24,
                         colorFilter: const ColorFilter.mode(
-                          AppColors.textLight,
+                          AppColor.textLight,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -98,7 +98,7 @@ class GetMoreCustomers extends StatelessWidget {
                         height: 24,
                         width: 24,
                         colorFilter: const ColorFilter.mode(
-                          AppColors.textLight,
+                          AppColor.textLight,
                           BlendMode.srcIn,
                         ),
                       ),

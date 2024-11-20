@@ -1,7 +1,9 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app.dart';
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class THelperFunctions {
   static Color? getColor(String value) {
@@ -65,11 +67,32 @@ class THelperFunctions {
   }
 
   static void navigateToScreen(  screen,{BuildContext? context}) {
-    Navigator.push(
-      context??   Get.context,
-      MaterialPageRoute(builder: (_) => screen,),
+    // Navigator.push(
+    //   context??   Get.context,
+    //   MaterialPageRoute(builder: (_) => screen,),
+    // );
+    navigatorKey.currentState?.push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return screen;
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SharedAxisTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.horizontal, // Choose horizontal, vertical, or scaled
+            child: child,
+          );
+        },
+        reverseTransitionDuration:  const Duration(milliseconds: 400),
+        transitionDuration: const Duration(milliseconds: 400), // Animation duration
+      ),
     );
-  }  static void navigateAndReplaceScreen( Widget screen) {
+
+  }
+
+
+  static void navigateAndReplaceScreen( Widget screen) {
     Navigator.pushReplacement(
       Get.context,
       MaterialPageRoute(builder: (_) => screen),

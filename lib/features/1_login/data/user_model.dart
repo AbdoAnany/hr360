@@ -23,8 +23,8 @@ class UserLoginModel {
 // "phone":"1234567890","address":"123 Admin St, Admin City, Admin State",
 // "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
 class UserModel {
-  late int id;
-  late int userId;
+
+  late String? userId;
   String? firsName;
   String? lastName;
   String? email;
@@ -38,8 +38,8 @@ class UserModel {
   String? birthDate;
 
   UserModel(
-      {required this.id,
-      required this.userId,
+      {
+       this.userId,
       this.firsName = '',
       this.lastName = '',
       this.email,
@@ -57,7 +57,7 @@ class UserModel {
 // "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
   UserModel.fromJson(Map<String, dynamic> json) {
 
-    id = json['id'];
+
     userId = json['user_id'];
     firsName = json['first_name'];
     lastName = json['last_name'];
@@ -67,13 +67,13 @@ class UserModel {
     nationalId = json['national_id'];
     gender = json['gender'];
     roles = json['roles'];
+    avatar = json['avatar']??'';
     state = json['state'];
     birthDate = json['birth_date'].toString().replaceAll('Z', "");
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     data['user_id'] = this.userId;
     data['first_name'] = this.firsName;
     data['last_name'] = this.lastName;
@@ -84,6 +84,7 @@ class UserModel {
     data['gender'] = this.gender;
     data['roles'] = this.roles;
     data['state'] = this.state;
+    data['avatar'] = this.avatar;
     data['birth_date'] = birthDate.toString().replaceAll('Z', "");
 
     return data;

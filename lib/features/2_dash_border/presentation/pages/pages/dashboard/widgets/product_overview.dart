@@ -13,7 +13,7 @@ class ProductOverviews extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDefaults.padding),
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius:
             BorderRadius.all(Radius.circular(AppDefaults.borderRadius)),
       ),
@@ -23,14 +23,14 @@ class ProductOverviews extends StatelessWidget {
             children: [
               const SectionTitle(
                 title: "Product views",
-                color: AppColors.secondaryLavender,
+                color: AppColor.secondaryLavender,
               ),
               const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(
                       Radius.circular(AppDefaults.borderRadius)),
-                  border: Border.all(width: 2, color: AppColors.highlightLight),
+                  border: Border.all(width: 2, color: AppColor.highlightLight),
                 ),
                 child: DropdownButton(
                   padding: const EdgeInsets.symmetric(
@@ -66,8 +66,8 @@ class ProductOverviews extends StatelessWidget {
 class BarChartSample8 extends StatefulWidget {
   const BarChartSample8({super.key});
 
-  final Color barBackgroundColor = AppColors.bgSecondayLight;
-  final Color barColor = AppColors.secondaryMintGreen;
+  final Color barBackgroundColor = AppColor.bgSecondayLight;
+  final Color barColor = AppColor.secondaryMintGreen;
 
   @override
   State<StatefulWidget> createState() => BarChartSample1State();
@@ -123,18 +123,18 @@ class BarChartSample1State extends State<BarChartSample8> {
         BarChartRodData(
           toY: y,
           color: (x % 2 == 0)
-              ? AppColors.secondaryPeach
+              ? AppColor.secondaryPeach
               : (x % 3 == 0)
-                  ? AppColors.primary
+                  ? AppColor.primary
                   : widget.barColor,
           borderRadius: BorderRadius.circular(2),
           // borderDashArray: x >= 4 ? [4, 4] : null,
           width: Responsive.isMobile(context) ? 20 : 40,
           borderSide: BorderSide(
             color: (x % 2 == 0)
-                ? AppColors.secondaryPeach
+                ? AppColor.secondaryPeach
                 : (x % 3 == 0)
-                    ? AppColors.primary
+                    ? AppColor.primary
                     : widget.barColor,
             width: 2.0,
           ),

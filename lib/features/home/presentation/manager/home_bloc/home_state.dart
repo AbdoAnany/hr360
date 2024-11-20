@@ -20,14 +20,14 @@ class HomeInitialState extends HomeState {
 class ChangeState extends HomeState {
 }
 
-class ChangePageState extends HomeState {
-  final PageType newPage;
-
-  const ChangePageState({ this. newPage=PageType.dashboard}) ;
-
-  @override
-  List<Object?> get props => [newPage];
-}
+// class ChangePageState extends HomeState {
+//   final PageType newPage;
+//
+//   const ChangePageState({ this. newPage=PageType.dashboard}) ;
+//
+//   @override
+//   List<Object?> get props => [newPage];
+// }
 class StartGetData extends HomeState {
   const StartGetData() ;
 

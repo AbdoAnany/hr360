@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/constants/style.dart';
 import '../../../../di.dart';
 import '../manager/course_bloc.dart';
@@ -14,7 +14,7 @@ class CoursesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   BlocProvider(
-        create: (context) => sl<CourseBloc>(),
+        create: (context) => getIt<CourseBloc>(),
     child: const CoursesView());
   }
 }
@@ -37,7 +37,9 @@ class _CoursesScreenState extends State<CoursesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

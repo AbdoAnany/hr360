@@ -13,7 +13,7 @@ final List<TipsItem> proTipsDummyData = [
     title: 'Asset use guidelines',
     time: 'Time',
     iconSrc: 'assets/icons/arrow_forward_light.svg',
-    backgroundColor: AppColors.highlightLight,
+    backgroundColor: AppColor.highlightLight,
   ),
   const TipsItem(
     title: 'Exclusive downloads',
@@ -45,7 +45,7 @@ class ProTips extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppDefaults.padding),
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius: BorderRadius.all(
           Radius.circular(AppDefaults.borderRadius),
         ),
@@ -56,7 +56,7 @@ class ProTips extends StatelessWidget {
           gapH8,
           const SectionTitle(
             title: "Pro tips",
-            color: AppColors.secondaryMintGreen,
+            color: AppColor.secondaryMintGreen,
           ),
           gapH20,
           Text(

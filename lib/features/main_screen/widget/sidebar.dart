@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
-class Sidebar extends StatelessWidget {
- final Function(int) onItemTapped;
- final int currentIndex;
+import '../../../core/routing/routes_gen.dart';
 
- Sidebar({required this.onItemTapped, required this.currentIndex});
+class Sidebar extends StatelessWidget {
+ final Function(AppRoutes) onItemTapped;
+ final AppRoutes currentRoute;
+
+ const Sidebar({
+  Key? key,
+  required this.onItemTapped,
+  required this.currentRoute,
+ }) : super(key: key);
 
  @override
  Widget build(BuildContext context) {
   return Container(
    width: 200,
-  // color: Color(0xFFEEF2F5),
-   color: AppColor.white,
+   color: Colors.white,
    child: Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
      Column(
       children: [
-       SizedBox(height: 20),
-       ListTile(
+       const SizedBox(height: 20),
+       const ListTile(
         title: Text(
          'TIPS-G',
          style: TextStyle(
@@ -29,17 +33,7 @@ class Sidebar extends StatelessWidget {
          ),
         ),
        ),
-       _sidebarItem(Iconsax.category, 'Dashboard', 0),
-       _sidebarItem(Iconsax.activity, 'Academics', 1),
-       _sidebarItem(Iconsax.money, 'Accounts', 2),
-       _sidebarItem(Iconsax.message, 'Support', 3),
-       _sidebarItem(Iconsax.user, 'Students', 4),
-       _sidebarItem(Iconsax.calendar, 'Attendance', 5),
-       _sidebarItem(Iconsax.graph, 'Analytics', 6),
-       _sidebarItem(Iconsax.people, 'Team', 7),
-       _sidebarItem(Iconsax.calendar, 'Calendar', 8),
-       _sidebarItem(Iconsax.link, 'Leads', 9),
-       _sidebarItem(Iconsax.people, 'Visitors', 10),
+       _buildNavItems(),
       ],
      ),
     ],
@@ -47,19 +41,47 @@ class Sidebar extends StatelessWidget {
   );
  }
 
- Widget _sidebarItem(IconData icon, String label, int index) {
-  return ListTile(
-   leading: Icon(
-    icon,
-    color: currentIndex == index ? Colors.blue : Colors.black,
-   ),
-   title: Text(
-    label,
-    style: TextStyle(
-     color: currentIndex == index ? Colors.blue : Colors.black,
-    ),
-   ),
-   onTap: () => onItemTapped(index),
+ Widget _buildNavItems() {
+  final List<NavItem> items = [
+   NavItem(Iconsax.category, 'Dashboard', AppRoutes.dashboard),
+   NavItem(Iconsax.activity, 'Academics', AppRoutes.academics),
+   NavItem(Iconsax.money, 'Accounts', AppRoutes.accounts),
+   NavItem(Iconsax.message, 'Support', AppRoutes.support),
+   NavItem(Iconsax.user, 'Students', AppRoutes.employees),
+   NavItem(Iconsax.calendar, 'Attendance', AppRoutes.attendance),
+   NavItem(Iconsax.graph, 'Analytics', AppRoutes.analytics),
+   NavItem(Iconsax.people, 'Team', AppRoutes.accounts),
+   NavItem(Iconsax.calendar, 'Calendar', AppRoutes.calendar),
+   NavItem(Iconsax.link, 'Leads', AppRoutes.leads),
+   NavItem(Iconsax.people, 'Visitors', AppRoutes.visitors),
+  ];
+
+  return Column(
+   children: items.map((item) => _sidebarItem(item)).toList(),
   );
  }
+
+ Widget _sidebarItem(NavItem item) {
+  return ListTile(
+   leading: Icon(
+    item.icon,
+    color: currentRoute == item.route ? Colors.blue : Colors.black,
+   ),
+   title: Text(
+    item.label,
+    style: TextStyle(
+     color: currentRoute == item.route ? Colors.blue : Colors.black,
+    ),
+   ),
+   onTap: () => onItemTapped(item.route),
+  );
+ }
+}
+
+class NavItem {
+ final IconData icon;
+ final String label;
+ final AppRoutes route;
+
+ NavItem(this.icon, this.label, this.route);
 }

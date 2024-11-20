@@ -2,7 +2,8 @@ import '../../../responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import '../../constants/defaults.dart';
 import '../../constants/ghaps.dart';
 
@@ -14,7 +15,7 @@ class TabWithGrowth extends StatelessWidget {
     required this.growthPercentage,
     this.iconSrc = "assets/icons/shopping_bag_light.svg",
     this.isPositiveGrowth = true,
-    this.iconBgColor = AppColors.secondaryBabyBlue,
+    this.iconBgColor = AppColor.secondaryBabyBlue,
   });
   final String title, amount, growthPercentage, iconSrc;
   final bool isPositiveGrowth;
@@ -40,7 +41,7 @@ class TabWithGrowth extends StatelessWidget {
                 height: 24,
                 width: 24,
                 colorFilter: const ColorFilter.mode(
-                  AppColors.titleLight,
+                  AppColor.titleLight,
                   BlendMode.srcIn,
                 ),
               ),
@@ -75,8 +76,8 @@ class TabWithGrowth extends StatelessWidget {
                       gapH4,
                       Chip(
                         backgroundColor: isPositiveGrowth
-                            ? AppColors.success.withOpacity(0.1)
-                            : AppColors.error.withOpacity(0.1),
+                            ? AppColor.success.withOpacity(0.1)
+                            : AppColor.error.withOpacity(0.1),
                         side: BorderSide.none,
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppDefaults.padding * 0.25,
@@ -87,8 +88,8 @@ class TabWithGrowth extends StatelessWidget {
                               : "-$growthPercentage",
                           style: TextStyle(
                               color: isPositiveGrowth
-                                  ? AppColors.success
-                                  : AppColors.error),
+                                  ? AppColor.success
+                                  : AppColor.error),
                         ),
                       ),
                     ],
@@ -99,8 +100,8 @@ class TabWithGrowth extends StatelessWidget {
           if (!Responsive.isMobile(context))
             Chip(
               backgroundColor: isPositiveGrowth
-                  ? AppColors.success.withOpacity(0.1)
-                  : AppColors.error.withOpacity(0.1),
+                  ? AppColor.success.withOpacity(0.1)
+                  : AppColor.error.withOpacity(0.1),
               side: BorderSide.none,
               padding: const EdgeInsets.symmetric(
                   horizontal: AppDefaults.padding * 0.25,
@@ -109,7 +110,7 @@ class TabWithGrowth extends StatelessWidget {
                 isPositiveGrowth ? "+$growthPercentage" : "-$growthPercentage",
                 style: TextStyle(
                     color:
-                        isPositiveGrowth ? AppColors.success : AppColors.error),
+                        isPositiveGrowth ? AppColor.success : AppColor.error),
               ),
             ),
         ],

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:hr360/features/home/presentation/pages/pages/Employee/employees.dart';
 
 import '../../../../di.dart';
 import '../../../ProfileScreen/UI/ProfileScreen.dart';
-import '../../data/repositories/FirebaseUserRepository.dart';
-import '../../domain/repositories/UserRepository.dart';
 import '../manager/bloc/user_bloc.dart';
 import '../manager/bloc/user_event.dart';
 import '../manager/bloc/user_state.dart';
@@ -20,7 +17,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<UserBloc>(),
+      create: (context) => getIt<UserBloc>(),
       child: UserView(),
     );
   }
@@ -46,8 +43,8 @@ class _UserViewState extends State<UserView> {
   }
   @override
   void dispose() {
-    if (! sl<UserBloc>().isClosed) {
-      sl<UserBloc>().close();
+    if (! getIt<UserBloc>().isClosed) {
+      getIt<UserBloc>().close();
     }
     super.dispose();
   }

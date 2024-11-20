@@ -1,5 +1,6 @@
 import '../../../shared/constants/defaults.dart';
-import '../../../theme/app_colors.dart';
+import '../../../../../../../core/utils/constants/colors.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -39,15 +40,15 @@ class _IconTileState extends State<IconTile> {
         padding: const EdgeInsets.all(AppDefaults.padding * 0.25),
         decoration: BoxDecoration(
             color: widget.isActive
-                ? AppColors.highlightLight
+                ? AppColor.highlightLight
                 : _isHover
-                    ? AppColors.highlightLight.withOpacity(0.5)
+                    ? AppColor.highlightLight.withOpacity(0.5)
                     : null,
             borderRadius: BorderRadius.circular(AppDefaults.borderRadius),
             boxShadow: widget.isActive
                 ? [
                     BoxShadow(
-                      color: AppColors.highlightLight.withOpacity(0.5),
+                      color: AppColor.highlightLight.withOpacity(0.5),
                       blurRadius: 10,
                       spreadRadius: 1,
                     )

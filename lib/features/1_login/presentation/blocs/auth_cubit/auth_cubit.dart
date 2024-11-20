@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hr360/features/home/presentation/pages/Home.dart';
 
 import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/constants/keys.dart';
@@ -10,6 +9,7 @@ import '../../../../../core/utils/error/failure.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../../di.dart';
+import '../../../../main_screen/main_screen.dart';
 import '../../../data/settings_model.dart';
 import '../../../data/user_model.dart';
 import '../../../domain/repositires/auth_repo.dart';
@@ -108,9 +108,9 @@ class AuthCubit extends Cubit<AuthState> {
         //   return e;
       }, (data) async {
         // await     sl<TLocalStorage>().removeData(AppKeys.userDataLogin);
-        await sl<TLocalStorage>().saveData<Map<String,dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
+        await getIt<TLocalStorage>().saveData<Map<String,dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
           print('data :  ${data.toJson()}');
-          THelperFunctions.navigateAndReplaceScreen(const Home());
+          THelperFunctions.navigateAndReplaceScreen(const MainScreen());
           emit(AuthSuccess(user: data));
         });
 
@@ -152,7 +152,7 @@ class AuthCubit extends Cubit<AuthState> {
     //
     // });
 
-    sl<TLocalStorage>().clearAll();
+    getIt<TLocalStorage>().clearAll();
     THelperFunctions.navigateAndReplaceScreen(const LoginScreen());
 
     emit(AuthInitial());

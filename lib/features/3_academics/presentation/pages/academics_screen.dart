@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/style.dart';
 
+import '../../../../core/utils/constants/colors.dart';
 import '../../../../core/utils/helpers/helper_functions.dart';
-import '../../../../di.dart';
-import '../manager/course_bloc.dart';
 import 'courses_screen.dart';
 
 class AcademicsScreen extends StatelessWidget {
@@ -13,42 +11,41 @@ class AcademicsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 300,
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              AcademicsItem(
-                title: 'Courses',
-                color: Colors.red,
-                icon: Icons.school,
-                totalCount: 25, // Example dynamic total
-                onTap: () => THelperFunctions.navigateToScreen(
-                  const CoursesScreen(),
-                ),
+    return  Scaffold(
+      body: Container(
+        // color: Colors.transparent,
+        width: 300,
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            AcademicsItem(
+              title: 'Courses',
+              color: Colors.red,
+              icon: Icons.school,
+              totalCount: 25, // Example dynamic total
+              onTap: () => THelperFunctions.navigateToScreen(context: context,
+                const CoursesScreen(),
               ),
-              SizedBox(height: 16.h),
-              AcademicsItem(
-                title: 'Batches',
-                color: Colors.green,
-                icon: Icons.category,
-                totalCount: 25, // Example dynamic total
-                onTap: () {},
-              ),
-              SizedBox(height: 16.h),
-              AcademicsItem(
-                title: 'Subjects',
-                color: Colors.pink,
-                icon: Icons.book,
-                totalCount: 25, // Example dynamic total
-                onTap: () {},
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 16.h),
+            AcademicsItem(
+              title: 'Batches',
+              color: Colors.green,
+              icon: Icons.category,
+              totalCount: 25, // Example dynamic total
+              onTap: () {},
+            ),
+            SizedBox(height: 16.h),
+            AcademicsItem(
+              title: 'Subjects',
+              color: Colors.pink,
+              icon: Icons.book,
+              totalCount: 25, // Example dynamic total
+              onTap: () {},
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

@@ -38,7 +38,7 @@ class _ThemeTabsState extends State<ThemeTabs>
         return
           Container(
             decoration: BoxDecoration(
-              color: AppColors.bgLight,
+              color: AppColor.bgLight,
               borderRadius: BorderRadius.circular(AppDefaults.borderRadius * 5),
             ),
             child: TabBar(
@@ -60,7 +60,7 @@ class _ThemeTabsState extends State<ThemeTabs>
                     spreadRadius: 2,
                   )
                 ],
-                color: AppColors.bgSecondayLight,
+                color: AppColor.bgSecondayLight,
               ),
               indicatorSize: TabBarIndicatorSize.tab,
               onTap:  (value) {

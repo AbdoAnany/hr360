@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 
 import '../../responsive.dart';
-import '../../theme/app_colors.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 import '../constants/defaults.dart';
 import '../constants/ghaps.dart';
 
@@ -9,7 +10,7 @@ class SectionTitle extends StatelessWidget {
   const SectionTitle({
     super.key,
     required this.title,
-    this.color = AppColors.secondaryPeach,
+    this.color = AppColor.secondaryPeach,
   });
 
   final String title;

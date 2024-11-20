@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hr360/core/utils/theme/widget_themes/appbar_theme.dart';
-import 'package:hr360/core/utils/theme/widget_themes/bottom_sheet_theme.dart';
-import 'package:hr360/core/utils/theme/widget_themes/checkbox_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/chip_theme.dart';
-import 'package:hr360/core/utils/theme/widget_themes/elevated_button_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/icon_button_theme.dart';
-import 'package:hr360/core/utils/theme/widget_themes/icon_theme.dart';
-import 'package:hr360/core/utils/theme/widget_themes/outlined_button_theme.dart';
-import 'package:hr360/core/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../di.dart';
+import '../../../features/2_dash_border/presentation/pages/theme/app_colors.dart';
 import '../constants/colors.dart';
 
 class TAppTheme {
@@ -26,7 +20,7 @@ class TAppTheme {
     textTheme: TTextTheme.lightTextTheme,
     chipTheme: TChipTheme.lightChipTheme,
     iconButtonTheme: TIconButtonTheme.lightIconButtonTheme,
-    scaffoldBackgroundColor: AppColor.transparent,
+    scaffoldBackgroundColor: AppColor.bgLight,
     // appBarTheme: TAppBarTheme.lightAppBarTheme,
     // iconTheme: TIconTheme.lightIconTheme,
     // checkboxTheme: TCheckboxTheme.lightCheckboxTheme,
@@ -65,12 +59,12 @@ class ThemeProvider extends ChangeNotifier {
     _themeMode = mode;
     bool isDark;
     isDark = mode == ThemeMode.dark;
-    sl<SharedPreferences>().setBool('isDark', isDark);
+    getIt<SharedPreferences>().setBool('isDark', isDark);
     notifyListeners();
   }
 
   getThemeMode() {
-    bool isDark = sl<SharedPreferences>().getBool('isDark') ?? false;
+    bool isDark = getIt<SharedPreferences>().getBool('isDark') ?? false;
     isDarkModeEnabled = isDark;
     _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
   }

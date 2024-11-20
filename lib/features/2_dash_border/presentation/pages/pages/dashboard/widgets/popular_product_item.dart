@@ -49,7 +49,7 @@ class _PopularProductItemState extends State<PopularProductItem> {
                 maxLines: 2,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: isHovered ? AppColors.primary : null),
+                    color: isHovered ? AppColor.primary : null),
               ),
             ),
             gapW8,
@@ -61,13 +61,13 @@ class _PopularProductItemState extends State<PopularProductItem> {
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 15,
-                      color: isHovered ? AppColors.primary : null),
+                      color: isHovered ? AppColor.primary : null),
                 ),
                 gapH4,
                 Chip(
                   backgroundColor: widget.isActive
-                      ? AppColors.success.withOpacity(0.1)
-                      : AppColors.error.withOpacity(0.1),
+                      ? AppColor.success.withOpacity(0.1)
+                      : AppColor.error.withOpacity(0.1),
                   side: BorderSide.none,
                   padding: const EdgeInsets.symmetric(
                       horizontal: AppDefaults.padding * 0.25,
@@ -77,8 +77,8 @@ class _PopularProductItemState extends State<PopularProductItem> {
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         fontWeight: FontWeight.w700,
                         color: widget.isActive
-                            ? AppColors.success
-                            : AppColors.error),
+                            ? AppColor.success
+                            : AppColor.error),
                   ),
                 ),
               ],

@@ -4,7 +4,6 @@ import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/utils/constants/style.dart';
-import '../../../home/presentation/widgets/Mainbar.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -60,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   // SizedBox(height: 20,),
 
-                  MainBarHeader(),
+                  // MainBarHeader(),
                   SizedBox(
                     height: 20,
                   ),

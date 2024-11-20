@@ -11,7 +11,7 @@ class PopularProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: AppColors.bgSecondayLight,
+        color: AppColor.bgSecondayLight,
         borderRadius: BorderRadius.all(
           Radius.circular(AppDefaults.borderRadius),
         ),
@@ -26,7 +26,7 @@ class PopularProducts extends StatelessWidget {
             ),
             child: SectionTitle(
               title: "Popular products",
-              color: AppColors.secondaryLavender,
+              color: AppColor.secondaryLavender,
             ),
           ),
           gapH16,
