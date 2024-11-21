@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Import your page widgets here
 import '../../features/2_dash_border/presentation/pages/dashboard_page.dart';
+import '../../features/3_academics/presentation/pages/PrimarySchoolClassesPage.dart';
 import '../../features/3_academics/presentation/pages/academics_screen.dart';
 import '../../features/4_user/presentation/pages/UserPage.dart';
 import '../../features/home/presentation/pages/pages/Employee/employees.dart';
@@ -57,8 +58,10 @@ enum AppRoutes {
     switch (this) {
       case AppRoutes.dashboard:
         return const DashboardPage();
-      case AppRoutes.academics:
-        return const AcademicsScreen();
+      // case AppRoutes.academics:
+      //   return const AcademicsScreen();
+        case AppRoutes.academics:
+        return  PrimarySchoolClassesPage();
       case AppRoutes.accounts:
         return AccountsPage();
       case AppRoutes.support:

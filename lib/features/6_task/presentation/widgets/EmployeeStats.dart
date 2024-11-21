@@ -61,8 +61,9 @@ class EmployeeStats extends StatelessWidget {
               },
             );
           },
-          text: "add task",
-        )
+          text: "New Task",
+        ),
+        SizedBox(width: 8,)
       ],
     );
   }

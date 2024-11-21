@@ -22,6 +22,7 @@ import '../../core/utils/theme/theme.dart';
 import '../../di.dart';
 import '../2_dash_border/presentation/pages/pages/entry_point.dart';
 import '../3_academics/presentation/manager/course_bloc.dart';
+import '../3_academics/presentation/pages/PrimarySchoolClassesPage.dart';
 import '../3_academics/presentation/pages/academics_screen.dart';
 import '../4_user/presentation/manager/bloc/user_bloc.dart';
 import '../4_user/presentation/pages/UserPage.dart';
@@ -140,6 +141,7 @@ extension AppRouteWidget on AppRoutes {
       case AppRoutes.dashboard:
         return const EntryPoint();
       case AppRoutes.academics:
+        return  PrimarySchoolClassesPage();
         return const AcademicsScreen();
       case AppRoutes.accounts:
         return AccountsPage();

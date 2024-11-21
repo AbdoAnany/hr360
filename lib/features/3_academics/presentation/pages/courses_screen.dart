@@ -70,40 +70,42 @@ class _CoursesScreenState extends State<CoursesView> {
               itemCount: state.courses.length,
               itemBuilder: (context, index) {
                 final course = state.courses[index];
-                return Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: AppStyle.coursesDecoration,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        course.name,
-                        style: AppStyle.font18Black400,
-                      ),
-                      Text(
-                        'Total No. of subjects: ${course.totalSubjects}',
-                        style: AppStyle.font14Gray400,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: (course.isOnline ? Colors.green : Colors.red)
-                              .withOpacity(.07),
-                        ),
-                        child: Text(
-                          course.isOnline ? 'Online' : 'Offline',
-                          style: TextStyle(
-                            color:
-                            (course.isOnline ? Colors.green : Colors.red),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+
+
+                // return Container(
+                //   padding: const EdgeInsets.all(16),
+                //   decoration: AppStyle.coursesDecoration,
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text(
+                //         course.name,
+                //         style: AppStyle.font18Black400,
+                //       ),
+                //       Text(
+                //         'Total No. of subjects: ${course.totalSubjects}',
+                //         style: AppStyle.font14Gray400,
+                //       ),
+                //       Container(
+                //         padding: const EdgeInsets.symmetric(
+                //             vertical: 8, horizontal: 8),
+                //         decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(12),
+                //           color: (course.isOnline ? Colors.green : Colors.red)
+                //               .withOpacity(.07),
+                //         ),
+                //         child: Text(
+                //           course.isOnline ? 'Online' : 'Offline',
+                //           style: TextStyle(
+                //             color:
+                //             (course.isOnline ? Colors.green : Colors.red),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // );
               },
             );
           }
@@ -118,3 +120,4 @@ class _CoursesScreenState extends State<CoursesView> {
     );
   }
 }
+

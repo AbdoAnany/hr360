@@ -12,12 +12,15 @@ class AcademicsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: Container(
+      body:
+
+      Container(
         // color: Colors.transparent,
         width: 300,
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
+
             AcademicsItem(
               title: 'Courses',
               color: Colors.red,
@@ -112,3 +115,9 @@ class AcademicsItem extends StatelessWidget {
     );
   }
 }
+
+
+
+// Example Usage Page
+
+
