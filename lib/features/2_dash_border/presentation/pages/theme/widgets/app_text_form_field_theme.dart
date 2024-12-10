@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 
 import '../../shared/constants/defaults.dart';
-import '../app_colors.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
 
 class AppTextFormFieldTheme {
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(

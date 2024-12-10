@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
+
 import '../../shared/constants/config.dart';
 import '../../shared/constants/defaults.dart';
 import '../../shared/constants/extensions.dart';
 import '../../shared/constants/ghaps.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-
 import 'widgets/social_login_button.dart';
 
 class SignInPage extends StatelessWidget {

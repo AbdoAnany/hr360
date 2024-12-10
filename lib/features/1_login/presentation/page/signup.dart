@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../core/utils/constants/style.dart';
-
 
 class SignUpScreen extends StatefulWidget {
   @override

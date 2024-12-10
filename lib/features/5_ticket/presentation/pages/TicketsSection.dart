@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:hr360/core/utils/constants/colors.dart';
 
 import '../../../ticket/TicketCard.dart';
 import '../../../ticket/model/TicketCardModel.dart';
@@ -59,10 +60,7 @@ class TicketsSection extends StatelessWidget {
 
  @override
  Widget build(BuildContext context) {
-  return const Padding(
-   padding: EdgeInsets.all(16.0),
-   child:TicketBody()
-  );
+  return const TicketBody();
  }
 
 
@@ -73,54 +71,59 @@ class TicketBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(     height: 50.0,
-            width: 450,
-            child: TabBar(
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicatorWeight: 3,
-              tabs: [
-                Tab(text: "Unassigned"),
-                Tab(text: "Assigned to Me"),
-                Tab(text: "Solved"),
-              ],
-            ),
-          ),       SizedBox(height: 20),
+    return Container(
+      color: AppColor.bgLight,
 
-          Expanded(
-            child: SizedBox(width: 1000,
-              child: TabBarView(
-                children: <Widget>[
-                  ListView.builder(
-                    itemCount: generateTicketList( Statuses: 'Unassigned').length,
-                    itemBuilder: (context, index) {
-                      final ticket = generateTicketList(Statuses: 'Unassigned')[index];
-                      return TicketCard(ticketCardModel: ticket,);
-                    },
-                  ),
-                  ListView.builder(
-                    itemCount: generateTicketList( Statuses: 'Assigned to Me').length,
-                    itemBuilder: (context, index) {
-                      final ticket = generateTicketList(Statuses: 'Assigned to Me')[index];
-                      return TicketCard(ticketCardModel: ticket,);
-                    },
-                  ),
-                  ListView.builder(
-                    itemCount: generateTicketList( Statuses: 'Solved').length,
-                    itemBuilder: (context, index) {
-                      final ticket = generateTicketList(Statuses: 'Solved')[index];
-                      return TicketCard(ticketCardModel: ticket,);
-                    },
-                  ),
+      padding: const EdgeInsets.all(16.0),
+      child: DefaultTabController(
+        length: 3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(     height: 50.0,
+              width: 450,
+              child: TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorWeight: 3,
+                tabs: [
+                  Tab(text: "Unassigned"),
+                  Tab(text: "Assigned to Me"),
+                  Tab(text: "Solved"),
                 ],
               ),
+            ),       SizedBox(height: 20),
+
+            Expanded(
+              child: SizedBox(width: 1000,
+                child: TabBarView(
+                  children: <Widget>[
+                    ListView.builder(
+                      itemCount: generateTicketList( Statuses: 'Unassigned').length,
+                      itemBuilder: (context, index) {
+                        final ticket = generateTicketList(Statuses: 'Unassigned')[index];
+                        return TicketCard(ticketCardModel: ticket,);
+                      },
+                    ),
+                    ListView.builder(
+                      itemCount: generateTicketList( Statuses: 'Assigned to Me').length,
+                      itemBuilder: (context, index) {
+                        final ticket = generateTicketList(Statuses: 'Assigned to Me')[index];
+                        return TicketCard(ticketCardModel: ticket,);
+                      },
+                    ),
+                    ListView.builder(
+                      itemCount: generateTicketList( Statuses: 'Solved').length,
+                      itemBuilder: (context, index) {
+                        final ticket = generateTicketList(Statuses: 'Solved')[index];
+                        return TicketCard(ticketCardModel: ticket,);
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

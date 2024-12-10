@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hr360/features/2_dash_border/presentation/pages/pages/entry_point.dart';
-import 'package:hr360/features/2_dash_border/presentation/pages/shared/navigation/routes.dart';
-import 'package:hr360/features/2_dash_border/presentation/pages/theme/app_theme.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/utils/theme/theme.dart';
-import 'package:provider/provider.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});

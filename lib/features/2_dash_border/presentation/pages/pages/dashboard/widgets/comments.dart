@@ -1,9 +1,6 @@
 
-import 'package:hr360/features/2_dash_border/core_import.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
-
-
 import 'package:flutter/material.dart';
+import 'package:hr360/features/2_dash_border/core_import.dart';
 import 'package:hr360/features/2_dash_border/presentation/pages/pages/dashboard/widgets/comment_item.dart';
 
 class Comments extends StatelessWidget {

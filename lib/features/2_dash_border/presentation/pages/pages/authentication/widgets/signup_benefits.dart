@@ -1,7 +1,7 @@
-import '../../../shared/constants/defaults.dart';
-import '../../../shared/constants/ghaps.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/constants/defaults.dart';
+import '../../../shared/constants/ghaps.dart';
 import 'benefit_text.dart';
 
 class SignupBenefits extends StatelessWidget {

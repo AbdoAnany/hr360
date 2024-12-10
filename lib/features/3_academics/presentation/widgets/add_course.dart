@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/3_academics/domain/entities/course.dart';
-import '../../../../di.dart';
+
 import '../manager/course_bloc.dart';
 import '../manager/course_event.dart';
 

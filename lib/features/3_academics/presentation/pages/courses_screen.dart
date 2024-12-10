@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/constants/colors.dart';
-import '../../../../core/utils/constants/style.dart';
 import '../../../../di.dart';
 import '../manager/course_bloc.dart';
 import '../manager/course_event.dart';

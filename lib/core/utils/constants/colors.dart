@@ -1,44 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:hr360/core/utils/constants/style.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'image_strings.dart';
 
 
 
 /// A class to define text styles, button styles, and other reusable styles.
 class AppStyle {
   // Text Styles
-  static const TextStyle heading1 = TextStyle(
-    fontSize: 32,
+  static  TextStyle heading1 = TextStyle(
+    fontSize: 32.sp,
     fontWeight: FontWeight.bold,
     color: AppColor.darkGray,
   );
 
-  static const TextStyle heading2 = TextStyle(
-    fontSize: 24,
+  static  TextStyle heading2 = TextStyle(
+    fontSize: 24.sp,
     fontWeight: FontWeight.bold,
     color: AppColor.darkGray,
   );
 
-  static const TextStyle heading3 = TextStyle(
-    fontSize: 18,
+  static  TextStyle heading3 = TextStyle(
+    fontSize: 18.sp,
     fontWeight: FontWeight.w600,
     color: AppColor.darkGray,
   );
 
-  static const TextStyle bodyText = TextStyle(
-    fontSize: 16,
+  static  TextStyle bodyText = TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.normal,
     color: AppColor.darkGray,
   );
 
-  static const TextStyle labelText = TextStyle(
-    fontSize: 14,
+  static  TextStyle labelText = TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeight.normal,
     color: AppColor.placeholder,
   );
 
-  static const TextStyle buttonText = TextStyle(
-    fontSize: 16,
+  static  TextStyle buttonText = TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeight.bold,
     color: AppColor.white,
   );
@@ -47,7 +48,7 @@ class AppStyle {
   static final ButtonStyle primaryButton = ElevatedButton.styleFrom(
     backgroundColor: AppColor.primary,
     textStyle: buttonText,
-    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+    padding:  EdgeInsets.symmetric(vertical: 16.h, horizontal: 24.w),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
     ),
@@ -57,11 +58,11 @@ class AppStyle {
   static final ButtonStyle secondaryButton = OutlinedButton.styleFrom(
     side: const BorderSide(color: AppColor.primary),
     textStyle: TextStyle(
-      fontSize: 16,
+      fontSize: 16.sp,
       fontWeight: FontWeight.bold,
       color: AppColor.primary,
     ),
-    padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
+    padding:  EdgeInsets.symmetric(vertical: 14.h, horizontal: 22.w),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
     ),
@@ -89,7 +90,7 @@ class AppStyle {
   // Snackbar Styles
   static SnackBar successSnackBar(String message) {
     return SnackBar(
-      content: Text(message, style: const TextStyle(color: AppColor.white)),
+      content: Text(message, style:  TextStyle(color: AppColor.white)),
       backgroundColor: AppColor.success,
       behavior: SnackBarBehavior.floating,
     );
@@ -97,32 +98,32 @@ class AppStyle {
 
   static SnackBar errorSnackBar(String message) {
     return SnackBar(
-      content: Text(message, style: const TextStyle(color: AppColor.white)),
+      content: Text(message, style:  TextStyle(color: AppColor.white)),
       backgroundColor: AppColor.error,
       behavior: SnackBarBehavior.floating,
     );
   }
-  static TextStyle font18Black400 = const TextStyle(
+  static TextStyle font18Black400 =  TextStyle(
     color: AppColor.textPrimary,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font16PrimaryBold = const TextStyle(
+  static TextStyle font16PrimaryBold =  TextStyle(
     color: AppColor.primary,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.bold,
   );
 
-  static TextStyle font14Gray400 = const TextStyle(
+  static TextStyle font14Gray400 =  TextStyle(
     color: AppColor.textSecondary,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font12Error = const TextStyle(
+  static TextStyle font12Error =  TextStyle(
     color: AppColor.error,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w500,
   );
 
@@ -137,12 +138,14 @@ class AppStyle {
   static BoxDecoration coursesDecoration = BoxDecoration(
       border: Border.all(color: Colors.grey),
       borderRadius: BorderRadius.circular(12));
-  static BoxDecoration decorationPage =  BoxDecoration(
+  static BoxDecoration decorationPage =  const BoxDecoration(
       color: AppColor.bgLight,
-      // border: Border(
-      //   top: BorderSide(width: 1, color: AppColor.placeholder),
-      // ),
+
+
+      image:DecorationImage(image:  AssetImage(TImages.bgCircles)),
       borderRadius: BorderRadius.only(topLeft: Radius.circular(25)));
+
+
   static SnackBar warningSnackBar(String message) {
     return SnackBar(
       content: Text(message, style: const TextStyle(color: AppColor.white)),

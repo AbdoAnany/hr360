@@ -1,5 +1,6 @@
-import '../../../shared/constants/defaults.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../../../shared/constants/defaults.dart';
 
 class CustomerRoundedAvatar extends StatelessWidget {
   const CustomerRoundedAvatar({

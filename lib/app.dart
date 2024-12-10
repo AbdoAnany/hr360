@@ -7,6 +7,7 @@ import 'package:hr360/core/utils/theme/theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'core/utils/constants/colors.dart';
 import 'di.dart';
 import 'features/1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
           TSizes.init(context: context);
           ScreenUtil.init(context);
 
+
           return ScreenUtilInit(
             designSize: Size(
               TSizes.uiSW,
@@ -57,6 +59,7 @@ class App extends StatelessWidget {
               title: TTexts.appName,
               themeMode: themeProvider.themeMode,
               theme: TAppTheme.lightTheme,
+              color: AppColor.bgLight,
               darkTheme: TAppTheme.darkTheme,
               debugShowCheckedModeBanner: false,
               navigatorKey: Get.navigatorKey,

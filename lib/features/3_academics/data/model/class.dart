@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../presentation/pages/PrimarySchoolClassesPage.dart';
 
@@ -68,7 +67,7 @@ class ClassRoomModel {
   final String? className;
   final String? teacherName;
   final int? totalStudents;
-  late final List<SubjectModel>? subjects;
+    List<SubjectModel>? subjects;
   final Color? backgroundColor;
 
   ClassRoomModel({

@@ -1,11 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../shared/constants/defaults.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 
-
+import '../shared/constants/defaults.dart';
 import 'widgets/app_text_form_field_theme.dart';
 
 class AppTheme {

@@ -1,12 +1,9 @@
-import '../../../shared/constants/config.dart';
-import '../../../shared/constants/defaults.dart';
-import '../../../shared/constants/ghaps.dart';
-import '../../../../../../../core/utils/constants/colors.dart';
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../shared/constants/config.dart';
+import '../../../shared/constants/defaults.dart';
+import '../../../shared/constants/ghaps.dart';
 import 'social_login_button.dart';
 
 class SignInForm extends StatelessWidget {

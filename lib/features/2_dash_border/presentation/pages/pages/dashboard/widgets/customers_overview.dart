@@ -1,9 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:hr360/features/2_dash_border/core_import.dart';
 
-import 'package:flutter/material.dart';
-import 'package:hr360/features/2_dash_border/presentation/pages/responsive.dart';
-
-import '../../../shared/constants/ghaps.dart';
 import '../../../shared/widgets/avatar/customer_avaatar.dart';
 
 class CoustomersOverview extends StatelessWidget {

@@ -5,7 +5,6 @@ import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../di.dart';
-import '../../../features/2_dash_border/presentation/pages/theme/app_colors.dart';
 import '../constants/colors.dart';
 
 class TAppTheme {

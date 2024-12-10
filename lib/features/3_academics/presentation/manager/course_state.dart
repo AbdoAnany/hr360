@@ -1,6 +1,7 @@
 // lib/bloc/course_state.dart
 
 import 'package:equatable/equatable.dart';
+
 import '../../domain/entities/course.dart';
 
 abstract class CourseState extends Equatable {

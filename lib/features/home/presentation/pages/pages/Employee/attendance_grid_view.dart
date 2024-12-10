@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -49,7 +51,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           MaterialButton(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
             onPressed: () => showAddUserDialog(context),
             // child: const Text('Add USer'),
             child: Center(
@@ -58,7 +60,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                 const Icon(Icons.add),
-                SizedBox(width: 8,),
+                SizedBox(width: 8.w,),
                 Text('Add USer'),
               ],),
             ),
@@ -85,16 +87,16 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                           source: employeeDataSource?? EmployeeDataSource(employees: []),
                           checkboxColumnSettings:
                               DataGridCheckboxColumnSettings(),
-                          rowHeight: 70,
+                          rowHeight: 70.h,
                           selectionMode: SelectionMode.multiple,
                           columnWidthMode: ColumnWidthMode.fitByCellValue,
-                          defaultColumnWidth: 120,
+                          defaultColumnWidth: 120.w,
                           allowPullToRefresh: true,
                           columns: <GridColumn>[
                             GridColumn(
                                 columnName: 'Num',
                                 columnWidthMode: ColumnWidthMode.fitByCellValue,
-                                minimumWidth: 75,
+                                minimumWidth: 75.w,
                                 label: Container(
                                     decoration: BoxDecoration(
                                         color: Color(0xffF5F5F5),
@@ -102,7 +104,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                                           topLeft: Radius.circular(12),
                                           bottomLeft: Radius.circular(12),
                                         )),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
                                     alignment: Alignment.center,
                                     child: const Text('#'))),
                             // GridColumn(
@@ -117,47 +119,47 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                             //         child: const Text('ID'))),
                             GridColumn(
                                 columnName: 'Name',
-                                width: 200,
+                                width: 200.w,
                                 columnWidthMode: ColumnWidthMode.fill,
                                 label: Container(
                                     color: Color(0xffF5F5F5),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
                                     alignment: Alignment.center,
                                     child: Text('Name'))),
                             GridColumn(
                                 columnName: 'Roles',
                                 label: Container(
                                     color: Color(0xffF5F5F5),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
                                     alignment: Alignment.center,
                                     child: Text('Roles'))),
                             GridColumn(
                                 columnName: 'State',
-                                width: 90,
+                                width: 90.w,
                                 label: Container(
                                     color: Color(0xffF5F5F5),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
                                     alignment: Alignment.center,
                                     child: Text('State'))),
                             GridColumn(
                                 columnName: 'Gender',
-                                width: 100,
+                                width: 100.w,
                                 label: Container(
                                     color: Color(0xffF5F5F5),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
                                     alignment: Alignment.center,
                                     child: Text('Gender'))),
                             GridColumn(
                                 columnName: 'Phone',
-                                width: 200,
+                                width: 200.w,
                                 label: Container(
                                     color: Color(0xffF5F5F5),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
                                     alignment: Alignment.center,
                                     child: Text('Phone'))),
                             GridColumn(
                                 columnName: 'email',
-                                width: 200,
+                                width: 200.w,
                                 label: Container(
                                     color: Color(0xffF5F5F5),
                                     padding: EdgeInsets.all(16.0),
@@ -165,20 +167,22 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                                     child: Text('Email'))),
                             GridColumn(
                                 columnName: 'Info',
-                                width: 200,
+                                width: 200.w,
                                 label: Container(
                                     color: Color(0xffF5F5F5),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
+
                                     alignment: Alignment.center,
                                     child: Text('Info'))),
                             GridColumn(
                                 columnName: 'Birth_Date',
-                                width: 120,
+                                width: 120.w,
                                 label: Container(
                                     decoration: BoxDecoration(
                                       color: Color(0xffF5F5F5),
                                     ),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
+
                                     alignment: Alignment.center,
                                     child: Text('Birth Date'))),
                             GridColumn(
@@ -191,7 +195,8 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                                           topRight: Radius.circular(12),
                                           bottomRight: Radius.circular(12),
                                         )),
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: EdgeInsets.symmetric(horizontal: 16.0.w,vertical: 16.h),
+
                                     alignment: Alignment.center,
                                     child: const Text('Details'))),
                           ],
@@ -233,7 +238,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
       focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: AppColor.placeholder, width: .5)
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      contentPadding:  EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 8.0.w),
     );
 
     showDialog(
@@ -250,16 +255,16 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
               backgroundColor: AppColor.lightBackground,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               content: SizedBox(
-                width: 600,
-                height: 450,
+                width: 600.w,
+                height: 450.h,
                 child: Form(
                   key: formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const SizedBox(height: 32),
+                       SizedBox(height: 32.h),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding:  EdgeInsets.symmetric(vertical: 8.0.h),
                         child: Row(
                           children: [
                             Expanded(
@@ -378,7 +383,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        padding:  EdgeInsets.symmetric(vertical: 8.0.h),
                         child: SizedBox(
                           child: Row(
                             children: [
@@ -450,7 +455,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
                   onPressed: () => Navigator.of(dialogContext).pop(),
                 ),
                 MaterialButton(
-                  minWidth: 200,
+                  minWidth: 200.w,
                   child: const Text('Add User'),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
@@ -526,14 +531,15 @@ class EmployeeDataSource extends DataGridSource {
         decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
             if (dataGridCell.columnName == "Name")
               // if (dataGridCell.columnName == "avatar")
                 Container(
                   clipBehavior: Clip.hardEdge,
-                  width: 50,
-                  height: 50,
+                  width: 50.sp,
+                  height: 50.sp,
                   decoration: BoxDecoration(
                       color: AppColor.white, shape: BoxShape.circle),
                   child:    dataGridCell.value.toString().split('-')[0] .isNotEmpty
@@ -549,7 +555,7 @@ class EmployeeDataSource extends DataGridSource {
                 ? Expanded(
                     child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 0),
-                        height: 30,
+                        height: 30.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: dataGridCell.value == "active"
@@ -558,35 +564,42 @@ class EmployeeDataSource extends DataGridSource {
                         child: Center(
                             child: Text(dataGridCell.value,
                                 style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 12.sp,
                                     color: dataGridCell.value == "active"
                                         ? Color(0xff40997E)
                                         : Color(0xffF93333))))))
                 : dataGridCell.columnName == "Action"
-                    ? Expanded(
-                        child: InkWell(
-                            onTap: () {
-                              THelperFunctions.navigateToScreen(
-                                context:  Get.context,
-                                  ProfileScreen(
-                                    userDetails: dataGridCell.value,
-                                  )
-                              );
-                              // Navigator.push(
-                              //    ,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => ProfileScreen(
-                              //               userDetails: dataGridCell.value,
-                              //             )));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.arrow_forward_outlined,
-                                color: Colors.blueAccent,
-                              ),
-                            )),
-                      )
+                    ? Center(
+                      child: InkWell(
+                          onTap: () {
+                            THelperFunctions.navigateToScreen(
+                              context:  Get.context,
+                                ProfileScreen(
+                                  userDetails: dataGridCell.value,
+                                )
+                            );
+                          },
+                          child: Container(
+                            width: 125.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: AppColor.primary.withOpacity(.07),
+                              border: Border.all(color:AppColor.primary,width: .5),
+                            ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Iconsax.eye,size: 15,
+                                  color: AppColor.primary,
+                                ),
+                                SizedBox(width: 4,),
+                                Text(
+                                  "View Details",style: AppStyle.font14Gray400.copyWith(color: AppColor.primary),)
+                              ],
+                            ),
+                          )),
+                    )
                     :    dataGridCell.columnName == "Name" ?
           Center(child: Text(   dataGridCell.value.toString().split('-')[1]))
                 : Expanded(

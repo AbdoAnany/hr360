@@ -1,10 +1,9 @@
-import 'package:hr360/features/2_dash_border/core_import.dart';
-
 import 'package:flutter/material.dart';
+import 'package:hr360/features/2_dash_border/core_import.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../../core/utils/theme/theme.dart';
 import '../../../shared/widgets/tabs/tab_with_icon.dart';
-import 'package:provider/provider.dart';
 
 class ThemeTabs extends StatefulWidget {
   const ThemeTabs({super.key});

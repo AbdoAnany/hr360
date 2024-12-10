@@ -1,7 +1,8 @@
+import 'package:go_router/go_router.dart';
+
 import '../../pages/authentication/register_page.dart';
 import '../../pages/authentication/sign_in_page.dart';
 import '../../pages/entry_point.dart';
-import 'package:go_router/go_router.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',

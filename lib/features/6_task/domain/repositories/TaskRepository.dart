@@ -1,7 +1,4 @@
-import '../../../1_login/data/user_model.dart';
-import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../entities/TaskModel.dart';
-import '../../presentation/pages/taskTab.dart';
 
 abstract class TaskRepository {
   Future<void> addTask(TaskModel task);

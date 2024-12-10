@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../../core/utils/constants/colors.dart';
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
 import '../../../shared/widgets/section_title.dart';
-import '../../../../../../../core/utils/constants/colors.dart';
-
 import 'overview_tabs.dart';
 
 class Overview extends StatelessWidget {

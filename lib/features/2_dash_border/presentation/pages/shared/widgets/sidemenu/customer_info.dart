@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+
+import '../../../../../../../core/utils/constants/colors.dart';
 import '../../../shared/constants/defaults.dart';
 import '../../../shared/constants/ghaps.dart';
 import '../../../shared/widgets/avatar/customer_rounded_avatar.dart';
-import '../../../../../../../core/utils/constants/colors.dart';
-
-import 'package:flutter/material.dart';
 
 class CustomerInfo extends StatelessWidget {
   const CustomerInfo({

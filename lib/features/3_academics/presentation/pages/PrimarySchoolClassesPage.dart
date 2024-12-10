@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hr360/core/utils/helpers/helper_functions.dart';
+import 'package:hr360/features/3_academics/presentation/pages/courses_screen.dart';
 
 import '../../data/model/class.dart';
 import '../../data/repositories/FirebaseRepository.dart';
@@ -40,6 +42,7 @@ class PrimarySchoolClassesPage extends StatelessWidget {
                   //     },
                   //   ),
                   // );
+                  THelperFunctions.navigateToScreen(const CoursesScreen());
                 },
                 child: PrimaryClassCard(classRoom: classRoom),
               );

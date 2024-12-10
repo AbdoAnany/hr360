@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/features/6_task/presentation/manager/task_cubit.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../di.dart';
 import '../../../1_login/data/user_model.dart';
-import '../../data/repositories/FirebaseTaskRepository.dart';
-import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../../domain/entities/TaskModel.dart';
 import '../widgets/EmployeeStats.dart';
 import '../widgets/TaskCard.dart';

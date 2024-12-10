@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:hr360/features/ProfileScreen/UI/manger/profile_cubit.dart';
 
-import '../../../../../../di.dart';
 import '../../../ProfileScreen/UI/ProfileScreen.dart';
 import '../../domain/entities/TaskModel.dart';
 import '../manager/task_cubit.dart';

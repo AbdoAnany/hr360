@@ -1,14 +1,12 @@
 
 // User Bloc
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/4_user/presentation/manager/bloc/user_event.dart';
 import 'package:hr360/features/4_user/presentation/manager/bloc/user_state.dart';
 
 import '../../../../1_login/data/user_model.dart';
 import '../../../data/repositories/FirebaseUserRepository.dart';
-import '../../../domain/repositories/UserRepository.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final FirebaseUserRepository userRepository;
   bool _isClosed = false; // Flag to track if Bloc is closed

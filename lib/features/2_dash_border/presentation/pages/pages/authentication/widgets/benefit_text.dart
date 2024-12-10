@@ -1,9 +1,9 @@
-import '../../../shared/constants/defaults.dart';
-import '../../../shared/constants/extensions.dart';
-import '../../../../../../../core/utils/constants/colors.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../../../../../core/utils/constants/colors.dart';
+import '../../../shared/constants/defaults.dart';
+import '../../../shared/constants/extensions.dart';
 
 class BenefitText extends StatelessWidget {
   const BenefitText({

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:hr360/features/6_task/presentation/manager/task_cubit.dart';
 import 'package:hr360/features/ProfileScreen/UI/manger/profile_cubit.dart';

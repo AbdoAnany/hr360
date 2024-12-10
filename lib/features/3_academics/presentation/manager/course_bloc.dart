@@ -1,12 +1,12 @@
 // lib/bloc/course_bloc.dart
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entities/course.dart';
 import '../../domain/usecases/get_courses.dart';
 import 'course_event.dart';
 import 'course_state.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {
   final GetCourses getCourses;

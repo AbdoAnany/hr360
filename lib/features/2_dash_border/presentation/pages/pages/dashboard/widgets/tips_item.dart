@@ -1,7 +1,6 @@
-import 'package:hr360/features/2_dash_border/core_import.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hr360/features/2_dash_border/core_import.dart';
 
 import '../../../shared/widgets/avatar/customer_rounded_avatar.dart';
 

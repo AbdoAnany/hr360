@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
-import 'package:hr360/di.dart';
-import 'package:hr360/features/ProfileScreen/UI/page/profile/EmployeeProfile.dart';
-import 'package:hr360/features/6_task/presentation/manager/task_cubit.dart';
-import 'package:hr360/features/6_task/domain/entities/TaskModel.dart';
 import 'package:hr360/features/6_task/presentation/pages/taskTab.dart';
+import 'package:hr360/features/ProfileScreen/UI/page/profile/EmployeeProfile.dart';
 import 'package:hr360/features/ProfileScreen/UI/widget/PieChartSample2.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../1_login/data/user_model.dart';
-import '../../6_task/data/repositories/FirebaseTaskRepository.dart';
 
 class ProfileScreen extends StatefulWidget {
   UserModel? userDetails;

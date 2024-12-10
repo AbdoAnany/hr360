@@ -29,8 +29,7 @@ class FirebaseRepository {
   }
 
   // Update an existing class
-  Future<void> updateClass(
-      String documentId, ClassRoomModel updatedClass) async {
+  Future<void> updateClass(ClassRoomModel updatedClass) async {
     await _firestore
         .collection('classes')
         .doc(updatedClass.id)

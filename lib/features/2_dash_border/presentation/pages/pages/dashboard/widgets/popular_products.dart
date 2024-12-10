@@ -1,6 +1,5 @@
-import 'package:hr360/features/2_dash_border/core_import.dart';
-
 import 'package:flutter/material.dart';
+import 'package:hr360/features/2_dash_border/core_import.dart';
 
 import 'popular_product_item.dart';
 

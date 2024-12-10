@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Import your page widgets here
 import '../../features/2_dash_border/presentation/pages/dashboard_page.dart';
+import '../../features/2_dash_border/presentation/pages/pages/entry_point.dart';
 import '../../features/3_academics/presentation/pages/PrimarySchoolClassesPage.dart';
 import '../../features/3_academics/presentation/pages/academics_screen.dart';
 import '../../features/4_user/presentation/pages/UserPage.dart';
@@ -106,3 +107,35 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     );
   }
 }
+// Add this to your AppRoutes enum if not already present
+extension AppRouteWidget on AppRoutes {
+  Widget get page {
+    switch (this) {
+      case AppRoutes.dashboard:
+        return const DashboardPage();
+      case AppRoutes.academics:
+        return  PrimarySchoolClassesPage();
+        return const AcademicsScreen();
+      case AppRoutes.accounts:
+        return AccountsPage();
+      case AppRoutes.support:
+        return SupportPage();
+      case AppRoutes.employees:
+        return const EmployeesScreen();
+      case AppRoutes.attendance:
+        return AttendancePage();
+      case AppRoutes.analytics:
+        return const AnalyticsPage();
+      case AppRoutes.user:
+        return const UserPage();
+      case AppRoutes.calendar:
+        return const CalendarPage();
+      case AppRoutes.leads:
+        return const LeadsPage();
+      case AppRoutes.visitors:
+        return const VisitorsPage();
+    }
+  }
+}
+
+

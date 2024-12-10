@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 
 import '../../responsive.dart';
-import 'package:hr360/core/utils/constants/colors.dart';
 import '../constants/defaults.dart';
 import '../constants/ghaps.dart';
 

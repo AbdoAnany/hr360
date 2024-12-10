@@ -1,9 +1,9 @@
-import '../../../shared/constants/config.dart';
-import '../../../shared/constants/defaults.dart';
-import '../../../shared/constants/ghaps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../shared/constants/config.dart';
+import '../../../shared/constants/defaults.dart';
+import '../../../shared/constants/ghaps.dart';
 import 'icon_tile.dart';
 import 'theme_icon_tile.dart';
 
