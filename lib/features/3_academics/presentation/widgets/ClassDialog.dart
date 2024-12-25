@@ -126,7 +126,7 @@ class _ClassDialogState extends State<ClassDialog> {
           className: _classNameController.text,
           teacherName: widget.existingClass?.teacherName??'',
           totalStudents: 0,
-          subjects: [],
+          subjects: widget.existingClass?.subjects??[],
           backgroundColor: _selectedColor,
         );
       }else{

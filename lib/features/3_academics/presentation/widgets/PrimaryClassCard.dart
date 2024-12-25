@@ -9,20 +9,10 @@ import '../pages/PrimarySchoolClassesPage.dart';
 import 'ClassDialog.dart';
 
 class PrimaryClassCard extends StatefulWidget {
-  // Class details
-  // final String className;
-  // final int totalStudents;
-  // final String teacherName;
-  //  List<SubjectModel> currentSubjects;
-  // final Color backgroundColor;
   ClassRoomModel classRoom;
   PrimaryClassCard({
     Key? key,
     required this.classRoom,
-    // required this.totalStudents,
-    // required this.teacherName,
-    //  this.currentSubjects=const [],
-    // this.backgroundColor = Colors.lightBlue,
   }) : super(key: key);
 
   @override
@@ -34,214 +24,212 @@ class _PrimaryClassCardState extends State<PrimaryClassCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(8),
-      child: Container(
-        width: 300.w,
-        height: 370.h,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.black12,
-          //     blurRadius: 10,
-          //     offset: Offset(0, 5),
-          //   )
-          // ],
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              widget.classRoom.backgroundColor!.withOpacity(0.7),
-              widget.classRoom.backgroundColor!.withOpacity(0.9),
-            ],
-          ),
+    return Container(
+      width: 250.w,
+      height: 400.h,
+      margin: EdgeInsets.all(8.h),
+      padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.h),
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 0.5,
+            blurRadius: 2,
+            offset: const Offset(0, 1),
+          )
+        ],
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            widget.classRoom.backgroundColor!.withOpacity(0.8),
+            widget.classRoom.backgroundColor!,
+          ],
         ),
-        child: Stack(
-          children: [
-            // Pattern Overlay
-            Positioned.fill(
-              child: CustomPaint(
-                painter: PatternPainter(widget.classRoom.backgroundColor!),
+      ),
+      child: Stack(
+        children: [
+          // Optimized pattern overlay
+          Positioned.fill(
+            child: CustomPaint(
+              painter: PatternPainter(
+                widget.classRoom.backgroundColor!.withOpacity(0.15),
               ),
             ),
+          ),
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // Top Section with Class Name and Students
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Class Name
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    widget.classRoom.className ?? '',
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      fontSize: 22.sp,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(8.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  widget.classRoom.className ?? '',
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                    height: 1.2,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                IconButton(
-                                  onPressed: () => showDialog(
-                                    context: context,
-                                    builder: (context) => ClassDialog(
-                                      existingClass: widget.classRoom,
-                                      onSubmit: (classRoomModelRes) {
-                                        setState(() {
-                                          widget.classRoom = classRoomModelRes;
-                                          firebaseRepo.updateClass(widget.classRoom);
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                  icon: const Icon(
-                                    Iconsax.edit,
-                                    size: 15,
-                                    color: AppColor.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5.h),
-                            Text(
-                              'Teacher: ${widget.classRoom.teacherName}',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Colors.white70,
                               ),
-                              overflow: TextOverflow.ellipsis,
+                              IconButton(
+                                onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (context) => ClassDialog(
+                                    existingClass: widget.classRoom,
+                                    onSubmit: (classRoomModelRes) {
+                                      setState(() {
+                                        widget.classRoom = classRoomModelRes;
+                                        firebaseRepo.updateClass(widget.classRoom);
+                                      });
+                                    },
+                                  ),
+                                ),
+                                icon: const Icon(
+                                  Iconsax.edit,
+                                  size: 16,
+                                  color: AppColor.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 4.h),
+                          Text(
+                            'Teacher: ${widget.classRoom.teacherName}',
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              color: Colors.white.withOpacity(0.9),
+                              height: 1.2,
                             ),
-                          ],
-                        ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
+                    ),
 
-                      // Students Circle
-                      Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.3),
-                          border: Border.all(color: Colors.white, width: 3.w),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${widget.classRoom.totalStudents}',
+                    Container(
+                      width: 70.w,
+                      height: 70.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(0.2),
+                        border: Border.all(color: Colors.white, width: 2.w),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${widget.classRoom.totalStudents}',
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              height: 1,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            'Students',
+                            style: TextStyle(
+                              fontSize: 11.sp,
+                              height: 1.2,
+                              color: Colors.white.withOpacity(0.9),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
+                      bottomLeft: Radius.circular(12),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.h),
+                            child: Text(
+                              'Today\'s Subjects',
                               style: TextStyle(
-                                fontSize: 28.sp,
-                                height: 1.1,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.8),
                               ),
                             ),
-                            Text(
-                              'Students',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.white70,
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => SubjectDialog(
+                                  existingSubjects: widget.classRoom.subjects!,
+                                  onSubmit: (updatedSubjects) {
+                                    widget.classRoom.subjects = updatedSubjects ?? [];
+                                    firebaseRepo.updateClass(widget.classRoom);
+                                    setState(() {});
+                                  },
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              Iconsax.add,
+                              color: widget.classRoom.backgroundColor,
+                              size: 24,
                             ),
-                          ],
+                          )
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          padding: EdgeInsets.symmetric(horizontal: 8.w),
+                          itemCount: widget.classRoom.subjects?.length,
+                          itemBuilder: (context, index) {
+                            return SubjectListItem(
+                              subject: widget.classRoom.subjects![index],
+                              accentColor: widget.classRoom.backgroundColor!,
+                            );
+                          },
                         ),
                       ),
                     ],
                   ),
                 ),
-
-                // Subjects Section
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                'Today\'s Subjects',
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => SubjectDialog(
-                                      existingSubjects:
-                                          widget.classRoom.subjects!,
-                                      onSubmit: (updatedSubjects) {
-                                        widget.classRoom.subjects =
-                                            updatedSubjects ?? [];
-
-                                        firebaseRepo
-                                            .updateClass(widget.classRoom);
-
-                                        setState(() {});
-                                      },
-                                    ),
-                                  );
-                                },
-                                icon: Icon(
-                                  Iconsax.add,
-                                  color: widget.classRoom.backgroundColor,
-                                  size: 30,
-                                ))
-                          ],
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            itemCount: widget.classRoom.subjects?.length,
-                            itemBuilder: (context, index) {
-                              return SubjectListItem(
-                                subject: widget.classRoom.subjects![index],
-                                accentColor: widget.classRoom.backgroundColor!,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
 }
-
 // Custom Pattern Painter for Background
 class PatternPainter extends CustomPainter {
   final Color baseColor;
