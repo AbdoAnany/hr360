@@ -525,89 +525,120 @@ class EmployeeDataSource extends DataGridSource {
   @override
   DataGridRowAdapter? buildRow(DataGridRow row) {
     return DataGridRowAdapter(
-        cells: row.getCells().map<Widget>((dataGridCell) {
-      return Container(
-        padding: EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            if (dataGridCell.columnName == "Name")
-              // if (dataGridCell.columnName == "avatar")
-                Container(
-                  clipBehavior: Clip.hardEdge,
-                  width: 50.sp,
-                  height: 50.sp,
+      cells: row.getCells().map<Widget>((dataGridCell) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(color: Colors.grey.shade200))
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (dataGridCell.columnName == "Name") {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      width: 50.sp,
+                      height: 50.sp,
+                      decoration: BoxDecoration(
+                          color: AppColor.white,
+                          shape: BoxShape.circle
+                      ),
+                      child: dataGridCell.value.toString().split('-')[0].isNotEmpty
+                          ? Image.network(
+                        dataGridCell.value.toString().split('-')[0],
+                        fit: BoxFit.cover,
+                      )
+                          : Image.asset(
+                        'assets/images/illustration/signup_illustration.png',
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        dataGridCell.value.toString().split('-')[1],
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                );
+              } else if (dataGridCell.columnName == "State") {
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  height: 30.h,
                   decoration: BoxDecoration(
-                      color: AppColor.white, shape: BoxShape.circle),
-                  child:    dataGridCell.value.toString().split('-')[0] .isNotEmpty
-                      ? Image.network(
-                    dataGridCell.value.toString().split('-')[0],
-                    fit: BoxFit.cover,
-                  )
-                      : Image.asset(
-                    'assets/images/illustration/signup_illustration.png',
+                      borderRadius: BorderRadius.circular(8),
+                      color: dataGridCell.value == "active"
+                          ? Colors.green.withOpacity(.07)
+                          : Colors.red.withOpacity(.07)
                   ),
-                ),
-            dataGridCell.columnName == "State"
-                ? Expanded(
-                    child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 0),
-                        height: 30.h,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: dataGridCell.value == "active"
-                                ? Colors.green.withOpacity(.07)
-                                : Colors.red.withOpacity(.07)),
-                        child: Center(
-                            child: Text(dataGridCell.value,
-                                style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: dataGridCell.value == "active"
-                                        ? Color(0xff40997E)
-                                        : Color(0xffF93333))))))
-                : dataGridCell.columnName == "Action"
-                    ? Center(
-                      child: InkWell(
-                          onTap: () {
-                            THelperFunctions.navigateToScreen(
-                              context:  Get.context,
-                                ProfileScreen(
-                                  userDetails: dataGridCell.value,
-                                )
-                            );
-                          },
-                          child: Container(
-                            width: 125.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: AppColor.primary.withOpacity(.07),
-                              border: Border.all(color:AppColor.primary,width: .5),
-                            ),
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Iconsax.eye,size: 15,
-                                  color: AppColor.primary,
-                                ),
-                                SizedBox(width: 4,),
-                                Text(
-                                  "View Details",style: AppStyle.font14Gray400.copyWith(color: AppColor.primary),)
-                              ],
-                            ),
-                          )),
-                    )
-                    :    dataGridCell.columnName == "Name" ?
-          Center(child: Text(   dataGridCell.value.toString().split('-')[1]))
-                : Expanded(
-                        child:
-                            Center(child: Text(dataGridCell.value.toString()))),
-          ],
-        ),
-      );
-    }).toList());
+                  child: Center(
+                    child: Text(
+                      dataGridCell.value,
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          color: dataGridCell.value == "active"
+                              ? const Color(0xff40997E)
+                              : const Color(0xffF93333)
+                      ),
+                    ),
+                  ),
+                );
+              } else if (dataGridCell.columnName == "Action") {
+                return Center(
+                  child: InkWell(
+                    onTap: () {
+                      THelperFunctions.navigateToScreen(
+                          context: Get.context,
+                          ProfileScreen(userDetails: dataGridCell.value)
+                      );
+                    },
+                    child:  Icon(
+                      Iconsax.eye,
+                      size: 25.sp,
+                      color: AppColor.primary,
+                    ),
+
+                    // Container(
+                    //   // constraints: BoxConstraints(maxWidth: 125.w),
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(5),
+                    //     color: AppColor.primary.withOpacity(.07),
+                    //     border: Border.all(color: AppColor.primary, width: .5),
+                    //   ),
+                    //    // padding: const EdgeInsets.all(8.0),
+                    //   child: Row(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     children: [
+                    //       //
+                    //       // const SizedBox(width: 4),
+                    //       Flexible(
+                    //         child: Text(
+                    //           "View Details",
+                    //           style: AppStyle.font14Gray400.copyWith(color: AppColor.primary),
+                    //           overflow: TextOverflow.ellipsis,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Text(
+                    dataGridCell.value.toString(),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                );
+              }
+            },
+          ),
+        );
+      }).toList(),
+    );
   }
 }

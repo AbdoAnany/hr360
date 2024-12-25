@@ -7,6 +7,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../core/routing/routes_gen.dart';
 import '../../../core/utils/constants/colors.dart';
+import '../../../core/utils/web_notificaion.dart';
 import '../../2_dash_border/presentation/pages/shared/widgets/section_title.dart';
 
 class Header extends StatelessWidget {
@@ -20,10 +21,20 @@ class Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SectionTitle(
-            title: currentRoute.name.capitalize!,
-            color: AppColor.colorList[
-                AppRoutes.values.indexWhere((route) => route == currentRoute)],
+          InkWell(
+            onTap: (){
+              showWebInWindowNotification(
+                title: 'Notification',
+                message: 'You have a notification  ${currentRoute.name}',
+                data: {},
+
+              );
+            },
+            child: SectionTitle(
+              title: currentRoute.name.capitalize!,
+              color: AppColor.colorList[
+                  AppRoutes.values.indexWhere((route) => route == currentRoute)],
+            ),
           ),
           // Text(
           //  'Welcome Pooran',

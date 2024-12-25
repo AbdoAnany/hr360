@@ -18,16 +18,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   AppRoutes _currentRoute = AppRoutes.dashboard;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   void _onItemTapped(AppRoutes route) {
     setState(() {
       _currentRoute = route;
     });
-    THelperFunctions.navigateToScreen(route.page);
   }
 
   @override
@@ -36,13 +30,10 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: AppColor.white,
       body: Row(
         children: [
-          // Sidebar
           Sidebar(
             onItemTapped: _onItemTapped,
             currentRoute: _currentRoute,
           ),
-
-          // Main content area
           Expanded(
             child: Column(
               children: [
@@ -51,17 +42,23 @@ class _MainScreenState extends State<MainScreen> {
                   child: Container(
                     padding: const EdgeInsets.only(top: 12.0, left: 12),
                     decoration: AppStyle.decorationPage,
-                    // clipBehavior: Clip.hardEdge,
-
                     child: Consumer<ThemeProvider>(
                       builder: (context, themeProvider, _) {
                         themeProvider.getThemeMode();
                         TSizes.init(context: context);
                         return Navigator(
-                          key: navigatorKey,pages: AppRoutes.values.map((route) => MaterialPage(child: route.page)).toList(),
-                          initialRoute: AppRoutes.dashboard.routeName,
+                          key: navigatorKey,
+                          pages: [MaterialPage(child: _currentRoute.page)],
+                          onPopPage: (route, result) {
+                            if (!route.didPop(result)) {
+                              return false;
+                            }
 
-                          onGenerateRoute: onGenerateRoute,
+                            setState(() {
+                              _currentRoute = AppRoutes.dashboard;
+                            });
+                            return true;
+                          },
                         );
                       },
                     ),
