@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:hr360/core/routing/app_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app.dart';
@@ -92,12 +93,23 @@ class THelperFunctions {
   }
 
 
-  static void navigateAndReplaceScreen( Widget screen) {
-    Navigator.pushReplacement(
-      Get.context,
-      MaterialPageRoute(builder: (_) => screen),
-    );
+  static void goTO( String screenRouter) {
+   //  print('goTO $screenRouter');
+   // router.go('/$screenRouter');
+  }  static void goAndReplaceScreen(   AppRoutes route, {   Map<String, String>? params, }) {
+    final AppRouter router = AppRouter();
+
+    router.navigateAndReplaceScreen(Get.context, route);
   }
+  // static void navigateAndReplaceScreen( Widget screen) {
+  //   final AppRouter _router = AppRouter();
+  //
+  //   _router.navigateAndReplaceScreen(Get.context, AppRoutes.academics);
+  //   // Navigator.pushReplacement(
+  //   //   Get.context,
+  //   //   MaterialPageRoute(builder: (_) => screen),
+  //   // );
+  // }
 
   static String truncateText(String text, int maxLength) {
     if (text.length <= maxLength) {

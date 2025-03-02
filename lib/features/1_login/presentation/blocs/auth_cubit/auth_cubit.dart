@@ -9,7 +9,7 @@ import '../../../../../core/utils/error/failure.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../../di.dart';
-import '../../../../main_screen/main_screen.dart';
+import '../../../../main_screen.dart';
 import '../../../data/settings_model.dart';
 import '../../../data/user_model.dart';
 import '../../../domain/repositires/auth_repo.dart';
@@ -110,7 +110,7 @@ class AuthCubit extends Cubit<AuthState> {
         // await     sl<TLocalStorage>().removeData(AppKeys.userDataLogin);
         await getIt<TLocalStorage>().saveData<Map<String,dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
           print('data :  ${data.toJson()}');
-          THelperFunctions.navigateAndReplaceScreen(const MainScreen());
+          // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
           emit(AuthSuccess(user: data));
         });
 
@@ -153,7 +153,7 @@ class AuthCubit extends Cubit<AuthState> {
     // });
 
     getIt<TLocalStorage>().clearAll();
-    THelperFunctions.navigateAndReplaceScreen(const LoginScreen());
+    // THelperFunctions.navigateAndReplaceScreen(const LoginScreen());
 
     emit(AuthInitial());
   }

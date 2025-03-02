@@ -5,7 +5,7 @@ import 'package:hr360/features/ProfileScreen/UI/manger/profile_cubit.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../core/routing/routes_gen.dart';
+import '../../../core/routing/app_router.dart';
 import '../../../core/utils/constants/colors.dart';
 import '../../../core/utils/web_notificaion.dart';
 import '../../2_dash_border/presentation/pages/shared/widgets/section_title.dart';

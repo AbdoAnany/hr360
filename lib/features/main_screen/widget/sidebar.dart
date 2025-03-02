@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../core/routing/routes_gen.dart';
+import '../../../core/routing/app_router.dart';
 
 class Sidebar extends StatelessWidget {
  final Function(AppRoutes) onItemTapped;

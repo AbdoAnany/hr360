@@ -7,13 +7,34 @@ import 'package:hr360/core/utils/theme/theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
 import 'package:provider/provider.dart';
 
+import 'core/routing/app_router.dart';
 import 'core/utils/constants/colors.dart';
 import 'di.dart';
 import 'features/1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 import 'features/home/presentation/manager/home_bloc/home_bloc.dart';
-import 'features/main_screen/main_screen.dart';
+import 'features/main_screen.dart';
+import 'package:toastification/toastification.dart';
 
-/// A utility class for accessing navigator context and state globally.
+// Future<void> main() async {
+//   // Initialize Hive
+//   WidgetsFlutterBinding.ensureInitialized();
+//   try {
+//     await Hive.initFlutter();
+//
+//     // Register adapters for custom classes
+//     Hive.registerAdapter(UserDateAdapter());
+//     Hive.registerAdapter(CustomerDateAdapter());
+//     Hive.registerAdapter(ShipDataAdapter());
+//     Hive.registerAdapter(LoginResponseAdapter());
+//   } catch (e) {
+//     print(e);
+//   }
+//
+//   runApp(MyApp());
+// }
+
+
+
 class Get {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -23,14 +44,16 @@ class Get {
 
 /// The main application widget.
 class App extends StatelessWidget {
-  const App({super.key});
 
+  final AppRouter appRouter;
+
+  const App({Key? key, required this.appRouter}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
-        BlocProvider(create: (context) => getIt<AuthCubit>()),
+        // BlocProvider(create: (context) => getIt<AuthCubit>()),
         BlocProvider(create: (context) => getIt<HomeCubit>()),
       ],
       child: Consumer<ThemeProvider>(
@@ -39,7 +62,6 @@ class App extends StatelessWidget {
           themeProvider.getThemeMode();
           TSizes.init(context: context);
           ScreenUtil.init(context);
-
 
           return ScreenUtilInit(
             designSize: Size(
@@ -50,21 +72,33 @@ class App extends StatelessWidget {
             splitScreenMode: true,
             useInheritedMediaQuery: true,
             ensureScreenSize: true,
-            child: MaterialApp(
+            child:  ToastificationWrapper(
+                child: MaterialApp.router(
+
+                  routerDelegate: appRouter.router.routerDelegate,
+                  routeInformationParser: appRouter.router.routeInformationParser,
+                  routeInformationProvider: appRouter.router.routeInformationProvider,
+                debugShowCheckedModeBanner: false,
+
               builder: (context, widget) {
                 // Initialize text themes.
                 TTextTheme.init(context, themeProvider);
-                return widget!;
+                return Directionality(
+                  textDirection: TextDirection.ltr, // Set text direction to RTL
+                  child: MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaler:const TextScaler.linear(1)),
+                      child: widget!),
+                );
+
               },
               title: TTexts.appName,
               themeMode: themeProvider.themeMode,
               theme: TAppTheme.lightTheme,
               color: AppColor.bgLight,
               darkTheme: TAppTheme.darkTheme,
-              debugShowCheckedModeBanner: false,
-              navigatorKey: Get.navigatorKey,
-              home: const MainScreen(),
-            ),
+
+              // home: const MainScreen(),
+            )),
           );
         },
       ),

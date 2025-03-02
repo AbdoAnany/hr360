@@ -5,11 +5,13 @@ import 'package:hr360/features/1_login/presentation/blocs/auth_cubit/auth_cubit.
 import 'package:hr360/features/1_login/presentation/page/signup.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../../core/routing/app_router.dart';
 import '../../../../core/utils/constants/keys.dart';
 import '../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../di.dart';
-import '../../../main_screen/main_screen.dart';
+import '../../../../main.dart';
+import '../../../main_screen.dart';
 
 
 
@@ -52,15 +54,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   _loadRememberMe() async {
-    var kkk = await getIt<TLocalStorage>().getKeys();
-
-    try {
-      rememberMe = getIt<TLocalStorage>().readData(
-        AppKeys.rememberMe,
-      );
-    } catch (e) {
-      print(e);
-    }
+    // var kkk = await getIt<TLocalStorage>().getKeys();
+    //
+    // try {
+    //   rememberMe = getIt<TLocalStorage>().readData(
+    //     AppKeys.rememberMe,
+    //   );
+    // } catch (e) {
+    //   print(e);
+    // }
 
     print(rememberMe);
     if (rememberMe) {
@@ -71,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // } catch (e) {
       //   print(e);
       // }
-      THelperFunctions.navigateAndReplaceScreen(const MainScreen());
+      // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
     }
   }
 
@@ -91,7 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+      BlocProvider(create: (context) => getIt<AuthCubit>(),
+  child: Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
       if (state is AuthFailure) {
         ScaffoldMessenger.of(context)
@@ -147,13 +151,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: AppStyle.borderRadius15),
                     child: const Text(
-                      'Login',
+                      'Login ',
                       style: TextStyle(color: AppColor.white),
                     ),
-                    onPressed: () => authCubit.login(
-                        password: _passwordController.text,
-                        email: _usernameController.text,
-                        formKey: _formKey)),
+                    onPressed: () {
+
+                      final router = AppRouter();
+                      router.navigateWithTransition(context, AppRoutes.dashboard);
+                      // appRouter.navigateAndReplaceScreen(context, AppRoutes.dashboard);
+                    //   authCubit.login(
+                    //     password: _passwordController.text,
+                    //     email: _usernameController.text,
+                    //     formKey: _formKey,
+                    //     context: context
+                    // );
+                    }),
                 SizedBox(height: 20),
                 InkWell(
                   onTap: _navigateToSignUp,
@@ -181,7 +193,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       );
-    }));
+    })),
+);
   }
 
   Widget _buildTextField({

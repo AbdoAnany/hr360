@@ -12,9 +12,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hr360/core/utils/http/dio_client.dart';
 import 'package:hr360/core/utils/local_storage/storage_utility.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
+import 'package:hr360/features/1_login/data/repositries/auth_repo_impl.dart';
+import 'package:hr360/features/1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/utils/AppBlocObserver.dart';
+import 'features/1_login/domain/repositires/auth_repo.dart';
 import 'features/3_academics/data/repositories/course_repository_impl.dart';
 import 'features/3_academics/domain/usecases/get_courses.dart';
 import 'features/3_academics/presentation/manager/course_bloc.dart';
@@ -53,6 +56,8 @@ print(isInit);
   getIt.registerLazySingleton<SharedPreferences>(() => prefs);
   getIt.registerLazySingleton<TLocalStorage>(() =>localStorage);
   getIt.registerLazySingleton<TTextTheme>(() => TTextTheme());
+  getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl());
+  getIt.registerLazySingleton<AuthCubit>(() => AuthCubit(getIt()));
   await authSetup();
 
   getIt.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));

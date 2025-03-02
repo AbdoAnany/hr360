@@ -8,7 +8,7 @@ import '../../../../../core/utils/constants/sizes.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/theme/widget_themes/text_theme.dart';
 import '../../../../../di.dart';
-import '../../../main_screen/main_screen.dart';
+import '../../../main_screen.dart';
 import '../intro_screen.dart';
 import '../widget/OnBoardingItems.dart';
 
@@ -107,7 +107,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             getIt<SharedPreferences>().setBool(IntroScreen.onBoarding, false);
 
             if (!mounted) return;
-            THelperFunctions.navigateAndReplaceScreen(const MainScreen());
+            // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
             //   THelperFunctions.navigateAndReplaceScreen( LoginPage());
           },
           child:
