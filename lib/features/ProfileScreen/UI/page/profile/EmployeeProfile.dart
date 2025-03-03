@@ -24,7 +24,7 @@ class EmployeeProfilePage extends StatelessWidget {
 
 
      employee = Employee(
-       name:   "${userDetails?.firsName}  ${userDetails?.lastName}",
+       name:   "${userDetails?.firstName}  ${userDetails?.lastName}",
         dateOfJoining:  TFormatter.formatDate(DateTime.now()),
   //     dateOfBirth: TFormatter.formatDate(DateTime.parse( userDetails!.birthDate!)),
        contactNumber: TFormatter.formatPhoneNumber(userDetails?.phone),

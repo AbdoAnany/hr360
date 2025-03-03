@@ -25,7 +25,7 @@ class UserLoginModel {
 class UserModel {
 
   late String? userId;
-  String? firsName;
+  String? firstName;
   String? lastName;
   String? email;
   String? phone;
@@ -40,7 +40,7 @@ class UserModel {
   UserModel(
       {
        this.userId,
-      this.firsName = '',
+      this.firstName = '',
       this.lastName = '',
       this.email,
       this.phone,
@@ -59,7 +59,7 @@ class UserModel {
 
 
     userId = json['user_id'];
-    firsName = json['first_name'];
+    firstName = json['first_name'];
     lastName = json['last_name'];
     email = json['email'];
     phone = json['phone'];
@@ -75,7 +75,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['user_id'] = this.userId;
-    data['first_name'] = this.firsName;
+    data['first_name'] = this.firstName;
     data['last_name'] = this.lastName;
     data['email'] = this.email;
     data['phone'] = this.phone;

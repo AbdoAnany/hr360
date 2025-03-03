@@ -36,7 +36,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
  String getFullName()  {
-    return '${userProfile?.firsName} ${userProfile?.lastName}';
+    return '${userProfile?.firstName} ${userProfile?.lastName}';
   }
 
   Future<List<UserModel>> getAllUserProfileDate() async {

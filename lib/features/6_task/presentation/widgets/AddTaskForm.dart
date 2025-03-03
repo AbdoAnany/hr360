@@ -208,7 +208,7 @@ class _TaskFormState extends State<TaskForm> {
                 items: widget.userRefIds
                     .map((user) => DropdownMenuItem(
                   value: user,
-                  child: Text("${user.firsName ?? ""} ${user.lastName ?? ""}"),
+                  child: Text("${user.firstName ?? ""} ${user.lastName ?? ""}"),
                 ))
                     .toList(),
                 onChanged: (value) {
@@ -273,7 +273,7 @@ class _TaskFormState extends State<TaskForm> {
                         refID: _assignedTo?.userId,
                         taskID: widget.taskToEdit?.taskID ??
                             Random().nextInt(10000).toString(),
-                        assignedTo: "${_assignedTo?.firsName ?? ""} ${_assignedTo?.lastName ?? ""}",
+                        assignedTo: "${_assignedTo?.firstName ?? ""} ${_assignedTo?.lastName ?? ""}",
                         status: _status?.status,
                       );
                       widget.onSubmit(task);

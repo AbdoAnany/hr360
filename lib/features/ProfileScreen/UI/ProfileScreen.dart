@@ -105,7 +105,7 @@ class EmployeeHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${userDetails?.firsName} ${userDetails?.lastName}",
+                "${userDetails?.firstName} ${userDetails?.lastName}",
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
