@@ -13,7 +13,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //    return BlocProvider(
-//     create: (context) => sl<UserBloc>(),
+//     create: (context) => sl<UserCubit>(),
 //     child: const Scaffold(
 //      //   appBar: AppBar(title: Text("User Management")),
 //      body: StudentsPageView(),
@@ -32,14 +32,14 @@
 // class _StudentsPageState extends State<StudentsPageView> {
 //  @override
 //   void initState() {
-//   sl<UserBloc>().add(const GetAllUsers(  ));
+//   sl<UserCubit>().add(const GetAllUsers(  ));
 //
 //
 //     super.initState();
 //   }
 //  @override
 //  Widget build(BuildContext context) {
-//   return BlocBuilder<UserBloc, UserState>(
+//   return BlocBuilder<UserCubit, UserState>(
 //    builder: (context, state) {
 //     if (state is UserLoading) {
 //      return const Center(child: CircularProgressIndicator());

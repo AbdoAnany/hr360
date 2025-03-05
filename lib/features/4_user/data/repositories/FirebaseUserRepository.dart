@@ -41,7 +41,7 @@ class FirebaseUserRepository implements UserRepository {
         .toList();
   }
 
-  Future<void> assignRole(int userId, String role) async {
+  Future<void> assignRole(String userId, String role) async {
     DocumentSnapshot doc = await usersRef.doc(userId.toString()).get();
     if (doc.exists) {
       List<String> roles = List<String>.from(doc['roles'] ?? []);
@@ -52,8 +52,7 @@ class FirebaseUserRepository implements UserRepository {
     }
   }
 
-  @override
-  Future<void> removeRole(int userId, String role) async {
+  Future<void> removeRole(String userId, String role) async {
     DocumentSnapshot doc = await usersRef.doc(userId.toString()).get();
     if (doc.exists) {
       List<String> roles = List<String>.from(doc['roles'] ?? []);

@@ -56,7 +56,7 @@ class EmployeesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return    BlocProvider(
-        create: (context) => getIt<UserBloc>(),
+        create: (context) => getIt<UserCubit>()..getAllUsers(),
         child: const   AttendanceGridView());
   }
 }

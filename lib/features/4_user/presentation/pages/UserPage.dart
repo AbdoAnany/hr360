@@ -17,7 +17,7 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<UserBloc>(),
+      create: (context) => getIt<UserCubit>(),
       child: UserView(),
     );
   }
@@ -33,33 +33,35 @@ class UserView extends StatefulWidget {
 class _UserViewState extends State<UserView> {
   @override
   void initState() {
-  //  sl<UserBloc>().add(GetUser());
-  //   sl<UserBloc>().add(CreateUser(
+  //  sl<UserCubit>().add(GetUser());
+  //   sl<UserCubit>().add(CreateUser(
   //   UserModel.fromJson(  damyList.first)
   //   ));
 
-    context.read<UserBloc>().add(GetUser(damyList[0]['user_id']));
+    context.read<UserCubit>().getUser(damyList[0]['user_id']);
     super.initState();
   }
   @override
   void dispose() {
-    if (! getIt<UserBloc>().isClosed) {
-      getIt<UserBloc>().close();
+    if (! getIt<UserCubit>().isClosed) {
+      getIt<UserCubit>().close();
     }
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
-        if (state is UserLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is UserLoaded) {
-          return ProfileScreen(userDetails: state.user);
-        } else if (state is UserError) {
-          return Center(child: Text("Error: ${state.message}"));
-        }
-        return const Center(child: Text("Welcome to User Management"));
+        return ProfileScreen(userDetails: state.user);
+
+        // if (state is UserLoading) {
+        //   return const Center(child: CircularProgressIndicator());
+        // } else if (state is UserLoaded) {
+        //   return ProfileScreen(userDetails: state.user);
+        // } else if (state is UserError) {
+        //   return Center(child: Text("Error: ${state.message}"));
+        // }
+        // return const Center(child: Text("Welcome to User Management"));
       },
     );
   }

@@ -61,7 +61,7 @@ print(isInit);
   await authSetup();
 
   getIt.registerLazySingleton<FirebaseUserRepository>(() => FirebaseUserRepository( ));
-  getIt.registerFactory<UserBloc>(() => UserBloc( getIt()));
+  getIt.registerFactory<UserCubit>(() => UserCubit( getIt()));
 
   courseSetup();
   profileSetup();

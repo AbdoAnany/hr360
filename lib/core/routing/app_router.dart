@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hr360/features/ProfileScreen/UI/ProfileScreen.dart';
 import '../../features/0_intro/presentation/pages/SplashScreen.dart';
+import '../../features/1_login/data/user_model.dart';
 import '../../features/1_login/presentation/page/login.dart';
 import '../../features/2_dash_border/presentation/pages/dashboard_page.dart';
 import '../../features/2_dash_border/presentation/pages/pages/entry_point.dart';
@@ -321,6 +323,7 @@ enum AppRoutes {
   user,
   calendar,
   leads,
+  profile,
   visitors;
 
   String get routeName {
@@ -347,6 +350,8 @@ enum AppRoutes {
         return '/leads';
       case AppRoutes.visitors:
         return '/visitors';
+      case AppRoutes.profile:
+        return '/profile/:userId'; // Updated to use 'userId'
       default:
         return '/dashboard';
     }
@@ -376,6 +381,8 @@ enum AppRoutes {
         return const LeadsPage();
       case AppRoutes.visitors:
         return const VisitorsPage();
+        case AppRoutes.profile:
+        return  ProfileScreen();
       default:
         return const DashboardPage();
     }
@@ -391,6 +398,7 @@ enum AppRoutes {
     switch (this) {
       case AppRoutes.academics:
       case AppRoutes.employees:
+      case AppRoutes.profile:
         return true;
       default:
         return false;
@@ -411,6 +419,7 @@ enum AppRoutes {
             path: '/student/:id',
             buildPage: (params) => StudentDetailPage(studentId: int.tryParse(params['id'] ?? '0') ?? 0),
           ),
+
         ];
       case AppRoutes.employees:
         return [
@@ -424,7 +433,16 @@ enum AppRoutes {
             path: '/edit/:id',
             buildPage: (params) => EmployeeEditScreen(employeeId: int.tryParse(params['id'] ?? '0') ?? 0),
           ),
-        ];
+        ]; case AppRoutes.profile:
+      return [
+        SubRoute(
+          name: 'profile',
+          path: '/profile/:userId', // Updated to use 'userId'
+          buildPage: (params) => ProfileScreen(userDetails: UserModel(
+            userId: params['userId'] ?? '0', // Use 'userId' instead of 'id'
+          )),
+        ),
+      ];
       default:
         return [];
     }
@@ -446,150 +464,7 @@ class SubRoute {
   });
 }
 
-// // Transition types
-// enum TransitionType {
-//   fade,
-//   slide,
-//   scale,
-//   none,
-// }
-//
-// // Enhanced AppRoutes with more configuration options
-// enum AppRoutes {
-//   dashboard,
-//   academics,
-//   accounts,
-//   support,
-//   employees,
-//   attendance,
-//   analytics,
-//   user,
-//   calendar,
-//   leads,
-//   visitors;
-//
-//   String get routeName {
-//     switch (this) {
-//       case AppRoutes.dashboard:
-//         return '/dashboard';
-//       case AppRoutes.academics:
-//         return '/academics';
-//       case AppRoutes.accounts:
-//         return '/accounts';
-//       case AppRoutes.support:
-//         return '/support';
-//       case AppRoutes.employees:
-//         return '/employees';
-//       case AppRoutes.attendance:
-//         return '/attendance';
-//       case AppRoutes.analytics:
-//         return '/analytics';
-//       case AppRoutes.user:
-//         return '/user';
-//       case AppRoutes.calendar:
-//         return '/calendar';
-//       case AppRoutes.leads:
-//         return '/leads';
-//       case AppRoutes.visitors:
-//         return '/visitors';
-//       default:
-//         return '/dashboard';
-//     }
-//   }
-//
-//   Widget get page {
-//     switch (this) {
-//       case AppRoutes.dashboard:
-//         return const DashboardPage();
-//       case AppRoutes.academics:
-//         return PrimarySchoolClassesPage();
-//       case AppRoutes.accounts:
-//         return AccountsPage();
-//       case AppRoutes.support:
-//         return SupportPage();
-//       case AppRoutes.employees:
-//         return const EmployeesScreen();
-//       case AppRoutes.attendance:
-//         return AttendancePage();
-//       case AppRoutes.analytics:
-//         return const AnalyticsPage();
-//       case AppRoutes.user:
-//         return const UserPage();
-//       case AppRoutes.calendar:
-//         return const CalendarPage();
-//       case AppRoutes.leads:
-//         return const LeadsPage();
-//       case AppRoutes.visitors:
-//         return const VisitorsPage();
-//       default:
-//         return const DashboardPage();
-//     }
-//   }
-//
-//   TransitionType get transitionType {
-//     // Default transition for each route
-//     return TransitionType.fade;
-//   }
-//
-//   // Sub-routes configuration
-//   bool get hasSubRoutes {
-//     switch (this) {
-//       case AppRoutes.academics:
-//       case AppRoutes.employees:
-//         return true;
-//       default:
-//         return false;
-//     }
-//   }
-//
-//   List<SubRoute> get subRoutes {
-//     switch (this) {
-//       case AppRoutes.academics:
-//         return [
-//           SubRoute(
-//             name: 'class',
-//             path: '/class/:id',
-//             buildPage: (params) => ClassDetailPage(classId: int.tryParse(params['id'] ?? '0') ?? 0),
-//           ),
-//           SubRoute(
-//             name: 'student',
-//             path: '/student/:id',
-//             buildPage: (params) => StudentDetailPage(studentId: int.tryParse(params['id'] ?? '0') ?? 0),
-//           ),
-//         ];
-//       case AppRoutes.employees:
-//         return [
-//           SubRoute(
-//             name: 'details',
-//             path: '/:id',
-//             buildPage: (params) => EmployeeDetailScreen(employeeId: int.tryParse(params['id'] ?? '0') ?? 0),
-//           ),
-//           SubRoute(
-//             name: 'edit',
-//             path: '/edit/:id',
-//             buildPage: (params) => EmployeeEditScreen(employeeId: int.tryParse(params['id'] ?? '0') ?? 0),
-//           ),
-//         ];
-//       default:
-//         return [];
-//     }
-//   }
-// }
-//
-// // Sub-route class for nested routes
-// class SubRoute {
-//   final String name;
-//   final String path;
-//   final Widget Function(Map<String, String>) buildPage;
-//   final TransitionType transitionType;
-//
-//   const SubRoute({
-//     required this.name,
-//     required this.path,
-//     required this.buildPage,
-//     this.transitionType = TransitionType.fade,
-//   });
-// }
+
 
 
 

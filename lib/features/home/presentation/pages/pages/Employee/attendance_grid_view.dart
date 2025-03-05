@@ -12,6 +12,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../../../../../app.dart';
 import '../../../../../../core/utils/formatters/formatter.dart';
 import '../../../../../../core/utils/helpers/helper_functions.dart';
+import '../../../../../../main.dart';
 import '../../../../../1_login/data/user_model.dart';
 import '../../../../../4_user/presentation/manager/bloc/user_bloc.dart';
 import '../../../../../4_user/presentation/manager/bloc/user_event.dart';
@@ -19,35 +20,10 @@ import '../../../../../4_user/presentation/manager/bloc/user_state.dart';
 import '../../../../../ProfileScreen/UI/ProfileScreen.dart';
 
 import 'package:flutter/material.dart';
-import 'package:synatix/synatix.dart'; // Assuming Synatix or similar responsive library is used
 import 'package:intl/intl.dart';
 
-class AttendanceGridView extends StatefulWidget {
+class AttendanceGridView extends StatelessWidget {
   const AttendanceGridView({Key? key}) : super(key: key);
-
-  @override
-  State<AttendanceGridView> createState() => _AttendanceGridViewState();
-}
-
-class _AttendanceGridViewState extends State<AttendanceGridView> {
-  EmployeeDataSource? employeeDataSource;
-  InputDecoration inputDecoration({String? labelText}) {
-    return InputDecoration(
-      hintText: labelText,
-      fillColor: AppColor.white,
-      filled: true,
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColor.placeholder.withOpacity(.2), width: .5),
-      ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    context.read().add(const GetAllUsers());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,25 +36,28 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _buildAddUserButton(),
-          BlocBuilder(
+          _buildAddUserButton(context),
+          BlocBuilder<UserCubit, UserState>(
             builder: (context, state) {
-              if (state is UsersLoaded) {
-                employeeDataSource = EmployeeDataSource(employees: state.users);
+              if (state.status == UserStatus.loading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.status == UserStatus.error) {
+                return Center(child: Text('Error: ${state.errorMessage}'));
+              } else if (state.users == null || state.users!.isEmpty) {
+                return const Center(child: Text('No users available'));
               }
-              return Skeletonizer(
-                enabled: employeeDataSource == null,
-                child: SfDataGridTheme(
-                  data: const SfDataGridThemeData(gridLineColor: Colors.transparent),
-                  child: SfDataGrid(
-                    source: employeeDataSource ?? EmployeeDataSource(employees: []),
-                    rowHeight: 70.h,
-                    selectionMode: SelectionMode.multiple,
-                    columnWidthMode: ColumnWidthMode.fitByCellValue,
-                    defaultColumnWidth: 120.w,
-                    allowPullToRefresh: true,
-                    columns: _buildColumns(),
-                  ),
+
+              final employeeDataSource = EmployeeDataSource(employees: state.users!);
+              return SfDataGridTheme(
+                data: const SfDataGridThemeData(gridLineColor: Colors.transparent),
+                child: SfDataGrid(
+                  source: employeeDataSource,
+                  rowHeight: 80.h,
+                  selectionMode: SelectionMode.multiple,
+                  columnWidthMode: ColumnWidthMode.fitByCellValue,
+                  defaultColumnWidth: 120.w,
+                  allowPullToRefresh: true,
+                  columns: _buildColumns(),
                 ),
               );
             },
@@ -88,7 +67,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
     );
   }
 
-  Widget _buildAddUserButton() {
+  Widget _buildAddUserButton(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       onPressed: () => showAddUserDialog(context),
@@ -109,21 +88,22 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
         columnName: 'Num',
         columnWidthMode: ColumnWidthMode.fitByCellValue,
         minimumWidth: 75.w,
-        label: _buildHeader('#', Alignment.centerLeft),
+        label: _buildHeaderLead('#', true),
       ),
       GridColumn(
         columnName: 'Name',
-        width: 200.w,
+         width: 200.w,
         columnWidthMode: ColumnWidthMode.fill,
         label: _buildHeader('Name', Alignment.centerLeft),
       ),
       GridColumn(
-        columnName: 'Roles',
+        columnName: 'Roles',        width: 120.w,
+
         label: _buildHeader('Roles', Alignment.centerLeft),
       ),
       GridColumn(
         columnName: 'State',
-        width: 90.w,
+        width: 120.w,
         label: _buildHeader('State', Alignment.center),
       ),
       GridColumn(
@@ -154,20 +134,36 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
       GridColumn(
         columnName: 'Action',
         columnWidthMode: ColumnWidthMode.fill,
-        label: _buildHeader('Details', Alignment.center),
+        label: _buildHeaderLead('Details', false),
       ),
     ];
   }
-
-  Container _buildHeader(String text, Alignment alignment) {
+  Container _buildHeaderLead(String text,bool isRight) {
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xffF5F5F5),
         borderRadius: BorderRadius.only(
-          topLeft: alignment == Alignment.centerLeft ? Radius.circular(12) : Radius.zero,
-          bottomLeft: alignment == Alignment.centerLeft ? Radius.circular(12) : Radius.zero,
-          topRight: alignment == Alignment.center ? Radius.circular(12) : Radius.zero,
-          bottomRight: alignment == Alignment.center ? Radius.circular(12) : Radius.zero,
+          topLeft: isRight ? Radius.circular(12) : Radius.zero,
+          bottomLeft: isRight ? Radius.circular(12) : Radius.zero,
+          topRight: isRight ? Radius.zero : Radius.circular(12),
+          bottomRight: isRight ? Radius.zero : Radius.circular(12),
+        ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      alignment: Alignment.center,
+      child: Text(text),
+    );
+  }
+
+  Container _buildHeader(String text, Alignment? alignment) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xffF5F5F5),
+        borderRadius: BorderRadius.only(
+          topLeft: alignment == null ? Radius.circular(12) : Radius.zero,
+           bottomLeft: alignment == null ? Radius.circular(12) : Radius.zero,
+           topRight: alignment == null? Radius.circular(12) : Radius.zero,
+           bottomRight: alignment == null ? Radius.circular(12) : Radius.zero,
         ),
       ),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
@@ -190,7 +186,6 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
     String state = 'active';
     String role = 'student';
 
-
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
@@ -204,13 +199,13 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildTextField(firstNameController, 'First Name', inputDecoration),
-                _buildTextField(lastNameController, 'Last Name', inputDecoration),
-                _buildTextField(emailController, 'Email', inputDecoration),
-                _buildTextField(phoneController, 'Phone', inputDecoration),
-                _buildTextField(addressController, 'Address', inputDecoration),
-                _buildTextField(nationalIdController, 'National ID', inputDecoration),
-                _buildDatePicker(birthDateController),
+                _buildTextField(firstNameController, 'First Name'),
+                _buildTextField(lastNameController, 'Last Name'),
+                _buildTextField(emailController, 'Email'),
+                _buildTextField(phoneController, 'Phone'),
+                _buildTextField(addressController, 'Address'),
+                _buildTextField(nationalIdController, 'National ID'),
+                _buildDatePicker(birthDateController,context),
                 _buildDropdowns(gender, state, role),
               ],
             ),
@@ -225,24 +220,22 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
             minWidth: 200.w,
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                context.read().add(
-                  AddUser(
-                    UserModel(
-                      firstName: firstNameController.text,
-                      lastName: lastNameController.text,
-                      email: emailController.text,
-                      phone: phoneController.text,
-                      address: addressController.text,
-                      nationalId: nationalIdController.text,
-                      gender: gender,
-                      birthDate: birthDateController.text,
-                      roles: role,
-                      state: state,
-                    ),
+                context.read<UserCubit>().createUser(
+                  UserModel(
+                    firstName: firstNameController.text,
+                    lastName: lastNameController.text,
+                    email: emailController.text,
+                    phone: phoneController.text,
+                    address: addressController.text,
+                    nationalId: nationalIdController.text,
+                    gender: gender,
+                    birthDate: birthDateController.text,
+                    roles: role,
+                    state: state,
                   ),
                 );
                 Navigator.of(dialogContext).pop();
-                context.read().add(const GetAllUsers());
+                context.read<UserCubit>().getAllUsers();
               }
             },
             child: const Text('Add User'),
@@ -252,7 +245,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String labelText, InputDecoration Function({String? labelText}) inputDecoration) {
+  Widget _buildTextField(TextEditingController controller, String labelText) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: TextFormField(
@@ -263,7 +256,7 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
     );
   }
 
-  Widget _buildDatePicker(TextEditingController controller) {
+  Widget _buildDatePicker(TextEditingController controller,context) {
     return TextFormField(
       controller: controller,
       readOnly: true,
@@ -306,8 +299,19 @@ class _AttendanceGridViewState extends State<AttendanceGridView> {
       decoration: inputDecoration(labelText: labelText),
     );
   }
-}
 
+  InputDecoration inputDecoration({String? labelText}) {
+    return InputDecoration(
+      hintText: labelText,
+      fillColor: AppColor.white,
+      filled: true,
+      border: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColor.placeholder.withOpacity(.2), width: .5),
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+    );
+  }
+}
 class EmployeeDataSource extends DataGridSource {
   EmployeeDataSource({required List<UserModel> employees}) {
     _data = employees.map((e) => DataGridRow(cells: [
@@ -319,7 +323,7 @@ class EmployeeDataSource extends DataGridSource {
       DataGridCell(columnName: 'Phone', value: e.phone),
       DataGridCell(columnName: 'Email', value: e.email),
       DataGridCell(columnName: 'Info', value: e.address),
-      DataGridCell(columnName: 'Birth_Date', value: DateFormat('yyyy-MM-dd').format(DateTime.parse(e.birthDate!))),
+      DataGridCell(columnName: 'Birth_Date', value: e.birthDate),
       DataGridCell(columnName: 'Action', value: e),
     ])).toList();
   }
@@ -338,7 +342,7 @@ class EmployeeDataSource extends DataGridSource {
         } else if (cell.columnName == 'State') {
           return _buildStateCell(cell.value.toString());
         } else if (cell.columnName == 'Action') {
-          return _buildActionCell(cell.value as UserModel);
+          return _buildActionCell(cell.value as UserModel,);
         } else {
           return Center(child: Text(cell.value.toString()));
         }
@@ -348,26 +352,33 @@ class EmployeeDataSource extends DataGridSource {
 
   Widget _buildNameCell(String value) {
     final parts = value.split('-');
-    return Row(
-      children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(parts[0]),
-          radius: 25.sp,
-        ),
-        const SizedBox(width: 8),
-        Flexible(child: Text(parts[1], overflow: TextOverflow.ellipsis)),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(parts[0]),
+            radius: 25.sp,
+          ),
+          const SizedBox(width: 8),
+          Flexible(child: Text(parts[1], overflow: TextOverflow.ellipsis)),
+        ],
+      ),
     );
   }
 
   Widget _buildStateCell(String value) {
     final isActive = value == 'active';
     return Container(
+      // height: 20.h,
+      // width: 80.w,
       padding: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
       decoration: BoxDecoration(
         color: isActive ? Colors.green.withOpacity(.07) : Colors.red.withOpacity(.07),
         borderRadius: BorderRadius.circular(8),
       ),
+      alignment: Alignment.center,
       child: Text(
         value,
         style: TextStyle(fontSize: 12.sp, color: isActive ? const Color(0xff40997E) : const Color(0xffF93333)),
@@ -377,11 +388,12 @@ class EmployeeDataSource extends DataGridSource {
 
   Widget _buildActionCell(UserModel user) {
     return InkWell(
-      // onTap: () => THelperFunctions.navigateToScreen(context: Get.context, widget: ProfileScreen(userDetails: user)),
       onTap: () =>
-      AppRouter.navigateToProfileScreen(userDetails: user),
-
-          THelperFunctions.navigateToScreen(context: Get.context, widget: ProfileScreen(userDetails: user)),
+          AppRouter().navigateWithTransition(
+            appRouter.rootNavigatorKey.currentState!.context,
+            AppRoutes.profile,
+            params: {'userId': user.userId.toString()}, // Pass parameters correctly
+          ),
       child: Icon(Iconsax.eye, size: 25.sp, color: AppColor.primary),
     );
   }
