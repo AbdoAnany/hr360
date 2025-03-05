@@ -272,26 +272,34 @@ class AppRouter {
     print('navigateTo route.name ${route.name}');
     context.goNamed(route.name, pathParameters: params ?? {});
   }
-
   void navigateWithTransition(BuildContext context, AppRoutes route, {Map<String, String>? params}) {
     _currentRoute = route;
     routeChangeNotifier.value = route;
     print('navigateWithTransition route.name ${route.name}');
-    context.goNamed(route.name, pathParameters: params ?? {});
+    context.pushNamed(route.name, pathParameters: params ?? {});
   }
 
   // New method to navigate and replace current screen
   void navigateAndReplaceScreen(BuildContext context, AppRoutes route, {Map<String, String>? params}) {
     _currentRoute = route;
     routeChangeNotifier.value = route;
-    context.replaceNamed(route.name, pathParameters: params ?? {});
+    router.replaceNamed(route.name, pathParameters: params ?? {});
   }
-
   // Navigate to sub-route
   void navigateToSubRoute(BuildContext context, AppRoutes parentRoute, String subRouteName, {Map<String, String>? params}) {
     _currentRoute = parentRoute;
     routeChangeNotifier.value = parentRoute;
     context.goNamed('${parentRoute.name}_$subRouteName', pathParameters: params ?? {});
+  }
+  void goBack(BuildContext context) {
+    // Simple method to go back to the previous screen
+    context.pop(context);
+  }
+
+// Method 2: More robust method with optional result passing
+  void goBackWithResult<T>(BuildContext context, [T? result]) {
+    // Go back to the previous screen and optionally pass a result
+    // router.of(context).pop(result);
   }
 
   void logout(BuildContext context) {
@@ -351,7 +359,7 @@ enum AppRoutes {
       case AppRoutes.visitors:
         return '/visitors';
       case AppRoutes.profile:
-        return '/profile/:userId'; // Updated to use 'userId'
+    return '/profile/:userId';
       default:
         return '/dashboard';
     }
@@ -433,16 +441,18 @@ enum AppRoutes {
             path: '/edit/:id',
             buildPage: (params) => EmployeeEditScreen(employeeId: int.tryParse(params['id'] ?? '0') ?? 0),
           ),
-        ]; case AppRoutes.profile:
-      return [
-        SubRoute(
-          name: 'profile',
-          path: '/profile/:userId', // Updated to use 'userId'
-          buildPage: (params) => ProfileScreen(userDetails: UserModel(
-            userId: params['userId'] ?? '0', // Use 'userId' instead of 'id'
-          )),
-        ),
-      ];
+        ];
+      case AppRoutes.profile:
+        return [
+          SubRoute(
+            name: 'details',
+            path: '',
+            buildPage: (params) => ProfileScreen(userDetails: UserModel(
+              userId: params['userId'] ?? '0',
+            )),
+          ),
+        ];
+
       default:
         return [];
     }

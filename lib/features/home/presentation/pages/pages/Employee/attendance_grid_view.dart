@@ -390,7 +390,8 @@ class EmployeeDataSource extends DataGridSource {
     return InkWell(
       onTap: () =>
           AppRouter().navigateWithTransition(
-            appRouter.rootNavigatorKey.currentState!.context,
+          appRouter.shellNavigatorKey.currentContext!,
+
             AppRoutes.profile,
             params: {'userId': user.userId.toString()}, // Pass parameters correctly
           ),
