@@ -34,10 +34,9 @@ import 'package:toastification/toastification.dart';
 //   runApp(MyApp());
 // }
 
-
-
 class Get {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   static BuildContext get context => navigatorKey.currentContext!;
   static NavigatorState get navigator => navigatorKey.currentState!;
@@ -45,7 +44,6 @@ class Get {
 
 /// The main application widget.
 class App extends StatelessWidget {
-
   final AppRouter appRouter;
 
   const App({Key? key, required this.appRouter}) : super(key: key);
@@ -73,13 +71,13 @@ class App extends StatelessWidget {
             splitScreenMode: true,
             useInheritedMediaQuery: true,
             ensureScreenSize: true,
-            child:  ToastificationWrapper(
+            child: ToastificationWrapper(
                 child: MaterialApp.router(
-
-                  routerDelegate: appRouter.router.routerDelegate,
-                  routeInformationParser: appRouter.router.routeInformationParser,
-                  routeInformationProvider: appRouter.router.routeInformationProvider,
-                debugShowCheckedModeBanner: false,
+              routerDelegate: appRouter.router.routerDelegate,
+              routeInformationParser: appRouter.router.routeInformationParser,
+              routeInformationProvider:
+                  appRouter.router.routeInformationProvider,
+              debugShowCheckedModeBanner: false,
 
               builder: (context, widget) {
                 // Initialize text themes.
@@ -87,12 +85,12 @@ class App extends StatelessWidget {
                 return Directionality(
                   textDirection: TextDirection.ltr, // Set text direction to RTL
                   child: MediaQuery(
-                    data: MediaQuery.of(context).copyWith(textScaler:const TextScaler.linear(1)),
+                      data: MediaQuery.of(context)
+                          .copyWith(textScaler: const TextScaler.linear(1)),
                       child: widget!),
                 );
-
               },
-                  // home: LoginScreen2(),
+              // home: LoginScreen2(),
               title: TTexts.appName,
               themeMode: themeProvider.themeMode,
               theme: TAppTheme.lightTheme,

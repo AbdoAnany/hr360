@@ -26,8 +26,6 @@ import '../../features/main_screen/page/SupportPage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/main_screen/page/src/LoginScreen.dart';
-
 // Core authentication handling
 class AuthNotifier extends ChangeNotifier {
   bool _isLoggedIn = false;
@@ -170,7 +168,7 @@ class AppRouter {
         path: '/',
         pageBuilder: (context, state) => NoTransitionPage(
           key: state.pageKey,
-          child:  LoginScreen2(),
+          child: const SplashScreen(),
         ),
       ),
       GoRoute(

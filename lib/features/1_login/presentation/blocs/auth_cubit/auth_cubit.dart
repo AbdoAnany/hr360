@@ -103,11 +103,10 @@ class AuthCubit extends Cubit<AuthState> {
       );
       user.fold((e) {
         String? errMessage = (e as ServerFailure).message;
-
         emit(AuthFailure(errMessage: errMessage));
-        //   return e;
       }, (data) async {
         // await     sl<TLocalStorage>().removeData(AppKeys.userDataLogin);
+
         await getIt<TLocalStorage>().saveData<Map<String,dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
           print('data :  ${data.toJson()}');
           // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
