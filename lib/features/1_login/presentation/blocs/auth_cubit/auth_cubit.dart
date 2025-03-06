@@ -2,13 +2,16 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hr360/app.dart';
 
+import '../../../../../core/routing/app_router.dart';
 import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/constants/keys.dart';
 import '../../../../../core/utils/error/failure.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../../core/utils/local_storage/storage_utility.dart';
 import '../../../../../di.dart';
+import '../../../../../main.dart';
 import '../../../../main_screen.dart';
 import '../../../data/settings_model.dart';
 import '../../../data/user_model.dart';
@@ -88,7 +91,40 @@ class AuthCubit extends Cubit<AuthState> {
     //   emit(AuthFailure(errMessage: kExceptionMessage));
     // }
   }
-
+//  void _saveCredentials() async {
+//     final prefs = await SharedPreferences.getInstance();
+//     if (_rememberMe) {
+//       await prefs.setString('email', _emailController.text);
+//       await prefs.setString('password', _passwordController.text);
+//       await prefs.setBool('rememberMe', true);
+//     } else {
+//       await prefs.remove('email');
+//       await prefs.remove('password');
+//       await prefs.remove('rememberMe');
+//     }
+//   }
+//
+//   // Clear saved credentials (e.g., on logout)
+//
+//
+//   // Handle login with Firebase Auth
+//   void _handleLogin(BuildContext context) async {
+//     try {
+//       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+//         email: _emailController.text,
+//         password: _passwordController.text,
+//       );
+//
+//       if (userCredential.user != null) {
+//         _saveCredentials(); // Save credentials if "Remember Me" is checked
+//         Navigator.push(context, MaterialPageRoute(builder: (_) => HomeScreen()));
+//       }
+//     } on FirebaseAuthException catch (e) {
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(content: Text("Login Failed: ${e.message}")),
+//       );
+//     }
+//   }
   Future<void> login({
     bool? rememberMe,
     required String password,
@@ -107,7 +143,10 @@ class AuthCubit extends Cubit<AuthState> {
       }, (data) async {
         // await     sl<TLocalStorage>().removeData(AppKeys.userDataLogin);
 
-        await getIt<TLocalStorage>().saveData<Map<String,dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
+        await getIt<TLocalStorage>()
+            .saveData<Map<String, dynamic>>(
+                AppKeys.userDataLogin, data.toJson())
+            .then((e) {
           print('data :  ${data.toJson()}');
           // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
           emit(AuthSuccess(user: data));
@@ -144,16 +183,9 @@ class AuthCubit extends Cubit<AuthState> {
     // });
   }
 
-  logOut() {
-    // GetStorage.init().then((value) async {
-    // //  GetStorage().remove(kIsLoggedIn);
-    // //  GetStorage().remove(AppKeys.rememberMe);
-    //
-    // });
-
+  logOut(context) {
     getIt<TLocalStorage>().clearAll();
-    // THelperFunctions.navigateAndReplaceScreen(const LoginScreen());
-
+    AppRouter().logout(context);
     emit(AuthInitial());
   }
 }

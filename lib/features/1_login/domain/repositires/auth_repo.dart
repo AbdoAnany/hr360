@@ -5,6 +5,7 @@ import '../../data/user_model.dart';
 
 abstract class AuthRepo {
   Future<Either<Failure, UserLoginModel>> loginWithEmailANdPassword(
+      {required String password, required String email});  Future<Either<Failure, UserLoginModel>> signInWithEmailAndPassword(
       {required String password, required String email});
 
 // Future<UserModel> createEmailWithEmailAndPassword(

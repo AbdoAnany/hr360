@@ -283,7 +283,7 @@ class AppRouter {
   void navigateAndReplaceScreen(BuildContext context, AppRoutes route, {Map<String, String>? params}) {
     _currentRoute = route;
     routeChangeNotifier.value = route;
-    router.replaceNamed(route.name, pathParameters: params ?? {});
+    context.replaceNamed(route.name, pathParameters: params ?? {});
   }
   // Navigate to sub-route
   void navigateToSubRoute(BuildContext context, AppRoutes parentRoute, String subRouteName, {Map<String, String>? params}) {
