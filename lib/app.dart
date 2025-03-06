@@ -5,6 +5,7 @@ import 'package:hr360/core/utils/constants/sizes.dart';
 import 'package:hr360/core/utils/constants/text_strings.dart';
 import 'package:hr360/core/utils/theme/theme.dart';
 import 'package:hr360/core/utils/theme/widget_themes/text_theme.dart';
+import 'package:hr360/features/main_screen/page/src/LoginScreen.dart';
 import 'package:provider/provider.dart';
 
 import 'core/routing/app_router.dart';
@@ -91,6 +92,7 @@ class App extends StatelessWidget {
                 );
 
               },
+                  // home: LoginScreen2(),
               title: TTexts.appName,
               themeMode: themeProvider.themeMode,
               theme: TAppTheme.lightTheme,

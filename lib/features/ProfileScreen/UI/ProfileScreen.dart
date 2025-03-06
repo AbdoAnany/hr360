@@ -114,7 +114,7 @@ class EmployeeHeader extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    userDetails?.roles ?? "",
+                    userDetails?.role ?? "",
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                         color: Color.fromRGBO(138, 138, 138, 1),
@@ -138,7 +138,7 @@ class EmployeeHeader extends StatelessWidget {
                         bottomLeft: Radius.circular(5),
                         bottomRight: Radius.circular(5),
                       ),
-                      color: (userDetails?.state?.toLowerCase() == "active"
+                      color: (userDetails?.status?.toLowerCase() == "active"
                               ? AppColor.success
                               : AppColor.error)
                           .withOpacity(0.1),
@@ -153,18 +153,18 @@ class EmployeeHeader extends StatelessWidget {
                             height: 10,
                             decoration: BoxDecoration(
                               color:
-                                  userDetails?.state?.toLowerCase() == "active"
+                                  userDetails?.status?.toLowerCase() == "active"
                                       ? AppColor.success
                                       : AppColor.error,
                               borderRadius: const BorderRadius.all(
                                   Radius.elliptical(10, 10)),
                             )), // Figma Flutter Generator OnlineWidget - TEXT
                         Text(
-                          '${userDetails?.state}',
+                          '${userDetails?.status}',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               color:
-                                  userDetails?.state?.toLowerCase() == "active"
+                                  userDetails?.status?.toLowerCase() == "active"
                                       ? AppColor.success
                                       : AppColor.error,
                               fontFamily: 'Inter',

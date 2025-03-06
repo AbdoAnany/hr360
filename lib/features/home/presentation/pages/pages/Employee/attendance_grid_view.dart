@@ -230,8 +230,8 @@ class AttendanceGridView extends StatelessWidget {
                     nationalId: nationalIdController.text,
                     gender: gender,
                     birthDate: birthDateController.text,
-                    roles: role,
-                    state: state,
+                    role: role,
+                    status: state,
                   ),
                 );
                 Navigator.of(dialogContext).pop();
@@ -317,8 +317,8 @@ class EmployeeDataSource extends DataGridSource {
     _data = employees.map((e) => DataGridRow(cells: [
       DataGridCell(columnName: 'Num', value: employees.indexOf(e) + 1),
       DataGridCell(columnName: 'Name', value: '${e.avatar}-${e.firstName} ${e.lastName}'),
-      DataGridCell(columnName: 'Roles', value: e.roles),
-      DataGridCell(columnName: 'State', value: e.state),
+      DataGridCell(columnName: 'Roles', value: e.role),
+      DataGridCell(columnName: 'Status', value: e.status),
       DataGridCell(columnName: 'Gender', value: e.gender),
       DataGridCell(columnName: 'Phone', value: e.phone),
       DataGridCell(columnName: 'Email', value: e.email),

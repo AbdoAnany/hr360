@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserLoginModel {
   UserModel? data;
   String? token;
@@ -23,70 +25,68 @@ class UserLoginModel {
 // "phone":"1234567890","address":"123 Admin St, Admin City, Admin State",
 // "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
 class UserModel {
-
   late String? userId;
   String? firstName;
   String? lastName;
   String? email;
   String? phone;
+  String? status;
   String? address;
   String? nationalId;
   String? gender;
   String? avatar;
-  String? roles;
-  String? state;
+  String? role;
   String? birthDate;
 
-  UserModel(
-      {
-       this.userId,
-      this.firstName = '',
-      this.lastName = '',
-      this.email,
-      this.phone,
-      this.address,
-      this.gender,
-      this.birthDate,
-      this.nationalId,
-      this.avatar,
-      this.roles,
-      this.state});
+  UserModel({
+    this.userId,
+    this.firstName = '',
+    this.lastName = '',
+    this.email,
+    this.status = 'inactive',
+    this.phone,
+    this.address,
+    this.gender,
+    this.birthDate,
+    this.nationalId,
+    this.avatar,
+    this.role,
+  });
 
-//[{"id":1,"user_id":18,"first_name":"Admin","last_name":"User","email":"admin@example.com",
-// "phone":"1234567890","address":"123 Admin St, Admin City, Admin State",
-// "national_id":"A12345678","gender":"male","roles":"admin","state":"active"},
+  factory UserModel.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final data = snapshot.data()!;
+    return UserModel.fromJson(data)..userId = snapshot.id; // Optional: Assign document ID as userId
+  }
+
   UserModel.fromJson(Map<String, dynamic> json) {
-
-
     userId = json['user_id'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     email = json['email'];
     phone = json['phone'];
     address = json['address'];
+    status = json['status'];
     nationalId = json['national_id'];
     gender = json['gender'];
-    roles = json['roles'];
-    avatar = json['avatar']??'';
-    state = json['state'];
-    birthDate = json['birth_date'].toString().replaceAll('Z', "");
+    role = json['roles']??json['role'];
+    avatar = json['avatar'] ?? '';
+    birthDate = json['birth_date']?.toString().replaceAll('Z', '');
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['email'] = this.email;
-    data['phone'] = this.phone;
-    data['address'] = this.address;
-    data['national_id'] = this.nationalId;
-    data['gender'] = this.gender;
-    data['roles'] = this.roles;
-    data['state'] = this.state;
-    data['avatar'] = this.avatar;
-    data['birth_date'] = birthDate.toString().replaceAll('Z', "");
-
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['status'] = status;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['address'] = address;
+    data['national_id'] = nationalId;
+    data['gender'] = gender;
+    data['role'] = role;
+    data['avatar'] = avatar;
+    data['birth_date'] = birthDate?.toString().replaceAll('Z', '');
     return data;
   }
 }

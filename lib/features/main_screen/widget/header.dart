@@ -88,7 +88,7 @@ class Header extends StatelessWidget {
                         "${ProfileCubit().userProfile?.firstName} ${ProfileCubit().userProfile?.lastName}",
                         style: AppStyle.heading3),
                     SizedBox(width: 8),
-                    Text(ProfileCubit().userProfile?.roles ?? "",
+                    Text(ProfileCubit().userProfile?.role ?? "",
                         style: AppStyle.bodyText),
                   ],
                 ),
