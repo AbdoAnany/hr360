@@ -8,6 +8,10 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../core/routing/app_router.dart';
 import '../../../core/utils/constants/colors.dart';
 import '../../../core/utils/web_notificaion.dart';
+import '../../../di.dart';
+import '../../1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
+import '../../2_dash_border/presentation/pages/shared/constants/defaults.dart';
+import '../../2_dash_border/presentation/pages/shared/constants/ghaps.dart';
 import '../../2_dash_border/presentation/pages/shared/widgets/section_title.dart';
 
 class Header extends StatelessWidget {
@@ -21,6 +25,7 @@ class Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+
           InkWell(
             onTap: (){
               showWebInWindowNotification(
@@ -94,8 +99,26 @@ class Header extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 10.w),
+              Container(
+        
+                decoration: BoxDecoration(
+                  color: AppColor.error.withOpacity(.07),
+                  borderRadius: BorderRadius.circular(100),
+     
+
+
+                ),
+                child: IconButton(onPressed: (){
+                  getIt<AuthCubit>().logOut(context);
+                }, icon:
+                const Icon(Iconsax.logout, color: AppColor.error, size: 20,)),
+
+              ),    SizedBox(width: 10.w),
             ],
           ),
+
+
+
         ],
       ),
     );

@@ -2,26 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hr360/features/2_dash_border/core_import.dart';
 import 'package:hr360/features/main_screen/widget/header.dart';
 import 'package:hr360/features/main_screen/widget/sidebar.dart';
-import 'package:provider/provider.dart';
 
 import '../core/routing/app_router.dart';
-import '../core/utils/constants/sizes.dart';
-import '../core/utils/helpers/helper_functions.dart';
-import '../core/utils/theme/theme.dart';
-import '../core/utils/theme/theme.dart';
 
-//// class MainScreen extends StatelessWidget {
-// //   final Widget child;
-// //
-// //   const MainScreen({Key? key, required this.child}) : super(key: key);
-// //
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       body: child,
-// //     );
-// //   }
-// // }
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key, required this.child}) : super(key: key);
   final Widget child;
@@ -35,11 +18,8 @@ class MainScreen extends StatelessWidget {
           backgroundColor: AppColor.white,
           body: Row(
             children: [
-              // Sidebar with current route
               Sidebar(
-                onItemTapped: (route) {
-                  AppRouter().navigateTo(context, route);
-                },
+                onItemTapped: (route) =>AppRouter().navigateTo(context, route),
                 currentRoute: currentRoute,
               ),
 
