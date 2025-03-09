@@ -25,7 +25,7 @@ class SettingsFailure extends AuthState {
 }
 
 class AuthSuccess extends AuthState {
-  final UserLoginModel user;
+  final UserModel user;
 
   AuthSuccess({required this.user});
 

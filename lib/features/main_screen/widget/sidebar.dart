@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../core/routing/app_router.dart';
+import '../../../core/utils/constants/colors.dart';
+import '../../../di.dart';
+import '../../1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 
 class Sidebar extends StatelessWidget {
  final Function(AppRoutes) onItemTapped;
@@ -34,9 +37,29 @@ class Sidebar extends StatelessWidget {
         ),
        ),
        _buildNavItems(),
+       _buildLogoutButton(context),
       ],
      ),
     ],
+   ),
+  );
+ }
+ Widget _buildLogoutButton(BuildContext context) {
+  return Container(
+   decoration: BoxDecoration(
+    color: AppColor.error.withOpacity(.07),
+    borderRadius: BorderRadius.circular(100),
+   ),
+   child: IconButton(
+    tooltip: 'Logout',
+    onPressed: () {
+     getIt<AuthCubit>().logOut(context);
+    },
+    icon: const Icon(
+     Iconsax.logout,
+     color: AppColor.error,
+     size: 20,
+    ),
    ),
   );
  }

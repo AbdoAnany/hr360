@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,6 +23,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo _authRepo;
+  final FirebaseFirestore  _fireStore = FirebaseFirestore.instance;
 
   AuthCubit(this._authRepo) : super(AuthInitial());
 
@@ -133,24 +135,26 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(AuthLoading());
     try {
-      var user = await _authRepo.loginWithEmailANdPassword(
+      var user = await _authRepo.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      user.fold((e) {
+      user?.fold((e) {
         String? errMessage = (e as ServerFailure).message;
         emit(AuthFailure(errMessage: errMessage));
-      }, (data) async {
+      }, (userId) async {
         // await     sl<TLocalStorage>().removeData(AppKeys.userDataLogin);
 
-        await getIt<TLocalStorage>()
-            .saveData<Map<String, dynamic>>(
-                AppKeys.userDataLogin, data.toJson())
-            .then((e) {
-          print('data :  ${data.toJson()}');
-          // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
-          emit(AuthSuccess(user: data));
+        _fireStore.collection('users').doc(userId).get().then((value) async {
+          UserModel data = UserModel.fromJson(value.data()!);
+          await getIt<TLocalStorage>().saveData<Map<String, dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
+            print('data :  ${data.toJson()}');
+
+            // THelperFunctions.navigateAndReplaceScreen(const MainScreen());
+            emit(AuthSuccess(user: data));
+          });
         });
+
 
         // return Right(data);
       });

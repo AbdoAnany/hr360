@@ -16,8 +16,16 @@ class MainScreen extends StatelessWidget {
       builder: (context, currentRoute, _) {
         return Scaffold(
           backgroundColor: AppColor.white,
+          drawer:
+          !Responsive.isDesktop(context)?
+          Sidebar(
+            onItemTapped: (route) => AppRouter().navigateTo(context, route),
+            currentRoute: currentRoute,
+          ):null
+          ,
           body: Row(
             children: [
+              if(Responsive.isDesktop(context))
               Sidebar(
                 onItemTapped: (route) =>AppRouter().navigateTo(context, route),
                 currentRoute: currentRoute,
@@ -35,32 +43,8 @@ class MainScreen extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.only(top: 12.0, left: 12),
                         decoration: AppStyle.decorationPage,
-                        child:
-        child
+                        child:child
 
-                        // Consumer<ThemeProvider>(
-                        //   builder: (context, themeProvider, _) {
-                        //     themeProvider.getThemeMode();
-                        //     TSizes.init(context: context);
-                        //
-                        //     // Use a nested router to handle the current route's content
-                        //     return Router(
-                        //       routerDelegate: NestedRouterDelegate(
-                        //         currentRoute: currentRoute,
-                        //         onPopPage: (route, result) {
-                        //           if (!route.didPop(result)) {
-                        //             return false;
-                        //           }
-                        //
-                        //           // Return to dashboard if popping
-                        //           AppRouter().navigateTo(context, AppRoutes.dashboard);
-                        //           return true;
-                        //         },
-                        //       ),
-                        //       routeInformationParser: NestedRouteInformationParser(),
-                        //     );
-                        //   },
-                        // ),
                       ),
                     ),
                   ],

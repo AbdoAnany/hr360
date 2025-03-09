@@ -2,15 +2,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../pages/authentication/register_page.dart';
 import '../../pages/authentication/sign_in_page.dart';
-import '../../pages/entry_point.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const EntryPoint(),
-    ),
+    // GoRoute(
+    //   path: '/',
+    //   builder: (context, state) => const EntryPoint(),
+    // ),
     GoRoute(
       path: '/sign-in',
       builder: (context, state) => const SignInPage(),

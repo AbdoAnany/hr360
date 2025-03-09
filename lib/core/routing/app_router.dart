@@ -5,7 +5,6 @@ import '../../features/0_intro/presentation/pages/SplashScreen.dart';
 import '../../features/1_login/data/user_model.dart';
 import '../../features/1_login/presentation/page/login.dart';
 import '../../features/2_dash_border/presentation/pages/dashboard_page.dart';
-import '../../features/2_dash_border/presentation/pages/pages/entry_point.dart';
 import '../../features/3_academics/presentation/pages/PrimarySchoolClassesPage.dart';
 import '../../features/3_academics/presentation/pages/academics_screen.dart';
 import '../../features/4_user/presentation/pages/UserPage.dart';

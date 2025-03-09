@@ -1,0 +1,6 @@
+
+
+name: my_flutter_project
+packages:
+  - apps/**
+  - packages/**

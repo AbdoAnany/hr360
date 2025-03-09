@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/utils/error/failure.dart';
 import '../../../../core/utils/http/dio_client.dart';
@@ -9,6 +11,8 @@ import '../user_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final Network network = Network();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore  _firestore = FirebaseFirestore.instance;
 
   @override
   Future<Either<Failure, UserLoginModel>> loginWithEmailANdPassword(
@@ -26,14 +30,18 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserLoginModel>> signInWithEmailAndPassword(
+  Future<Either<Failure, String>?> signInWithEmailAndPassword(
       {required String password, required String email}) async {
-    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-//         email: _emailController.text,
-//         password: _passwordController.text,
-//       );
 
-    return response.fold((serverFailure) => Left(serverFailure),
-        (data) => Right(UserLoginModel.fromJson(data)));
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      String uid = userCredential.user!.uid;
+      return Right(uid);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));}
+
+
   }
+
+
 }
