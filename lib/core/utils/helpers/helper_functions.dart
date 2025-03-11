@@ -1,9 +1,13 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:hr360/core/routing/app_router.dart';
+import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:intl/intl.dart';
 
 import '../../../app.dart';
+import '../../../di.dart';
+import '../constants/keys.dart';
+import '../local_storage/storage_utility.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class THelperFunctions {
@@ -150,5 +154,11 @@ class THelperFunctions {
       wrappedList.add(Row(children: rowChildren));
     }
     return wrappedList;
+  }
+
+  static UserModel? getProfile() {
+    final date = getIt<TLocalStorage>().readData(AppKeys.userDataLogin);
+    final UserModel profile = UserModel.fromJson(date);
+    return profile;
   }
 }

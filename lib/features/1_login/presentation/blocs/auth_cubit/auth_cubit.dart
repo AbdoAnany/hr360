@@ -164,6 +164,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(errMessage: kExceptionMessage));
     }
   }
+  getProfile() async {
+    // UserModel? userdata = THelperFunctions.getProfile();
+    // emit(AuthSuccess(user: userdata));
+  }
 
   Future getSettings() async {
     // SettingsModel settings = await _authRepo.getPrivacyPoilcy();

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/animation/Animation.dart';
 import '../../../../../core/utils/constants/sizes.dart';
 import '../../../../../core/utils/helpers/helper_functions.dart';
 import '../../../../core/routing/app_router.dart';
+import '../../../../core/utils/constants/keys.dart';
+import '../../../../core/utils/local_storage/storage_utility.dart';
+import '../../../../di.dart';
+import '../../../1_login/data/user_model.dart';
 import '../../../main_screen.dart';
 // import '../../../../auth/helper/AppRoutes.dart';
 
@@ -21,8 +26,16 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     AnimationHelper.fadeInOut(this);
 
+
     Future.delayed(const Duration(seconds: 3),
-        () =>     AppRouter().navigateTo(context, AppRoutes.dashboard));
+        () {
+      final UserModel? user=    THelperFunctions.getProfile();
+       if(user !=null){
+          AppRouter().navigateAndReplaceScreen(context, AppRoutes.dashboard);
+        }else{
+         context.go('/login', extra: {'clearHistory': true});
+        }}
+       );
   }
 
   @override

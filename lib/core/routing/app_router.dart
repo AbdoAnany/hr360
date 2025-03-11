@@ -136,9 +136,9 @@ class AppRouter {
 
     // Check if user data is available
     // Replace this with your actual authentication check
-    final bool isLoggedIn = authNotifier.isLoggedIn;
-
-    // Check if we're on an auth route
+    // final bool isLoggedIn = authNotifier.isLoggedIn;
+    //
+    // // Check if we're on an auth route
     // final isAuthRoute = currentLocation == '/' ||
     //     currentLocation == '/login' ||
     //     currentLocation == '/register' ||
@@ -148,14 +148,14 @@ class AppRouter {
     // if (!isLoggedIn && !isAuthRoute) {
     //   return '/login';
     // }
-
+    //
     // // If logged in and on an auth route, redirect to dashboard
     // if (isLoggedIn && isAuthRoute && !isLoggingOut) {
     //   return '/dashboard';
     // }
-
-    // No redirection needed
-    return null;
+    //
+    // // No redirection needed
+    // return null;
   }
 
   // Build routes
@@ -275,7 +275,7 @@ class AppRouter {
     _currentRoute = route;
     routeChangeNotifier.value = route;
     print('navigateWithTransition route.name ${route.name}');
-    context.pushNamed(route.name, pathParameters: params ?? {});
+    context.goNamed(route.name, pathParameters: params ?? {});
   }
 
   // New method to navigate and replace current screen
