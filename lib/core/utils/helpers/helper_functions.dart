@@ -158,6 +158,9 @@ class THelperFunctions {
 
   static UserModel? getProfile() {
     final date = getIt<TLocalStorage>().readData(AppKeys.userDataLogin);
+    if(date==null){
+      return null;
+    }
     final UserModel profile = UserModel.fromJson(date);
     return profile;
   }

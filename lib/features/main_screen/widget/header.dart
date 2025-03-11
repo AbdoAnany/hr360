@@ -88,7 +88,7 @@ class Header extends StatelessWidget {
         // SizedBox(width: 16.w),
         // _buildIconButton(Iconsax.message, 'Messages'),
         SizedBox(width: 16.w),
-        _buildUserProfile(),
+        _buildUserProfile(context),
         SizedBox(width: 16.w),
         _buildLogoutButton(context),
       ],
@@ -102,7 +102,7 @@ class Header extends StatelessWidget {
     );
   }
 
-  Widget _buildUserProfile() {
+  Widget _buildUserProfile(context) {
     // await getIt<TLocalStorage>().saveData<Map<String, dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
     final  date = getIt<TLocalStorage>().readData(AppKeys.userDataLogin);
     print('data  >> . :  ${date}');
@@ -132,25 +132,25 @@ class Header extends StatelessWidget {
           ),
         ),
         SizedBox(width: 10.w),
-        // Skeletonizer(
-        //   enabled: profile == null,
-        //   justifyMultiLineText: true,
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       Text(
-        //         "${profile.firstName ?? ''} ${profile.lastName ?? ''}",
-        //         style: Theme.of(Get.context!).textTheme.titleLarge,
-        //         overflow: TextOverflow.ellipsis,
-        //       ),
-        //       Text(
-        //         profile.role ?? "",
-        //         style: Theme.of(Get.context!).textTheme.titleSmall,
-        //         overflow: TextOverflow.ellipsis,
-        //       ),
-        //     ],
-        //   ),
-        // ),
+        Skeletonizer(
+          enabled: profile == null,
+          justifyMultiLineText: true,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${profile.firstName ?? ''} ${profile.lastName ?? ''}",
+                style: Theme.of(context).textTheme.titleLarge,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                profile.role ?? "",
+                style: Theme.of(context).textTheme.bodySmall,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

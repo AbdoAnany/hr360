@@ -44,7 +44,7 @@ class DashboardPage extends StatelessWidget {
                     gapH16,
                     const GetMoreCustomers(),
                     if (Responsive.isMobile(context))
-                      const Column(
+                       Column(
                         children: [
                           gapH16,
                           PopularProducts(),
@@ -60,7 +60,7 @@ class DashboardPage extends StatelessWidget {
               ),
               if (!Responsive.isMobile(context)) gapW16,
               if (!Responsive.isMobile(context))
-                const Expanded(
+                 Expanded(
                   flex: 2,
                   child: Column(
                     children: [
