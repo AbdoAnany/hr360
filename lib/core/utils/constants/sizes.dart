@@ -15,8 +15,8 @@ class TSizes {
 
 
   }
-  static  double uiSW = 1512;
-  static  double uiSH = 1198;
+  static  double uiSW = 480;
+  static  double uiSH = 980;
   static  double screenWidth = MediaQuery.of(Get.context).size.width;
   static  double screenHeight = MediaQuery.of(Get.context).size.height;
   static  double screenAspectRatio = MediaQuery.of(Get.context).size.aspectRatio;

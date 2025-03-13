@@ -358,7 +358,7 @@ class EmployeeDataSource extends DataGridSource {
         children: [
           CircleAvatar(
             backgroundImage: NetworkImage(parts[0]),
-            radius: 25.sp,
+            radius: 25.spMin,
           ),
           const SizedBox(width: 8),
           Flexible(child: Text(parts[1], overflow: TextOverflow.ellipsis)),
@@ -381,7 +381,7 @@ class EmployeeDataSource extends DataGridSource {
       alignment: Alignment.center,
       child: Text(
         value,
-        style: TextStyle(fontSize: 12.sp, color: isActive ? const Color(0xff40997E) : const Color(0xffF93333)),
+        style: TextStyle(fontSize: 12.spMin, color: isActive ? const Color(0xff40997E) : const Color(0xffF93333)),
       ),
     );
   }
@@ -395,7 +395,7 @@ class EmployeeDataSource extends DataGridSource {
             AppRoutes.profile,
             params: {'userId': user.userId.toString()}, // Pass parameters correctly
           ),
-      child: Icon(Iconsax.eye, size: 25.sp, color: AppColor.primary),
+      child: Icon(Iconsax.eye, size: 25.spMin, color: AppColor.primary),
     );
   }
 }

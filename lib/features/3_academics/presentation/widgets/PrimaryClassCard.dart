@@ -79,7 +79,7 @@ class _PrimaryClassCardState extends State<PrimaryClassCard> {
                                   widget.classRoom.className ?? '',
                                   maxLines: 2,
                                   style: TextStyle(
-                                    fontSize: 20.sp,
+                                    fontSize: 20.spMin,
                                     fontWeight: FontWeight.w700,
                                     color: Colors.white,
                                     height: 1.2,
@@ -112,7 +112,7 @@ class _PrimaryClassCardState extends State<PrimaryClassCard> {
                           Text(
                             'Teacher: ${widget.classRoom.teacherName}',
                             style: TextStyle(
-                              fontSize: 13.sp,
+                              fontSize: 13.spMin,
                               color: Colors.white.withOpacity(0.9),
                               height: 1.2,
                             ),
@@ -136,7 +136,7 @@ class _PrimaryClassCardState extends State<PrimaryClassCard> {
                           Text(
                             '${widget.classRoom.totalStudents}',
                             style: TextStyle(
-                              fontSize: 24.sp,
+                              fontSize: 24.spMin,
                               height: 1,
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
@@ -145,7 +145,7 @@ class _PrimaryClassCardState extends State<PrimaryClassCard> {
                           Text(
                             'Students',
                             style: TextStyle(
-                              fontSize: 11.sp,
+                              fontSize: 11.spMin,
                               height: 1.2,
                               color: Colors.white.withOpacity(0.9),
                             ),
@@ -179,7 +179,7 @@ class _PrimaryClassCardState extends State<PrimaryClassCard> {
                             child: Text(
                               'Today\'s Subjects',
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                fontSize: 16.spMin,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black.withOpacity(0.8),
                               ),

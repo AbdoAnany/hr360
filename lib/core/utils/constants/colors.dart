@@ -9,37 +9,37 @@ import 'image_strings.dart';
 class AppStyle {
   // Text Styles
   static  TextStyle heading1 = TextStyle(
-    fontSize: 32.sp,
+    fontSize: 32.spMin,
     fontWeight: FontWeight.bold,
     color: AppColor.darkGray,
   );
 
   static  TextStyle heading2 = TextStyle(
-    fontSize: 24.sp,
+    fontSize: 24.spMin,
     fontWeight: FontWeight.bold,
     color: AppColor.darkGray,
   );
 
   static  TextStyle heading3 = TextStyle(
-    fontSize: 18.sp,
+    fontSize: 18.spMin,
     fontWeight: FontWeight.w600,
     color: AppColor.darkGray,
   );
 
   static  TextStyle bodyText = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 16.spMin,
     fontWeight: FontWeight.normal,
     color: AppColor.darkGray,
   );
 
   static  TextStyle labelText = TextStyle(
-    fontSize: 14.sp,
+    fontSize: 14.spMin,
     fontWeight: FontWeight.normal,
     color: AppColor.placeholder,
   );
 
   static  TextStyle buttonText = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 16.spMin,
     fontWeight: FontWeight.bold,
     color: AppColor.white,
   );
@@ -58,7 +58,7 @@ class AppStyle {
   static final ButtonStyle secondaryButton = OutlinedButton.styleFrom(
     side: const BorderSide(color: AppColor.primary),
     textStyle: TextStyle(
-      fontSize: 16.sp,
+      fontSize: 16.spMin,
       fontWeight: FontWeight.bold,
       color: AppColor.primary,
     ),
@@ -105,25 +105,25 @@ class AppStyle {
   }
   static TextStyle font18Black400 =  TextStyle(
     color: AppColor.textPrimary,
-    fontSize: 18.sp,
+    fontSize: 18.spMin,
     fontWeight: FontWeight.w400,
   );
 
   static TextStyle font16PrimaryBold =  TextStyle(
     color: AppColor.primary,
-    fontSize: 16.sp,
+    fontSize: 16.spMin,
     fontWeight: FontWeight.bold,
   );
 
   static TextStyle font14Gray400 =  TextStyle(
     color: AppColor.textSecondary,
-    fontSize: 14.sp,
+    fontSize: 14.spMin,
     fontWeight: FontWeight.w400,
   );
 
   static TextStyle font12Error =  TextStyle(
     color: AppColor.error,
-    fontSize: 12.sp,
+    fontSize: 12.spMin,
     fontWeight: FontWeight.w500,
   );
 
@@ -287,31 +287,31 @@ class AppDecoration {
   );
 }
 
-class CustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
+// class CustomButton extends StatelessWidget {
+//   final String text;
+//   final VoidCallback onPressed;
 
-  const CustomButton({required this.text, required this.onPressed, Key? key})
-      : super(key: key);
+//   const CustomButton({required this.text, required this.onPressed, Key? key})
+//       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        //height: 48,
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: onPressed,
+//       child: Container(
+//         //height: 48,
 
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: AppDecoration.buttonPrimary,
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          style: AppStyle.buttonText.copyWith(color: AppColor.textWhite),
-        ),
-      ),
-    );
-  }
-}
+//         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+//         decoration: AppDecoration.buttonPrimary,
+//         alignment: Alignment.center,
+//         child: Text(
+//           text,
+//           style: AppStyle.buttonText.copyWith(color: AppColor.textWhite),
+//         ),
+//       ),
+//     );
+//   }
+// }
 class CustomCard extends StatelessWidget {
   final Widget child;
 

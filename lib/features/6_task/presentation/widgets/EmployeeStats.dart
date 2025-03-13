@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hr360/core/presentation/widgets/custom_button.dart';
 import 'package:hr360/core/utils/constants/colors.dart';
 import 'package:hr360/features/1_login/data/user_model.dart';
 import 'package:hr360/features/ProfileScreen/UI/manger/profile_cubit.dart';
@@ -59,7 +60,7 @@ class EmployeeStats extends StatelessWidget {
               },
             );
           },
-          text: "New Task",
+          label: "New Task",
         ),
         SizedBox(width: 8,)
       ],
