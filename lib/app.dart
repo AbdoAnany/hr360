@@ -73,6 +73,7 @@ class App extends StatelessWidget {
             ensureScreenSize: true,
             child: ToastificationWrapper(
                 child: MaterialApp.router(
+
               routerDelegate: appRouter.router.routerDelegate,
               routeInformationParser: appRouter.router.routeInformationParser,
               routeInformationProvider:

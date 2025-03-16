@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../app.dart';
 import '../../../core/routing/app_router.dart';
 import '../../../core/utils/constants/colors.dart';
 import '../../../di.dart';
+import '../../../main.dart';
 import '../../1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 
 class Sidebar extends StatelessWidget {
@@ -36,7 +38,7 @@ class Sidebar extends StatelessWidget {
          ),
         ),
        ),
-       _buildNavItems(),
+       _buildNavItems(context),
        _buildLogoutButton(context),
       ],
      ),
@@ -64,7 +66,7 @@ class Sidebar extends StatelessWidget {
   );
  }
 
- Widget _buildNavItems() {
+ Widget _buildNavItems(context) {
   final List<NavItem> items = [
    NavItem(Iconsax.category, 'Dashboard', AppRoutes.dashboard),
    NavItem(Iconsax.activity, 'Academics', AppRoutes.academics),
@@ -80,11 +82,11 @@ class Sidebar extends StatelessWidget {
   ];
 
   return Column(
-   children: items.map((item) => _sidebarItem(item)).toList(),
+   children: items.map((item) => _sidebarItem(item,context)).toList(),
   );
  }
 
- Widget _sidebarItem(NavItem item) {
+ Widget _sidebarItem(NavItem item,context) {
   return ListTile(
    leading: Icon(
     item.icon,
@@ -96,7 +98,11 @@ class Sidebar extends StatelessWidget {
      color: currentRoute == item.route ? Colors.blue : Colors.black,
     ),
    ),
-   onTap: () => onItemTapped(item.route),
+   onTap: () {
+
+    Scaffold.of( context).closeDrawer();
+     onItemTapped(item.route);
+   },
   );
  }
 }

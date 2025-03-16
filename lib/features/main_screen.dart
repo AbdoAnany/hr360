@@ -8,43 +8,46 @@ import '../core/routing/app_router.dart';
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key, required this.child}) : super(key: key);
   final Widget child;
+
   @override
   Widget build(BuildContext context) {
-    print('MainScreen');
     return ValueListenableBuilder<AppRoutes>(
-      valueListenable:  AppRouter().routeChangeNotifier,
+      valueListenable: AppRouter().routeChangeNotifier,
       builder: (context, currentRoute, _) {
         return Scaffold(
           backgroundColor: AppColor.white,
-          drawer:
-          !Responsive.isDesktop(context)?
-          Sidebar(
-            onItemTapped: (route) => AppRouter().navigateTo(context, route),
-            currentRoute: currentRoute,
-          ):null
-          ,
+          drawer: !Responsive.isDesktop(context)
+              ? Drawer(
+            child: Sidebar(
+              onItemTapped: (route) => AppRouter().navigateTo(context, route),
+              currentRoute: currentRoute,
+            ),
+            width: MediaQuery.of(context).size.width * 0.7,
+          )
+              : null,
           body: Row(
             children: [
-              if(Responsive.isDesktop(context))
-              Sidebar(
-                onItemTapped: (route) =>AppRouter().navigateTo(context, route),
-                currentRoute: currentRoute,
-              ),
-
-              // Main content area
+              if (Responsive.isDesktop(context))
+                SizedBox(
+                  width: 200,
+                  child: Sidebar(
+                    onItemTapped: (route) => AppRouter().navigateTo(context, route),
+                    currentRoute: currentRoute,
+                  ),
+                ),
               Expanded(
                 child: Column(
                   children: [
-                    // Header with current route info
                     Header(currentRoute: currentRoute),
-
-                    // Content area
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.only(top: 12.0, left: 12),
+                        padding: EdgeInsets.only(
+                          top: Responsive.isDesktop(context) ? 12.0 : 8.0,
+                          left: Responsive.isDesktop(context) ? 12.0 : 8.0,
+                          right: Responsive.isDesktop(context) ? 12.0 : 8.0,
+                        ),
                         decoration: AppStyle.decorationPage,
-                        child:child
-
+                        child: child,
                       ),
                     ),
                   ],
@@ -57,7 +60,6 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
-
 
 
 // Nested routing for the content area

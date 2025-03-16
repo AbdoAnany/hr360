@@ -12,6 +12,7 @@ import '../../../core/utils/constants/keys.dart';
 import '../../../core/utils/local_storage/storage_utility.dart';
 import '../../../core/utils/web_notificaion.dart';
 import '../../../di.dart';
+import '../../../responsive.dart';
 import '../../1_login/presentation/blocs/auth_cubit/auth_cubit.dart';
 import '../../2_dash_border/presentation/pages/shared/widgets/section_title.dart';
 
@@ -21,19 +22,17 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width to adjust layout based on screen size
     final screenWidth = MediaQuery.of(context).size.width;
-    final isSmallScreen = screenWidth < 600;
+    final isMobile = screenWidth < 600;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 20.w,
-        vertical: 12.h,
+        horizontal: isMobile ? 10 : 20,
+        vertical: isMobile ? 8: 12,
       ),
       color: Colors.white,
-      child: isSmallScreen
-          ? _buildMobileLayout(context)
-          : _buildDesktopLayout(context),
+      child: isMobile ? _buildMobileLayout(context) : _buildDesktopLayout(context),
     );
   }
 
@@ -48,10 +47,20 @@ class Header extends StatelessWidget {
   }
 
   Widget _buildMobileLayout(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        _buildSectionTitle(),
-        SizedBox(height: 10.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Iconsax.menu),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
+            _buildSectionTitle(),
+          ],
+        ),
+        Spacer(flex: 1),
+        SizedBox(height: 8.h),
         _buildActionButtons(context),
       ],
     );
@@ -69,92 +78,29 @@ class Header extends StatelessWidget {
       child: SectionTitle(
         title: currentRoute.name.capitalize!,
         color: AppColor.colorList[
-        AppRoutes.values.indexWhere((route) => route == currentRoute)
-        ],
+        AppRoutes.values.indexWhere((route) => route == currentRoute)],
       ),
     );
   }
 
   Widget _buildActionButtons(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isCompactLayout = screenWidth < 800;
-
+    final isMobile = Responsive.isMobile(context);
     return Row(
-      mainAxisAlignment: isCompactLayout
-          ? MainAxisAlignment.center
-          : MainAxisAlignment.end,
+      mainAxisAlignment: isMobile ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.end,
       children: [
-        // _buildIconButton(Iconsax.notification, 'Notifications'),
-        // SizedBox(width: 16.w),
-        // _buildIconButton(Iconsax.message, 'Messages'),
-        SizedBox(width: 16.w),
+        if (!isMobile) ...[
+          // Uncomment if needed
+          // _buildIconButton(Iconsax.notification, 'Notifications'),
+          // SizedBox(width: 16.w),
+          // _buildIconButton(Iconsax.message, 'Messages'),
+          // SizedBox(width: 16.w),
+        ],
         _buildUserProfile(context),
-        SizedBox(width: 16.w),
+        SizedBox(width: isMobile ? 8.w : 16.w),
         _buildLogoutButton(context),
       ],
     );
   }
-
-  Widget _buildIconButton(IconData icon, String tooltip) {
-    return Tooltip(
-      message: tooltip,
-      child: Icon(icon, color: Colors.black),
-    );
-  }
-
-  Widget _buildUserProfile(context) {
-    // await getIt<TLocalStorage>().saveData<Map<String, dynamic>>(AppKeys.userDataLogin, data.toJson()).then((e) {
-    final  date = getIt<TLocalStorage>().readData(AppKeys.userDataLogin);
-    print('data  >> . :  ${date}');
-    final UserModel  profile = UserModel.fromJson(date);
-
-    return Row(
-      children: [
-        Container(
-          clipBehavior: Clip.hardEdge,
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            color: AppColor.white,
-            shape: BoxShape.circle,
-          ),
-          child: profile.avatar != null
-              ? Image.network(
-            profile.avatar??'',
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-             Image.asset(
-              'assets/images/illustration/signup_illustration.png',
-            ),
-          )
-              : Image.asset(
-            'assets/images/illustration/signup_illustration.png',
-          ),
-        ),
-        SizedBox(width: 10.w),
-        Skeletonizer(
-          enabled: profile == null,
-          justifyMultiLineText: true,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "${profile.firstName ?? ''} ${profile.lastName ?? ''}",
-                style: Theme.of(context).textTheme.titleLarge,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                profile.role ?? "",
-                style: Theme.of(context).textTheme.bodySmall,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildLogoutButton(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -174,4 +120,56 @@ class Header extends StatelessWidget {
       ),
     );
   }
+  Widget _buildUserProfile(BuildContext context) {
+    final profile = UserModel.fromJson(getIt<TLocalStorage>().readData(AppKeys.userDataLogin) ?? {});
+    final isMobile = Responsive.isMobile(context);
+
+    return Row(
+      children: [
+        Container(
+          clipBehavior: Clip.hardEdge,
+          width: isMobile ? 32 : 40,
+          height: isMobile ? 32 : 40,
+          decoration: const BoxDecoration(
+            color: AppColor.white,
+            shape: BoxShape.circle,
+          ),
+          child: profile.avatar != null
+              ? Image.network(
+            profile.avatar!,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) => Image.asset(
+              'assets/images/illustration/signup_illustration.png',
+            ),
+          )
+              : Image.asset('assets/images/illustration/signup_illustration.png'),
+        ),
+        if (!isMobile) ...[
+          SizedBox(width: 10.w),
+          Skeletonizer(
+            enabled: profile == null,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "${profile.firstName ?? ''} ${profile.lastName ?? ''}",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontSize: Responsive.isMobile(context) ? 16 : 18,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  profile.role ?? "",
+                  style: Theme.of(context).textTheme.bodySmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+// _buildIconButton and _buildUserProfile as shown above
+// _buildLogoutButton remains unchanged
 }
