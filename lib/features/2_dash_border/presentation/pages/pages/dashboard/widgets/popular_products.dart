@@ -84,7 +84,43 @@ class PopularProducts extends StatelessWidget {
               );
             },
           ),
+          const Divider(),
+          StreamBuilder<QuerySnapshot>(
+            stream: _userService.getUsersByRole("teacher"),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
 
+              List students = snapshot.data!.docs;
+
+              return   ListView.builder(
+                itemCount:students.length,
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (_, index) {
+                  UserModel student = UserModel.fromFirestore(students[index]);
+                  return PopularProductItem(
+                    name: student.firstName??"",
+                    price: '\$2,453.80',
+                    imageSrc:
+                    'https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg',
+                    isActive: student.status == 'active',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ChatScreen(
+                            senderId: _userService.getCurrentUserId(),
+                            receiverId: student.userId??'',
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              );
+            },
+          ),
           gapH16,
           Container(
             padding: const EdgeInsets.symmetric(

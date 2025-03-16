@@ -16,7 +16,9 @@ class ChatService {
 
     await _firestore.collection('chats').doc(chatId).collection('messages').add(message.toFirestore());
   }
-
+  String getChatId(String user1, String user2) {
+    return user1.hashCode <= user2.hashCode ? '$user1 _ $user2' : '$user2 _ $user1';
+  }
   // 💬 Get Chat Messages (Real-time)
   Stream<QuerySnapshot> getMessages(String user1, String user2) {
     String chatId = _getChatId(user1, user2);
